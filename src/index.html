@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Battles in Europe</title>
+    <title>Battles in History</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="index.css">
 
@@ -12,11 +12,35 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
-    <h3>Battles In Europe - Napoleonic Wars</h3>
-
-    <div id="map"></div>
-    <script src="index.js"></script>
+    <header class="header">
+      <h1>Battles In History</h1>
+      <input type="button" class="headerBtn" value="Battles In France" id="France"></h1>
+      <input type="button" class="headerBtn" value="Battles In Germany" id="Germany"></h1>
+      <input type="button" class="headerBtn" value="Battles In England" id="England"></h1>
+      <input type="button" class="headerBtn" value="Battles In Spain" id="Spain"></h1>
+      <input type="button" class="headerBtn" value="Battles In Italy" id="Italy"></h1>
+      <input type="button" class="otherHeaderBtn" value="Countries List" id="countryListBtn"></h1>
+      <!-- <input type="button" class="otherHeaderBtn" value="Historical Battles Near Me"></h1> -->
+      <!-- <input type="search" name="" id="searchBox">
+      <input type="button" value="Search"> -->
+    </header>
+    <div class="container">
+      
+      <div id="map"></div>
+      <div id="infoPage">
+        <div id="infoHeader"><h1>test</h1></div>
+        <h1 id="info">Loading...</h1>
+      </div>
+    </div>
+    <!-- <div class="footer">
+      <input type="button" value="Login">
+      <input type="button" value="Register">
+      <h3>Data sourced from wikipedia</h3>
+    </div> -->
   </body>
+  <script src="index.js"></script>
+  <script src="getBattleData.js"></script>
 </html>

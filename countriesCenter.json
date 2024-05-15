@@ -1,0 +1,948 @@
+{
+ "Afghanistan": {
+  "latLon": [
+   34.51666667,
+   69.18333333
+  ]
+ },
+ "Albania": {
+  "latLon": [
+   41,
+   20
+  ]
+ },
+ "Algeria": {
+  "latLon": [
+   28,
+   2
+  ]
+ },
+ "Angola": {
+  "latLon": [
+   -12.5,
+   18.5
+  ]
+ },
+ "Argentina": {
+  "latLon": [
+   -34,
+   -64
+  ]
+ },
+ "Armenia": {
+  "latLon": [
+   40.18333333,
+   44.51666667
+  ]
+ },
+ "Australia": {
+  "latLon": [
+   -25,
+   133
+  ]
+ },
+ "Austria": {
+  "latLon": [
+   47.33333333,
+   13.33333333
+  ]
+ },
+ "Azerbaijan": {
+  "latLon": [
+   40.3,
+   47.7
+  ]
+ },
+ "Bahamas": {
+  "latLon": [
+   25,
+   -77.4
+  ]
+ },
+ "Bahrain": {
+  "latLon": [
+   26.06666667,
+   50.5
+  ]
+ },
+ "Bangladesh": {
+  "latLon": [
+   24,
+   90
+  ]
+ },
+ "Barbados": {
+  "latLon": [
+   13.17,
+   -59.5525
+  ]
+ },
+ "Belarus": {
+  "latLon": [
+   53,
+   27
+  ]
+ },
+ "Belgium": {
+  "latLon": [
+   50.83333333,
+   4
+  ]
+ },
+ "Belize": {
+  "latLon": [
+   17.06666667,
+   -88.7
+  ]
+ },
+ "Benin": {
+  "latLon": [
+   6.46666667,
+   2.6
+  ]
+ },
+ "Bolivia": {
+  "latLon": [
+   -16.712,
+   -64.666
+  ]
+ },
+ "Bosnia and Herzegovina": {
+  "latLon": [
+   44,
+   18
+  ]
+ },
+ "Botswana": {
+  "latLon": [
+   -24.65833333,
+   25.90833333
+  ]
+ },
+ "Brazil": {
+  "latLon": [
+   -10,
+   -52
+  ]
+ },
+ "Bulgaria": {
+  "latLon": [
+   42.6975,
+   23.3225
+  ]
+ },
+ "Cambodia": {
+  "latLon": [
+   11.57,
+   104.91
+  ]
+ },
+ "Cameroon": {
+  "latLon": [
+   6,
+   12
+  ]
+ },
+ "Canada": {
+  "latLon": [
+   60,
+   -110
+  ]
+ },
+ "Cape Verde": {
+  "latLon": [
+   15.3,
+   -23.7
+  ]
+ },
+ "Chile": {
+  "latLon": [
+   -34,
+   -71
+  ]
+ },
+ "China": {
+  "latLon": [
+   35,
+   103
+  ]
+ },
+ "Colombia": {
+  "latLon": [
+   4,
+   -72
+  ]
+ },
+ "Democratic Republic of the Congo": {
+  "latLon": [
+   -3,
+   24
+  ]
+ },
+ "Costa Rica": {
+  "latLon": [
+   10,
+   -84
+  ]
+ },
+ "Croatia": {
+  "latLon": [
+   45.16666667,
+   15.5
+  ]
+ },
+ "Cuba": {
+  "latLon": [
+   22,
+   -80
+  ]
+ },
+ "Cyprus": {
+  "latLon": [
+   35,
+   33
+  ]
+ },
+ "Czech Republic": {
+  "latLon": [
+   49.75,
+   15.5
+  ]
+ },
+ "Denmark": {
+  "latLon": [
+   56,
+   10
+  ]
+ },
+ "Djibouti": {
+  "latLon": [
+   11.5,
+   43
+  ]
+ },
+ "Dominica": {
+  "latLon": [
+   15.41666667,
+   -61.33333333
+  ]
+ },
+ "Dominican Republic": {
+  "latLon": [
+   19,
+   -70.66666667
+  ]
+ },
+ "East Timor/Timor-Leste": {
+  "latLon": [
+   -8.55,
+   125.56
+  ]
+ },
+ "Ecuador": {
+  "latLon": [
+   -2,
+   -77.5
+  ]
+ },
+ "Egypt": {
+  "latLon": [
+   26,
+   30
+  ]
+ },
+ "El Salvador": {
+  "latLon": [
+   13.68333333,
+   -89.18333333
+  ]
+ },
+ "England": {
+  "latLon": [
+   53.13,
+   -1.38
+  ]
+ },
+ "Eritrea": {
+  "latLon": [
+   15,
+   39
+  ]
+ },
+ "Estonia": {
+  "latLon": [
+   59,
+   26
+  ]
+ },
+ "Ethiopia": {
+  "latLon": [
+   9,
+   38.7
+  ]
+ },
+ "Finland": {
+  "latLon": [
+   64,
+   26
+  ]
+ },
+ "France": {
+  "latLon": [
+   47,
+   2
+  ]
+ },
+ "Gabon": {
+  "latLon": [
+   -1,
+   12
+  ]
+ },
+ "Germany": {
+  "latLon": [
+   51,
+   9
+  ]
+ },
+ "Georgia": {
+  "latLon": [
+    42, 43.5
+  ]
+ },
+ "Ghana": {
+  "latLon": [
+   8.03,
+   -1.08
+  ]
+ },
+ "Greece": {
+  "latLon": [
+   39,
+   22
+  ]
+ },
+ "Grenada": {
+  "latLon": [
+   12.11666667,
+   -61.66666667
+  ]
+ },
+ "Guatemala": {
+  "latLon": [
+   15.5,
+   -90.25
+  ]
+ },
+ "Guyana": {
+  "latLon": [
+   5,
+   -58.75
+  ]
+ },
+ "Haiti": {
+  "latLon": [
+   19,
+   -72.41666667
+  ]
+ },
+ "Honduras": {
+  "latLon": [
+   15,
+   -86.5
+  ]
+ },
+ "Hungary": {
+  "latLon": [
+   47,
+   20
+  ]
+ },
+ "Iceland": {
+  "latLon": [
+   65,
+   -18
+  ]
+ },
+ "India": {
+  "latLon": [
+   21,
+   78
+  ]
+ },
+ "Indonesia": {
+  "latLon": [
+   -5,
+   120
+  ]
+ },
+ "Iran": {
+  "latLon": [
+   32,
+   53
+  ]
+ },
+ "Iraq": {
+  "latLon": [
+   33,
+   44
+  ]
+ },
+ "Ireland": {
+  "latLon": [
+   53.44944444,
+   -7.50305556
+  ]
+ },
+ "Israel": {
+  "latLon": [
+   31,
+   35
+  ]
+ },
+ "Italy": {
+  "latLon": [
+   43,
+   12
+  ]
+ },
+ "Jamaica": {
+  "latLon": [
+   18.18,
+   -77.4
+  ]
+ },
+ "Japan": {
+  "latLon": [
+   36,
+   138
+  ]
+ },
+ "Jordan": {
+  "latLon": [
+   31.24,
+   36.51
+  ]
+ },
+ "Kazakhstan": {
+  "latLon": [
+   48,
+   68
+  ]
+ },
+ "Kenya": {
+  "latLon": [
+   1,
+   38
+  ]
+ },
+ "Korea": {
+  "latLon": [
+   38.31666667,
+   127.23333333
+  ]
+ },
+ "Kosovo": {
+  "latLon": [
+   42.58333333,
+   21
+  ]
+ },
+ "Kuwait": {
+  "latLon": [
+   29.5,
+   47.75
+  ]
+ },
+ "Kyrgyzstan": {
+  "latLon": [
+   41,
+   75
+  ]
+ },
+ "Laos": {
+  "latLon": [
+   18,
+   105
+  ]
+ },
+ "Latvia": {
+  "latLon": [
+   57,
+   25
+  ]
+ },
+ "Lebanon": {
+  "latLon": [
+   33.83333333,
+   35.83333333
+  ]
+ },
+ "Libya": {
+  "latLon": [
+   27,
+   17
+  ]
+ },
+ "Lithuania": {
+  "latLon": [
+   55,
+   24
+  ]
+ },
+ "Luxembourg": {
+  "latLon": [
+   49.81444444,
+   6.13166667
+  ]
+ },
+ "Madagascar": {
+  "latLon": [
+   -20,
+   47
+  ]
+ },
+ "Malaysia": {
+  "latLon": [
+   2,
+   112
+  ]
+ },
+ "Mali": {
+  "latLon": [
+   17,
+   -4
+  ]
+ },
+ "Malta": {
+  "latLon": [
+   35.9,
+   14.51666667
+  ]
+ },
+ "Manchuria": {
+  "latLon": [
+   43,
+   125
+  ]
+ },
+ "Marshall Islands": {
+  "latLon": [
+   9.82,
+   169.29
+  ]
+ },
+ "Mauritania": {
+  "latLon": [
+   20,
+   -12
+  ]
+ },
+ "Mauritius": {
+  "latLon": [
+   -20.2,
+   57.5
+  ]
+ },
+ "Mexico": {
+  "latLon": [
+   23,
+   -102
+  ]
+ },
+ "Moldova": {
+  "latLon": [
+   47,
+   29
+  ]
+ },
+ "Mongolia": {
+  "latLon": [
+   48,
+   106
+  ]
+ },
+ "Montenegro": {
+  "latLon": [
+   42.5,
+   19.3
+  ]
+ },
+ "Morocco": {
+  "latLon": [
+   32,
+   -6
+  ]
+ },
+ "Mozambique": {
+  "latLon": [
+   -18.25,
+   35
+  ]
+ },
+ "Myanmar (formerly Burma)": {
+  "latLon": [
+   22,
+   96
+  ]
+ },
+ "Namibia": {
+  "latLon": [
+   -22,
+   17
+  ]
+ },
+ "Nauru": {
+  "latLon": [
+   -0.52805556,
+   166.93694444
+  ]
+ },
+ "Nepal": {
+  "latLon": [
+   28.16666667,
+   84.25
+  ]
+ },
+ "Netherlands": {
+  "latLon": [
+   52,
+   6
+  ]
+ },
+ "New Zealand": {
+  "latLon": [
+   -42,
+   173
+  ]
+ },
+ "Nicaragua": {
+  "latLon": [
+   13.13333333,
+   -85.11666667
+  ]
+ },
+ "Nigeria": {
+  "latLon": [
+   8,
+   10
+  ]
+ },
+ "North Korea": {
+  "latLon": [
+   40,
+   127
+  ]
+ },
+ "North Macedonia": {
+  "latLon": [
+   42,
+   22
+  ]
+ },
+ "Norway": {
+  "latLon": [
+   61,
+   8
+  ]
+ },
+ "Oman": {
+  "latLon": [
+   21,
+   57
+  ]
+ },
+ "Pakistan": {
+  "latLon": [
+   30,
+   70
+  ]
+ },
+ "Palau": {
+  "latLon": [
+   7.5,
+   134.5
+  ]
+ },
+ "Palestine": {
+  "latLon": [
+    32, 35.25
+  ]
+ },
+ "Panama": {
+  "latLon": [
+   9,
+   -80
+  ]
+ },
+ "Papua New Guinea": {
+  "latLon": [
+   -6,
+   147
+  ]
+ },
+ "Paraguay": {
+  "latLon": [
+   -23,
+   -58
+  ]
+ },
+ "Peru": {
+  "latLon": [
+   -10,
+   -76
+  ]
+ },
+ "Philippines": {
+  "latLon": [
+   13,
+   122
+  ]
+ },
+ "Poland": {
+  "latLon": [
+   52,
+   20
+  ]
+ },
+ "Portugal": {
+  "latLon": [
+   39,
+   -8
+  ]
+ },
+ "Qatar": {
+  "latLon": [
+   25.5,
+   51.25
+  ]
+ },
+ "Romania": {
+  "latLon": [
+   46,
+   25
+  ]
+ },
+ "Russia": {
+  "latLon": [
+   66,
+   94
+  ]
+ },
+ "Saint Kitts and Nevis": {
+  "latLon": [
+   17.33333333,
+   -62.75
+  ]
+ },
+ "Saint Lucia": {
+  "latLon": [
+   13.88333333,
+   -60.96666667
+  ]
+ },
+ "Saint Vincent and the Grenadines": {
+  "latLon": [
+   13.25,
+   -61.2
+  ]
+ },
+ "Saudi Arabia": {
+  "latLon": [
+   24,
+   45
+  ]
+ },
+ "Scotland": {
+  "latLon": [
+   57,
+   -4
+  ]
+ },
+ "Senegal": {
+  "latLon": [
+   14,
+   -14
+  ]
+ },
+ "Serbia": {
+  "latLon": [
+   44,
+   21
+  ]
+ },
+ "Seychelles": {
+  "latLon": [
+   -4.58333333,
+   55.66666667
+  ]
+ },
+ "Slovakia": {
+  "latLon": [
+   48.66666667,
+   19.5
+  ]
+ },
+ "Slovenia": {
+  "latLon": [
+   46.12,
+   14.815
+  ]
+ },
+ "South Africa": {
+  "latLon": [
+   -30,
+   25
+  ]
+ },
+ "South Korea": {
+  "latLon": [
+   36,
+   128
+  ]
+ },
+ "Spain": {
+  "latLon": [
+   40,
+   -4
+  ]
+ },
+ "Sri Lanka": {
+  "latLon": [
+   7,
+   81
+  ]
+ },
+ "Sudan": {
+  "latLon": [
+   15,
+   32
+  ]
+ },
+ "Suriname": {
+  "latLon": [
+   4,
+   -56
+  ]
+ },
+ "Sweden": {
+  "latLon": [
+   63,
+   16
+  ]
+ },
+ "Switzerland": {
+  "latLon": [
+   46.83333333,
+   8.33333333
+  ]
+ },
+ "Syria": {
+  "latLon": [
+   35,
+   38
+  ]
+ },
+ "Taiwan": {
+  "latLon": [
+   24,
+   121
+  ]
+ },
+ "Tajikistan": {
+  "latLon": [
+   39,
+   71
+  ]
+ },
+ "Thailand": {
+  "latLon": [
+   15,
+   101
+  ]
+ },
+ "Trinidad and Tobago": {
+  "latLon": [
+   10.6,
+   -61.1
+  ]
+ },
+ "Tunisia": {
+  "latLon": [
+   34,
+   9
+  ]
+ },
+ "Turkey": {
+  "latLon": [
+   39.91666667,
+   32.85
+  ]
+ },
+ "Turkmenistan": {
+  "latLon": [
+   39,
+   60
+  ]
+ },
+ "Ukraine": {
+  "latLon": [
+   49,
+   32
+  ]
+ },
+ "United Arab Emirates": {
+  "latLon": [
+   24,
+   54
+  ]
+ },
+ "United Kingdom": {
+  "latLon": [
+   55,
+   -3
+  ]
+ },
+ "United States": {
+  "latLon": [
+   40,
+   -100
+  ]
+ },
+ "Uruguay": {
+  "latLon": [
+   -33,
+   -57
+  ]
+ },
+ "Uzbekistan": {
+  "latLon": [
+   42,
+   64
+  ]
+ },
+ "Venezuela": {
+  "latLon": [
+   7,
+   -65
+  ]
+ },
+ "Vietnam": {
+  "latLon": [
+   16,
+   108
+  ]
+ },
+ "Wales": {
+  "latLon": [
+   52.3,
+   -3.8
+  ]
+ },
+ "Yemen": {
+  "latLon": [
+   15.34833333,
+   44.20638889
+  ]
+ }
+}

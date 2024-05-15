@@ -1,391 +1,300 @@
-// endpoint
-const wikiURL = "https://en.wikipedia.org/w/api.php?"
-let params = {
-  origin: "*",
-  format: "json",
-  action: "query",
-  prop: "coordinates",
-  generator: "search",
-}
-// let secondParams = {
-//   origin: "*",
-//   format: "json",
-//   action: "templatedata",
-//   includeMissingTitles: true,
-//   generator: "alltransclusions",
-//   atlimit: 500
-//   // prop: "templates",
-//   // pllimit: 500,
-// }
-let secondParams = {
-  origin: "*",
-  format: "json",
-  action: "parse",
-  prop: "externallinks",
-}
-
 // Create map and add tiles to it
-var map = L.map('map').setView([55, 10], 4);
+let map = L.map('map', {
+  worldCopyJump: true,
+  maxBounds: L.latLngBounds([100, 200],[-100, -200]),
+  maxBoundsViscosity: 1,
+  markerZoomAnimation: false,
+  worldCopyJump:true
+}).setView([55, 10], 2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-maxZoom: 16,
-minZoom: 2,
-attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  maxZoom: 19,
+  minZoom: 2,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a><p>Click dot to learn about battle.</p>',
 }).addTo(map);
+map.invalidateSize() // fixes tiles not loading in on map
+
+const latLonDataPath = "../d.json"
+const countryNamePath = "../countries.json"
+const battleNamePath = "../battleList2.json"
+const countryCenterPath = "../countriesCenter.json"
+
+let euroCountries = [
+  "albania",
+  "andorra",
+  "austria",
+  "belarus",
+  "belgium",
+  "bosniaAndHerzegovina",
+  "bulgaria",
+  "croatia",
+  "cyprus",
+  "czechRepublic",
+  "denmark",
+  "england",
+  "estonia",
+  "finland",
+  "france",
+  "germany",
+  "greece",
+  "hungary",
+  "iceland",
+  "ireland",
+  "italy",
+  "kosovo",
+  "latvia",
+  "liechtenstein",
+  "lithuania",
+  "luxembourg",
+  "malta",
+  "moldova",
+  "monaco",
+  "montenegro",
+  "netherlands",
+  "northMacedonia",
+  "norway",
+  "poland",
+  "portugal",
+  "romania",
+  "russia",
+  "sanMarino",
+  "scotland",
+  "serbia",
+  "slovakia",
+  "slovenia",
+  "spain",
+  "sweden",
+  "switzerland",
+  "ukraine",
+  "wales",
+  "vaticanCity"
+];
+let layers = {}
+
+// Elements
+document.onload = showCountryList();
+const infoElement = document.getElementById("infoPage");
+
+const iconSize = 15
+var redIcon = L.icon({
+  iconUrl: '../public/red-dot.png',
+
+  iconSize:     [iconSize, iconSize],
+  iconAnchor:   [iconSize / 2, iconSize / 2], // point of the icon which will correspond to marker's location
+  // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
 
-// let battlesData = {
-//   france: {
-//     withLocationData: {},
-//     noLocationData: {},
-//   },
-// }
-let battlesData = {
-  albania: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  andorra: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  austria: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  belarus: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  belgium: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  bosniaAndHerzegovina: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  bulgaria: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  croatia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  cyprus: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  czechRepublic: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  denmark: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  england: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  estonia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  finland: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  france: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  germany: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  greece: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  hungary: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  iceland: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  ireland: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  italy: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  kosovo: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  latvia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  liechtenstein: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  lithuania: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  luxembourg: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  malta: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  moldova: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  monaco: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  montenegro: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  netherlands: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  northMacedonia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  norway: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  poland: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  portugal: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  romania: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  russia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  sanMarino: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  scotland: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  serbia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  slovakia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  slovenia: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  spain: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  sweden: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  switzerland: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  ukraine: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  wales: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-  vaticanCity: {
-    withLocationData: {},
-    noLocationData: {},
-  },
-};
-
-
-
-let country = "england";
-
-var lencount = 0;
-var numWCords = 0;
-async function getBattleData(text){
-  let pageId;
-  let locationFnd = false;
-  try{
-    params.gsrsearch = text
-    params.gsrlimit = 1;
-
-    let data = await axios.get(wikiURL, { params: params });
-    let page  = data.data.query.pages
-    let key = Object.keys(page)[0]
-    pageId = key
-    console.log(lencount+=1,text, page[key])
-
-    let latLon = [page[key].coordinates[0].lat, page[key].coordinates[0].lon]
-    battlesData[country].withLocationData[text] = latLon
-    console.log(battlesData[country], latLon)
-    locationFnd = true;
-  } 
-  catch(e){
-    try { 
-      // For pages that do not have the coordinate tag but still have location tag
-      secondParams.pageid = pageId
-      let data = await axios.get(wikiURL, {params: secondParams})
-      let links = data.data.parse.externallinks
-
-      // console.log(pageId, data.data.parse)
-      let gotLink = false;
-      for (const key in links) {
-        if (links[key].includes("geohack")) {
-          let coordinates = links[key].split("=").at(-1)
-          console.log(text, links[key])
-          // console.log(coordinates)
-          // console.log(coordinates.replace(";","_").split("_"))
-          
-          if (coordinates.includes(".")) {
-            addMarkerToMap([coordinates.split("_")[0], coordinates.split("_")[2]], text)
-            battlesData[country].withLocationData[text] = [coordinates.split("_")[0], coordinates.split("_")[2]]
-            locationFnd = true;
-          }
-          else{
-            addMarkerToMap(convertToLonLat(coordinates.split("_")), text)
-            battlesData[country].withLocationData[text] = convertToLonLat(coordinates.split("_"))
-            locationFnd = true;
-          }
-          gotLink = true;
-        }
-      }
-      if (!gotLink){throw error=("No Link Found in external links.\n")};
-    } 
-    catch (error) {
-      console.log(locationFnd)
-      if (!locationFnd) {
-        battlesData[country].noLocationData[text] = [0, 0]
-        console.error(error,`No location found for: ${text} Id: ${pageId}` )
-      }
-    }
-  }
-  if (locationFnd){numWCords += 1;} 
-}
-
-
-async function readTxt(){
-  // let data = axios.get("../battleTxts/france.txt")
-  // console.log(data)
-  fetch(`../battleTxts/${country}.txt`)
-    .then((res) => res.text())
-    .then((text) => {
-      text = text.split("\r\n")
-      for (const key in text) {
-        // Catch if battle name is not followed by "- date" or date is in name
-        // improve search by not repeating numbers
-          let newTxt = text[key].replace(" – ", "–").split("–")
-          if (newTxt[1] != undefined && !newTxt[0].includes(newTxt[1])){
-            getBattleData(newTxt[0].concat(" ", newTxt[1].replace(" ", "")))
-          }else{
-            getBattleData(newTxt[0])
-          }
-      }
-      
-    })
-    .catch((e) => console.error(e));
-    // console.log(`Battles W/ Coords: ${numWCords}`)
-}
-// readTxt();
-// console.log(`../battleTxts/${country}.txt`)
-// getBattleData("Battle of Woden's Burg (592)   592")
-
-// let burg = "Battle of Woden's Burg (592-593) – 592"
-// let newTxt = burg.replace(" – ", "–").split("–")
-// if (newTxt[1] != undefined && !newTxt[0].includes(newTxt[1])) {
-//   console.log(newTxt)
-// }
-
-
-
-
-
-function addMarkerToMap(latLon, battleTitle){
+function addMarkerToMap(latLon, battleTitle, country){
   L.marker(latLon, {
-    title: battleTitle,
+    title: battleTitle + " - " + country,
     bubblingMouseEvent: true,
-  }).addTo(map).on('click', showMarkerData = (e) => {
-    console.log(e.target.options.title, e.target.getLatLng())
+    icon: redIcon,
+  }).addTo((map)).on('click', showMarkerData = (e) => {
+    try{
+      displayBattleDesc(e.target.options.title)
+      // infoElement.innerText = `${e.target.options.title} | ${e.target.getLatLng()}`
+      // console.log(country, e.target.options.title, e.target.getLatLng())
+    }catch(error){
+      console.error(e.target.options.title)
+      console.error(error)
+    }
   })
 }
 
 
-var count = 0;
-async function addToMap() {
-  let franceData = await axios("../battles.json")
-  for (const key in franceData.data.france) {
-    addMarkerToMap(franceData.data.france[key], key)
-    count+=1;
+
+async function displayBattleDesc(title){
+  title = title.split(" - ")
+  let battleName = title[0].split("or")[0]
+  let country = title.at(-1)
+  let battles = await axios(latLonDataPath)
+  console.log(title)
+
+  let battleData = battles.data[country].withLocationData[battleName]
+  let battleHtml = document.createElement("h1")
+  battleHtml.innerText = `${country}\n${battleName}\n[${battleData.latLon}]\nPageId: ${battleData.pageId}`
+  infoElement.innerText = ""
+  infoElement.appendChild(battleHtml)
+
+  // link to wikipage
+  let wikiLink = "https://en.wikipedia.org/wiki/" + battleName.replace(" ","_")
+  let wikiElement = document.createElement("a")
+  wikiElement.href = wikiLink
+  wikiElement.target = "_blank" //link opens in new tab
+  wikiElement.innerText = battleName
+  infoElement.appendChild(wikiElement)
+
+
+  let battleHtml2 = document.createElement("p")
+  battleHtml2.innerText = await getBattleWikiHTML(battleData.pageId, battleName)
+  infoElement.appendChild(battleHtml2)
+}
+
+
+
+// 6148 total battles found on wikipedia only 1620 with location data or 1640
+// singlecountry = {"All": 1,}
+let count = 0;
+async function addBattlesMarkers(){
+  let battlesJsonData = await axios(latLonDataPath)
+  let countries = await axios(countryNamePath)
+  // console.log(battlesJsonData.data)
+  
+  for (const country in countries.data) {
+    // console.log(country)
+    try{
+      let battleData = battlesJsonData.data[country]["withLocationData"]
+      for (const battle in battleData) {
+        // console.log(battleData[battle]["latLon"])
+        count+=1
+        addMarkerToMap(battleData[battle]["latLon"], battle, country)
+        
+        // addCountryDataToMap(battleData[battle]["latLon"], country)
+      }
+    }catch(e){
+      console.error(country, e)
+    }
   }
   console.log(`Battles displayed: ${count}`)
 }
-addToMap()
+addBattlesMarkers()
 
 
-function convertToLonLat(dms){
-  console.log(dms)
-  try{
-    let lat, lon;
-    let northSouth = 1;
-    let eastWest = 1;
-    for (const key in dms) {
-      if (dms[key] == "W") {
-        console.log('west');
-        eastWest = -1;
-      }
-      if (dms[key] == "S") {
-        console.log('south');
-        northSouth = -1;
-      }
+
+document.getElementById("countryListBtn").addEventListener("click", showCountryList)
+async function showCountryList(){
+  map.setView([55, 10], 2)
+  let countries = await axios(countryNamePath)
+  infoElement.innerText = ""
+
+  // Separate countries by letter
+  let lastChar = "Z";
+  for (const country in countries.data) {
+    if (country.charAt(0) != lastChar) {
+      lastChar = country.charAt(0);
+      let letterChar = document.createElement("h1");
+      letterChar.innerText = lastChar + ":"
+      letterChar.className = "letterHeader"
+      infoElement.appendChild(letterChar)
     }
-    if (dms.length <= 7){
-      lat = parseFloat(dms[0]) + parseFloat(dms[1]) / 60;
-      lon = parseFloat(dms[3]) + parseFloat(dms[4]) / 60;
-    }else{
-      lat = parseFloat(dms[0]) + parseFloat(dms[1]) / 60 + parseFloat(dms[2]) / 3600;
-      lon = parseFloat(dms[4]) + parseFloat(dms[5]) / 60 + parseFloat(dms[6]) / 3600;
-    }
-    lat *= northSouth; lon *= eastWest;
-    console.log(dms, [lat, lon])
-    return [lat, lon]
-  }catch(e){
-    console.error(`Format not supported: ${dms}`)
+
+    let newBtn = document.createElement("input")
+    newBtn.type = "button"; 
+    newBtn.id = country; 
+    newBtn.className = "countryListBtn"
+    newBtn.value = `${country.toString()}\n`
+    newBtn.addEventListener("click", function(){focusCountry(this.id)})
+    infoElement.appendChild(newBtn)
   }
 }
+
+let headerBtns = document.getElementsByClassName("headerBtn")
+for (var i = 0; i < headerBtns.length; i++) {
+  headerBtns[i].addEventListener("click", function(){focusCountry(this.id)})
+}
+
+
+
+async function focusCountry(country){
+  const countryPosData = await axios(countryCenterPath)
+  let countryLatLon = countryPosData.data[country].latLon
+  map.setView(countryLatLon , 5.5)
+
+  infoElement.innerText = ""
+  let battleList = await axios(battleNamePath)
+  let count = 1;
+  let countryElement = document.createElement("h1")
+  countryElement.innerText = country
+  infoElement.appendChild(countryElement)
+  let battlesLocs = await axios(latLonDataPath)
+  battlesLocs = battlesLocs.data[country].withLocationData
+
+  const countrysBattles = battleList.data[country]
+  for (const battle in countrysBattles) {
+    let battleBtn  = document.createElement("p");
+    try{
+      const battleLatLon = battlesLocs[countrysBattles[battle].split(" – ")[0]].latLon
+
+      battleBtn.innerText = `${count}: ${countrysBattles[battle]}`
+      battleBtn.id = battleLatLon; 
+      battleBtn.classList.add("battleListBtn");
+      battleBtn.classList.add("battleTitle");
+
+      battleBtn.addEventListener('click', function(){
+        let latLonArr = this.id.split(",")
+        map.setView([parseFloat(latLonArr[0]), parseFloat(latLonArr[1])], 14)
+        this.style.color = "purple"
+      })
+
+      infoElement.appendChild(battleBtn)
+      count += 1
+    }catch(error){
+
+      battleBtn.innerText = `${count}: ${countrysBattles[battle].toString()}\n`
+      battleBtn.classList.add("battleTitle")
+      infoElement.appendChild(battleBtn)
+
+      count += 1;
+    }
+  }
+}
+
+
+
+const wikiURL2 = "https://en.wikipedia.org/w/api.php?"
+
+let battleHtmlParams = {
+  origin: "*",
+  format: "json",
+  action: "parse",
+  prop: "text",
+}
+
+
+countriesParam = {
+  'origin': "*",
+  'format': "json",
+  'action': "parse",
+  'prop': "text",
+  // 'section': 0,
+  'pageid': 0,
+}
+
+// async function getBattleWikiHTML(pageId, battleName){
+//   battleHtmlParams.pageid = pageId;
+//   console.log(pageId)
+//   let data = await axios.get(wikiURL2, {params: battleHtmlParams});
+//   // let links = data.data.parse.externallinks;
+//   battleHTML = data.data.parse.text["*"]
+//   console.log($(battleHTML).text())
+//   console.log(battleHTML)
+//   // console.log(battleHTML.split("</table>"))
+//   return $("<p>The </p>"+battleHTML.split("<p>The").at(-1).split("References").at(0).split("Notes").at(0).split("See also").at(0)).text().replace(/\[[^\]]*\]/g, '')
+// }
+// could get info by search for the sections instead of the whole thing like with the battle list.
+// [edit]
+async function getBattleWikiHTML(pageId, battleName){
+  battleHtmlParams.pageid = pageId;
+  // battleHtmlParams.section = 0;
+  // console.log(pageId)
+  let data = await axios.get(wikiURL2, {params: battleHtmlParams});
+  battleHTML = data.data.parse.text["*"]
+  // console.log($(battleHTML).text())
+  battleParagraphs = battleHTML.split("<p>")
+  console.log("============================================================")
+  infoToReturn = undefined
+  for (let index = 0; index < battleParagraphs.length; index++) {
+    if (battleParagraphs[index].includes("<b>") && battleParagraphs[index].includes(`${battleName}`) && !battleParagraphs[index].includes("mw-parser")) {
+      // console.log(battleParagraphs[index].replace(/<[^>]*>/g, '').replace(/&.*?;/g, ''))
+      infoToReturn = battleParagraphs[index].replace(/<[^>]*>/g, '').replace(/&.*?;/g, '').replace(/\[[^\]]*\]/g, '')
+    }
+  }
+  if (infoToReturn == undefined) {
+    return battleHtml
+  }else{
+    return infoToReturn
+  }
+}
+// </p>
+// [user-generated source]
+// &#91;1&#93;&#58;&#8202;8&#8202;&#91;5&#93;
