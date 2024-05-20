@@ -13,10 +13,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 map.invalidateSize() // fixes tiles not loading in on map
 
-const latLonDataPath = "../d.json"
-const countryNamePath = "../countries.json"
-const battleNamePath = "../battleList2.json"
-const countryCenterPath = "../countriesCenter.json"
+const latLonDataPath = "data/d.json"
+const countryNamePath = "data/countries.json"
+const battleNamePath = "data/battleList2.json"
+const countryCenterPath = "data/countriesCenter.json"
 
 let euroCountries = [
   "albania",
@@ -76,7 +76,7 @@ const infoElement = document.getElementById("infoPage");
 
 const iconSize = 15
 var redIcon = L.icon({
-  iconUrl: '../public/red-dot.png',
+  iconUrl: 'public/red-dot.png',
 
   iconSize:     [iconSize, iconSize],
   iconAnchor:   [iconSize / 2, iconSize / 2], // point of the icon which will correspond to marker's location
@@ -294,6 +294,7 @@ async function getBattleWikiHTML(pageId, battleName){
   }else{
     return infoToReturn
   }
+  return data
 }
 // </p>
 // [user-generated source]
