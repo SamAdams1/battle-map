@@ -1,0 +1,76 @@
+body {
+    background-color: rgb(154, 168, 168);
+}
+#map, #infoPage{
+    height: 473px;
+}
+#infoPage {
+    overflow:visible;
+}
+
+.container {
+    display:grid;
+}
+
+/* columns */
+.container > * {
+    padding:1rem;
+}
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    #map, #infoPage{
+        height: 950px;
+    }
+    #infoPage{
+        overflow:auto;
+    }
+}
+.header, .footer{
+    background: darkred;
+    color: white; 
+    font-size: larger;
+    font-weight: 900;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* padding: 1em; */
+
+    display:flex;
+}
+.headerBtn, .otherHeaderBtn, #searchBox {
+    margin-left: 7rem;
+}
+.battleInfo {
+    background: aliceblue;
+}
+.headerBtn{
+    padding: 1em;
+    /* background: transparent; */
+}
+.countryListBtn{
+    padding: 1em;
+    margin: 0.5em;
+    font-size: larger;
+}
+.letterHeader{
+    font-size: xx-large;
+    margin-top: 1em;
+}
+.battleTitle{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+h1 {
+    font-size: xx-large;
+    padding: 1rem;
+}
+.battleListBtn{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}

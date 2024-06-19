@@ -1,0 +1,7 @@
+#root {
+}
+
+.leaflet-container {
+  height: 76vh;
+  width: 100vw;
+}

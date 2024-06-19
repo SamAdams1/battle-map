@@ -3,946 +3,1104 @@
   "latLon": [
    34.51666667,
    69.18333333
-  ]
+  ],
+  "zoom": 5
  },
  "Albania": {
   "latLon": [
    41,
    20
-  ]
+  ],
+  "zoom": 5
  },
  "Algeria": {
   "latLon": [
    28,
    2
-  ]
+  ],
+  "zoom": 5
  },
  "Angola": {
   "latLon": [
    -12.5,
    18.5
-  ]
+  ],
+  "zoom": 5
  },
  "Argentina": {
   "latLon": [
    -34,
    -64
-  ]
+  ],
+  "zoom": 5
  },
  "Armenia": {
   "latLon": [
    40.18333333,
    44.51666667
-  ]
+  ],
+  "zoom": 5
  },
  "Australia": {
   "latLon": [
    -25,
    133
-  ]
+  ],
+  "zoom": 5
  },
  "Austria": {
   "latLon": [
    47.33333333,
    13.33333333
-  ]
+  ],
+  "zoom": 5
  },
  "Azerbaijan": {
   "latLon": [
    40.3,
    47.7
-  ]
+  ],
+  "zoom": 5
  },
  "Bahamas": {
   "latLon": [
    25,
    -77.4
-  ]
+  ],
+  "zoom": 5
  },
  "Bahrain": {
   "latLon": [
    26.06666667,
    50.5
-  ]
+  ],
+  "zoom": 5
  },
  "Bangladesh": {
   "latLon": [
    24,
    90
-  ]
+  ],
+  "zoom": 5
  },
  "Barbados": {
   "latLon": [
    13.17,
    -59.5525
-  ]
+  ],
+  "zoom": 5
  },
  "Belarus": {
   "latLon": [
    53,
    27
-  ]
+  ],
+  "zoom": 5
  },
  "Belgium": {
   "latLon": [
    50.83333333,
    4
-  ]
+  ],
+  "zoom": 5
  },
  "Belize": {
   "latLon": [
    17.06666667,
    -88.7
-  ]
+  ],
+  "zoom": 5
  },
  "Benin": {
   "latLon": [
    6.46666667,
    2.6
-  ]
+  ],
+  "zoom": 5
  },
  "Bolivia": {
   "latLon": [
    -16.712,
    -64.666
-  ]
+  ],
+  "zoom": 5
  },
  "Bosnia and Herzegovina": {
   "latLon": [
    44,
    18
-  ]
+  ],
+  "zoom": 5
  },
  "Botswana": {
   "latLon": [
    -24.65833333,
    25.90833333
-  ]
+  ],
+  "zoom": 5
  },
  "Brazil": {
   "latLon": [
    -10,
    -52
-  ]
+  ],
+  "zoom": 5
  },
  "Bulgaria": {
   "latLon": [
    42.6975,
    23.3225
-  ]
+  ],
+  "zoom": 5
  },
  "Cambodia": {
   "latLon": [
    11.57,
    104.91
-  ]
+  ],
+  "zoom": 5
  },
  "Cameroon": {
   "latLon": [
    6,
    12
-  ]
+  ],
+  "zoom": 5
  },
  "Canada": {
   "latLon": [
    60,
    -110
-  ]
+  ],
+  "zoom": 5
  },
  "Cape Verde": {
   "latLon": [
    15.3,
    -23.7
-  ]
+  ],
+  "zoom": 5
  },
  "Chile": {
   "latLon": [
    -34,
    -71
-  ]
+  ],
+  "zoom": 5
  },
  "China": {
   "latLon": [
    35,
    103
-  ]
+  ],
+  "zoom": 5
  },
  "Colombia": {
   "latLon": [
    4,
    -72
-  ]
+  ],
+  "zoom": 5
  },
  "Democratic Republic of the Congo": {
   "latLon": [
    -3,
    24
-  ]
+  ],
+  "zoom": 5
  },
  "Costa Rica": {
   "latLon": [
    10,
    -84
-  ]
+  ],
+  "zoom": 5
  },
  "Croatia": {
   "latLon": [
    45.16666667,
    15.5
-  ]
+  ],
+  "zoom": 5
  },
  "Cuba": {
   "latLon": [
    22,
    -80
-  ]
+  ],
+  "zoom": 5
  },
  "Cyprus": {
   "latLon": [
    35,
    33
-  ]
+  ],
+  "zoom": 5
  },
  "Czech Republic": {
   "latLon": [
    49.75,
    15.5
-  ]
+  ],
+  "zoom": 5
  },
  "Denmark": {
   "latLon": [
    56,
    10
-  ]
+  ],
+  "zoom": 5
  },
  "Djibouti": {
   "latLon": [
    11.5,
    43
-  ]
+  ],
+  "zoom": 5
  },
  "Dominica": {
   "latLon": [
    15.41666667,
    -61.33333333
-  ]
+  ],
+  "zoom": 5
  },
  "Dominican Republic": {
   "latLon": [
    19,
    -70.66666667
-  ]
+  ],
+  "zoom": 5
  },
  "East Timor/Timor-Leste": {
   "latLon": [
    -8.55,
    125.56
-  ]
+  ],
+  "zoom": 5
  },
  "Ecuador": {
   "latLon": [
    -2,
    -77.5
-  ]
+  ],
+  "zoom": 5
  },
  "Egypt": {
   "latLon": [
    26,
    30
-  ]
+  ],
+  "zoom": 5
  },
  "El Salvador": {
   "latLon": [
    13.68333333,
    -89.18333333
-  ]
+  ],
+  "zoom": 5
  },
  "England": {
   "latLon": [
    53.13,
    -1.38
-  ]
+  ],
+  "zoom": 5
  },
  "Eritrea": {
   "latLon": [
    15,
    39
-  ]
+  ],
+  "zoom": 5
  },
  "Estonia": {
   "latLon": [
    59,
    26
-  ]
+  ],
+  "zoom": 5
  },
  "Ethiopia": {
   "latLon": [
    9,
    38.7
-  ]
+  ],
+  "zoom": 5
  },
  "Finland": {
   "latLon": [
    64,
    26
-  ]
+  ],
+  "zoom": 5
  },
  "France": {
   "latLon": [
    47,
    2
-  ]
+  ],
+  "zoom": 5
  },
  "Gabon": {
   "latLon": [
    -1,
    12
-  ]
+  ],
+  "zoom": 5
  },
  "Germany": {
   "latLon": [
    51,
    9
-  ]
+  ],
+  "zoom": 5
  },
  "Georgia": {
   "latLon": [
     42, 43.5
-  ]
+  ],
+  "zoom": 5
  },
  "Ghana": {
   "latLon": [
    8.03,
    -1.08
-  ]
+  ],
+  "zoom": 5
  },
  "Greece": {
   "latLon": [
    39,
    22
-  ]
+  ],
+  "zoom": 5
  },
  "Grenada": {
   "latLon": [
    12.11666667,
    -61.66666667
-  ]
+  ],
+  "zoom": 5
  },
  "Guatemala": {
   "latLon": [
    15.5,
    -90.25
-  ]
+  ],
+  "zoom": 5
  },
  "Guyana": {
   "latLon": [
    5,
    -58.75
-  ]
+  ],
+  "zoom": 5
  },
  "Haiti": {
   "latLon": [
    19,
    -72.41666667
-  ]
+  ],
+  "zoom": 5
  },
  "Honduras": {
   "latLon": [
    15,
    -86.5
-  ]
+  ],
+  "zoom": 5
  },
  "Hungary": {
   "latLon": [
    47,
    20
-  ]
+  ],
+  "zoom": 5
  },
  "Iceland": {
   "latLon": [
    65,
    -18
-  ]
+  ],
+  "zoom": 5
  },
  "India": {
   "latLon": [
    21,
    78
-  ]
+  ],
+  "zoom": 5
  },
  "Indonesia": {
   "latLon": [
    -5,
    120
-  ]
+  ],
+  "zoom": 5
  },
  "Iran": {
   "latLon": [
    32,
    53
-  ]
+  ],
+  "zoom": 5
  },
  "Iraq": {
   "latLon": [
    33,
    44
-  ]
+  ],
+  "zoom": 5
  },
  "Ireland": {
   "latLon": [
    53.44944444,
    -7.50305556
-  ]
+  ],
+  "zoom": 5
  },
  "Israel": {
   "latLon": [
    31,
    35
-  ]
+  ],
+  "zoom": 5
  },
  "Italy": {
   "latLon": [
    43,
    12
-  ]
+  ],
+  "zoom": 5
  },
  "Jamaica": {
   "latLon": [
    18.18,
    -77.4
-  ]
+  ],
+  "zoom": 5
  },
  "Japan": {
   "latLon": [
    36,
    138
-  ]
+  ],
+  "zoom": 5
  },
  "Jordan": {
   "latLon": [
    31.24,
    36.51
-  ]
+  ],
+  "zoom": 5
  },
  "Kazakhstan": {
   "latLon": [
    48,
    68
-  ]
+  ],
+  "zoom": 5
  },
  "Kenya": {
   "latLon": [
    1,
    38
-  ]
+  ],
+  "zoom": 5
  },
  "Korea": {
   "latLon": [
    38.31666667,
    127.23333333
-  ]
+  ],
+  "zoom": 5
  },
  "Kosovo": {
   "latLon": [
    42.58333333,
    21
-  ]
+  ],
+  "zoom": 5
  },
  "Kuwait": {
   "latLon": [
    29.5,
    47.75
-  ]
+  ],
+  "zoom": 5
  },
  "Kyrgyzstan": {
   "latLon": [
    41,
    75
-  ]
+  ],
+  "zoom": 5
  },
  "Laos": {
   "latLon": [
    18,
    105
-  ]
+  ],
+  "zoom": 5
  },
  "Latvia": {
   "latLon": [
    57,
    25
-  ]
+  ],
+  "zoom": 5
  },
  "Lebanon": {
   "latLon": [
    33.83333333,
    35.83333333
-  ]
+  ],
+  "zoom": 5
  },
  "Libya": {
   "latLon": [
    27,
    17
-  ]
+  ],
+  "zoom": 5
  },
  "Lithuania": {
   "latLon": [
    55,
    24
-  ]
+  ],
+  "zoom": 5
  },
  "Luxembourg": {
   "latLon": [
    49.81444444,
    6.13166667
-  ]
+  ],
+  "zoom": 5
  },
  "Madagascar": {
   "latLon": [
    -20,
    47
-  ]
+  ],
+  "zoom": 5
  },
  "Malaysia": {
   "latLon": [
    2,
    112
-  ]
+  ],
+  "zoom": 5
  },
  "Mali": {
   "latLon": [
    17,
    -4
-  ]
+  ],
+  "zoom": 5
  },
  "Malta": {
   "latLon": [
    35.9,
    14.51666667
-  ]
+  ],
+  "zoom": 5
  },
  "Manchuria": {
   "latLon": [
    43,
    125
-  ]
+  ],
+  "zoom": 5
  },
  "Marshall Islands": {
   "latLon": [
    9.82,
    169.29
-  ]
+  ],
+  "zoom": 5
  },
  "Mauritania": {
   "latLon": [
    20,
    -12
-  ]
+  ],
+  "zoom": 5
  },
  "Mauritius": {
   "latLon": [
    -20.2,
    57.5
-  ]
+  ],
+  "zoom": 5
  },
  "Mexico": {
   "latLon": [
    23,
    -102
-  ]
+  ],
+  "zoom": 5
  },
  "Moldova": {
   "latLon": [
    47,
    29
-  ]
+  ],
+  "zoom": 5
  },
  "Mongolia": {
   "latLon": [
    48,
    106
-  ]
+  ],
+  "zoom": 5
  },
  "Montenegro": {
   "latLon": [
    42.5,
    19.3
-  ]
+  ],
+  "zoom": 5
  },
  "Morocco": {
   "latLon": [
    32,
    -6
-  ]
+  ],
+  "zoom": 5
  },
  "Mozambique": {
   "latLon": [
    -18.25,
    35
-  ]
+  ],
+  "zoom": 5
  },
  "Myanmar (formerly Burma)": {
   "latLon": [
    22,
    96
-  ]
+  ],
+  "zoom": 5
  },
  "Namibia": {
   "latLon": [
    -22,
    17
-  ]
+  ],
+  "zoom": 5
  },
  "Nauru": {
   "latLon": [
    -0.52805556,
    166.93694444
-  ]
+  ],
+  "zoom": 5
  },
  "Nepal": {
   "latLon": [
    28.16666667,
    84.25
-  ]
+  ],
+  "zoom": 5
  },
  "Netherlands": {
   "latLon": [
    52,
    6
-  ]
+  ],
+  "zoom": 5
  },
  "New Zealand": {
   "latLon": [
    -42,
    173
-  ]
+  ],
+  "zoom": 5
  },
  "Nicaragua": {
   "latLon": [
    13.13333333,
    -85.11666667
-  ]
+  ],
+  "zoom": 5
  },
  "Nigeria": {
   "latLon": [
    8,
    10
-  ]
+  ],
+  "zoom": 5
  },
  "North Korea": {
   "latLon": [
    40,
    127
-  ]
+  ],
+  "zoom": 5
  },
  "North Macedonia": {
   "latLon": [
    42,
    22
-  ]
+  ],
+  "zoom": 5
  },
  "Norway": {
   "latLon": [
    61,
    8
-  ]
+  ],
+  "zoom": 5
  },
  "Oman": {
   "latLon": [
    21,
    57
-  ]
+  ],
+  "zoom": 5
  },
  "Pakistan": {
   "latLon": [
    30,
    70
-  ]
+  ],
+  "zoom": 5
  },
  "Palau": {
   "latLon": [
    7.5,
    134.5
-  ]
+  ],
+  "zoom": 5
  },
  "Palestine": {
   "latLon": [
     32, 35.25
-  ]
+  ],
+  "zoom": 5
  },
  "Panama": {
   "latLon": [
    9,
    -80
-  ]
+  ],
+  "zoom": 5
  },
  "Papua New Guinea": {
   "latLon": [
    -6,
    147
-  ]
+  ],
+  "zoom": 5
  },
  "Paraguay": {
   "latLon": [
    -23,
    -58
-  ]
+  ],
+  "zoom": 5
  },
  "Peru": {
   "latLon": [
    -10,
    -76
-  ]
+  ],
+  "zoom": 5
  },
  "Philippines": {
   "latLon": [
    13,
    122
-  ]
+  ],
+  "zoom": 5
  },
  "Poland": {
   "latLon": [
    52,
    20
-  ]
+  ],
+  "zoom": 5
  },
  "Portugal": {
   "latLon": [
    39,
    -8
-  ]
+  ],
+  "zoom": 5
  },
  "Qatar": {
   "latLon": [
    25.5,
    51.25
-  ]
+  ],
+  "zoom": 5
  },
  "Romania": {
   "latLon": [
    46,
    25
-  ]
+  ],
+  "zoom": 5
  },
  "Russia": {
   "latLon": [
    66,
    94
-  ]
+  ],
+  "zoom": 5
  },
  "Saint Kitts and Nevis": {
   "latLon": [
    17.33333333,
    -62.75
-  ]
+  ],
+  "zoom": 5
  },
  "Saint Lucia": {
   "latLon": [
    13.88333333,
    -60.96666667
-  ]
+  ],
+  "zoom": 5
  },
  "Saint Vincent and the Grenadines": {
   "latLon": [
    13.25,
    -61.2
-  ]
+  ],
+  "zoom": 5
  },
  "Saudi Arabia": {
   "latLon": [
    24,
    45
-  ]
+  ],
+  "zoom": 5
  },
  "Scotland": {
   "latLon": [
    57,
    -4
-  ]
+  ],
+  "zoom": 5
  },
  "Senegal": {
   "latLon": [
    14,
    -14
-  ]
+  ],
+  "zoom": 5
  },
  "Serbia": {
   "latLon": [
    44,
    21
-  ]
+  ],
+  "zoom": 5
  },
  "Seychelles": {
   "latLon": [
    -4.58333333,
    55.66666667
-  ]
+  ],
+  "zoom": 5
  },
  "Slovakia": {
   "latLon": [
    48.66666667,
    19.5
-  ]
+  ],
+  "zoom": 5
  },
  "Slovenia": {
   "latLon": [
    46.12,
    14.815
-  ]
+  ],
+  "zoom": 5
  },
  "South Africa": {
   "latLon": [
    -30,
    25
-  ]
+  ],
+  "zoom": 5
  },
  "South Korea": {
   "latLon": [
    36,
    128
-  ]
+  ],
+  "zoom": 5
  },
  "Spain": {
   "latLon": [
    40,
    -4
-  ]
+  ],
+  "zoom": 5
  },
  "Sri Lanka": {
   "latLon": [
    7,
    81
-  ]
+  ],
+  "zoom": 5
  },
  "Sudan": {
   "latLon": [
    15,
    32
-  ]
+  ],
+  "zoom": 5
  },
  "Suriname": {
   "latLon": [
    4,
    -56
-  ]
+  ],
+  "zoom": 5
  },
  "Sweden": {
   "latLon": [
    63,
    16
-  ]
+  ],
+  "zoom": 5
  },
  "Switzerland": {
   "latLon": [
    46.83333333,
    8.33333333
-  ]
+  ],
+  "zoom": 5
  },
  "Syria": {
   "latLon": [
    35,
    38
-  ]
+  ],
+  "zoom": 5
  },
  "Taiwan": {
   "latLon": [
    24,
    121
-  ]
+  ],
+  "zoom": 5
  },
  "Tajikistan": {
   "latLon": [
    39,
    71
-  ]
+  ],
+  "zoom": 5
  },
  "Thailand": {
   "latLon": [
    15,
    101
-  ]
+  ],
+  "zoom": 5
  },
  "Trinidad and Tobago": {
   "latLon": [
    10.6,
    -61.1
-  ]
+  ],
+  "zoom": 5
  },
  "Tunisia": {
   "latLon": [
    34,
    9
-  ]
+  ],
+  "zoom": 5
  },
  "Turkey": {
   "latLon": [
    39.91666667,
    32.85
-  ]
+  ],
+  "zoom": 5
  },
  "Turkmenistan": {
   "latLon": [
    39,
    60
-  ]
+  ],
+  "zoom": 5
  },
  "Ukraine": {
   "latLon": [
    49,
    32
-  ]
+  ],
+  "zoom": 5
  },
  "United Arab Emirates": {
   "latLon": [
    24,
    54
-  ]
+  ],
+  "zoom": 5
  },
  "United Kingdom": {
   "latLon": [
    55,
    -3
-  ]
+  ],
+  "zoom": 5
  },
  "United States": {
   "latLon": [
    40,
    -100
-  ]
+  ],
+  "zoom": 5
  },
  "Uruguay": {
   "latLon": [
    -33,
    -57
-  ]
+  ],
+  "zoom": 5
  },
  "Uzbekistan": {
   "latLon": [
    42,
    64
-  ]
+  ],
+  "zoom": 5
  },
  "Venezuela": {
   "latLon": [
    7,
    -65
-  ]
+  ],
+  "zoom": 5
  },
  "Vietnam": {
   "latLon": [
    16,
    108
-  ]
+  ],
+  "zoom": 5
  },
  "Wales": {
   "latLon": [
    52.3,
    -3.8
-  ]
+  ],
+  "zoom": 5
  },
  "Yemen": {
   "latLon": [
    15.34833333,
    44.20638889
-  ]
+  ],
+  "zoom": 5
  }
 }

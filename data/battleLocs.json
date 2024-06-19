@@ -1,8 +1,8 @@
 {
  "battlesYesLocation": 3383,
  "battlesNoLocation": 2742,
+ "battlesFoundTotal": 6125,
  "Afghanistan": {
-  "withLocationData": {
    "Siege of Herat (652)": {
     "latLon": [
      34.37385,
@@ -30,12 +30,10 @@
      62.17918056
     ],
     "pageId": 37424957
-   }
-  },
+   },
   "numBattlesInCountry": 4
  },
  "Albania": {
-  "withLocationData": {
    "Battle of the Aous (198 BC)": {
     "latLon": [
      40.64277778,
@@ -119,12 +117,10 @@
      19.8
     ],
     "pageId": 4016247
-   }
-  },
+   },
   "numBattlesInCountry": 12
  },
  "Algeria": {
-  "withLocationData": {
    "Battle of Hippo Regius": {
     "latLon": [
      36.8825,
@@ -173,12 +169,10 @@
      0.13305556
     ],
     "pageId": 65007582
-   }
-  },
+   },
   "numBattlesInCountry": 7
  },
  "Angola": {
-  "withLocationData": {
    "Battle of Quifangondo": {
     "latLon": [
      -8.76111111,
@@ -199,12 +193,10 @@
      19.17305556
     ],
     "pageId": 3205662
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Argentina": {
-  "withLocationData": {
    "Action of 2 June 1807": {
     "latLon": [
      -33.99527778,
@@ -337,12 +329,10 @@
      -58.4
     ],
     "pageId": 8025215
-   }
-  },
+   },
   "numBattlesInCountry": 19
  },
  "Armenia": {
-  "withLocationData": {
    "Battle of Artaxata": {
     "latLon": [
      39.885,
@@ -363,12 +353,10 @@
      44.51666667
     ],
     "pageId": 38807622
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Australia": {
-  "withLocationData": {
    "Battle of Richmond Hill": {
     "latLon": [
      -33.59833333,
@@ -417,12 +405,10 @@
      143.875
     ],
     "pageId": 20457150
-   }
-  },
+   },
   "numBattlesInCountry": 7
  },
  "Austria": {
-  "withLocationData": {
    "Battle of Wels": {
     "latLon": [
      48.15,
@@ -527,12 +513,10 @@
      16.47861111
     ],
     "pageId": 25371927
-   }
-  },
+   },
   "numBattlesInCountry": 15
  },
  "Azerbaijan": {
-  "withLocationData": {
    "Siege of Ganja (1213)": {
     "latLon": [
      40.68277778,
@@ -553,12 +537,10 @@
      46.74833333
     ],
     "pageId": 6939602
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Bahamas": {
-  "withLocationData": {
    "Raid on Nassau": {
     "latLon": [
      25.06,
@@ -572,28 +554,23 @@
      -77.345
     ],
     "pageId": 3135955
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Bahrain": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Bangladesh": {
-  "withLocationData": {
    "Battle of Hilli": {
     "latLon": [
      24.85,
      89.36666667
     ],
     "pageId": 1977991
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Barbados": {
-  "withLocationData": {
    "Battle of Barbados (1665)": {
     "latLon": [
      13.08333333,
@@ -607,12 +584,10 @@
      -59.457
     ],
     "pageId": 31885506
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Belarus": {
-  "withLocationData": {
    "Battle of Ashmyany": {
     "latLon": [
      54.45,
@@ -717,21 +692,18 @@
      24.96666667
     ],
     "pageId": 1532976
-   }
-  },
+   },
   "numBattlesInCountry": 15
  },
  "Belgium":{
-  "withLocationData": {
+  
     "Battle of Passchendaele":{
         "latLon": [
             50.900278, 3.021111
         ]
     }
-  }
- },
+  },
  "Belize": {
-  "withLocationData": {
    "Capture of R\u00edo Hondo": {
     "latLon": [
      18.48777778,
@@ -745,24 +717,20 @@
      -88.0739
     ],
     "pageId": 8135953
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Benin": {
-  "withLocationData": {
    "Battle of Abomey": {
     "latLon": [
      7.185737,
      1.999083
     ],
     "pageId": 4777413
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Bolivia": {
-  "withLocationData": {
    "Battle of Cotagaita": {
     "latLon": [
      -20.81774167,
@@ -825,12 +793,10 @@
      -64.82533333
     ],
     "pageId": 28127837
-   }
-  },
+   },
   "numBattlesInCountry": 9
  },
  "Bosnia and Herzegovina": {
-  "withLocationData": {
    "Battle of the Bosnian Highlands": {
     "latLon": [
      45,
@@ -872,24 +838,20 @@
      17.18333333
     ],
     "pageId": 15347620
-   }
-  },
+   },
   "numBattlesInCountry": 6
  },
  "Botswana": {
-  "withLocationData": {
    "Battle of Dimawe": {
     "latLon": [
      -24.76194444,
      25.63027778
     ],
     "pageId": 36363919
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Brazil": {
-  "withLocationData": {
    "Battle of Abrolhos": {
     "latLon": [
      -18.0333,
@@ -938,12 +900,10 @@
      -54.87472222
     ],
     "pageId": 3897533
-   }
-  },
+   },
   "numBattlesInCountry": 7
  },
  "Bulgaria": {
-  "withLocationData": {
    "Siege of Philippopolis (250)": {
     "latLon": [
      42.15,
@@ -1167,12 +1127,10 @@
      26.6167
     ],
     "pageId": 4340873
-   }
-  },
+   },
   "numBattlesInCountry": 32
  },
  "Cambodia": {
-  "withLocationData": {
    "*Battle of Kompong Speu": {
     "latLon": [
      11.26,
@@ -1186,12 +1144,10 @@
      106.42161111
     ],
     "pageId": 8807951
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Cameroon": {
-  "withLocationData": {
    "Battle of Kouss\u00e9ri": {
     "latLon": [
      12.0667,
@@ -1254,32 +1210,28 @@
      11.81833333
     ],
     "pageId": 38555418
-   }
-  },
+   },
   "numBattlesInCountry": 9
  },
  "Canada":{
   "numBattlesInCountry": 1,
-    "withLocationData": {
+    
       "Battle of Sorel":{
           "latLon": [
             46.033333, -73.116667
           ]
       }
-    }
-   },
+    },
  "Cape Verde": {
-  "withLocationData": {
+  
     "Capture of Santiago (1585)":{
         "latLon": [
             15.066667, -23.633333
         ]
-    }
-  },
+    },
   "numBattlesInCountry": 0
  },
  "Chile": {
-  "withLocationData": {
    "Battle of the Maule": {
     "latLon": [
      -35.56954444,
@@ -1468,22 +1420,18 @@
      -73.81361111
     ],
     "pageId": 191166
-   }
-  },
+   },
   "numBattlesInCountry": 27
  },
  "China":{
     "numBattlesInCountry": 1,
-      "withLocationData": {
         "Battle of Fancheng":{
             "latLon": [
                 32.045, 112.136
             ]
         }
-      }
     },
  "Colombia": {
-  "withLocationData": {
    "Battle of Cartagena de Indias (1586)": {
     "latLon": [
      10.4225,
@@ -1532,24 +1480,20 @@
      -72.50388889
     ],
     "pageId": 623811
-   }
-  },
+   },
   "numBattlesInCountry": 7
  },
  "Costa Rica": {
-  "withLocationData": {
    "Battle of Santa Rosa": {
     "latLon": [
      30.3242,
      -87.2817
     ],
     "pageId": 3618498
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Croatia": {
-  "withLocationData": {
    "Siege of Zadar - 1345-46": {
     "latLon": [
      44.11666944,
@@ -1703,12 +1647,10 @@
      16.2
     ],
     "pageId": 333302
-   }
-  },
+   },
   "numBattlesInCountry": 22
  },
  "Cuba": {
-  "withLocationData": {
    "Battle in the Bay of Matanzas": {
     "latLon": [
      23.3333,
@@ -1729,12 +1671,10 @@
      -82.3747
     ],
     "pageId": 15555763
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Cyprus": {
-  "withLocationData": {
    "Battle of Salamis (306 BC)": {
     "latLon": [
      35.16666667,
@@ -1748,12 +1688,10 @@
      33.94166667
     ],
     "pageId": 38354265
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Czech Republic": {
-  "withLocationData": {
    "Battle of Vy\u0161ehrad": {
     "latLon": [
      50.05777778,
@@ -2040,24 +1978,20 @@
      15.75
     ],
     "pageId": 218694
-   }
-  },
+   },
   "numBattlesInCountry": 41
  },
  "Democratic Republic of the Congo": {
-  "withLocationData": {
    "Siege of Jadotville": {
     "latLon": [
      -10.98333333,
      26.73333333
     ],
     "pageId": 4233622
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Denmark": {
-  "withLocationData": {
    "Battle of Grathe Heath": {
     "latLon": [
      56.267975,
@@ -2162,16 +2096,13 @@
      9.75805556
     ],
     "pageId": 2656208
-   }
-  },
+   },
   "numBattlesInCountry": 15
  },
  "Djibouti": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Dominica": {
-  "withLocationData": {
    "Invasion of Dominica (1761)": {
     "latLon": [
      15.3,
@@ -2185,12 +2116,10 @@
      -61.6
     ],
     "pageId": 365583
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Dominican Republic": {
-  "withLocationData": {
    "Battle of Santo Domingo (1586)": {
     "latLon": [
      18.4732,
@@ -2232,24 +2161,20 @@
      -70.33
     ],
     "pageId": 17413975
-   }
-  },
+   },
   "numBattlesInCountry": 6
  },
  "East Timor/Timor-Leste": {
-  "withLocationData": {
    "Battle of Aidabasalala": {
     "latLon": [
      -8.87277778,
      125.18
     ],
     "pageId": 23465467
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Ecuador": {
-  "withLocationData": {
    "Battle of Tumebamba": {
     "latLon": [
      -2.90666667,
@@ -2270,22 +2195,19 @@
      -78.52726389
     ],
     "pageId": 2951268
-   }
-  },
+   },
   "numBattlesInCountry": 3
  }, 
  "Egypt":{
     "numBattlesInCountry": 1,
-      "withLocationData": {
+      
         "Capture of Cairo (1517)":{
             "latLon": [
                 30.066667, 31.216667
             ]
         }
-      }
-     },
+      },
  "El Salvador": {
-  "withLocationData": {
    "Battle of Chalchuapa": {
     "latLon": [
      13.98333333,
@@ -2299,12 +2221,10 @@
      -89.12555556
     ],
     "pageId": 64990982
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "England": {
-  "withLocationData": {
    "Battle of the Medway": {
     "latLon": [
      51.44,
@@ -3753,16 +3673,13 @@
      -0.11944444
     ],
     "pageId": 14037325
-   }
-  },
+   },
   "numBattlesInCountry": 208
  },
  "Eritrea": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Estonia": {
-  "withLocationData": {
    "Battle of Iron Gate": {
     "latLon": [
      36.24833333,
@@ -4049,12 +3966,10 @@
      22.25
     ],
     "pageId": 12265361
-   }
-  },
+   },
   "numBattlesInCountry": 41
  },
  "Ethiopia": {
-  "withLocationData": {
    "Battle of Adwa": {
     "latLon": [
      14.01888889,
@@ -4068,12 +3983,10 @@
      38.45111111
     ],
     "pageId": 9747549
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Finland": {
-  "withLocationData": {
    "Battle of Hogland (1713)": {
     "latLon": [
      59.986,
@@ -4360,12 +4273,10 @@
      29.32638889
     ],
     "pageId": 64792098
-   }
-  },
+   },
   "numBattlesInCountry": 41
  },
  "France": {
-  "withLocationData": {
    "Battle of Alalia": {
     "latLon": [
      42.1041973,
@@ -6507,24 +6418,20 @@
      -1.17638889
     ],
     "pageId": 6723726
-   }
-  },
+   },
   "numBattlesInCountry": 306
  },
  "Gabon": {
-  "withLocationData": {
    "Battle of Gabon": {
     "latLon": [
      0.39,
      9.45166667
     ],
     "pageId": 9766537
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Germany": {
-  "withLocationData": {
    "Battle of the Teutoburg Forest": {
     "latLon": [
      52.408,
@@ -7427,12 +7334,10 @@
      13.37611111
     ],
     "pageId": 291145
-   }
-  },
+   },
   "numBattlesInCountry": 131
  },
  "Georgia": {
-  "withLocationData": {
    "Siege of Petra (541)": {
     "latLon": [
      41.76833333,
@@ -7572,24 +7477,20 @@
      42.98611111
     ],
     "pageId": 3355328
-   }
-  },
+   },
   "numBattlesInCountry": 20
  },
  "Ghana": {
-  "withLocationData": {
    "Battle of Guinea": {
     "latLon": [
      1,
      4
     ],
     "pageId": 29653746
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Greece": {
-  "withLocationData": {
    "Siege of Naxos (499 BC)": {
     "latLon": [
      37.08333333,
@@ -8457,48 +8358,40 @@
      24.06111111
     ],
     "pageId": 149773
-   }
-  },
+   },
   "numBattlesInCountry": 124
  },
  "Grenada": {
-  "withLocationData": {
    "Capture of Grenada (1779)": {
     "latLon": [
      12.05,
      -61.75
     ],
     "pageId": 28803743
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Guatemala": {
-  "withLocationData": {
    "Battle of La Arada": {
     "latLon": [
      14.7167,
      -89.5833
     ],
     "pageId": 34536361
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Guyana": {
-  "withLocationData": {
    "Capture of Demerara and Essequibo": {
     "latLon": [
      6.8,
      -58.16666667
     ],
     "pageId": 28817000
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Haiti": {
-  "withLocationData": {
    "Capture of Fort Rocher": {
     "latLon": [
      20.00888889,
@@ -8554,12 +8447,10 @@
      -72.2244
     ],
     "pageId": 1239736
-   }
-  },
+   },
   "numBattlesInCountry": 8
  },
  "Honduras": {
-  "withLocationData": {
    "Battle of San Fernando de Omoa": {
     "latLon": [
      15.77388889,
@@ -8573,12 +8464,10 @@
      -86.41783333
     ],
     "pageId": 23169749
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Hungary": {
-  "withLocationData": {
    "Battle of Bolia": {
     "latLon": [
      47.68333333,
@@ -8837,12 +8726,10 @@
      18.35
     ],
     "pageId": 797310
-   }
-  },
+   },
   "numBattlesInCountry": 38
  },
  "Iceland": {
-  "withLocationData": {
    "Battle of \u00d6rlygssta\u00f0ir": {
     "latLon": [
      65.501,
@@ -8863,12 +8750,10 @@
      -21.64833333
     ],
     "pageId": 16507671
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "India": {
-  "withLocationData": {
    "Battle of Kili": {
     "latLon": [
      28.65456,
@@ -9281,12 +9166,10 @@
      75.79583333
     ],
     "pageId": 2034675
-   }
-  },
+   },
   "numBattlesInCountry": 59
  },
  "Indonesia": {
-  "withLocationData": {
    "Action of 9 September 1796": {
     "latLon": [
      5.55,
@@ -9314,12 +9197,10 @@
      107.58333333
     ],
     "pageId": 9590325
-   }
-  },
+   },
   "numBattlesInCountry": 4
  },
  "Iran": {
-  "withLocationData": {
    "Battle of Susa": {
     "latLon": [
      32.18922,
@@ -9403,12 +9284,10 @@
      47.40555556
     ],
     "pageId": 3364632
-   }
-  },
+   },
   "numBattlesInCountry": 12
  },
  "Iraq": {
-  "withLocationData": {
    "Battle of Nineveh (612 BC)": {
     "latLon": [
      36.35944444,
@@ -9562,16 +9441,13 @@
      44.41667
     ],
     "pageId": 30164483
-   }
-  },
+   },
   "numBattlesInCountry": 22
  },
  "Ireland": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Israel": {
-  "withLocationData": {
    "Battle of Megiddo (15th century BC)": {
     "latLon": [
      32.58527778,
@@ -9865,12 +9741,10 @@
      35.49833333
     ],
     "pageId": 28084899
-   }
-  },
+   },
   "numBattlesInCountry": 42
  },
  "Italy": {
-  "withLocationData": {
    "Battle of Lake Regillus": {
     "latLon": [
      41.84027778,
@@ -11312,12 +11186,10 @@
      13.81666667
     ],
     "pageId": 33088
-   }
-  },
+   },
   "numBattlesInCountry": 206
  },
  "Jamaica": {
-  "withLocationData": {
    "Invasion of Jamaica": {
     "latLon": [
      17.955,
@@ -11338,12 +11210,10 @@
      -77.0142
     ],
     "pageId": 27947503
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Japan": {
-  "withLocationData": {
    "Siege of Nara": {
     "latLon": [
      34.683333,
@@ -12232,12 +12102,10 @@
      128
     ],
     "pageId": 4986
-   }
-  },
+   },
   "numBattlesInCountry": 133
  },
  "Jordan": {
-  "withLocationData": {
    "Siege of Machaerus": {
     "latLon": [
      31.56722222,
@@ -12258,36 +12126,30 @@
      35.61666667
     ],
     "pageId": 10126467
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Kazakhstan": {
-  "withLocationData": {
    "Siege of Otrar": {
     "latLon": [
      42.85,
      68.3
     ],
     "pageId": 70184345
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Kenya": {
-  "withLocationData": {
    "Battle of Shela": {
     "latLon": [
      -2.297,
      40.911
     ],
     "pageId": 41332979
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Kosovo": {
-  "withLocationData": {
    "Battle of Kosovo": {
     "latLon": [
      42.7175,
@@ -12315,28 +12177,23 @@
      21.12
     ],
     "pageId": 797175
-   }
-  },
+   },
   "numBattlesInCountry": 4
  },
  "Kuwait": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Kyrgyzstan": {
-  "withLocationData": {
    "Battle of Talas": {
     "latLon": [
      42.525,
      72.23333333
     ],
     "pageId": 458455
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Laos": {
-  "withLocationData": {
    "Battle of Muong Khoua": {
     "latLon": [
      21.0775,
@@ -12350,12 +12207,10 @@
      103.71416667
     ],
     "pageId": 6483830
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Latvia": {
-  "withLocationData": {
    "Battle of C\u0113sis (1210)": {
     "latLon": [
      57.31333333,
@@ -12572,12 +12427,10 @@
      25.2747
     ],
     "pageId": 13788636
-   }
-  },
+   },
   "numBattlesInCountry": 31
  },
  "Lebanon": {
-  "withLocationData": {
    "Siege of Tyre (586\u2013573 BC)": {
     "latLon": [
      33.27083333,
@@ -12703,12 +12556,10 @@
      36.4208
     ],
     "pageId": 43492765
-   }
-  },
+   },
   "numBattlesInCountry": 18
  },
  "Libya": {
-  "withLocationData": {
    "Siege of Tripoli (1551)": {
     "latLon": [
      32.90222222,
@@ -12743,12 +12594,10 @@
      13.18583333
     ],
     "pageId": 27123625
-   }
-  },
+   },
   "numBattlesInCountry": 5
  },
  "Lithuania": {
-  "withLocationData": {
    "Battle of Saule": {
     "latLon": [
      56.115,
@@ -12881,12 +12730,10 @@
      23.28333333
     ],
     "pageId": 10944921
-   }
-  },
+   },
   "numBattlesInCountry": 19
  },
  "Luxembourg": {
-  "withLocationData": {
    "Siege of Luxembourg (1684)": {
     "latLon": [
      49.61,
@@ -12900,24 +12747,20 @@
      6.133
     ],
     "pageId": 11897992
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Madagascar": {
-  "withLocationData": {
    "Battle of Madagascar": {
     "latLon": [
      -12.26666667,
      49.28333333
     ],
     "pageId": 1622242
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Malaysia": {
-  "withLocationData": {
    "Capture of Malacca (1511)": {
     "latLon": [
      2.20555556,
@@ -12938,12 +12781,10 @@
      102.38444444
     ],
     "pageId": 8414383
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Mali": {
-  "withLocationData": {
    "Battle of Kirina": {
     "latLon": [
      12.3063,
@@ -13048,12 +12889,10 @@
      -0.05
     ],
     "pageId": 38205389
-   }
-  },
+   },
   "numBattlesInCountry": 15
  },
  "Malta": {
-  "withLocationData": {
    "Capture of Malta (218 BC)": {
     "latLon": [
      35.88333333,
@@ -13095,16 +12934,13 @@
      14.51416667
     ],
     "pageId": 25210907
-   }
-  },
+   },
   "numBattlesInCountry": 6
  },
  "Manchuria": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Marshall Islands": {
-  "withLocationData": {
    "Battle of Kwajalein": {
     "latLon": [
      8.71666667,
@@ -13118,28 +12954,23 @@
      162.189
     ],
     "pageId": 345468
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Mauritania": {
-  "withLocationData": {
    "Battle of Tabfarilla": {
     "latLon": [
      21.05,
      -13.1
     ],
     "pageId": 63281490
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Mauritius": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Mexico": {
-  "withLocationData": {
    "Battle of Monte de las Cruces": {
     "latLon": [
      19.32944444,
@@ -13300,12 +13131,10 @@
      -98.65
     ],
     "pageId": 43519878
-   }
-  },
+   },
   "numBattlesInCountry": 23
  },
  "Moldova": {
-  "withLocationData": {
    "Skirmish at Bender": {
     "latLon": [
      46.83333333,
@@ -13333,16 +13162,13 @@
      27.63333333
     ],
     "pageId": 11469547
-   }
-  },
+   },
   "numBattlesInCountry": 4
  },
  "Mongolia": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Montenegro": {
-  "withLocationData": {
    "Siege of Castelnuovo": {
     "latLon": [
      42.45277778,
@@ -13356,12 +13182,10 @@
      18.94
     ],
     "pageId": 46382804
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Morocco": {
-  "withLocationData": {
    "Fall of Agadir": {
     "latLon": [
      30.43333333,
@@ -13431,24 +13255,20 @@
      -5.33043
     ],
     "pageId": 9753295
-   }
-  },
+   },
   "numBattlesInCountry": 10
  },
  "Mozambique": {
-  "withLocationData": {
    "Battle of Ngomano": {
     "latLon": [
      -11.42833333,
      38.49361111
     ],
     "pageId": 25575534
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Myanmar (formerly Burma)": {
-  "withLocationData": {
    "Battle of Goteik Gorge": {
     "latLon": [
      22.61666667,
@@ -13546,12 +13366,10 @@
      96.32
     ],
     "pageId": 24515276
-   }
-  },
+   },
   "numBattlesInCountry": 15
  },
  "Namibia": {
-  "withLocationData": {
    "Battle of Waterberg": {
     "latLon": [
      -20.51666667,
@@ -13579,16 +13397,13 @@
      17.33333333
     ],
     "pageId": 25152602
-   }
-  },
+   },
   "numBattlesInCountry": 4
  },
  "Nauru": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Nepal": {
-  "withLocationData": {
    "Battle of Jit Gadhi": {
     "latLon": [
      27.7034416,
@@ -13602,12 +13417,10 @@
      85.14805556
     ],
     "pageId": 66530870
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Netherlands": {
-  "withLocationData": {
    "Battle of the Boarn": {
     "latLon": [
      53.0768,
@@ -14111,24 +13924,20 @@
      5.95833333
     ],
     "pageId": 6593273
-   }
-  },
+   },
   "numBattlesInCountry": 72
  },
  "New Zealand": {
-  "withLocationData": {
    "Battle of Puketutu": {
     "latLon": [
      -35.33916667,
      173.8175
     ],
     "pageId": 72720788
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Nicaragua": {
-  "withLocationData": {
    "Battle for R\u00edo San Juan de Nicaragua": {
     "latLon": [
      11.01777778,
@@ -14142,16 +13951,13 @@
      -85.82699722
     ],
     "pageId": 2304654
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Nigeria": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "North Korea": {
-  "withLocationData": {
    "Siege of Pyongyang (1592)": {
     "latLon": [
      39.03,
@@ -14165,12 +13971,10 @@
      125.75426667
     ],
     "pageId": 56590699
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "North Macedonia": {
-  "withLocationData": {
    "Battle of Skopje": {
     "latLon": [
      42,
@@ -14233,12 +14037,10 @@
      20.5275
     ],
     "pageId": 31559565
-   }
-  },
+   },
   "numBattlesInCountry": 9
  },
  "Norway": {
-  "withLocationData": {
    "Battle of Hakadal": {
     "latLon": [
      60.11936111,
@@ -14427,12 +14229,10 @@
      28.25
     ],
     "pageId": 887626
-   }
-  },
+   },
   "numBattlesInCountry": 27
  },
  "Oman": {
-  "withLocationData": {
    "Capture of Muscat (1552)": {
     "latLon": [
      23.60861111,
@@ -14453,12 +14253,10 @@
      54.6919477
     ],
     "pageId": 684588
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Pakistan": {
-  "withLocationData": {
    "Battle of the Hydaspes River": {
     "latLon": [
      32.82777778,
@@ -14521,12 +14319,10 @@
      69.71666667
     ],
     "pageId": 2372772
-   }
-  },
+   },
   "numBattlesInCountry": 9
  },
  "Palau": {
-  "withLocationData": {
    "Battle of Peleliu": {
     "latLon": [
      7,
@@ -14540,12 +14336,10 @@
      134.133
     ],
     "pageId": 1129969
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Palestine": {
-  "withLocationData": {
    "Siege of Gaza (332 BCE)": {
     "latLon": [
      31.51666667,
@@ -14622,16 +14416,13 @@
      34.45
     ],
     "pageId": 3338433
-   }
-  },
+   },
   "numBattlesInCountry": 12
  },
  "Panama": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Papua New Guinea": {
-  "withLocationData": {
    "Battle of Savo Island": {
     "latLon": [
      -9.13333333,
@@ -14652,24 +14443,20 @@
      148.25
     ],
     "pageId": 903203
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Paraguay": {
-  "withLocationData": {
    "Battle of Paraguar\u00ed": {
     "latLon": [
      -25.63333333,
      -57.15
     ],
     "pageId": 27005706
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Peru": {
-  "withLocationData": {
    "Battle of Cajamarca or Battle of Cajamalca": {
     "latLon": [
      -7.16444444,
@@ -14767,12 +14554,10 @@
      -77.13333333
     ],
     "pageId": 7151626
-   }
-  },
+   },
   "numBattlesInCountry": 14
  },
  "Philippines": {
-  "withLocationData": {
    "Battle of Mactan": {
     "latLon": [
      10.3106,
@@ -14870,12 +14655,10 @@
      124.3
     ],
     "pageId": 25207620
-   }
-  },
+   },
   "numBattlesInCountry": 14
  },
  "Poland": {
-  "withLocationData": {
    "Battle of Cedynia": {
     "latLon": [
      52.86666667,
@@ -15477,12 +15260,10 @@
      21.01083333
     ],
     "pageId": 376841
-   }
-  },
+   },
   "numBattlesInCountry": 87
  },
  "Portugal": {
-  "withLocationData": {
    "Battle of Ourique": {
     "latLon": [
      39.17,
@@ -15699,16 +15480,13 @@
      -8.5
     ],
     "pageId": 15641348
-   }
-  },
+   },
   "numBattlesInCountry": 31
  },
  "Qatar": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Romania": {
-  "withLocationData": {
    "Domitian's Dacian War": {
     "latLon": [
      43.96,
@@ -15939,12 +15717,10 @@
      27.00055556
     ],
     "pageId": 21975983
-   }
-  },
+   },
   "numBattlesInCountry": 33
  },
  "Russia": {
-  "withLocationData": {
    "Battle of the Tanais River": {
     "latLon": [
      47.06083333,
@@ -16364,12 +16140,10 @@
      46.08333333
     ],
     "pageId": 8745619
-   }
-  },
+   },
   "numBattlesInCountry": 60
  },
  "Saint Kitts and Nevis": {
-  "withLocationData": {
    "Battle of St. Kitts (1629)": {
     "latLon": [
      17.15,
@@ -16383,12 +16157,10 @@
      -62.58333333
     ],
     "pageId": 2166298
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Saint Lucia": {
-  "withLocationData": {
    "Battle of St. Lucia": {
     "latLon": [
      14.017,
@@ -16402,24 +16174,20 @@
      -60.9682
     ],
     "pageId": 28813177
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Saint Vincent and the Grenadines": {
-  "withLocationData": {
    "Capture of Saint Vincent": {
     "latLon": [
      13.25,
      -61.2
     ],
     "pageId": 28803747
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Saudi Arabia": {
-  "withLocationData": {
    "Battle of Badr": {
     "latLon": [
      23.73333333,
@@ -16587,12 +16355,10 @@
      48.5
     ],
     "pageId": 1237273
-   }
-  },
+   },
   "numBattlesInCountry": 24
  },
  "Scotland": {
-  "withLocationData": {
    "Siege of Burnswark": {
     "latLon": [
      55.096873,
@@ -17544,12 +17310,10 @@
      -2.934
     ],
     "pageId": 6484409
-   }
-  },
+   },
   "numBattlesInCountry": 136
  },
  "Senegal": {
-  "withLocationData": {
    "British capture of Senegal": {
     "latLon": [
      16.0333,
@@ -17563,12 +17327,10 @@
      -17.39833333
     ],
     "pageId": 1256117
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Serbia": {
-  "withLocationData": {
    "Battle of Naissus": {
     "latLon": [
      43.3,
@@ -17736,16 +17498,13 @@
      20.26277778
     ],
     "pageId": 2167279
-   }
-  },
+   },
   "numBattlesInCountry": 24
  },
  "Seychelles": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Slovakia": {
-  "withLocationData": {
    "Battle of Humenn\u00e9": {
     "latLon": [
      48.93583333,
@@ -17843,12 +17602,10 @@
      18.25502778
     ],
     "pageId": 74842997
-   }
-  },
+   },
   "numBattlesInCountry": 14
  },
  "Slovenia": {
-  "withLocationData": {
    "Battle of the Frigidus": {
     "latLon": [
      45.87027778,
@@ -17890,12 +17647,10 @@
      13.6425
     ],
     "pageId": 503655
-   }
-  },
+   },
   "numBattlesInCountry": 6
  },
  "South Africa": {
-  "withLocationData": {
    "Battle of Blaauwberg": {
     "latLon": [
      -33.75611111,
@@ -18077,12 +17832,10 @@
      25.07527778
     ],
     "pageId": 3292171
-   }
-  },
+   },
   "numBattlesInCountry": 26
  },
  "South Korea": {
-  "withLocationData": {
    "Battle of Baekgang": {
     "latLon": [
      36,
@@ -18208,12 +17961,10 @@
      127.87638889
     ],
     "pageId": 1987502
-   }
-  },
+   },
   "numBattlesInCountry": 18
  },
  "Spain": {
-  "withLocationData": {
    "Siege of Saguntum": {
     "latLon": [
      39.677,
@@ -18732,7 +18483,7 @@
     ],
     "pageId": 15922199
    },
-   "Battle of No\u00e1in or Battle of Esquiroz": {
+   "Battle of No\u00e1in": {
     "latLon": [
      42.758,
      -1.654
@@ -19361,12 +19112,10 @@
      0.475
     ],
     "pageId": 690964
-   }
-  },
+   },
   "numBattlesInCountry": 164
  },
  "Sri Lanka": {
-  "withLocationData": {
    "Siege of Kotte (1557\u20131558)": {
     "latLon": [
      6.91083333,
@@ -19415,28 +19164,23 @@
      81.51306111
     ],
     "pageId": 2163514
-   }
-  },
+   },
   "numBattlesInCountry": 7
  },
  "Sudan": {
-  "withLocationData": {},
   "numBattlesInCountry": 0
  },
  "Suriname": {
-  "withLocationData": {
    "Recapture of Fort Zeelandia (1667)": {
     "latLon": [
      5.8252,
      -55.149872
     ],
     "pageId": 39179332
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Sweden": {
-  "withLocationData": {
    "Battle of the Br\u00e1vellir": {
     "latLon": [
      58.6073112,
@@ -19569,12 +19313,10 @@
      20.89778056
     ],
     "pageId": 280822
-   }
-  },
+   },
   "numBattlesInCountry": 19
  },
  "Switzerland": {
-  "withLocationData": {
    "Battle of Octodurus": {
     "latLon": [
      46.1,
@@ -19679,12 +19421,10 @@
      8.65
     ],
     "pageId": 44904197
-   }
-  },
+   },
   "numBattlesInCountry": 15
  },
  "Syria": {
-  "withLocationData": {
    "Battle of Qarqar": {
     "latLon": [
      35.742646,
@@ -19957,12 +19697,10 @@
      37.273
     ],
     "pageId": 15133264
-   }
-  },
+   },
   "numBattlesInCountry": 39
  },
  "Taiwan": {
-  "withLocationData": {
    "Battle of Liaoluo Bay": {
     "latLon": [
      24.41,
@@ -19976,12 +19714,10 @@
      120.16083333
     ],
     "pageId": 13652036
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Tajikistan": {
-  "withLocationData": {
    "Siege of Cyropolis": {
     "latLon": [
      40.283333,
@@ -19995,12 +19731,10 @@
      69.61666667
     ],
     "pageId": 27637254
-   }
-  },
+   },
   "numBattlesInCountry": 2
  },
  "Thailand": {
-  "withLocationData": {
    "Paknam incident": {
     "latLon": [
      13.537941,
@@ -20021,24 +19755,20 @@
      99.78333333
     ],
     "pageId": 250640
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Trinidad and Tobago": {
-  "withLocationData": {
    "Action of March 1677 or Battle of Tobago": {
     "latLon": [
      11.25,
      -60.667
     ],
     "pageId": 2701187
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "Tunisia": {
-  "withLocationData": {
    "Siege of Aspis": {
     "latLon": [
      36.85,
@@ -20199,12 +19929,10 @@
      10.18166667
     ],
     "pageId": 67655784
-   }
-  },
+   },
   "numBattlesInCountry": 24
  },
  "Turkey": {
-  "withLocationData": {
    "Battle of Carchemish": {
     "latLon": [
      36.8297,
@@ -21114,12 +20842,10 @@
      37.8
     ],
     "pageId": 3420161
-   }
-  },
+   },
   "numBattlesInCountry": 130
  },
  "Turkmenistan": {
-  "withLocationData": {
    "Battle of Dandanaqan": {
     "latLon": [
      37.391933,
@@ -21140,12 +20866,10 @@
      62.1925
     ],
     "pageId": 73738923
-   }
-  },
+   },
   "numBattlesInCountry": 3
  },
  "Ukraine": {
-  "withLocationData": {
    "Siege of Kiev (968)": {
     "latLon": [
      50.45,
@@ -21432,24 +21156,20 @@
      30.54
     ],
     "pageId": 70163209
-   }
-  },
+   },
   "numBattlesInCountry": 41
  },
  "United Arab Emirates": {
-  "withLocationData": {
    "Battle of the Gulf of Oman": {
     "latLon": [
      25,
      58
     ],
     "pageId": 32556826
-   }
-  },
+   },
   "numBattlesInCountry": 1
  },
  "United Kingdom": {
-  "withLocationData": {
    "Battle of Ronaldsway": {
     "latLon": [
      54.081,
@@ -21596,12 +21316,10 @@
      -5.4292
     ],
     "pageId": 35294216
-   }
-  },
+   },
   "numBattlesInCountry": 21
  },
  "United States": {
-  "withLocationData": {
    "Mystic massacre": {
     "latLon": [
      41.35972222,
@@ -23924,12 +23642,10 @@
      -109.989
     ],
     "pageId": 24336684
-   }
-  },
+   },
   "numBattlesInCountry": 332
  },
  "Uruguay": {
-  "withLocationData": {
    "Siege of Colonia del Sacramento": {
     "latLon": [
      -34.4714,
@@ -23964,12 +23680,10 @@
      -57.853078
     ],
     "pageId": 70472231
-   }
-  },
+   },
   "numBattlesInCountry": 5
  },
  "Uzbekistan": {
-  "withLocationData": {
    "Battle of Gol-Zarriun": {
     "latLon": [
      39.766667,
@@ -23997,12 +23711,10 @@
      66.97
     ],
     "pageId": 70159302
-   }
-  },
+   },
   "numBattlesInCountry": 4
  },
  "Venezuela": {
-  "withLocationData": {
    "Battle of La Guaira": {
     "latLon": [
      10.6,
@@ -24100,12 +23812,10 @@
      -71.5567
     ],
     "pageId": 2915042
-   }
-  },
+   },
   "numBattlesInCountry": 14
  },
  "Vietnam": {
-  "withLocationData": {
    "Battle of B\u1ea1ch \u0110\u1eb1ng (938)": {
     "latLon": [
      20.8442,
@@ -24238,12 +23948,10 @@
      108.06
     ],
     "pageId": 5748336
-   }
-  },
+   },
   "numBattlesInCountry": 19
  },
  "Wales": {
-  "withLocationData": {
    "Roman conquest of Anglesey": {
     "latLon": [
      53.2833,
@@ -24355,12 +24063,10 @@
      -4.9804
     ],
     "pageId": 5191061
-   }
-  },
+   },
   "numBattlesInCountry": 16
  },
  "Yemen": {
-  "withLocationData": {
    "Siege of Sanaa (570)": {
     "latLon": [
      15.35,
@@ -24374,9 +24080,7 @@
      45.02416667
     ],
     "pageId": 24856984
-   }
-  },
+   },
   "numBattlesInCountry": 2
- },
- "battlesFoundTotal": 6125
+ }
 }
