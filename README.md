@@ -1,8 +1,19 @@
-# React + Vite
+# europe-battles-map
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A map that displays important historical battles on a world map. Battles are sorted by modern country borders. Click on the red dot to get info on the battle. All location data and summaries are sourced from Wikipedia.
 
-Currently, two official plugins are available:
+Notes
+Could be useful in future:
+https://openweathermap.org/api/geocoding-api
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+endpoint:
+https://en.wikipedia.org/w/api.php
+
+coordinates:
+https://en.wikipedia.org/w/api.php?action=help&modules=query%2Bcoordinates
+https://www.mediawiki.org/wiki/Extension:GeoData#prop=coordinates
+To find the coordinates on a page
+prop: 'coordinates',
+
+https://api-ninjas.com/api/historicalfigures
+can list out all conflicts someone was involved in
