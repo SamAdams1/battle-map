@@ -1,8 +1,14 @@
+import "./reset.css"
 import "./App.css"
+
+// leaflet imports
 import "leaflet/dist/leaflet.css"
 import { useState, useEffect } from "react"
-import { MapContainer, TileLayer, Marker, Popup} from "react-leaflet"
+import { MapContainer, TileLayer, useMapEvent, } from "react-leaflet"
+
+//Custom components
 import Markers from "../components/Markers"
+import InfoPanel from "../components/InfoPanel"
 
 
 function App() {
@@ -10,11 +16,11 @@ function App() {
   const [countryCenter, setCountryCenter] = useState({})
   const [battleLocs, setBattleLocs] = useState({})
   const [battleNames, setBattleNames] = useState({})
+  
+  const [map, setMap] = useState(null)
 
-  // const
 
-
-  function getData(url, idk) {
+  function getData(url, setState) {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -23,7 +29,7 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        idk(data)
+        setState(data)
       })
       .catch((error) => {
         console.error("Error fetching the JSON data:", error);
@@ -42,12 +48,18 @@ function App() {
 
   }
 
+  const panToPoint = (latLon, zoom) => {
+    // const map = useMapEvent()
+    map.setView(latLon, zoom)
+  }
+
 
   return (
     <>
-      <div>
+      <div className="header">
         <h1>Battle Map</h1>
       </div>
+      <InfoPanel countriesData={countryCenter} battlesNames={battleNames} battleLocs={battleLocs} panFunc={panToPoint}/>
       <MapContainer 
         center={[40, 10]} 
         zoom={2} 
@@ -55,16 +67,17 @@ function App() {
         maxBounds={L.latLngBounds([100, 200], [-100, -200])}
         mapBoundsVisconsity={1}
         markerZoomAnimation={false}
+        ref={setMap}
         >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
           minZoom={3}
-          />
-          {dataRetrieved && <Markers battlesData={battleLocs}/>}
-
+        />
+        {dataRetrieved && <Markers battlesData={battleLocs}/>}
       </MapContainer>
+
     </>
   )
 }

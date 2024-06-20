@@ -202,13 +202,6 @@
   ],
   "zoom": 5
  },
- "Democratic Republic of the Congo": {
-  "latLon": [
-   -3,
-   24
-  ],
-  "zoom": 5
- },
  "Costa Rica": {
   "latLon": [
    10,
@@ -241,6 +234,13 @@
   "latLon": [
    49.75,
    15.5
+  ],
+  "zoom": 5
+ },
+ "Democratic Republic of the Congo": {
+  "latLon": [
+   -3,
+   24
   ],
   "zoom": 5
  },

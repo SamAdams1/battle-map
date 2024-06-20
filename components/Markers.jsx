@@ -14,13 +14,14 @@ const Markers = ({ battlesData, showBattle }) => {
   return (
     <>
       { Object.keys(battlesData).map((country) => {
-        //returns each country, skips non-country data
         let firstLetter = country.charAt(0);
         if (firstLetter == firstLetter.toUpperCase()) {
+          //returns each country, skips non-country data
           return (
           Object.keys(battlesData[country]).map((battleName) => {
             const latLon = battlesData[country][battleName].latLon
             if (latLon) {
+              // goes through battles and creates the marker if latlon is defined
               count+=1
               return(
                 <Marker position={battlesData[country][battleName].latLon} icon={icon} key={"marker"+count}>
@@ -35,8 +36,7 @@ const Markers = ({ battlesData, showBattle }) => {
                     <button>Favorite</button>
                   </Popup>
                 </Marker>
-                )
-              // console.log(battlesData[country][battleName].latLon)
+              )
             }
           })
       )}
