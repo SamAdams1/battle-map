@@ -1,29 +1,31 @@
 import React from 'react'
 
-const BattlesList = ({ data, battleLocations, panToBattle, country }) => {
+const BattlesList = ({ data, battleLocations, panToBattle, country, showBattlePopup }) => {
+
+  const onClick = (battleData, battleName) => {
+    panToBattle(battleData.latLon, 12)
+    // showBattlePopup(battleData.latLon, battleName)
+  }
 
   return (
-    <div className='battleList' key={"fornite"}>
-      {data[country].map((battle, index) => {
-        battle = battle.split(" – ")[0]
-        let displayTxt = (index + 1 ) + ": " + battle
+    <div className='battleList'>
+      {data[country].map((battleName, index) => {
+        battleName = battleName.split(" – ")[0]
+        const battleData = battleLocations[country][battleName] 
+        const displayTxt = (index + 1) + ": " + battleName
         return (
-          <>
-            { battleLocations[country][battle] != undefined ? (
+          <div key={ country + index}>
+            { battleData != undefined ? (
               <>
-                <button 
-                  key={country + index} 
-                  onClick={() => panToBattle(battleLocations[country][battle].latLon, 10)}
-                >{displayTxt}</button>
-                <br />
+                <button onClick={() => onClick(battleData, battleName)}>{displayTxt}</button>
+                <br/>
               </>
             ) : (
               <>
-              <p>{displayTxt}</p>
+                <p >{displayTxt}</p>
               </>
             )}
-
-          </>
+          </div>
         )
       })}
     </div>

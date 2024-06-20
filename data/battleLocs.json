@@ -1460,7 +1460,7 @@
     ],
     "pageId": 9035963
    },
-   "Capture of the galleon San Joaquin or Battle of Cartagena": {
+   "Capture of the galleon San Joaquin": {
     "latLon": [
      10.4114,
      -75.535
@@ -1494,154 +1494,154 @@
   "numBattlesInCountry": 1
  },
  "Croatia": {
-   "Siege of Zadar - 1345-46": {
+   "Siege of Zadar": {
     "latLon": [
      44.11666944,
      15.21666944
     ],
     "pageId": 51036527
    },
-   "Battle of Krbava Field - 1493": {
+   "Battle of Krbava Field": {
     "latLon": [
      44.6,
      15.7
     ],
     "pageId": 2942787
    },
-   "Battle of Dubica - 1513": {
+   "Battle of Dubica": {
     "latLon": [
      45.189271,
      16.798529
     ],
     "pageId": 44758363
    },
-   "Siege of Knin - 1522": {
+   "Siege of Knin": {
     "latLon": [
      44.033333,
      16.183333
     ],
     "pageId": 44779328
    },
-   "Siege of Klis - 1536 - 1537": {
+   "Siege of Klis": {
     "latLon": [
      43.56,
      16.52388889
     ],
     "pageId": 31861697
    },
-   "Battle of Obre\u0161ka - 1565": {
+   "Battle of Obre\u0161ka": {
     "latLon": [
      45.78512527,
      16.45444453
     ],
     "pageId": 59500357
    },
-   "Siege of Gvozdansko - 1577 - 1578": {
+   "Siege of Gvozdansko": {
     "latLon": [
      45.133,
      16.215
     ],
     "pageId": 30870706
    },
-   "Battle of Sisak - 1593": {
+   "Battle of Sisak": {
     "latLon": [
      45.47055556,
      16.38611111
     ],
     "pageId": 1697163
    },
-   "Second Battle of Novi Zrin - 1663": {
+   "Second Battle of Novi Zrin": {
     "latLon": [
      46.32361111,
      16.87833333
     ],
     "pageId": 2878287
    },
-   "Siege of Zadar - 1813": {
+   "Siege of Zara (1813)": {
     "latLon": [
      44.11667,
-     15.21667
+     15.21637
     ],
     "pageId": 50862897
    },
-   "Siege of Dubrovnik - 1814": {
+   "Siege of Ragusa (1814)": {
     "latLon": [
      42.64138889,
      18.10861111
     ],
     "pageId": 8868979
    },
-   "Battle of Kotor - 1848": {
+   "Battle of Kotor": {
     "latLon": [
      46.37244444,
      16.8345
     ],
     "pageId": 74438836
    },
-   "Battle of Vis - 1866": {
+   "Battle of Vis": {
     "latLon": [
      43.17638889,
      16.05333333
     ],
     "pageId": 960710
    },
-   "Battle of Gospi\u0107 - 1991": {
+   "Battle of Gospi\u0107": {
     "latLon": [
      44.5468,
      15.3721
     ],
     "pageId": 28071093
    },
-   "Battle of \u0160ibenik - 1991": {
+   "Battle of \u0160ibenik": {
     "latLon": [
      43.73,
      15.89
     ],
     "pageId": 28883467
    },
-   "Battle of Vukovar - 1991": {
+   "Battle of Vukovar": {
     "latLon": [
      45.37416667,
      18.9625
     ],
     "pageId": 2488658
    },
-   "Battle of Zadar - 1991": {
+   "Battle of Zadar": {
     "latLon": [
      44.12,
      15.23
     ],
     "pageId": 10666362
    },
-   "Siege of Dubrovnik - 1991": {
+   "Siege of Dubrovnik": {
     "latLon": [
      42.64138889,
      18.10861111
     ],
     "pageId": 8868979
    },
-   "Battle of Osijek - 1991-1992": {
+   "Battle of Osijek": {
     "latLon": [
      45.56,
      18.67
     ],
     "pageId": 30638762
    },
-   "Operation Maslenica - 1993": {
+   "Operation Maslenica": {
     "latLon": [
      44.23666667,
      15.52277778
     ],
     "pageId": 2730556
    },
-   "Operation Flash - 1995": {
+   "Operation Flash": {
     "latLon": [
      45.26,
      17.2
     ],
     "pageId": 2398932
    },
-   "Operation Storm - 1995": {
+   "Operation Storm": {
     "latLon": [
      44.04,
      16.2
@@ -9257,7 +9257,7 @@
     ],
     "pageId": 28829827
    },
-   "Battle of Ray (811) - 811 - Fourth Fitna": {
+   "Battle of Ray (811)": {
     "latLon": [
      35.5833,
      51.4333
@@ -14330,7 +14330,7 @@
     ],
     "pageId": 4283
    },
-   "Battle of Angaur - 1944": {
+   "Battle of Angaur": {
     "latLon": [
      6.9,
      134.133
@@ -23858,14 +23858,14 @@
     ],
     "pageId": 4748879
    },
-   "Battle of Yu Oc - 1884 - Tonkin Campaign": {
+   "Battle of Yu Oc": {
     "latLon": [
      21.81666694,
      105.21666694
     ],
     "pageId": 20367015
    },
-   "Battle of Nui Bop - 1885 - Tonkin Campaign": {
+   "Battle of Nui Bop": {
     "latLon": [
      21.848,
      106.758

@@ -4,7 +4,7 @@ import "./App.css"
 // leaflet imports
 import "leaflet/dist/leaflet.css"
 import { useState, useEffect } from "react"
-import { MapContainer, TileLayer, useMapEvent, } from "react-leaflet"
+import { MapContainer, Marker, Popup, TileLayer, } from "react-leaflet"
 
 //Custom components
 import Markers from "../components/Markers"
@@ -18,6 +18,7 @@ function App() {
   const [battleNames, setBattleNames] = useState({})
   
   const [map, setMap] = useState(null)
+  const [marker, setMarker] = useState(null)
 
 
   function getData(url, setState) {
@@ -44,31 +45,47 @@ function App() {
     setDataRetrieved(true)
   }, [])
 
-  const researchBattle = (battleName) => {
-
+  const showPopup = (latLon, battleName) => {
+    // map.openPopup(latLon)
+    console.log(latLon, battleName)
+    console.log(map)
+    map.bindPopup(latLon, {content: battleName})
   }
 
   const panToPoint = (latLon, zoom) => {
-    // const map = useMapEvent()
     map.setView(latLon, zoom)
+    if (zoom == 10) {
+      // map.openPopup(latLon)
+    }
   }
-
+  function test(){
+    marker.openPopup()
+    console.log(marker)
+  }
 
   return (
     <>
       <div className="header">
         <h1>Battle Map</h1>
+        <button onClick={() => test()}>test</button>
       </div>
-      <InfoPanel countriesData={countryCenter} battlesNames={battleNames} battleLocs={battleLocs} panFunc={panToPoint}/>
+      <InfoPanel 
+        countriesData={countryCenter} 
+        battlesNames={battleNames} 
+        battleLocs={battleLocs} 
+        panFunc={panToPoint}
+        showBattlePopup={showPopup}
+        />
+      
       <MapContainer 
         center={[40, 10]} 
-        zoom={2} 
+        zoom={3} 
         worldCopyJump={false}
         maxBounds={L.latLngBounds([100, 200], [-100, -200])}
         mapBoundsVisconsity={1}
         markerZoomAnimation={false}
         ref={setMap}
-        >
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -76,6 +93,7 @@ function App() {
           minZoom={3}
         />
         {dataRetrieved && <Markers battlesData={battleLocs}/>}
+
       </MapContainer>
 
     </>

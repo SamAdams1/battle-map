@@ -10,19 +10,16 @@ const CountriesList = ({data, panToCountry, showBattles}) => {
   }
 
   return (
-    <div className='countryList' key={"what"}>
+    <div className='countryList'>
       {Object.keys(data).map((countryName, index) => {
         const countryData = data[countryName]
         let  currentLetter = countryName.charAt(0)
         return (
-          <>
-            { lastLetter !== currentLetter && <h1 key={currentLetter}>{lastLetter = currentLetter}</h1>}
-            <button 
-              key={"country" + index} 
-              onClick={() => onClick(countryData, countryName)}
-            >{countryName}</button>
-            <br key={"break"+index}/>
-          </>
+          < div key={countryName}>
+            { lastLetter !== currentLetter && <h1>{lastLetter = currentLetter}</h1>}
+            <button onClick={() => onClick(countryData, countryName)}>{countryName}</button>
+            <br />
+          </div>
         )
       })}
     </div>

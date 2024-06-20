@@ -33,7 +33,7 @@ h4 {
   z-index: 99;
   background-color: goldenrod;
   border-radius: 0 0 0 1em;
-  padding: 0 0 0em .7em;
+  padding: 0 0 0 .7em;
 }
 
 /* top right bottom left */
