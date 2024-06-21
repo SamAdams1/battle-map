@@ -416,7 +416,7 @@
     ],
     "pageId": 239441
    },
-   "Battle on the Marchfeld (also Battle of D\u00fcrnkrut and Jedenspeigen)": {
+   "Battle on the Marchfeld": {
     "latLon": [
      48.48151389,
      16.87731667
@@ -1131,14 +1131,14 @@
   "numBattlesInCountry": 32
  },
  "Cambodia": {
-   "*Battle of Kompong Speu": {
+   "Battle of Kompong Speu": {
     "latLon": [
      11.26,
      104.32
     ],
     "pageId": 5388964
    },
-   "* Battle of Snuol": {
+   "Battle of Snuol": {
     "latLon": [
      12.06488889,
      106.42161111
@@ -1215,13 +1215,12 @@
  },
  "Canada":{
   "numBattlesInCountry": 1,
-    
-      "Battle of Sorel":{
-          "latLon": [
-            46.033333, -73.116667
-          ]
-      }
-    },
+  "Battle of Sorel":{
+      "latLon": [
+        46.033333, -73.116667
+      ]
+    }
+  },
  "Cape Verde": {
   
     "Capture of Santiago (1585)":{
@@ -1972,7 +1971,7 @@
     ],
     "pageId": 118372
    },
-   "Battle of K\u00f6niggr\u00e4tz (also Battle of Sadov\u00e1)": {
+   "Battle of K\u00f6niggr\u00e4tz": {
     "latLon": [
      50.27,
      15.75
@@ -4155,7 +4154,7 @@
     ],
     "pageId": 2231498
    },
-   " Battle of Tampere": {
+   "Battle of Tampere": {
     "latLon": [
      61.498011,
      23.763686
@@ -4169,105 +4168,105 @@
     ],
     "pageId": 53408331
    },
-   " Battle of Petsamo (1939)": {
+   "Battle of Petsamo (1939)": {
     "latLon": [
      69.25,
      30.56666667
     ],
     "pageId": 2355656
    },
-   " Battle of Salla (1939)": {
+   "Battle of Salla (1939)": {
     "latLon": [
      66.83333333,
      28.66666667
     ],
     "pageId": 2360232
    },
-   " Battle of Kollaa": {
+   "Battle of Kollaa": {
     "latLon": [
      62.02777778,
      32.25555556
     ],
     "pageId": 6390869
    },
-   " Battle of Suomussalmi": {
+   "Battle of Suomussalmi": {
     "latLon": [
      64.88833333,
      28.88888889
     ],
     "pageId": 187309
    },
-   " Battle of Tolvaj\u00e4rvi": {
+   "Battle of Tolvaj\u00e4rvi": {
     "latLon": [
      62.28805556,
      31.48833333
     ],
     "pageId": 294088
    },
-   " Battle of Taipale": {
+   "Battle of Taipale": {
     "latLon": [
      60.507342,
      29.012389
     ],
     "pageId": 19921136
    },
-   " Battle of Raate-Road": {
+   "Battle of Raate-Road": {
     "latLon": [
      64.84805556,
      29.32638889
     ],
     "pageId": 5467100
    },
-   " Battle of Summa": {
+   "Battle of Summa": {
     "latLon": [
      60.507342,
      29.012389
     ],
     "pageId": 3432704
    },
-   " Battle of Honkaniemi": {
+   "Battle of Honkaniemi": {
     "latLon": [
      60.65,
      28.78333333
     ],
     "pageId": 662788
    },
-   " Battle of Tali-Ihantala": {
+   "Battle of Tali-Ihantala": {
     "latLon": [
      60.76666667,
      28.88333333
     ],
     "pageId": 26626798
    },
-   " Battle of the Bay of Viipuri": {
+   "Battle of the Bay of Viipuri": {
     "latLon": [
      60.706967,
      28.748952
     ],
     "pageId": 52247157
    },
-   " Battle of Vuosalmi": {
+   "Battle of Vuosalmi": {
     "latLon": [
      60.71805556,
      29.575
     ],
     "pageId": 3677375
    },
-   " Battle of Nietj\u00e4rvi": {
+   "Battle of Nietj\u00e4rvi": {
     "latLon": [
      61.615,
      31.491
     ],
     "pageId": 8278860
    },
-   " Battle of Ilomantsi": {
+   "Battle of Ilomantsi": {
     "latLon": [
      62.718,
      31.526
     ],
     "pageId": 5422461
    },
-   " Battle of Kuhmo": {
+   "Battle of Kuhmo": {
     "latLon": [
      64.84806111,
      29.32638889
@@ -14501,15 +14500,15 @@
    },
    "First siege of Callao": {
     "latLon": [
-     -12.03333056,
-     -77.13333056
+     -12.032,
+     -77.135
     ],
     "pageId": 69240603
    },
    "Second siege of Callao": {
     "latLon": [
-     -12.03333056,
-     -77.13333056
+     -12.035,
+     -77.130
     ],
     "pageId": 69240884
    },
@@ -14536,8 +14535,8 @@
    },
    "Third siege of Callao": {
     "latLon": [
-     -12.03333056,
-     -77.13333056
+     -12.030,
+     -77.14
     ],
     "pageId": 69241364
    },

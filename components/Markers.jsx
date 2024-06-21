@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Marker, Tooltip, Popup } from "react-leaflet"
 import { Icon } from "leaflet"
 import { useState } from "react"
@@ -10,9 +10,11 @@ const icon = new Icon({
   iconAnchor:   [iconSize / 2, iconSize / 2],
 })
 // let wikiLink = "https://en.wikipedia.org/wiki/" + battleName.replace(" ","_")
-const Markers = ({ battlesData, showBattle }) => {
 
 
+const Markers = ({ battlesData, markersRef }) => {
+  
+  const totalBattles = 3374;
   let count = 0;
   return (
     <>
@@ -27,7 +29,11 @@ const Markers = ({ battlesData, showBattle }) => {
               // goes through battles and creates the marker if latlon is defined
               count+=1
               return(
-                <Marker position={battlesData[country][battleName].latLon} icon={icon} key={count} >
+                <Marker 
+                    position={battlesData[country][battleName].latLon} 
+                    icon={icon} 
+                    key={count} 
+                    ref={(element) => (markersRef.current[battleName] = element)}>
                   <Popup>
                     <h3>
                       <a 
@@ -43,9 +49,9 @@ const Markers = ({ battlesData, showBattle }) => {
               )
             }
           })
-      )}
+        )}
       })}
-  {console.log("battles: " + count)}
+      {console.log("battles: " + count)}
     </>
   )
 }

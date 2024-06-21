@@ -3,7 +3,7 @@ import "./App.css"
 
 // leaflet imports
 import "leaflet/dist/leaflet.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { MapContainer, Marker, Popup, TileLayer, } from "react-leaflet"
 
 //Custom components
@@ -18,7 +18,7 @@ function App() {
   const [battleNames, setBattleNames] = useState({})
   
   const [map, setMap] = useState(null)
-  const [marker, setMarker] = useState(null)
+  const markersRef = useRef([])
 
 
   function getData(url, setState) {
@@ -39,35 +39,23 @@ function App() {
 
   useEffect(() => {
     getData("./data/countryCenter.json", setCountryCenter)
-    // getData("./data/battleLocs.json", setBattleLocs)
     getData("./data/battleLocs.json", setBattleLocs)
     getData("./data/battleNames.json", setBattleNames)
     setDataRetrieved(true)
   }, [])
 
-  const showPopup = (latLon, battleName) => {
-    // map.openPopup(latLon)
-    console.log(latLon, battleName)
-    console.log(map)
-    map.bindPopup(latLon, {content: battleName})
+  const showPopup = (battleName) => {
+    setTimeout(() => {markersRef.current[battleName].openPopup()}, 350)
+    // console.log(markersRef)
   }
-
   const panToPoint = (latLon, zoom) => {
     map.setView(latLon, zoom)
-    if (zoom == 10) {
-      // map.openPopup(latLon)
-    }
-  }
-  function test(){
-    marker.openPopup()
-    console.log(marker)
   }
 
   return (
     <>
       <div className="header">
         <h1>Battle Map</h1>
-        <button onClick={() => test()}>test</button>
       </div>
       <InfoPanel 
         countriesData={countryCenter} 
@@ -92,7 +80,7 @@ function App() {
           maxZoom={19}
           minZoom={3}
         />
-        {dataRetrieved && <Markers battlesData={battleLocs}/>}
+        {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef}/>}
 
       </MapContainer>
 

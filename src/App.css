@@ -44,6 +44,7 @@ h4 {
   max-height: 50vh;
   width: 25vw;
   overflow-y: auto;
+  
 }
 .arrow {
   position: absolute;

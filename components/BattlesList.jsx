@@ -3,8 +3,8 @@ import React from 'react'
 const BattlesList = ({ data, battleLocations, panToBattle, country, showBattlePopup }) => {
 
   const onClick = (battleData, battleName) => {
-    panToBattle(battleData.latLon, 12)
-    // showBattlePopup(battleData.latLon, battleName)
+    panToBattle(battleData.latLon, 13)
+    showBattlePopup(battleName)
   }
 
   return (

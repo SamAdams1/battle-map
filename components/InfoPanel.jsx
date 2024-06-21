@@ -49,6 +49,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
             <button onClick={onReset}>reset</button>
             <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"X"}</button>
           </div>
+
           <div className='selectCountry'>{ country  ? (
               <>
                 <h2>{country}</h2>
@@ -62,16 +63,10 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
               </>
             )}
           </div>
-
-
-
         </>
       ) : (
         <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"Open Display"}</button>
-
       )}
-    {/* { country != " " ? (<h1>h</h1>) : (<h1>g</h1>) } */}
-
     </div>
   )
 }

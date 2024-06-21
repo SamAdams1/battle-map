@@ -11,14 +11,14 @@
    41,
    20
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Algeria": {
   "latLon": [
    28,
    2
   ],
-  "zoom": 6
+  "zoom": 5
  },
  "Angola": {
   "latLon": [
@@ -32,63 +32,63 @@
    -34,
    -64
   ],
-  "zoom": 6
+  "zoom": 4
  },
  "Armenia": {
   "latLon": [
    40.18333333,
    44.51666667
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Australia": {
   "latLon": [
    -25,
    133
   ],
-  "zoom": 6
+  "zoom": 5
  },
  "Austria": {
   "latLon": [
    47.33333333,
    13.33333333
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Azerbaijan": {
   "latLon": [
    40.3,
    47.7
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Bahamas": {
   "latLon": [
    25,
    -77.4
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Bahrain": {
   "latLon": [
    26.06666667,
    50.5
   ],
-  "zoom": 6
+  "zoom": 9
  },
  "Bangladesh": {
   "latLon": [
    24,
    90
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Barbados": {
   "latLon": [
    13.17,
    -59.5525
   ],
-  "zoom": 6
+  "zoom": 10
  },
  "Belarus": {
   "latLon": [
@@ -102,14 +102,14 @@
    50.83333333,
    4
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Belize": {
   "latLon": [
    17.06666667,
    -88.7
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Benin": {
   "latLon": [
@@ -130,7 +130,7 @@
    44,
    18
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Botswana": {
   "latLon": [
@@ -144,42 +144,42 @@
    -10,
    -52
   ],
-  "zoom": 6
+  "zoom": 5
  },
  "Bulgaria": {
   "latLon": [
    42.6975,
    23.3225
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Cambodia": {
   "latLon": [
    11.57,
    104.91
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Cameroon": {
   "latLon": [
    6,
    12
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Canada": {
   "latLon": [
    60,
    -110
   ],
-  "zoom": 6
+  "zoom": 4
  },
  "Cape Verde": {
   "latLon": [
    15.3,
    -23.7
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Chile": {
   "latLon": [
@@ -193,7 +193,7 @@
    35,
    103
   ],
-  "zoom": 6
+  "zoom": 4
  },
  "Colombia": {
   "latLon": [
@@ -207,14 +207,14 @@
    10,
    -84
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Croatia": {
   "latLon": [
    45.16666667,
    15.5
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Cuba": {
   "latLon": [
@@ -228,14 +228,14 @@
    35,
    33
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Czech Republic": {
   "latLon": [
    49.75,
    15.5
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Democratic Republic of the Congo": {
   "latLon": [
@@ -249,7 +249,7 @@
    56,
    10
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Djibouti": {
   "latLon": [
@@ -381,7 +381,7 @@
    12.11666667,
    -61.66666667
   ],
-  "zoom": 6
+  "zoom": 10
  },
  "Guatemala": {
   "latLon": [
@@ -647,7 +647,7 @@
    47,
    29
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Mongolia": {
   "latLon": [
@@ -661,7 +661,7 @@
    42.5,
    19.3
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Morocco": {
   "latLon": [
@@ -710,7 +710,7 @@
    52,
    6
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "New Zealand": {
   "latLon": [
@@ -745,7 +745,7 @@
    42,
    22
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Norway": {
   "latLon": [
@@ -842,7 +842,7 @@
    46,
    25
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Russia": {
   "latLon": [
@@ -856,21 +856,21 @@
    17.33333333,
    -62.75
   ],
-  "zoom": 6
+  "zoom": 10
  },
  "Saint Lucia": {
   "latLon": [
    13.88333333,
    -60.96666667
   ],
-  "zoom": 6
+  "zoom": 10
  },
  "Saint Vincent and the Grenadines": {
   "latLon": [
    13.25,
    -61.2
   ],
-  "zoom": 6
+  "zoom": 10
  },
  "Saudi Arabia": {
   "latLon": [
@@ -898,7 +898,7 @@
    44,
    21
   ],
-  "zoom": 6
+  "zoom": 7
  },
  "Seychelles": {
   "latLon": [
@@ -912,14 +912,14 @@
    48.66666667,
    19.5
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Slovenia": {
   "latLon": [
    46.12,
    14.815
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "South Africa": {
   "latLon": [
@@ -975,7 +975,7 @@
    46.83333333,
    8.33333333
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Syria": {
   "latLon": [
@@ -1010,7 +1010,7 @@
    10.6,
    -61.1
   ],
-  "zoom": 6
+  "zoom": 9
  },
  "Tunisia": {
   "latLon": [
@@ -1059,7 +1059,7 @@
    40,
    -100
   ],
-  "zoom": 6
+  "zoom": 4
  },
  "Uruguay": {
   "latLon": [
@@ -1094,7 +1094,7 @@
    52.3,
    -3.8
   ],
-  "zoom": 6
+  "zoom": 8
  },
  "Yemen": {
   "latLon": [
