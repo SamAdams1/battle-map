@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BattlesList = ({ data, battleLocations, panToBattle, country, showBattlePopup }) => {
+const Battles = ({ data, battleLocations, panToBattle, country, showBattlePopup }) => {
 
   const onClick = (battleData, battleName) => {
     panToBattle(battleData.latLon, 13)
@@ -32,4 +32,4 @@ const BattlesList = ({ data, battleLocations, panToBattle, country, showBattlePo
   )
 }
 
-export default BattlesList
+export default Battles

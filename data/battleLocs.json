@@ -696,7 +696,6 @@
   "numBattlesInCountry": 15
  },
  "Belgium":{
-  
     "Battle of Passchendaele":{
         "latLon": [
             50.900278, 3.021111
@@ -2199,12 +2198,11 @@
  }, 
  "Egypt":{
     "numBattlesInCountry": 1,
-      
-        "Capture of Cairo (1517)":{
-            "latLon": [
-                30.066667, 31.216667
-            ]
-        }
+      "Capture of Cairo (1517)":{
+          "latLon": [
+              30.066667, 31.216667
+          ]
+      }
       },
  "El Salvador": {
    "Battle of Chalchuapa": {

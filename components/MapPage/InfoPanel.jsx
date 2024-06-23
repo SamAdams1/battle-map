@@ -1,7 +1,7 @@
 import React from 'react'
-import CountriesList from "./CountriesList"
-import BattlesList from './BattlesList'
 import { useState, useEffect } from "react"
+import Countries from './CountryList'
+import Battles from './BattleList'
 
 
 const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattlePopup }) => {
@@ -45,21 +45,18 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
               ) : (
               <button onClick={() => onRightArrow()} disabled>{">"}</button>
             )}
-
             <button onClick={onReset}>reset</button>
             <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"X"}</button>
           </div>
-
           <div className='selectCountry'>{ country  ? (
               <>
                 <h2>{country}</h2>
-                
-                <BattlesList data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
+                <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
               </>
           ) : (
               <>
                 <h2>Choose Country</h2>
-                <CountriesList data={countriesData} panToCountry={panFunc} showBattles={showBattles}/>
+                <Countries data={countriesData} panToCountry={panFunc} showBattles={showBattles}/>
               </>
             )}
           </div>

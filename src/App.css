@@ -1,6 +1,7 @@
 
 body {
   margin: 0;
+  background-color: gray;
 }
 
 h1 {
@@ -32,8 +33,9 @@ h4 {
   right: 0;
   z-index: 99;
   background-color: goldenrod;
-  border-radius: 0 0 0 1em;
+  border-radius: 1em 0 0 1em;
   padding: 0 0 0 .7em;
+  margin-top: 1em;
 }
 
 /* top right bottom left */
@@ -42,7 +44,7 @@ h4 {
   padding: 0 0 .7em .5em;
 
   max-height: 50vh;
-  width: 25vw;
+  width: 20vw;
   overflow-y: auto;
   
 }
@@ -50,4 +52,87 @@ h4 {
   position: absolute;
   right: 0px;
   z-index: 100;
+}
+.header {
+  /* position: fixed; */
+  background-color: maroon;
+  color: whitesmoke;
+  z-index: 100;
+  width: 100%;
+
+  display: flex;
+  
+}
+.content { 
+}
+
+
+
+/* battlelist page */
+.battlePage {
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.countrySect {
+  margin: 0em 0em 2em;
+}
+.countryTitle{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+.countryTitle > *{
+  /* margin: 0 .4em; */
+}
+.battleRow{
+  margin: 0 1em;
+  color: whitesmoke;
+
+  display: flex;
+}
+.battleRow > * {
+  margin: 0 1em;
+}
+.addLocBtn {
+  width: 100%;
+}
+.coordSect {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+th {
+  background-color: aliceblue;
+}
+td {
+  padding: .2em;
+  border: solid black;
+  background-color: whitesmoke;
+}
+.green, .red {color: whitesmoke;}
+.green{background-color: green;}
+.red { background-color: maroon;}
+
+.navCountry {
+  position: fixed;
+  right: 0em;
+  overflow-y: auto;
+  border-radius: 1em 0 0 1em;
+
+  background-color: gainsboro;
+  width: 15em;
+  height: 40em;
+}
+.navCountry> * {
+  padding: .8em 1.4em;
+}
+.navBtn {
+  text-decoration: none;
+}
+.showHideNav {
+  position: fixed;
+  transform: translateY(-1.7em);
+  right: 0;
 }

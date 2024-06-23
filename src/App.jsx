@@ -4,22 +4,29 @@ import "./App.css"
 // leaflet imports
 import "leaflet/dist/leaflet.css"
 import { useState, useEffect, useRef } from "react"
-import { MapContainer, Marker, Popup, TileLayer, } from "react-leaflet"
 
 //Custom components
-import Markers from "../components/Markers"
-import InfoPanel from "../components/InfoPanel"
+import Markers from "../components/MapPage/Markers"
+import InfoPanel from "../components/MapPage/InfoPanel"
+import Map from "../components/MapPage/Map"
+import BattlePage from "../components/BattlePage/BattlePage"
+
 
 
 function App() {
+  // handle data
   const [dataRetrieved, setDataRetrieved] = useState(false)
   const [countryCenter, setCountryCenter] = useState({})
   const [battleLocs, setBattleLocs] = useState({})
   const [battleNames, setBattleNames] = useState({})
   
+  //handle map
   const [map, setMap] = useState(null)
   const markersRef = useRef([])
 
+  // handle pages
+  const [mapPage, setMapPage] = useState(true)
+  
 
   function getData(url, setState) {
     fetch(url)
@@ -54,38 +61,31 @@ function App() {
 
   return (
     <>
-      <div className="header">
+      <div id="Top" className="header">
         <h1>Battle Map</h1>
+        <button onClick={() => setMapPage(true)}>Map</button>
+        <button onClick={() => setMapPage(false)}>Battle List</button>
+        <button>Favorites</button>
       </div>
-      <InfoPanel 
-        countriesData={countryCenter} 
-        battlesNames={battleNames} 
-        battleLocs={battleLocs} 
-        panFunc={panToPoint}
-        showBattlePopup={showPopup}
-        />
-      
-      <MapContainer 
-        center={[40, 10]} 
-        zoom={3} 
-        worldCopyJump={false}
-        maxBounds={L.latLngBounds([100, 200], [-100, -200])}
-        mapBoundsVisconsity={1}
-        markerZoomAnimation={false}
-        ref={setMap}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          maxZoom={19}
-          minZoom={3}
-        />
-        {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef}/>}
-
-      </MapContainer>
-
-    </>
-  )
-}
+      <div className="content">
+        { mapPage ? (
+          <>
+            <InfoPanel 
+            countriesData={countryCenter} 
+            battlesNames={battleNames} 
+            battleLocs={battleLocs} 
+            panFunc={panToPoint}
+            showBattlePopup={showPopup}
+            />
+            <Map mapRef={setMap}>
+              {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef}/>}
+            </Map>
+          </>
+      ) : (
+        <BattlePage nameData={battleNames} locationData={battleLocs}/>
+      )}
+    </div>
+  </>
+)}
 
 export default App

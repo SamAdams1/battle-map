@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const CountriesList = ({data, panToCountry, showBattles}) => {
+const Countries = ({data, panToCountry, showBattles}) => {
   let lastLetter = ""
 
   const onClick = (countryData, countryName) => {
@@ -26,4 +26,4 @@ const CountriesList = ({data, panToCountry, showBattles}) => {
   )
 }
 
-export default CountriesList
+export default Countries
