@@ -5,7 +5,7 @@ const NavSideBar = ({countryList}) => {
   let lastLetter = "";
   return (
     <div className='navCountry'>
-      <p><a href="#Top" className='navBtn'>(Top)</a></p>
+      <a href="#Top" className='topBtn'>(Top)</a>
       { countryList.map((country) => {
         return ( 
           <div key={country+"nav"}>

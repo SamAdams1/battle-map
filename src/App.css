@@ -85,6 +85,14 @@ h4 {
 }
 .countryTitle > *{
   /* margin: 0 .4em; */
+  position: sticky;
+  top: 0;
+}
+.stick {
+  position: sticky;
+  top: 0px;
+  background-color: pink;
+  z-index: 10000;
 }
 .battleRow{
   margin: 0 1em;
@@ -130,6 +138,13 @@ td {
 }
 .navBtn {
   text-decoration: none;
+}
+.topBtn {
+  position: fixed;
+  background-color: gainsboro;
+  width: 13.5em;
+  margin: 0;
+  padding: 0;
 }
 .showHideNav {
   position: fixed;

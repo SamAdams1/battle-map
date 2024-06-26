@@ -11,6 +11,7 @@ import InfoPanel from "../components/MapPage/InfoPanel"
 import Map from "../components/MapPage/Map"
 import BattlePage from "../components/BattlePage/BattlePage"
 
+import Axios from "axios"
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
   const [mapPage, setMapPage] = useState(true)
   
 
-  function getData(url, setState) {
+  function getLocalData(url, setState) {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -37,6 +38,7 @@ function App() {
         return response.json();
       })
       .then((data) => {
+        // console.log(data)
         setState(data)
       })
       .catch((error) => {
@@ -44,10 +46,25 @@ function App() {
       });
   }
 
+  function getDBData(collection, setState) {
+    Axios.get(`http://localhost:3001/${collection}`).then((response) => {
+      if (response.data.length == 0) {
+        console.log(collection + " not found.")
+      } else {
+        setState(response.data[0])
+      }
+    }).catch((e) => console.log(e))
+  }
+
   useEffect(() => {
-    getData("./data/countryCenter.json", setCountryCenter)
-    getData("./data/battleLocs.json", setBattleLocs)
-    getData("./data/battleNames.json", setBattleNames)
+    // getLocalData("./data/countryCenter.json", setCountryCenter)
+    // getLocalData("./data/battleLocs.json", setBattleLocs)
+    // getLocalData("./data/battleNames.json", setBattleNames)
+
+    getDBData("countryCenter", setCountryCenter)
+    getDBData("locations", setBattleLocs)
+    getDBData("names", setBattleNames)
+
     setDataRetrieved(true)
   }, [])
 
@@ -59,13 +76,15 @@ function App() {
     map.setView(latLon, zoom)
   }
 
+
+
   return (
     <>
       <div id="Top" className="header">
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button>Favorites</button>
+        <button onClick={() => getDBData("locations")}>Favorites</button>
       </div>
       <div className="content">
         { mapPage ? (
