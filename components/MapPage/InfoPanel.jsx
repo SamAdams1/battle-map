@@ -8,7 +8,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
   const [showDisplay, setShowDisplay] = useState(true)
   const [country, setCountry] = useState("")
   const [lastCountry, setLastCountry] = useState("")
-  // let lastCountry = "";
+  const [inputLatLon, setInputLatLon] = useState("")
 
   const showBattles = (countryName) => {
     setCountry(countryName)
@@ -19,6 +19,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
     setLastCountry("")
     panFunc([40, 10],2)
   }
+
   const onRightArrow = () => {
     if (country == "" && lastCountry != "") {
       setCountry(lastCountry)
@@ -30,6 +31,10 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
     setLastCountry(country)
     setCountry("")
   }
+
+  const goToLatLon = () => {
+    
+  }
   
   return (
     <div className='infoPanel'>
@@ -38,9 +43,8 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
           <div className="displayFuncBtns">
             { country ? ( <button onClick={() => onLeftArrow()} >{"<"}</button>
               ) : (
-                  <button onClick={() => onLeftArrow()} disabled>{"<"}</button>
+                <button onClick={() => onLeftArrow()} disabled>{"<"}</button>
             )}
-
             { lastCountry && !country ? (<button onClick={() => onRightArrow()}>{">"}</button>
               ) : (
               <button onClick={() => onRightArrow()} disabled>{">"}</button>
@@ -48,17 +52,22 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
             <button onClick={onReset}>reset</button>
             <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"X"}</button>
           </div>
-          <div className='selectCountry'>{ country  ? (
+          <div className='selectCountry'>
+            { country  ? (
               <>
                 <h2>{country}</h2>
                 <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
               </>
-          ) : (
+            ) : (
               <>
                 <h2>Choose Country</h2>
                 <Countries data={countriesData} panToCountry={panFunc} showBattles={showBattles}/>
               </>
             )}
+          </div>
+          <div className="goToLatlon">
+            <input type="text" placeholder='Enter LatLon' onChange={(e) => setGoToLatLon(e.target.value)}/>
+            <button onClick={goToLatLon}>Go To</button>
           </div>
         </>
       ) : (

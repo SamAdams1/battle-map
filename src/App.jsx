@@ -84,7 +84,7 @@ function App() {
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => getDBData("locations")}>Favorites</button>
+        <button onClick={() => console.log(battleNames)}>Favorites</button>
       </div>
       <div className="content">
         { mapPage ? (

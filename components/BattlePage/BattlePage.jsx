@@ -26,10 +26,11 @@ const BattlePage = ({nameData, locationData}) => {
       }
 
       { Object.keys(nameData).map((country) => {
+        if (country != "_id") {
         const [collapseable, setCollapseable] = useState(true)
         return (
           <div key={"title"+country} className='countrySect'>
-            <h1 className='stick'>{country}</h1>
+            {/* <h1 className='stick'>{country}</h1> */}
             <div className='countryTitle'>
               <h1 id={country}>{country}</h1>
               <h2>{getTotalBattles(country)} / {nameData[country].length} battles </h2>
@@ -42,7 +43,7 @@ const BattlePage = ({nameData, locationData}) => {
             </table>
           </div>
         )
-      })}
+      }})}
 
     </div>
   )
