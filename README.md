@@ -2,8 +2,9 @@
 
 A map that displays important historical battles on a world map. Battles are sorted by modern country borders. Click on the red dot to get info on the battle. All location data and summaries are sourced from Wikipedia.
 
-Notes
-Could be useful in future:
+## Notes:
+
+Could be useful in the future:
 https://openweathermap.org/api/geocoding-api
 
 endpoint:
