@@ -33,7 +33,16 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
   }
 
   const goToLatLon = () => {
-    
+    if (inputLatLon) {
+      let idk = inputLatLon.replace(" ", "").replace("[", "").replace("]","").split(",")
+      idk = idk.map((num) => parseFloat(num))
+      console.log(idk)
+      if (idk[1]) {
+        panFunc(idk, 10) 
+      } else {
+        console.log("invalid entry")
+      }
+    }
   }
   
   return (
@@ -66,7 +75,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
             )}
           </div>
           <div className="goToLatlon">
-            <input type="text" placeholder='Enter LatLon' onChange={(e) => setGoToLatLon(e.target.value)}/>
+            <input type="text" placeholder='Enter LatLon. Ex: 1,1' onChange={(e) => setInputLatLon(e.target.value)}/>
             <button onClick={goToLatLon}>Go To</button>
           </div>
         </>
