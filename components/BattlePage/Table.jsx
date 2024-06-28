@@ -24,7 +24,9 @@ const Table = ({ battleNames, battleLocs, country }) => {
       <th></th>
       <th>Battle</th>
       <th>Location</th>
+      <th></th>
     </tr>
+
     {battleNames[country].map((battle, index) => {
       battle = battle.split(" – ").at(0)
       const battleCoords = battleHasLoc(country, battle)
@@ -33,9 +35,15 @@ const Table = ({ battleNames, battleLocs, country }) => {
           <td>{index+1}</td>
           <td className={ battleCoords ? ("green"):("red")}>{battle.split(" or ")[0]}</td>
           { battleCoords ? (
-            <td className='coordSect'>[{battleCoords[0]}, {battleCoords[1]}]</td>
+            <>
+              {/* <td className=''>[{battleCoords[0]}, {battleCoords[1]}]</td> */}
+              <td><button className='addLocBtn' onClick={() => navigator.clipboard.writeText(battleCoords)} title='Copy to Clipboard'>[{battleCoords[0]}, {battleCoords[1]}]</button></td>
+            </>
             ) : (
-            <td className='test'><button className='addLocBtn'>Add</button></td>
+              <>
+                {/* <td className=''></td> */}
+                <td><button className='addLocBtn' title='Add Location Data'>Add</button></td>
+              </>
           )}
         </tr>
       )

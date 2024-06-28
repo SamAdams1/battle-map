@@ -29,24 +29,7 @@ function App() {
   const [mapPage, setMapPage] = useState(true)
   
 
-  function getLocalData(url, setState) {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // console.log(data)
-        setState(data)
-      })
-      .catch((error) => {
-        console.error("Error fetching the JSON data:", error);
-      });
-  }
-
-  function getDBData(collection, setState) {
+  const getDBData = (collection, setState) => {
     Axios.get(`http://localhost:3001/${collection}`).then((response) => {
       if (response.data.length == 0) {
         console.log(collection + " not found.")
@@ -57,10 +40,6 @@ function App() {
   }
 
   useEffect(() => {
-    // getLocalData("./data/countryCenter.json", setCountryCenter)
-    // getLocalData("./data/battleLocs.json", setBattleLocs)
-    // getLocalData("./data/battleNames.json", setBattleNames)
-
     getDBData("countryCenter", setCountryCenter)
     getDBData("locations", setBattleLocs)
     getDBData("names", setBattleNames)
@@ -84,7 +63,7 @@ function App() {
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => console.log(battleNames)}>Favorites</button>
+        <button>Favorites</button>
       </div>
       <div className="content">
         { mapPage ? (

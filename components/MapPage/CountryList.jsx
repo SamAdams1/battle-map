@@ -4,12 +4,14 @@ import React from 'react'
 const Countries = ({data, panToCountry, showBattles}) => {
   let lastLetter = ""
 
-  const onClick = (countryData, countryName) => {
+  const focusCountry = (countryData, countryName) => {
     panToCountry(countryData.latLon, countryData.zoom)
     showBattles(countryName)
   }
 
   return (
+    <>
+    <h2>Choose Country</h2>
     <div className='countryList'>
       {Object.keys(data).map((countryName, index) => {
         if (countryName != "_id") {
@@ -18,12 +20,13 @@ const Countries = ({data, panToCountry, showBattles}) => {
           return (
             < div key={countryName}>
               { lastLetter !== currentLetter && <h1>{lastLetter = currentLetter}</h1>}
-              <button onClick={() => onClick(countryData, countryName)}>{countryName}</button>
+              <button onClick={() => focusCountry(countryData, countryName)}>{countryName}</button>
               <br />
             </div>
           )
-      }})}
+        }})}
     </div>
+    </>
   )
 }
 

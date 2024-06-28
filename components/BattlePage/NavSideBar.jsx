@@ -1,15 +1,12 @@
 
 const NavSideBar = ({countryList}) => {
-
-
   let lastLetter = "";
+  
   return (
     <div className='navCountry'>
       <a href="#Top" className='topBtn'>(Top)</a>
       { countryList.map((country) => {
         if (country != "_id") {
-          
-        
         return ( 
           <div key={country+"nav"}>
             {lastLetter != country.at(0) && <h2>{lastLetter = country.at(0)}</h2>}

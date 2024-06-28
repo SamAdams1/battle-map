@@ -28,19 +28,24 @@ const BattlePage = ({nameData, locationData}) => {
       { Object.keys(nameData).map((country) => {
         if (country != "_id") {
         const [collapseable, setCollapseable] = useState(true)
+        const totalBattles = getTotalBattles(country)
         return (
           <div key={"title"+country} className='countrySect'>
             {/* <h1 className='stick'>{country}</h1> */}
             <div className='countryTitle'>
               <h1 id={country}>{country}</h1>
-              <h2>{getTotalBattles(country)} / {nameData[country].length} battles </h2>
+              <h2>{totalBattles} / {nameData[country].length} battles </h2>
+              { totalBattles > 0 && 
               <button onClick={() => setCollapseable(!collapseable)}>{collapseable ? (<>hide</>) : ( <>show</>)}</button>
+              }
             </div>
+            { totalBattles > 0 && 
             <table>
               <tbody>
                 { collapseable && <Table battleNames={nameData} battleLocs={locationData} country={country} /> }
               </tbody>
             </table>
+            }
           </div>
         )
       }})}

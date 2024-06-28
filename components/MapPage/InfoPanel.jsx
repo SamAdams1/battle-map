@@ -34,11 +34,11 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
 
   const goToLatLon = () => {
     if (inputLatLon) {
-      let idk = inputLatLon.replace(" ", "").replace("[", "").replace("]","").split(",")
-      idk = idk.map((num) => parseFloat(num))
-      console.log(idk)
-      if (idk[1]) {
-        panFunc(idk, 10) 
+      let latLonArr = inputLatLon.replace(" ", "").replace("[", "").replace("]","").split(",")
+      latLonArr = latLonArr.map((num) => parseFloat(num))
+      console.log(latLonArr)
+      if (latLonArr[1]) {
+        panFunc(latLonArr, 10) 
       } else {
         console.log("invalid entry")
       }
@@ -63,19 +63,13 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
           </div>
           <div className='selectCountry'>
             { country  ? (
-              <>
-                <h2>{country}</h2>
-                <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
-              </>
+              <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
             ) : (
-              <>
-                <h2>Choose Country</h2>
-                <Countries data={countriesData} panToCountry={panFunc} showBattles={showBattles}/>
-              </>
+              <Countries data={countriesData} panToCountry={panFunc} showBattles={showBattles}/>
             )}
           </div>
           <div className="goToLatlon">
-            <input type="text" placeholder='Enter LatLon. Ex: 1,1' onChange={(e) => setInputLatLon(e.target.value)}/>
+            <input type="text" placeholder='Enter LatLon: Ex: 1,1' onChange={(e) => setInputLatLon(e.target.value)}/>
             <button onClick={goToLatLon}>Go To</button>
           </div>
         </>

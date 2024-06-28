@@ -41,12 +41,16 @@ h4 {
 /* top right bottom left */
 /* top right-left bottom */
 .countryList, .battleList {
-  padding: 0 0 .7em .5em;
+  padding: 0 .5em .7em;
 
   max-height: 50vh;
-  width: 20vw;
+  /* width: 20vw; */
   overflow-y: auto;
   
+}
+.battleBtn {
+  display: flex;
+  align-items: center;
 }
 .arrow {
   position: absolute;
