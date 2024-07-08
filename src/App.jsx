@@ -30,7 +30,7 @@ function App() {
   
 
   const getDBData = (collection, setState) => {
-    Axios.get(`http://localhost:3001/${collection}`).then((response) => {
+    Axios.get(`http://localhost:3005/${collection}`).then((response) => {
       if (response.data.length == 0) {
         console.log(collection + " not found.")
       } else {
@@ -63,7 +63,7 @@ function App() {
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button>Favorites</button>
+        <button onClick={() => getDBData("addBattleLoc", console.log)}>Favorites</button>
       </div>
       <div className="content">
         { mapPage ? (

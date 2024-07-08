@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Table = ({ battleNames, battleLocs, country }) => {
+const Table = ({ battleNames, battleLocs, country, addLocPopup }) => {
 
   function tensPlace(coord) {
     coord = coord.toString()
@@ -16,6 +16,11 @@ const Table = ({ battleNames, battleLocs, country }) => {
       return [tensPlace(data.latLon[0]), tensPlace(data.latLon[1])]
     }
     return data
+  }
+
+  const copyToClipboard = (txt) => {
+    alert("Location copied to clipboard: " + txt)
+    navigator.clipboard.writeText(txt)
   }
 
   return(
@@ -37,12 +42,12 @@ const Table = ({ battleNames, battleLocs, country }) => {
           { battleCoords ? (
             <>
               {/* <td className=''>[{battleCoords[0]}, {battleCoords[1]}]</td> */}
-              <td><button className='addLocBtn' onClick={() => navigator.clipboard.writeText(battleCoords)} title='Copy to Clipboard'>[{battleCoords[0]}, {battleCoords[1]}]</button></td>
+              <td><button className='addLocBtn' onClick={() => copyToClipboard(battleCoords)} title='Copy to Clipboard'>[{battleCoords[0]}, {battleCoords[1]}]</button></td>
             </>
             ) : (
               <>
                 {/* <td className=''></td> */}
-                <td><button className='addLocBtn' title='Add Location Data'>Add</button></td>
+                <td><button className='addLocBtn' title='Add Location Data' onClick={() => addLocPopup(battle, country)}>Add</button></td>
               </>
           )}
         </tr>

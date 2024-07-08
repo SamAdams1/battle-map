@@ -40,7 +40,7 @@ const Markers = ({ battlesData, markersRef }) => {
                         href={"https://en.wikipedia.org/wiki/" + battleName.split(" or ").at(0).replace(" ","_")} 
                         target='_blank'
                         className='learnMoreBtn'
-                      >{battleName}</a>
+                      >{country} - {battleName}</a>
                     </h3>
                     <br />
                     <button>Favorite</button>
