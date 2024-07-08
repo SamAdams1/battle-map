@@ -4,7 +4,7 @@ import json
 myclient = pymongo.MongoClient("mongodb+srv://sammyadams04:gDAMx07CaXQuhcQL@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
 myDB = myclient["battle-map"]
-testCollection = myDB["test"]
+testCollection = myDB["test2"]
 
 # print(myclient.list_database_names())
 # print(testCollection.find_one({ "country": "Afghanistan" }))
@@ -12,7 +12,7 @@ testCollection = myDB["test"]
 
 
 
-with open("./ihope.json", "r",encoding="utf-8") as json_file:
+with open("./battleLocs.json", "r",encoding="utf-8") as json_file:
   battleLocs = json.load(json_file)
 
 for country in battleLocs:

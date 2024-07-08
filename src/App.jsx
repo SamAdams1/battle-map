@@ -50,7 +50,6 @@ function App() {
     getDBData("locations", setBattleLocs)
     getDBData("names", setBattleNames)
 
-    console.log(countryCenter)
     setDataRetrieved(true)
   }, [])
 
