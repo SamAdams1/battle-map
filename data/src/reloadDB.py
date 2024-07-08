@@ -1,28 +1,29 @@
-import pymongo, json
+import pymongo
+import json
 
-# myclient = pymongo.MongoClient("mongodb+srv://sammyadams04:gDAMx07CaXQuhcQL@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
+myclient = pymongo.MongoClient("mongodb+srv://sammyadams04:gDAMx07CaXQuhcQL@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
-# myDB = myclient["battle-map"]["test"]
+myDB = myclient["battle-map"]
+testCollection = myDB["test"]
 
 # print(myclient.list_database_names())
-# print(myDB.find_one({ "country": "Afghanistan" }))
-# print(myDB.find_one({ "battle": "Siege of Herat (652)" }))
+# print(testCollection.find_one({ "country": "Afghanistan" }))
+# print(testCollection.find_one({ "battle": "Siege of Herat (652)" }))
 
 
-#  check for empty years
 
-
-with open("./battleLocs.json", "r",encoding="utf-8") as json_file:
-    battleLocs = json.load(json_file)
+with open("./ihope.json", "r",encoding="utf-8") as json_file:
+  battleLocs = json.load(json_file)
 
 for country in battleLocs:
-    # print(country, battleLocs[country])
-    if type(battleLocs[country]) != int:
-        for battle in battleLocs[country]:
-          if type(battleLocs[country][battle])!= int:
-              try:
-                battleLocs[country][battle]["year"]
-              except:
-                print(battle)
-          # print(country, battle)
-        
+  countryData = battleLocs[country]
+  if type(countryData) != int:
+    dbFormat = {"country": country}
+    dbFormat.update(countryData)
+    # print(dbFormat)
+    testCollection.insert_one(dbFormat)
+    # for battle in countryData:
+    #   if type(countryData[battle])!= int:
+    #     battleLocs[country][battle]["battle"] = battle
+
+    # print(battleLocs[country])

@@ -14,6 +14,12 @@ import BattlePage from "../components/BattlePage/BattlePage"
 import Axios from "axios"
 
 
+// battlesYesLocation
+// 3383
+// battlesNoLocation
+// 2742
+// battlesFoundTotal
+// 6125
 function App() {
   // handle data
   const [dataRetrieved, setDataRetrieved] = useState(false)
@@ -44,6 +50,7 @@ function App() {
     getDBData("locations", setBattleLocs)
     getDBData("names", setBattleNames)
 
+    console.log(countryCenter)
     setDataRetrieved(true)
   }, [])
 

@@ -61,6 +61,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
             <button onClick={onReset}>reset</button>
             <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"X"}</button>
           </div>
+          
           <div className='selectCountry'>
             { country  ? (
               <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
