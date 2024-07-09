@@ -26,6 +26,8 @@ function App() {
   const [countryCenter, setCountryCenter] = useState({})
   const [battleLocs, setBattleLocs] = useState({})
   const [battleNames, setBattleNames] = useState({})
+
+  const [test, setTest] = useState({})
   
   //handle map
   const [map, setMap] = useState(null)
@@ -45,13 +47,46 @@ function App() {
     }).catch((e) => console.log(e))
   }
 
+  const idk = (collection, setState) => {
+    Axios.get(`http://localhost:3005/${collection}`).then((response) => {
+      if (response.data.length == 0) {
+        console.log(collection + " not found.")
+      } else {
+        dbDocuments2Dict(response.data[0], setState)
+      }
+    }).catch((e) => console.log(e))
+  }
+
+  const addBattleLoc = (data) => {
+    Axios.post(`http://localhost:3005/${"addBattleLoc"}`, data).then((response) => {
+      console.log(response)
+    })
+  }
+
   useEffect(() => {
     getDBData("countryCenter", setCountryCenter)
-    getDBData("locations", setBattleLocs)
+    // getDBData("locations", setBattleLocs)
     getDBData("names", setBattleNames)
+    idk("test", setBattleLocs)
 
     setDataRetrieved(true)
   }, [])
+
+  const dbDocuments2Dict = (data, setState) => {
+    if (data) {
+      const retrievedData = {};
+      data.map((country) => {
+        retrievedData[country["country"]] = country
+        // console.log({[country["country"]]: country})
+      })
+      if (retrievedData) {
+        // console.log(retrievedData)
+        setState(retrievedData)
+      }
+      // console.log(data)
+    }
+  }
+
 
   const showPopup = (battleName) => {
     setTimeout(() => {markersRef.current[battleName].openPopup()}, 350)
@@ -63,13 +98,14 @@ function App() {
 
 
 
+
   return (
     <>
       <div id="Top" className="header">
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => getDBData("addBattleLoc", console.log)}>Favorites</button>
+        <button onClick={() => console.log(battleLocs)}>Favorites</button>
       </div>
       <div className="content">
         { mapPage ? (
@@ -86,7 +122,7 @@ function App() {
             </Map>
           </>
       ) : (
-        <BattlePage nameData={battleNames} locationData={battleLocs}/>
+        <BattlePage nameData={battleNames} locationData={battleLocs} addBattleLoc={addBattleLoc}/>
       )}
     </div>
   </>

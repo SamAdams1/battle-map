@@ -51,7 +51,7 @@ const Markers = ({ battlesData, markersRef }) => {
           })
         )}
       })}
-      {console.log("battles: " + count)}
+      {count>0 && console.log("battles: " + count)}
     </>
   )
 }

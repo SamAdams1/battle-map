@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NavSideBar from './NavSideBar'
 import Table from './Table'
 
-const BattlePage = ({nameData, locationData}) => {
+const BattlePage = ({nameData, locationData, addBattleLoc }) => {
   const [sideBarVis, setSideBarVis] = useState(true)
 
   const [popupVis, setPopupVis] = useState(false)
@@ -19,7 +19,7 @@ const BattlePage = ({nameData, locationData}) => {
   function showPopup(battleName, country) {
     setSelectedBattle(battleName)
     setBattleCountry(country)
-    console.log(country, battleName)
+    // console.log(country, battleName)
     setPopupVis(true)
   }
 
@@ -28,9 +28,10 @@ const BattlePage = ({nameData, locationData}) => {
     let latLon = latlng;
     latLon = latLon.replace("[","").replace("]","").replace(" ","").split(",")
     if (latLon.length > 1 && !isNaN(Number.parseFloat(latLon[0])) && !isNaN(Number.parseFloat(latLon[1]))) {
-      console.log(latLon, year)
-      console.log(Number.parseFloat(latLon[0]))
-      
+      // console.log(latLon, year)
+      // console.log(Number.parseFloat(latLon[1]))
+      const data = { "battle": selectedBattle, "latLon": latLon, "year": year }
+      addBattleLoc(data)
     }
   }
 
@@ -75,7 +76,7 @@ const BattlePage = ({nameData, locationData}) => {
             { totalBattles > 0 && 
             <table>
               <tbody>
-                { collapseable && <Table battleNames={nameData} battleLocs={locationData} country={country} addLocPopup={showPopup}/> }
+                { collapseable && <Table battleNames={nameData} battleLocs={locationData} country={country} addLocPopup={showPopup} /> }
               </tbody>
             </table>
             }
