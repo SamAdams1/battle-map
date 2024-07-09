@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Battles = ({ data, battleLocations, panToBattle, country, showBattlePopup }) => {
+const Battles = ({ data, battleLocations, panToBattle, country, showMarkerPopup }) => {
 
   const onClick = (battleData, battleName) => {
     panToBattle(battleData.latLon, 13)
-    showBattlePopup(battleName)
+    showMarkerPopup(battleName)
   }
 
   return (

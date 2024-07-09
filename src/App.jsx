@@ -57,17 +57,25 @@ function App() {
     }).catch((e) => console.log(e))
   }
 
-  const addBattleLoc = (data) => {
-    Axios.post(`http://localhost:3005/${"addBattleLoc"}`, data).then((response) => {
-      console.log(response)
+  const addBattleLoc = (country, battle, data) => {
+    battleLocs[country][battle] = data;
+    battleLocs[country]["numBattlesInCountry"] += 1;
+    let battles ={};
+    Object.keys(battleLocs[country]).filter((key) => {
+      if (key != "_id" && key != "country" && key != "numBattlesInCountry") {
+        battles[key] = battleLocs[country][key]
+      }
     })
+    // console.log(battles)
+    Axios.put(`http://localhost:3005/${"addBattleLoc"}`, battles).then((response) => {
+      console.log(response);
+    }).catch((e) => console.log(e))
   }
 
   useEffect(() => {
     getDBData("countryCenter", setCountryCenter)
-    // getDBData("locations", setBattleLocs)
     getDBData("names", setBattleNames)
-    idk("test", setBattleLocs)
+    idk("battleLocations", setBattleLocs)
 
     setDataRetrieved(true)
   }, [])
@@ -88,7 +96,7 @@ function App() {
   }
 
 
-  const showPopup = (battleName) => {
+  const showMarkerPopup = (battleName) => {
     setTimeout(() => {markersRef.current[battleName].openPopup()}, 350)
     // console.log(markersRef)
   }
@@ -111,11 +119,11 @@ function App() {
         { mapPage ? (
           <>
             <InfoPanel 
-            countriesData={countryCenter} 
-            battlesNames={battleNames} 
-            battleLocs={battleLocs} 
-            panFunc={panToPoint}
-            showBattlePopup={showPopup}
+              countriesData={countryCenter} 
+              battlesNames={battleNames} 
+              battleLocs={battleLocs} 
+              panFunc={panToPoint}
+              showMarkerPopup={showMarkerPopup}
             />
             <Map mapRef={setMap}>
               {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef}/>}

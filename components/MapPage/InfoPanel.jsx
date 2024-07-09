@@ -4,7 +4,7 @@ import Countries from './CountryList'
 import Battles from './BattleList'
 
 
-const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattlePopup }) => {
+const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showMarkerPopup }) => {
   const [showDisplay, setShowDisplay] = useState(true)
   const [country, setCountry] = useState("")
   const [lastCountry, setLastCountry] = useState("")
@@ -64,7 +64,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showBattl
           
           <div className='selectCountry'>
             { country  ? (
-              <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showBattlePopup={showBattlePopup}/>
+              <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showMarkerPopup={showMarkerPopup}/>
             ) : (
               <Countries data={countriesData} panToCountry={panFunc} showBattles={showBattles}/>
             )}
