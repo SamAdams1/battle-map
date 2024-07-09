@@ -19,7 +19,7 @@ const BattlePage = ({nameData, locationData, addBattleLoc }) => {
 
   function getTotalBattles(countryName) {
     try {
-      let total = locationData[countryName].numBattlesInCountry
+      let total = Object.keys(locationData[countryName]).length
       if (total) {
         return total
       }

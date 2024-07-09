@@ -38,21 +38,18 @@ const Table = ({ battleNames, battleLocs, country, showPopup }) => {
           battle = battle.split(" – ").at(0)
           const battleCoords = battleHasLoc(country, battle)
           
-
           return (
             <tr key={battle+index}>
               <td>{index+1}</td>
               <td className={ battleCoords ? ("green"):("red")}>{battle.split(" or ")[0]}</td>
               { battleCoords ? (
-                <>
-                  {/* <td className=''>[{battleCoords[0]}, {battleCoords[1]}]</td> */}
-                  <td><button className='addLocBtn' onClick={() => copyToClipboard(battleCoords)} title='Copy to Clipboard'>[{battleCoords[0]}, {battleCoords[1]}]</button></td>
-                </>
+                  <td>
+                    <button className='addLocBtn' onClick={() => copyToClipboard(battleCoords)} title='Copy to Clipboard'>[{battleCoords[0]}, {battleCoords[1]}]</button>
+                  </td>
                 ) : (
-                  <>
-                    {/* <td className=''></td> */}
-                    <td><button className='addLocBtn' title='Add Location Data' onClick={() => showPopup(battle, country)}>Add</button></td>
-                  </>
+                  <td>
+                    <button className='addLocBtn' title='Add Location Data' onClick={() => showPopup(battle, country)}>Add</button>
+                  </td>
               )}
             </tr>
           )

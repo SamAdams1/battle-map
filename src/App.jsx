@@ -47,54 +47,46 @@ function App() {
     }).catch((e) => console.log(e))
   }
 
-  const idk = (collection, setState) => {
+  const dbNewFormatData = (collection, setState) => {
     Axios.get(`http://localhost:3005/${collection}`).then((response) => {
       if (response.data.length == 0) {
         console.log(collection + " not found.")
       } else {
-        dbDocuments2Dict(response.data[0], setState)
+        combineDbDocuments(response.data[0], setState)
       }
     }).catch((e) => console.log(e))
   }
 
-  const addBattleLoc = (country, battle, data) => {
-    battleLocs[country][battle] = data;
-    battleLocs[country]["numBattlesInCountry"] += 1;
-    let battles ={};
-    Object.keys(battleLocs[country]).filter((key) => {
-      if (key != "_id" && key != "country" && key != "numBattlesInCountry") {
-        battles[key] = battleLocs[country][key]
-      }
-    })
-    // console.log(battles)
-    Axios.put(`http://localhost:3005/${"addBattleLoc"}`, battles).then((response) => {
-      console.log(response);
-    }).catch((e) => console.log(e))
-  }
-
-  useEffect(() => {
-    getDBData("countryCenter", setCountryCenter)
-    getDBData("names", setBattleNames)
-    idk("battleLocations", setBattleLocs)
-
-    setDataRetrieved(true)
-  }, [])
-
-  const dbDocuments2Dict = (data, setState) => {
+  const combineDbDocuments = (data, setState) => {
     if (data) {
       const retrievedData = {};
       data.map((country) => {
-        retrievedData[country["country"]] = country
-        // console.log({[country["country"]]: country})
+        retrievedData[country["country"]] = country["battles"]
       })
       if (retrievedData) {
-        // console.log(retrievedData)
         setState(retrievedData)
       }
-      // console.log(data)
     }
   }
+  
+  const addBattleLoc = (country, battle, data) => {
+    data["addedByUser"] = "Sam";
+    battleLocs[country][battle] = data;
+    const total = Object.keys(battleLocs[country]).length
+    console.log(battleLocs[country])
+    
+    Axios.put(`http://localhost:3005/${"addBattleLoc"}`, {"battles": battleLocs[country], country, total}).then((response) => {
+      console.log(response);
+    }).catch((e) => console.log(e))
+  }
+  
+  useEffect(() => {
+    getDBData("countryCenter", setCountryCenter)
+    getDBData("names", setBattleNames)
+    dbNewFormatData("locations", setBattleLocs)
 
+    setDataRetrieved(true)
+  }, [])
 
   const showMarkerPopup = (battleName) => {
     setTimeout(() => {markersRef.current[battleName].openPopup()}, 350)
