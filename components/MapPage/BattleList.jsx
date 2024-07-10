@@ -1,10 +1,21 @@
 import React, { useState } from 'react'
 
-const Battles = ({ data, battleLocations, panToBattle, country, showMarkerPopup }) => {
-  const [zoomLvl, setZoomLvl] = useState(15) // 5 - 15
-  const minZoom = 10; 
-  const maxZoom = 20;
+const getSavedZoom = () => {
+let savedZoomLevel = localStorage.getItem("zoomLvl") 
 
+if (savedZoomLevel) return savedZoomLevel
+else return 
+}
+
+const Battles = ({ data, battleLocations, panToBattle, country, showMarkerPopup }) => {
+  const minZoom = 10; const maxZoom = 20;
+  const [zoomLvl, setZoomLvl] = useState(getSavedZoom || maxZoom)
+
+  const saveZoom = (num) => {
+    setZoomLvl(parseInt(num))
+    localStorage.setItem("zoomLvl", num)
+    // console.log(localStorage.getItem("zoomLvl"))
+  }
 
   const onClick = (battleData, battleName) => {
     panToBattle(battleData.latLon, zoomLvl)
@@ -26,7 +37,7 @@ const Battles = ({ data, battleLocations, panToBattle, country, showMarkerPopup 
                 <button onClick={() => onClick(battleData, battleName)}> {battleName}</button>
               </div>
             ) : (
-                <p >{(index + 1) + ": "} {battleName}</p>
+              <p>{(index + 1) + ": "} {battleName}</p>
             )}
           </div>
         )
@@ -34,7 +45,7 @@ const Battles = ({ data, battleLocations, panToBattle, country, showMarkerPopup 
     </div>
     <div className="zoomSlider">
       <p>Zoom: {zoomLvl < 10 && 0}{zoomLvl}</p>
-      <input type="range" name="" id="" title='Zoom level when battle is clicked' min={minZoom} max={maxZoom} onChange={(e) => setZoomLvl(parseInt(e.target.value))}/>
+      <input type="range" name="" id="" title='Zoom level when battle is clicked' min={minZoom} max={maxZoom} value={zoomLvl} onChange={(e) => saveZoom(e.target.value)}/>
 
     </div>
     </>
