@@ -8,8 +8,8 @@ else return
 }
 
 const Battles = ({ data, battleLocations, panToBattle, country, showMarkerPopup }) => {
-  const minZoom = 10; const maxZoom = 20;
-  const [zoomLvl, setZoomLvl] = useState(getSavedZoom || maxZoom)
+  const minZoom = 5; const maxZoom = 15;
+  const [zoomLvl, setZoomLvl] = useState(getSavedZoom() || maxZoom)
 
   const saveZoom = (num) => {
     setZoomLvl(parseInt(num))

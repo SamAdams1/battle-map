@@ -26,7 +26,7 @@ dist-ssr
 # dotenv environment variables file
 .env
 .env.test
-index.js
+# server.js
 
 # ignore local backup data
 data/*.json
