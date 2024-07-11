@@ -1,19 +1,22 @@
 import "./reset.css"
 import "./App.css"
 
-// leaflet imports
+// leaflet map imports
 import "leaflet/dist/leaflet.css"
 import { useState, useEffect, useRef } from "react"
 
 //Custom components
+import Map from "../components/MapPage/Map"
 import Markers from "../components/MapPage/Markers"
 import InfoPanel from "../components/MapPage/InfoPanel"
-import Map from "../components/MapPage/Map"
+
 import BattlePage from "../components/BattlePage/BattlePage"
+
+import LoginRegister from "../components/UserLogin/LoginRegister"
+import AccountDropdown from "../components/UserLogin/AccountDropdown"
 
 // Better fetch
 import Axios from "axios"
-import LoginRegister from "../components/LoginRegister"
 
 
 function App() {
@@ -29,7 +32,10 @@ function App() {
 
   // handle pages
   const [mapPage, setMapPage] = useState(true)
+
+  // user
   const [loginOrReg, setLoginOrReg] = useState("")
+  const [user, setUser] = useState({})
   
 
   const getDBData = (route, setState) => {
@@ -94,15 +100,19 @@ function App() {
 
   return (
     <>
-      { loginOrReg && <LoginRegister  formType={loginOrReg} setFormType={setLoginOrReg}/>}
+      { loginOrReg && <LoginRegister  formType={loginOrReg} setFormType={setLoginOrReg} setUser={setUser}/>}
       <div id="Top" className="header">
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
         <button onClick={() => console.log(battleLocs)}>test</button>
         <div className="accountBtns">
-          <button onClick={() => setLoginOrReg("Login")}>login</button>
-          <button onClick={() => setLoginOrReg("Register")}>register</button>
+          { Object.keys(user).length ? (<AccountDropdown user={user} setUser={setUser}/>) : (
+            <>
+              <button onClick={() => setLoginOrReg("Login")}>login</button>
+              <button onClick={() => setLoginOrReg("Register")}>register</button>
+            </>
+          )}
         </div>
       </div>
       <div className="content">

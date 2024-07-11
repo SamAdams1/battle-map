@@ -23,6 +23,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showMarke
   const onRightArrow = () => {
     if (country == "" && lastCountry != "") {
       setCountry(lastCountry)
+      setLastCountry("")
       let countryCenter = countriesData[lastCountry];
       panFunc(countryCenter.latLon, countryCenter.zoom)
     }
@@ -47,19 +48,13 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showMarke
   
   return (
     <div className='infoPanel'>
-      { showDisplay ? (
+      <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{showDisplay ? ("X") : ("Open Display")}</button>
+      { showDisplay &&
         <>
           <div className="displayFuncBtns">
-            { country ? ( <button onClick={() => onLeftArrow()} >{"<"}</button>
-              ) : (
-                <button onClick={() => onLeftArrow()} disabled>{"<"}</button>
-            )}
-            { lastCountry && !country ? (<button onClick={() => onRightArrow()}>{">"}</button>
-              ) : (
-              <button onClick={() => onRightArrow()} disabled>{">"}</button>
-            )}
+            <button onClick={() => onLeftArrow()} disabled={!country}>{"<"}</button>
+            <button onClick={() => onRightArrow()} disabled={(!lastCountry && country) || (!country && !lastCountry)}>{">"}</button>
             <button onClick={onReset}>reset</button>
-            <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"X"}</button>
           </div>
           
           <div className='selectCountry'>
@@ -74,9 +69,7 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showMarke
             <button onClick={goToLatLon}>Go To</button>
           </div>
         </>
-      ) : (
-        <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{"Open Display"}</button>
-      )}
+      }
     </div>
   )
 }

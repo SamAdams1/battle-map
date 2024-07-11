@@ -31,7 +31,7 @@ h4 {
 .infoPanel {
   position: absolute;
   right: 0;
-  z-index: 99;
+  z-index: 5;
   background-color: rgb(190, 144, 28);
   border-radius: 1em 0 0 1em;
   padding: 0 0 0 .7em;
@@ -55,7 +55,7 @@ h4 {
 .arrow {
   position: absolute;
   right: 0px;
-  z-index: 100;
+  z-index: 1;
 }
 .header {
   /* position: fixed; */
@@ -70,6 +70,8 @@ h4 {
 .accountBtns {
   position: absolute;
   right: 0;
+  display: flex;
+  align-items: first x;
 }
 .content { 
 }
@@ -89,6 +91,18 @@ h4 {
   flex-flow: column;
   
 }
+
+/* user pfp button and dropdown */
+.dropdown{
+  background-color: pink;
+  color: black;
+  z-index: 201;
+}
+
+
+
+
+
 
 
 /* battlelist page */

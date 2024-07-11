@@ -3,7 +3,7 @@ import Form from './Form'
 import Axios from "axios"
 
 
-const LoginRegister = ({formType, setFormType}) => {
+const LoginRegister = ({formType, setFormType, setUser}) => {
   const [errorMsg, setErrorMsg] = useState("")
 
   const quitForm = () => {
@@ -19,7 +19,7 @@ const LoginRegister = ({formType, setFormType}) => {
         console.log("User: " + data.username + " not found.")
         setErrorMsg("Incorrect Credentials.")
       } else {
-        console.log(response.data[0])
+        setUser(response.data[0])
         console.log("LOGIN SUCCESS")
         quitForm()
       }
@@ -33,7 +33,7 @@ const LoginRegister = ({formType, setFormType}) => {
         console.log(response)
         setErrorMsg("Registration Failed.")
       } else {
-        console.log(response.data[0])
+        setUser(data)
         console.log("REGISTRATION SUCCESS")
         quitForm()
       }
