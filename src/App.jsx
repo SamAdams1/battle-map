@@ -11,15 +11,11 @@ import InfoPanel from "../components/MapPage/InfoPanel"
 import Map from "../components/MapPage/Map"
 import BattlePage from "../components/BattlePage/BattlePage"
 
+// Better fetch
 import Axios from "axios"
+import LoginRegister from "../components/LoginRegister"
 
 
-// battlesYesLocation
-// 3383
-// battlesNoLocation
-// 2742
-// battlesFoundTotal
-// 6125
 function App() {
   // handle data
   const [dataRetrieved, setDataRetrieved] = useState(false)
@@ -27,30 +23,29 @@ function App() {
   const [battleLocs, setBattleLocs] = useState({})
   const [battleNames, setBattleNames] = useState({})
 
-  const [test, setTest] = useState({})
-  
   //handle map
   const [map, setMap] = useState(null)
   const markersRef = useRef([])
 
   // handle pages
   const [mapPage, setMapPage] = useState(true)
+  const [loginOrReg, setLoginOrReg] = useState("")
   
 
-  const getDBData = (collection, setState) => {
-    Axios.get(`http://localhost:3005/${collection}`).then((response) => {
+  const getDBData = (route, setState) => {
+    Axios.get(`http://localhost:3005/${route}`).then((response) => {
       if (response.data.length == 0) {
-        console.log(collection + " not found.")
+        console.log(route + " not found.")
       } else {
         setState(response.data[0])
       }
     }).catch((e) => console.log(e))
   }
-
-  const dbNewFormatData = (collection, setState) => {
-    Axios.get(`http://localhost:3005/${collection}`).then((response) => {
+  // for battle locations
+  const dbNewFormatData = (route, setState) => {
+    Axios.get(`http://localhost:3005/${route}`).then((response) => {
       if (response.data.length == 0) {
-        console.log(collection + " not found.")
+        console.log(route + " not found.")
       } else {
         combineDbDocuments(response.data[0], setState)
       }
@@ -97,15 +92,18 @@ function App() {
   }
 
 
-
-
   return (
     <>
+      { loginOrReg && <LoginRegister  formType={loginOrReg} setFormType={setLoginOrReg}/>}
       <div id="Top" className="header">
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => console.log(battleLocs)}>Favorites</button>
+        <button onClick={() => console.log(battleLocs)}>test</button>
+        <div className="accountBtns">
+          <button onClick={() => setLoginOrReg("Login")}>login</button>
+          <button onClick={() => setLoginOrReg("Register")}>register</button>
+        </div>
       </div>
       <div className="content">
         { mapPage ? (

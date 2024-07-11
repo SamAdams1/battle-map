@@ -1,7 +1,7 @@
+require('dotenv').config()
 
 const express = require('express');
 const { MongoClient } = require('mongodb');
-require('dotenv').config()
 
 const app = express();
 const cors = require("cors")
@@ -56,12 +56,44 @@ app.get('/locations', (req, res) => {
 // "_id": "ObjectId('668d700874a3bdf76817e78d')"
 app.put('/addBattleLoc', (req, res) => {
   console.log(req.body)
-  db.collection('test').updateOne({"country": req.body.country}, 
+  db.collection('test')
+  .updateOne({"country": req.body.country}, 
     {"$set":{
       "battles": req.body.battles, 
       "numBattlesInCountry": req.body.total 
     }})
   .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+app.get('/userLogin', (req, res) => {
+  console.log(req.query)
+  db.collection('users')
+  .find({
+    "username": req.query.username, 
+    "password": req.query.password
+  }).toArray()
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+
+app.post('/userRegister', (req, res) => {
+  console.log(req.body)
+  db.collection('users')
+  .insertOne({
+    "username": req.body.username, 
+    "password": req.body.password
+  })
+    .then(result => {
       res.json(result);
     })
     .catch(err => {

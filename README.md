@@ -18,3 +18,6 @@ prop: 'coordinates',
 
 https://api-ninjas.com/api/historicalfigures
 can list out all conflicts someone was involved in
+
+vids:
+How To Manage User Roles In Node.js - https://www.youtube.com/watch?v=jI4K7L-LI58
