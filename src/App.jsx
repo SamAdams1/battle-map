@@ -106,15 +106,17 @@ function App() {
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
         <button onClick={() => console.log(battleLocs)}>test</button>
+          </div>
         <div className="accountBtns">
-          { Object.keys(user).length ? (<AccountDropdown user={user} setUser={setUser}/>) : (
+          { Object.keys(user).length ? (
+            <AccountDropdown user={user} setUser={setUser}/>
+          ) : (
             <>
               <button onClick={() => setLoginOrReg("Login")}>login</button>
               <button onClick={() => setLoginOrReg("Register")}>register</button>
             </>
           )}
         </div>
-      </div>
       <div className="content">
         { mapPage ? (
           <>

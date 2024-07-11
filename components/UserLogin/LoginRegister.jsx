@@ -45,13 +45,9 @@ const LoginRegister = ({formType, setFormType, setUser}) => {
     <div className='loginRegister'>
       <button onClick={() => quitForm()}>X</button>
       { formType == "Register" ? (
-        <>
           <Form formType={formType} submitFunc={register} />
-        </>
       ) : (
-        <>
           <Form formType={formType} submitFunc={login} />
-        </>
       )}
       <p>{errorMsg}</p>
     </div>

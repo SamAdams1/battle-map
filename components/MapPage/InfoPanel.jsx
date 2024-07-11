@@ -48,7 +48,10 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showMarke
   
   return (
     <div className='infoPanel'>
-      <button className='arrow' onClick={() => setShowDisplay(!showDisplay)}>{showDisplay ? ("X") : ("Open Display")}</button>
+      <button 
+        className='infoPanelVisBtn' 
+        onClick={() => setShowDisplay(!showDisplay)}
+      >{showDisplay ? ("X") : ("Open Display")}</button>
       { showDisplay &&
         <>
           <div className="displayFuncBtns">
@@ -56,7 +59,6 @@ const InfoPanel = ({ countriesData, battlesNames, battleLocs, panFunc, showMarke
             <button onClick={() => onRightArrow()} disabled={(!lastCountry && country) || (!country && !lastCountry)}>{">"}</button>
             <button onClick={onReset}>reset</button>
           </div>
-          
           <div className='selectCountry'>
             { country  ? (
               <Battles data={battlesNames} panToBattle={panFunc} country={country} battleLocations={battleLocs} showMarkerPopup={showMarkerPopup}/>

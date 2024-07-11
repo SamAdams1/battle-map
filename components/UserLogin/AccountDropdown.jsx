@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 
 
-const AccountDropdown = ({user}) => {
+const AccountDropdown = ({user, setUser}) => {
   const [dropdownVis, setDropdownVis] = useState(false)
 
   return (
-    <div>
-      <div className="accountPfp">
-        <button onClick={() => setDropdownVis(!dropdownVis)}>{(user.username).charAt(0)}</button>
-      </div>
-      { dropdownVis && <div>
-        <h1>{user.username}</h1>
+    <div className='accountDropdownDiv'>
+      <button className="accountPfp" onClick={() => setDropdownVis(!dropdownVis)}>{(user.username).charAt(0)}</button>
+      { dropdownVis && <div className='dropdown'>
+        <h2>{user.username}</h2>
+        <h3>Emperor</h3> {/* User Permission Level */}
+        <button>Your Favorites</button>
+        <button onClick={() => console.log(user)}>Settings</button>
+        <button onClick={() => setUser({})}>Log out</button>
+
       </div>}
     </div>
   )
