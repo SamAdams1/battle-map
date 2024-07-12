@@ -40,21 +40,24 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
 
   // Favorite battle and add to contributions
   const favoriteBattle = (battleName, countryName, setFav) => {
-    console.log("favoriting...")
     setFav("isFav")
     const newInfo = {"battle": battleName, "country": countryName, "dateAdded": getCurrentDate()}
     user["favorites"][battleName] = newInfo
-
-    // Axios.put(`http://localhost:3005/${route}`, user)
-    // .then((response) => {
-    //   console.log(response);
-    // }).catch((e) => console.log(e))
+    changeFavorites()
   }
   const unfavoriteBattle = (battleName, countryName, setFav) => {
     setFav("notFav")
-    console.log("bye")
-    user["favorites"][battleName] = null
+    delete user.favorites[battleName]
+    changeFavorites()
   }
+  const changeFavorites = () => {
+    console.log(user.favorites)
+    Axios.put(`http://localhost:3005/${"favorites"}`, user)
+    .then((response) => {
+      console.log(response);
+    }).catch((e) => console.log(e))
+  }
+
   const checkFavoriteStatus = (battle) => {
     if (userLoggedIn()) {
       return !(battle in user.favorites) ? "notFav" : "isFav"
