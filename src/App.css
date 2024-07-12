@@ -145,16 +145,9 @@ h4 {
   position: sticky;
   top: 0;
 }
-.stick {
-  position: sticky;
-  top: 0px;
-  background-color: pink;
-  z-index: 10000;
-}
 .battleRow{
   margin: 0 1em;
   color: whitesmoke;
-
   display: flex;
 }
 .battleRow > * {
@@ -182,7 +175,7 @@ td {
 
 .navCountry {
   position: fixed;
-  right: 0em;
+  left: 0em;
   overflow-y: auto;
   border-radius: 1em 0 0 1em;
 
@@ -207,7 +200,7 @@ td {
 .showHideNav {
   position: fixed;
   transform: translateY(-1.7em);
-  right: 0;
+  left: 0;
   z-index: 10;
 
 }

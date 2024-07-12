@@ -1,7 +1,6 @@
 require('dotenv').config()
-
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const app = express();
 const cors = require("cors")
@@ -86,13 +85,10 @@ app.get('/userLogin', (req, res) => {
 });
 
 
-app.post('/userRegister', (req, res) => {
+app.post('/registerUser', (req, res) => {
   console.log(req.body)
   db.collection('users')
-  .insertOne({
-    "username": req.body.username, 
-    "password": req.body.password
-  })
+  .insertOne(req.body)
     .then(result => {
       res.json(result);
     })
@@ -100,7 +96,36 @@ app.post('/userRegister', (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
-
+app.put('/favorites', (req, res) => {
+  // console.log(req.body)
+  // console.log(req.body._id)
+  db.collection('users')
+  .updateOne({"_id": ObjectId.createFromHexString(req.body._id)}, 
+    {"$set":{
+      "favorites": req.body.favorites
+    }})
+  .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+app.put('/contributions', (req, res) => {
+  // console.log(req.body)
+  // console.log(req.body._id)
+  db.collection('users')
+  .updateOne({"_id": ObjectId.createFromHexString(req.body._id)}, 
+    {"$set":{
+      "contributions": req.body.contributions
+    }})
+  .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

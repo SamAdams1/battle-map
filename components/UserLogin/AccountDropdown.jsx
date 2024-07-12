@@ -11,6 +11,7 @@ const AccountDropdown = ({user, setUser}) => {
         <h2>{user.username}</h2>
         <h3>Emperor</h3> {/* User Permission Level */}
         <button>Your Favorites</button>
+        <button>Your Contributions</button>
         <button onClick={() => console.log(user)}>Settings</button>
         <button onClick={() => setUser({})}>Log out</button>
 

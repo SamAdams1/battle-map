@@ -3,9 +3,7 @@ import NavSideBar from './NavSideBar'
 import Table from './Table'
 import DBPopup from './Popup'
 
-const BattlePage = ({nameData, locationData, addBattleLoc }) => {
-  const [sideBarVis, setSideBarVis] = useState(true)
-
+const BattlePage = ({nameData, locationData, addBattleLoc, favBattle }) => {
   const [popupVis, setPopupVis] = useState(false)
   const [selectedBattle, setSelectedBattle] = useState("")
   const [battleCountry, setBattleCountry] = useState("")
@@ -34,13 +32,7 @@ const BattlePage = ({nameData, locationData, addBattleLoc }) => {
       <a href='https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location' target='_blank'>
         <h1>All Battles</h1>
       </a>
-      <button className='showHideNav' 
-        onClick={() => setSideBarVis(!sideBarVis)}
-        >{ sideBarVis ? (<>Hide</>) : (<>Show</>)} Side Bar
-      </button>
-      { sideBarVis &&  
-        <NavSideBar countryList={Object.keys(nameData)}/>
-      }
+      <NavSideBar countryList={Object.keys(nameData)}/>
 
       { Object.keys(nameData).map((country) => {
         if (country != "_id") {
@@ -65,6 +57,7 @@ const BattlePage = ({nameData, locationData, addBattleLoc }) => {
                 battleLocs={locationData} 
                 country={country} 
                 showPopup={showPopup} 
+                favBattle={favBattle}
               />
             }
           </div>

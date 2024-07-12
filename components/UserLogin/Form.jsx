@@ -8,15 +8,14 @@ const Form = ({formType, submitFunc}) => {
     <div>
       <h1>{formType}</h1>
       <h2>Username</h2>
-      <input type="text" onChange={(e) => setUsername(e.target.value)}/>
+      <input type="text" placeholder='username' onChange={(e) => setUsername(e.target.value)}/>
       <h2>Password</h2>
-      <input type="password" onChange={(e) => setPassword(e.target.value)}/>
+      <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)}/>
       
         <button 
           onClick={() => submitFunc({username, password})} 
           disabled={!(username && password)}
         >{formType}</button>
-
     </div>
   )
 }

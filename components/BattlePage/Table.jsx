@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Table = ({ battleNames, battleLocs, country, showPopup }) => {
+const Table = ({ battleNames, battleLocs, country, showPopup, favBattle }) => {
 
   function tensPlace(coord) {
     coord = coord.toString()
@@ -24,7 +24,6 @@ const Table = ({ battleNames, battleLocs, country, showPopup }) => {
   }
 
   return(
-    <>
     <table>
       <tbody>
         <tr>
@@ -43,21 +42,29 @@ const Table = ({ battleNames, battleLocs, country, showPopup }) => {
               <td>{index+1}</td>
               <td className={ battleCoords ? ("green"):("red")}>{battle.split(" or ")[0]}</td>
               { battleCoords ? (
-                  <td>
-                    <button className='addLocBtn' onClick={() => copyToClipboard(battleCoords)} title='Copy to Clipboard'>[{battleCoords[0]}, {battleCoords[1]}]</button>
-                  </td>
-                ) : (
-                  <td>
-                    <button className='addLocBtn' title='Add Location Data' onClick={() => showPopup(battle, country)}>Add</button>
-                  </td>
+                <td>
+                  <button 
+                    className='addLocBtn' 
+                    title='Copy to Clipboard'
+                    onClick={() => copyToClipboard(battleCoords)} 
+                  >[{battleCoords[0]}, {battleCoords[1]}]</button>
+                </td>
+              ) : (
+                <td>
+                  <button 
+                    className='addLocBtn' 
+                    title='Add Location Data' 
+                    onClick={() => showPopup(battle, country)}
+                  >Add</button>
+                </td>
               )}
+              <td>
+                <button onClick={() => favBattle(battle, country, "favorites")}>Favorite</button>
+              </td>
             </tr>
-          )
-        })}
+          )})}
       </tbody>
     </table>
-    </>
-  )
-}
+)}
 
 export default Table

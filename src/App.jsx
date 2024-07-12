@@ -75,10 +75,13 @@ function App() {
     battleLocs[country][battle] = data;
     const total = Object.keys(battleLocs[country]).length
     console.log(battleLocs[country])
+    addToUserData(battle, country, "contributions")
     
-    Axios.put(`http://localhost:3005/${"addBattleLoc"}`, {"battles": battleLocs[country], country, total}).then((response) => {
-      console.log(response);
-    }).catch((e) => console.log(e))
+    // Axios.put(`http://localhost:3005/${"addBattleLoc"}`, {
+    //   "battles": battleLocs[country], country, total}
+    // ).then((response) => {
+    //   console.log(response);
+    // }).catch((e) => console.log(e))
   }
   
   useEffect(() => {
@@ -96,7 +99,31 @@ function App() {
   const panToPoint = (latLon, zoom) => {
     map.setView(latLon, zoom)
   }
+  const addToUserData = (battleName, countryName, route) => {
+    if (userLoggedIn()) {
+      const newInfo = {"battle": battleName, "country": countryName, "dateAdded": getCurrentDate()}
+      user[route][battleName] = newInfo
 
+      Axios.put(`http://localhost:3005/${route}`, user)
+      .then((response) => {
+        console.log(response);
+      }).catch((e) => console.log(e))
+    } else {
+      alert("Must be logged in to favorite.")
+    }
+  }
+
+  const getCurrentDate = () => {
+    let today = new Date()
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    return mm + '/' + dd + '/' + yyyy;
+  }
+
+  const userLoggedIn = () => {
+    return Object.keys(user).length >= 1
+  }
 
   return (
     <>
@@ -105,18 +132,18 @@ function App() {
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => console.log(battleLocs)}>test</button>
-          </div>
-        <div className="accountBtns">
-          { Object.keys(user).length ? (
-            <AccountDropdown user={user} setUser={setUser}/>
-          ) : (
-            <>
-              <button onClick={() => setLoginOrReg("Login")}>login</button>
-              <button onClick={() => setLoginOrReg("Register")}>register</button>
-            </>
-          )}
-        </div>
+        <button onClick={() => console.log(getCurrentDate())}>test</button>
+      </div>
+      <div className="accountBtns">
+        { Object.keys(user).length ? (
+          <AccountDropdown user={user} setUser={setUser}/>
+        ) : (
+          <>
+            <button onClick={() => setLoginOrReg("Login")}>login</button>
+            <button onClick={() => setLoginOrReg("Register")}>register</button>
+          </>
+        )}
+      </div>
       <div className="content">
         { mapPage ? (
           <>
@@ -132,7 +159,12 @@ function App() {
             </Map>
           </>
       ) : (
-        <BattlePage nameData={battleNames} locationData={battleLocs} addBattleLoc={addBattleLoc}/>
+        <BattlePage 
+          nameData={battleNames} 
+          locationData={battleLocs} 
+          addBattleLoc={addBattleLoc}
+          favBattle={addToUserData}
+        />
       )}
     </div>
   </>

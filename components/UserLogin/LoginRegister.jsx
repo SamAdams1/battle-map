@@ -11,7 +11,7 @@ const LoginRegister = ({formType, setFormType, setUser}) => {
     setFormType("")
   }
 
-  const login = (data) => {
+  const loginUser = (data) => {
     // console.log({data})
     Axios.get(`http://localhost:3005/${"userLogin"}`, {params: data}).then((response) => {
       if (response.data.length == 0) {
@@ -26,8 +26,11 @@ const LoginRegister = ({formType, setFormType, setUser}) => {
     }).catch((e) => console.log(e))
   }
 
-  const register = (data) => {
-    Axios.post(`http://localhost:3005/${"userRegister"}`, data)
+  const registerUser = (data) => {
+    data["favorites"] = {}
+    data["contributions"] = {}
+    console.log(data)
+    Axios.post(`http://localhost:3005/${"registerUser"}`, data)
     .then((response) => {
       if (response.data.length == 0) {
         console.log(response)
@@ -45,9 +48,9 @@ const LoginRegister = ({formType, setFormType, setUser}) => {
     <div className='loginRegister'>
       <button onClick={() => quitForm()}>X</button>
       { formType == "Register" ? (
-          <Form formType={formType} submitFunc={register} />
+          <Form formType={formType} submitFunc={registerUser} />
       ) : (
-          <Form formType={formType} submitFunc={login} />
+          <Form formType={formType} submitFunc={loginUser} />
       )}
       <p>{errorMsg}</p>
     </div>
