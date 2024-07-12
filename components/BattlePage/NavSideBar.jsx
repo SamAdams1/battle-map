@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const NavSideBar = ({countryList}) => {
-  const [sideBarVis, setSideBarVis] = useState  (true)
+  const [sideBarVis, setSideBarVis] = useState  (false)
   let lastLetter = "";
   
   return (

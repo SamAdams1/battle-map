@@ -132,7 +132,7 @@ function App() {
         <h1>Battle Map</h1>
         <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => console.log(getCurrentDate())}>test</button>
+        <button onClick={() => console.log(user)}>test</button>
       </div>
       <div className="accountBtns">
         { Object.keys(user).length ? (
@@ -163,7 +163,7 @@ function App() {
           nameData={battleNames} 
           locationData={battleLocs} 
           addBattleLoc={addBattleLoc}
-          favBattle={addToUserData}
+          user={user}
         />
       )}
     </div>

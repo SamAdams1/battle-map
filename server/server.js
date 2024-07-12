@@ -96,6 +96,7 @@ app.post('/registerUser', (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
 app.put('/favorites', (req, res) => {
   // console.log(req.body)
   // console.log(req.body._id)
@@ -111,6 +112,7 @@ app.put('/favorites', (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
 app.put('/contributions', (req, res) => {
   // console.log(req.body)
   // console.log(req.body._id)

@@ -216,3 +216,8 @@ td {
   align-items: center;
   flex-flow: column;
 }
+.favBtn {
+  width: 100%;
+}
+.Favorite{ background-color: gold;}
+.isFav{ background-color: gold;}

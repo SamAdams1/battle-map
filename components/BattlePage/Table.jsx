@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Axios from "axios"
 
-const Table = ({ battleNames, battleLocs, country, showPopup, favBattle }) => {
+
+const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
 
   function tensPlace(coord) {
     coord = coord.toString()
@@ -23,6 +25,47 @@ const Table = ({ battleNames, battleLocs, country, showPopup, favBattle }) => {
     navigator.clipboard.writeText(txt)
   }
 
+  
+  const userLoggedIn = () => {
+    return Object.keys(user).length >= 1
+  }
+
+  const getCurrentDate = () => {
+    let today = new Date()
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    return mm + '/' + dd + '/' + yyyy;
+  }
+
+  // Favorite battle and add to contributions
+  const favoriteBattle = (battleName, countryName, setFav) => {
+    console.log("favoriting...")
+    setFav("isFav")
+    const newInfo = {"battle": battleName, "country": countryName, "dateAdded": getCurrentDate()}
+    user["favorites"][battleName] = newInfo
+
+    // Axios.put(`http://localhost:3005/${route}`, user)
+    // .then((response) => {
+    //   console.log(response);
+    // }).catch((e) => console.log(e))
+  }
+  const unfavoriteBattle = (battleName, countryName, setFav) => {
+    setFav("notFav")
+    console.log("bye")
+    user["favorites"][battleName] = null
+  }
+  const checkFavoriteStatus = (battle) => {
+    if (userLoggedIn()) {
+      return !(battle in user.favorites) ? "notFav" : "isFav"
+    }
+    return ""
+  }
+  const favFunctions = {
+    "isFav": unfavoriteBattle,
+    "notFav": favoriteBattle
+  }
+
   return(
     <table>
       <tbody>
@@ -36,31 +79,35 @@ const Table = ({ battleNames, battleLocs, country, showPopup, favBattle }) => {
         {battleNames[country].map((battle, index) => {
           battle = battle.split(" – ").at(0)
           const battleCoords = battleHasLoc(country, battle)
-          
+          const [favStatus, setFavStatus] = useState(checkFavoriteStatus(battle))
+
           return (
             <tr key={battle+index}>
-              <td>{index+1}</td>
+              <td className={favStatus}>{index+1}</td>
               <td className={ battleCoords ? ("green"):("red")}>{battle.split(" or ")[0]}</td>
-              { battleCoords ? (
-                <td>
-                  <button 
-                    className='addLocBtn' 
-                    title='Copy to Clipboard'
-                    onClick={() => copyToClipboard(battleCoords)} 
-                  >[{battleCoords[0]}, {battleCoords[1]}]</button>
-                </td>
-              ) : (
-                <td>
-                  <button 
-                    className='addLocBtn' 
-                    title='Add Location Data' 
-                    onClick={() => showPopup(battle, country)}
-                  >Add</button>
-                </td>
-              )}
               <td>
-                <button onClick={() => favBattle(battle, country, "favorites")}>Favorite</button>
+                { battleCoords ? (
+                    <button 
+                      className='addLocBtn' 
+                      title='Copy to Clipboard'
+                      onClick={() => copyToClipboard(battleCoords)} 
+                    >[{battleCoords[0]}, {battleCoords[1]}]</button>
+                ) : (
+                    <button 
+                      className='addLocBtn' 
+                      title='Add Location Data' 
+                      onClick={() => showPopup(battle, country)}
+                    >Add</button>
+                )}
               </td>
+              { userLoggedIn() && 
+                <td>
+                    <button 
+                      className='favBtn' 
+                      onClick={() => favFunctions[favStatus](battle, country, setFavStatus)}
+                    >{favStatus == "isFav" ? <>Unfavorite</> : <>Favorite</>}</button>
+                </td>
+              }
             </tr>
           )})}
       </tbody>

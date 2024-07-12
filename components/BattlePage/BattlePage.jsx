@@ -3,7 +3,7 @@ import NavSideBar from './NavSideBar'
 import Table from './Table'
 import DBPopup from './Popup'
 
-const BattlePage = ({nameData, locationData, addBattleLoc, favBattle }) => {
+const BattlePage = ({nameData, locationData, addBattleLoc, favBattle, user }) => {
   const [popupVis, setPopupVis] = useState(false)
   const [selectedBattle, setSelectedBattle] = useState("")
   const [battleCountry, setBattleCountry] = useState("")
@@ -26,6 +26,8 @@ const BattlePage = ({nameData, locationData, addBattleLoc, favBattle }) => {
       return 0
     }
   }
+
+
 
   return (
     <div className='battlePage'>
@@ -57,7 +59,8 @@ const BattlePage = ({nameData, locationData, addBattleLoc, favBattle }) => {
                 battleLocs={locationData} 
                 country={country} 
                 showPopup={showPopup} 
-                favBattle={favBattle}
+                user={user}
+                setPopupVis={setPopupVis}
               />
             }
           </div>
