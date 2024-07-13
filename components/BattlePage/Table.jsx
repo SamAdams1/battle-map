@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Axios from "axios"
+import React from 'react'
+import FavButton from '../FavButton'
 
 
 const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
@@ -30,44 +30,12 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
     return Object.keys(user).length >= 1
   }
 
-  const getCurrentDate = () => {
-    let today = new Date()
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
-    return mm + '/' + dd + '/' + yyyy;
-  }
+  
 
-  // Favorite battle and add to contributions
-  const favoriteBattle = (battleName, countryName, setFav) => {
-    setFav("isFav")
-    const newInfo = {"battle": battleName, "country": countryName, "dateAdded": getCurrentDate()}
-    user["favorites"][battleName] = newInfo
-    changeFavorites()
-  }
-  const unfavoriteBattle = (battleName, countryName, setFav) => {
-    setFav("notFav")
-    delete user.favorites[battleName]
-    changeFavorites()
-  }
-  const changeFavorites = () => {
-    console.log(user.favorites)
-    Axios.put(`http://localhost:3005/${"favorites"}`, user)
-    .then((response) => {
-      console.log(response);
-    }).catch((e) => console.log(e))
-  }
-
-  const checkFavoriteStatus = (battle) => {
-    if (userLoggedIn()) {
-      return !(battle in user.favorites) ? "notFav" : "isFav"
-    }
-    return ""
-  }
-  const favFunctions = {
-    "isFav": unfavoriteBattle,
-    "notFav": favoriteBattle
-  }
+  // useEffect(() => {
+  //   // localStorage.setItem('todosCreated', todosCreated.toString());
+  //   console.log("forntie")
+  // }, [user]);
 
   return(
     <table>
@@ -75,6 +43,7 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
         <tr>
           <th></th>
           <th>Battle</th>
+          <th>Year</th>
           <th>Location</th>
           <th></th>
         </tr>
@@ -82,11 +51,10 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
         {battleNames[country].map((battle, index) => {
           battle = battle.split(" – ").at(0)
           const battleCoords = battleHasLoc(country, battle)
-          const [favStatus, setFavStatus] = useState(checkFavoriteStatus(battle))
 
           return (
             <tr key={battle+index}>
-              <td className={favStatus}>{index+1}</td>
+              <td>{index+1}</td>
               <td className={ battleCoords ? ("green"):("red")}>{battle.split(" or ")[0]}</td>
               <td>
                 { battleCoords ? (
@@ -103,14 +71,15 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                     >Add</button>
                 )}
               </td>
-              { userLoggedIn() && 
-                <td>
-                    <button 
-                      className='favBtn' 
-                      onClick={() => favFunctions[favStatus](battle, country, setFavStatus)}
-                    >{favStatus == "isFav" ? <>Unfavorite</> : <>Favorite</>}</button>
-                </td>
-              }
+              <td>
+                { userLoggedIn() && 
+                  <FavButton 
+                  battle={battle}
+                  country={country}
+                  user={user} 
+                  />
+                }
+              </td>
             </tr>
           )})}
       </tbody>

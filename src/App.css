@@ -219,5 +219,6 @@ td {
 .favBtn {
   width: 100%;
 }
-.Favorite{ background-color: gold;}
-.isFav{ background-color: gold;}
+.isFav{ 
+  background-color: gold;
+}

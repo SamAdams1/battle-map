@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { Marker, Tooltip, Popup } from "react-leaflet"
 import { Icon } from "leaflet"
 import { useState } from "react"
+import FavButton from '../FavButton'
 
 const iconSize = 15
 const icon = new Icon({
@@ -12,7 +13,7 @@ const icon = new Icon({
 // let wikiLink = "https://en.wikipedia.org/wiki/" + battleName.replace(" ","_")
 
 
-const Markers = ({ battlesData, markersRef }) => {
+const Markers = ({ battlesData, markersRef, user }) => {
   
   const totalBattles = 3374;
   let count = 0;
@@ -43,7 +44,8 @@ const Markers = ({ battlesData, markersRef }) => {
                       >{country} - {battleName}</a>
                     </h3>
                     <br />
-                    <button>Favorite</button>
+                    { Object.keys(user).length >= 1 &&
+                    <FavButton battle={battleName} country={country} user={user}/>}
                   </Popup>
                 </Marker>
               )

@@ -99,7 +99,7 @@ app.post('/registerUser', (req, res) => {
 
 app.put('/favorites', (req, res) => {
   // console.log(req.body)
-  // console.log(req.body._id)
+  console.log(req.body._id)
   db.collection('users')
   .updateOne({"_id": ObjectId.createFromHexString(req.body._id)}, 
     {"$set":{

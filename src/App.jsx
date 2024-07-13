@@ -155,7 +155,7 @@ function App() {
               showMarkerPopup={showMarkerPopup}
             />
             <Map mapRef={setMap}>
-              {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef}/>}
+              {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef} user={user}/>}
             </Map>
           </>
       ) : (
