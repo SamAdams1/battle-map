@@ -36,7 +36,7 @@ const LoginRegister = ({formType, setFormType, setUser}) => {
         console.log(response)
         setErrorMsg("Registration Failed.")
       } else {
-        setUser(data)
+        loginUser(data)
         console.log("REGISTRATION SUCCESS")
         quitForm()
       }
