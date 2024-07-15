@@ -21,7 +21,6 @@ def checkYear():
 
 
 
-
 # def pageIdStr():
 #   for country in battleLocs:
 #     countryData = battleLocs[country]
@@ -36,40 +35,4 @@ def checkYear():
 #       # print(battleLocs[country])
 #   with open(f"./ihope.json", "w") as outfile:
 #     outfile.write(json.dumps(battleLocs, indent=1))
-
-
-
-# def latLonCompress():
-#   for country in battleLocs:
-#     countryData = battleLocs[country]
-#     if type(countryData) != int:
-#       for battle in countryData:
-#         if type(countryData[battle])!= int:
-#           battleLocs[country][battle]["latLon"] = str(battleLocs[country][battle]["latLon"])
-
-#       # print(battleLocs[country])
-#   with open(f"./bruh.json", "w") as outfile:
-#     outfile.write(json.dumps(battleLocs, indent=1))
-# latLonCompress()
-
-# def lessPlaces(num):
-#   num = str(num)
-#   if "." in num:
-#     if len(num) > 10:
-#       return num[: -4]
-#     elif len(num) > 8:
-#       return num[: -2]
-#     elif len(num) > 6:
-#       return num[: -2]
-#   return num
-
-# number = 43.6158301
-# print(lessPlaces(number))
-# print(len(str(number)))
-
-
-
-
-
-
 

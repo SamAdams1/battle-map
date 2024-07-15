@@ -17,6 +17,8 @@ import Axios from "axios";
 
 // React router
 import { Routes, Route, Link } from "react-router-dom";
+import FavPage from "./pages/FavPage";
+import Contributions from "./pages/Contributions";
 
 function App() {
   // handle map data
@@ -189,6 +191,8 @@ function App() {
             />
           }
         />
+        <Route path="favorites" element={<FavPage user={user} />} />
+        <Route path="contributions" element={<Contributions user={user} />} />
       </Routes>
       <div className="accountBtns">
         {Object.keys(user).length > 1 && (

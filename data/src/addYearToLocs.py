@@ -76,4 +76,3 @@ def main():
 
 # with open(f"./ihope.json", "w") as outfile:
 #   outfile.write(json.dumps(battleLocs, indent=1))
-

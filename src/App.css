@@ -22,7 +22,7 @@ h4 {
 }
 
 .leaflet-container {
-  height: 100vh;
+  height: 94vh;
   width: 100%;
   z-index: 1;
 }
@@ -71,9 +71,6 @@ div > ul > li {
   margin: 1em;
 }
 
-
-.content { 
-}
 .zoomSlider {
   display: flex;
   padding: .25em 0;
@@ -158,9 +155,6 @@ div > ul > li {
 .battleRow > * {
   margin: 0 1em;
 }
-.addLocBtn {
-  width: 100%;
-}
 .coordSect {
   display: flex;
   align-items: center;
@@ -174,6 +168,11 @@ td {
   border: solid black;
   background-color: whitesmoke;
 }
+
+td > button {
+  width: 100%;
+}
+
 .green, .red {color: whitesmoke;}
 .green{background-color: green;}
 .red { background-color: maroon;}
@@ -221,9 +220,9 @@ td {
   align-items: center;
   flex-flow: column;
 }
-.favBtn {
-  width: 100%;
-}
 .isFav{ 
   background-color: gold;
+}
+.centerTxt {
+  text-align: center;
 }

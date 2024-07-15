@@ -19,18 +19,30 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
   }
 
   const copyToClipboard = (txt) => {
-    alert("Location copied to clipboard: " + txt);
     navigator.clipboard.writeText(txt);
+    alert("Location copied to clipboard: " + txt);
   };
 
   const userLoggedIn = () => {
     return Object.keys(user).length >= 1;
   };
 
-  // useEffect(() => {
-  //   // localStorage.setItem('todosCreated', todosCreated.toString());
-  //   console.log("forntie")
-  // }, [user]);
+  // const getYear = (battleName) => {
+  //   let num = "";
+  //   let lastChar = "0";
+  //   for (let index = 0; index < battleName.length; index++) {
+  //     const element = battleName[index];
+  //     if (Number(element) || element == "0") {
+  //       if ((!Number(lastChar) || (element != "0") && !isNaN(element))) {
+  //         num = "";
+  //         console.log(Number("–"), lastChar, element);
+  //       }
+  //       lastChar = element;
+  //       num += element;
+  //     }
+  //   }
+  //   console.log(num);
+  // };
 
   return (
     <table>
@@ -50,11 +62,11 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
 
           return (
             <tr key={battle + index}>
-              <td>{index + 1}</td>
+              <td className="centerTxt">{index + 1}</td>
               <td className={battleCoords ? "green" : "red"}>
                 {battle.split(" or ")[0]}
               </td>
-              <td>{year}</td>
+              <td className="centerTxt">{year}</td>
               <td>
                 {battleCoords ? (
                   <button
@@ -69,16 +81,20 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                     className="addLocBtn"
                     title="Add Location Data"
                     onClick={() => showPopup(battle, country)}
+                    disabled={!userLoggedIn()}
                   >
                     Add
                   </button>
                 )}
               </td>
-              <td>
-                {userLoggedIn() && (
+              {userLoggedIn() && (
+                <td>
                   <FavButton battle={battle} country={country} user={user} />
-                )}
-              </td>
+                </td>
+              )}
+              {/* <td>
+                <button onClick={() => getYear(battle)}>test</button>
+              </td> */}
             </tr>
           );
         })}
