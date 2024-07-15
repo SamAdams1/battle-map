@@ -6,9 +6,20 @@ import Map from "../../components/MapPage/Map"
 import Markers from "../../components/MapPage/Markers"
 import InfoPanel from "../../components/MapPage/InfoPanel"
 
-const MapPage = ({ countryCenter, battleNames, battleLocs, panToPoint, showMarkerPopup, markersRef, setMap, user}) => {
+const MapPage = ({ countryCenter, battleNames, battleLocs, user}) => {
+  const [map, setMap] = useState(null)
+  const markersRef = useRef([])
+
+  
+  const showMarkerPopup = (battleName) => {
+    setTimeout(() => {markersRef.current[battleName].openPopup()}, 350)
+  }
+  const panToPoint = (latLon, zoom) => {
+    map.setView(latLon, zoom)
+  }
+
   return (
-    <div className="map">
+    <div>
       <InfoPanel 
         countriesData={countryCenter} 
         battlesNames={battleNames} 

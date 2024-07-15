@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import NavSideBar from '../../components/BattlePage/NavSideBar'
 import Table from '../../components/BattlePage/Table'
-import DBPopup from '../../components/BattlePage/Popup'
+import DBPopup from '../../components/BattlePage/DBPopup'
 
-const BattlePage = ({nameData, locationData, addBattleLoc, favBattle, user }) => {
+const BattlePage = ({nameData, locationData, addLocationData, favBattle, user }) => {
   const [popupVis, setPopupVis] = useState(false)
   const [selectedBattle, setSelectedBattle] = useState("")
   const [battleCountry, setBattleCountry] = useState("")
@@ -70,7 +70,7 @@ const BattlePage = ({nameData, locationData, addBattleLoc, favBattle, user }) =>
         <DBPopup 
           battle={selectedBattle} 
           country={battleCountry} 
-          addBattleLoc={addBattleLoc} 
+          addBattleLoc={addLocationData} 
           setPopupVis={setPopupVis}
         />
       }
