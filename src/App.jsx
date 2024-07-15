@@ -10,7 +10,7 @@ import Map from "../components/MapPage/Map"
 import Markers from "../components/MapPage/Markers"
 import InfoPanel from "../components/MapPage/InfoPanel"
 
-import BattlePage from "../components/BattlePage/BattlePage"
+import BattlePage from "./pages/BattlePage"
 
 import LoginRegister from "../components/UserLogin/LoginRegister"
 import AccountDropdown from "../components/UserLogin/AccountDropdown"
@@ -18,6 +18,9 @@ import AccountDropdown from "../components/UserLogin/AccountDropdown"
 // Better fetch
 import Axios from "axios"
 
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import MapPage from "./pages/MapPage"
 
 function App() {
   // handle data
@@ -124,16 +127,47 @@ function App() {
   const userLoggedIn = () => {
     return Object.keys(user).length >= 1
   }
-
+  if (dataRetrieved) {
   return (
     <>
       { loginOrReg && <LoginRegister  formType={loginOrReg} setFormType={setLoginOrReg} setUser={setUser}/>}
       <div id="Top" className="header">
         <h1>Battle Map</h1>
-        <button onClick={() => setMapPage(true)}>Map</button>
+        {/* <button onClick={() => setMapPage(true)}>Map</button>
         <button onClick={() => setMapPage(false)}>Battle List</button>
-        <button onClick={() => console.log(user)}>test</button>
+        <button onClick={() => console.log(user)}>test</button> */}
+        <nav>
+          <ul>
+            <li><Link to="/">Map</Link></li>
+          </ul>
+          <ul>
+            <li><Link to="/battleList">Battle List</Link></li>
+          </ul>
+        </nav>
       </div>
+      <Routes>
+        <Route index path="/" element={
+          <MapPage 
+            countryCenter={countryCenter}
+            battleNames={battleNames}
+            battleLocs={battleLocs}
+            panToPoint={panToPoint}
+            showMarkerPopup={showMarkerPopup}
+            markersRef={markersRef}
+            setMap={setMap}
+            user={user}
+          />}>
+
+        </Route>
+        <Route path="battleList" element={
+          <BattlePage 
+            nameData={battleNames} 
+            locationData={battleLocs} 
+            addBattleLoc={addBattleLoc}
+            user={user}
+          />}>
+        </Route>
+      </Routes>
       <div className="accountBtns">
         { Object.keys(user).length ? (
           <AccountDropdown user={user} setUser={setUser}/>
@@ -144,30 +178,7 @@ function App() {
           </>
         )}
       </div>
-      <div className="content">
-        { mapPage ? (
-          <>
-            <InfoPanel 
-              countriesData={countryCenter} 
-              battlesNames={battleNames} 
-              battleLocs={battleLocs} 
-              panFunc={panToPoint}
-              showMarkerPopup={showMarkerPopup}
-            />
-            <Map mapRef={setMap}>
-              {dataRetrieved && <Markers battlesData={battleLocs}  markersRef={markersRef} user={user}/>}
-            </Map>
-          </>
-      ) : (
-        <BattlePage 
-          nameData={battleNames} 
-          locationData={battleLocs} 
-          addBattleLoc={addBattleLoc}
-          user={user}
-        />
-      )}
-    </div>
   </>
-)}
+)}}
 
 export default App

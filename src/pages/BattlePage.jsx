@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import NavSideBar from './NavSideBar'
-import Table from './Table'
-import DBPopup from './Popup'
+import NavSideBar from '../../components/BattlePage/NavSideBar'
+import Table from '../../components/BattlePage/Table'
+import DBPopup from '../../components/BattlePage/Popup'
 
 const BattlePage = ({nameData, locationData, addBattleLoc, favBattle, user }) => {
   const [popupVis, setPopupVis] = useState(false)
