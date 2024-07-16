@@ -63,7 +63,7 @@ const Markers = ({ battlesData, markersRef, user }) => {
           }
         });
       })}
-      {/* {count>0 && console.log("battles: " + count)} */}
+      {/* {count > 0 && console.log("battles: " + count)} */}
     </>
   );
 };

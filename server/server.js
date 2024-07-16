@@ -42,7 +42,7 @@ app.get('/countryCenter', (req, res) => {
 
 app.get('/locations', (req, res) => {
   let idk = [];
-  db.collection('test').find({}).toArray()
+  db.collection('battleLocations').find({}).toArray()
     .then(result => {
       idk = [...idk, result]
       res.json(idk);
@@ -55,7 +55,7 @@ app.get('/locations', (req, res) => {
 // "_id": "ObjectId('668d700874a3bdf76817e78d')"
 app.put('/addBattleLoc', (req, res) => {
   console.log(req.body)
-  db.collection('test')
+  db.collection('battleLocations')
   .updateOne({"country": req.body.country}, 
     {"$set":{
       "battles": req.body.battles, 

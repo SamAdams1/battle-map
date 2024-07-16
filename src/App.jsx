@@ -19,6 +19,7 @@ import Axios from "axios";
 import { Routes, Route, Link } from "react-router-dom";
 import FavPage from "./pages/FavPage";
 import Contributions from "./pages/Contributions";
+import About from "./pages/About";
 
 function App() {
   // handle map data
@@ -136,6 +137,11 @@ function App() {
             <Link to="/battleList">Battle List</Link>
           </li>
         </ul>
+        <ul>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
         {!userLoggedIn() && (
           <div className="accountBtns">
             <ul>
@@ -175,6 +181,7 @@ function App() {
             />
           }
         />
+        <Route path="about" element={<About />} />
         <Route
           path="login"
           element={

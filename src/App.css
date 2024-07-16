@@ -226,3 +226,14 @@ td > button {
 .centerTxt {
   text-align: center;
 }
+
+
+
+
+/* ABOUT PAGE */
+.about {
+ display: flex;
+ flex-flow: column;
+ align-items: center;
+ align-content: center;
+}
