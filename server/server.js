@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 
+const jwt = require("jsonwebtoken")
+
 const app = express();
 const cors = require("cors")
 app.use(express.json())
@@ -69,6 +71,8 @@ app.put('/addBattleLoc', (req, res) => {
     });
 });
 
+
+
 app.get('/userLogin', (req, res) => {
   console.log(req.query)
   db.collection('users')
@@ -128,6 +132,9 @@ app.put('/contributions', (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

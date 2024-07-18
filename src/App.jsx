@@ -126,7 +126,7 @@ function App() {
     <>
       <div id="Top" className="header">
         <h1>Battle Map</h1>
-        <button onClick={() => console.log(user)}>test</button>
+        {/* <button onClick={() => console.log(user)}>test</button> */}
         <ul>
           <li>
             <Link to="/">Map</Link>
@@ -138,9 +138,7 @@ function App() {
           </li>
         </ul>
         <ul>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
+          <li>{/* <Link to="/about">About</Link> */}</li>
         </ul>
         {!userLoggedIn() && (
           <div className="accountBtns">

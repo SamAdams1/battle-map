@@ -20,7 +20,7 @@ const Markers = ({ battlesData, markersRef, user }) => {
       {Object.keys(battlesData).map((country) => {
         let firstLetter = country.charAt(0);
         //returns each country, skips non-country data
-        return Object.keys(battlesData[country]).map((battleName) => {
+        return Object.keys(battlesData[country]).map((battleName, index) => {
           const latLon = battlesData[country][battleName].latLon;
           if (latLon) {
             // goes through battles and creates the marker if latlon is defined
@@ -35,6 +35,7 @@ const Markers = ({ battlesData, markersRef, user }) => {
                 <Popup>
                   <h3>{country}</h3>
                   <h3>
+                    {/* {index}: */}
                     <a
                       href={
                         "https://en.wikipedia.org/wiki/" +
@@ -46,6 +47,7 @@ const Markers = ({ battlesData, markersRef, user }) => {
                       {battleName}
                     </a>
                   </h3>
+                  <h3>{battlesData[country][battleName]["year"]}</h3>
                   <h4>
                     {latLon[0]}, {latLon[1]}
                   </h4>
