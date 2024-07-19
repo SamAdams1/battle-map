@@ -81,6 +81,7 @@ app.get('/userLogin', (req, res) => {
     "password": req.query.password
   }).toArray()
     .then(result => {
+      // const accessToken = jwt.sign(req.query.username, process.env.ACCESS_TOKEN_SECRET)
       res.json(result);
     })
     .catch(err => {
@@ -132,6 +133,9 @@ app.put('/contributions', (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+
+
 
 
 

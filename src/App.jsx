@@ -20,6 +20,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import FavPage from "./pages/FavPage";
 import Contributions from "./pages/Contributions";
 import About from "./pages/About";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   // handle map data
@@ -138,7 +139,14 @@ function App() {
           </li>
         </ul>
         <ul>
-          <li>{/* <Link to="/about">About</Link> */}</li>
+          <li>
+            <Link to="chat">Chat</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
         </ul>
         {!userLoggedIn() && (
           <div className="accountBtns">
@@ -179,7 +187,9 @@ function App() {
             />
           }
         />
+        <Route path="chat" element={<ChatPage user={user} />}></Route>
         <Route path="about" element={<About />} />
+
         <Route
           path="login"
           element={
