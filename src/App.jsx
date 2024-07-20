@@ -1,7 +1,6 @@
 import "./reset.css";
 import "./App.css";
 
-// leaflet map imports
 import "leaflet/dist/leaflet.css";
 import { useState, useEffect } from "react";
 
@@ -16,11 +15,12 @@ import AccountDropdown from "../components/UserLogin/AccountDropdown";
 import Axios from "axios";
 
 // React router
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import FavPage from "./pages/FavPage";
 import Contributions from "./pages/Contributions";
 import About from "./pages/About";
 import ChatPage from "./pages/ChatPage";
+import Header from "../components/Header";
 
 function App() {
   // handle map data
@@ -90,8 +90,12 @@ function App() {
     setDataRetrieved(true);
   }, []);
 
+  useEffect(() => {
+    user["loggedIn"] = Object.keys(user).length > 1;
+  }, [user]);
+
   const addToUserData = (battleName, countryName, route) => {
-    if (userLoggedIn()) {
+    if (user.loggedIn) {
       const newInfo = {
         battle: battleName,
         country: countryName,
@@ -117,52 +121,11 @@ function App() {
     return mm + "/" + dd + "/" + yyyy;
   };
 
-  const userLoggedIn = () => {
-    return Object.keys(user).length >= 1;
-  };
-
   return !dataRetrieved ? (
     <h1>Loading...</h1>
   ) : (
     <>
-      <div id="Top" className="header">
-        <h1>Battle Map</h1>
-        {/* <button onClick={() => console.log(user)}>test</button> */}
-        <ul>
-          <li>
-            <Link to="/">Map</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/battleList">Battle List</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="chat">Chat</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-        {!userLoggedIn() && (
-          <div className="accountBtns">
-            <ul>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <Link to="/register">Register</Link>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
+      <Header user={user} />
       <Routes>
         <Route
           index
@@ -187,7 +150,10 @@ function App() {
             />
           }
         />
-        <Route path="chat" element={<ChatPage user={user} />}></Route>
+        <Route
+          path="chat"
+          element={<ChatPage user={user} getDate={getCurrentDate} />}
+        ></Route>
         <Route path="about" element={<About />} />
 
         <Route

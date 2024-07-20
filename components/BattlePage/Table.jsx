@@ -23,10 +23,6 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
     alert("Location copied to clipboard: " + txt);
   };
 
-  const userLoggedIn = () => {
-    return Object.keys(user).length >= 1;
-  };
-
   // const getYear = (battleName) => {
   //   let num = "";
   //   let lastChar = "0";
@@ -81,13 +77,13 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                     className="addLocBtn"
                     title="Add Location Data"
                     onClick={() => showPopup(battle, country)}
-                    disabled={!userLoggedIn()}
+                    disabled={!user.loggedIn}
                   >
                     Add
                   </button>
                 )}
               </td>
-              {userLoggedIn() && (
+              {user.loggedIn && (
                 <td>
                   <FavButton battle={battle} country={country} user={user} />
                 </td>

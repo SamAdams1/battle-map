@@ -52,7 +52,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
   return (
     <div className="loginRegister">
       <button onClick={() => quitForm()}>X</button>
-      {Object.keys(user).length >= 1 ? (
+      {user.loggedIn ? (
         <h1>Success!</h1>
       ) : (
         <>

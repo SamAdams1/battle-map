@@ -52,7 +52,7 @@ const Markers = ({ battlesData, markersRef, user }) => {
                     {latLon[0]}, {latLon[1]}
                   </h4>
                   <br />
-                  {Object.keys(user).length >= 1 && (
+                  {user.loggedIn && (
                     <FavButton
                       battle={battleName}
                       country={country}

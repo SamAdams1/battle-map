@@ -11,8 +11,8 @@ wss.on('connection', ws => {
         // Broadcast the message to all connected clients
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
-                let txt = `Client ${data.clientId} sent -> ${data.payload}`
-                client.send(txt);
+                let newMessage = JSON.stringify({"user": data.clientId, "message": data.payload, "date": data.date})
+                client.send(newMessage);
             }
         });
     });

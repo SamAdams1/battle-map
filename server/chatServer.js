@@ -38,7 +38,9 @@ app.post('/addMessage', (req, res) => {
   db.collection('Main') 
   .insertOne( 
     {
-      "message": req.body.message
+      "message": req.body.message,
+      "user": req.body.username,
+      "date": req.body.date
     })
   .then(result => {
       res.json(result);
