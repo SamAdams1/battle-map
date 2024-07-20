@@ -44,13 +44,13 @@ function App() {
       .catch((e) => console.log(e));
   };
   // for battle locations
-  const dbNewFormatData = (route, setState) => {
+  const getBattleLocations = (route) => {
     Axios.get(`http://localhost:3005/${route}`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
         } else {
-          combineDbDocuments(response.data[0], setState);
+          combineDbDocuments(response.data[0], setBattleLocs);
         }
       })
       .catch((e) => console.log(e));
@@ -85,7 +85,7 @@ function App() {
   useEffect(() => {
     getDBData("countryCenter", setCountryCenter);
     getDBData("names", setBattleNames);
-    dbNewFormatData("locations", setBattleLocs);
+    getBattleLocations("locations");
 
     setDataRetrieved(true);
   }, []);
