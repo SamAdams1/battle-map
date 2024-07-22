@@ -7,12 +7,11 @@ wss.on('connection', ws => {
  
     ws.on('message', message => {
         const data = JSON.parse(message);
-        console.log(`From client ${data.clientId}: ${data.payload}`);
+        console.log(`From client ${data.payload.userId}: ${data.payload.text}`);
         // Broadcast the message to all connected clients
         wss.clients.forEach(client => {
             if (client.readyState === WebSocket.OPEN) {
-                let newMessage = JSON.stringify({"user": data.clientId, "message": data.payload, "date": data.date})
-                client.send(newMessage);
+                client.send(JSON.stringify(data.payload));
             }
         });
     });

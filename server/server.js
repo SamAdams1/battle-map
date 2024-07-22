@@ -54,7 +54,6 @@ app.get('/locations', (req, res) => {
     });
 });
 
-// "_id": "ObjectId('668d700874a3bdf76817e78d')"
 app.put('/addBattleLoc', (req, res) => {
   console.log(req.body)
   db.collection('battleLocations')

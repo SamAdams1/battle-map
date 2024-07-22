@@ -33,15 +33,8 @@ app.get('/messages', (req, res) => {
 });
 
 app.post('/addMessage', (req, res) => {
-  console.log(req.body)
-  // console.log(req.body._id)
-  db.collection('Main') 
-  .insertOne( 
-    {
-      "message": req.body.message,
-      "user": req.body.username,
-      "date": req.body.date
-    })
+  console.log("ADD", req.body)
+  db.collection('Main').insertOne( req.body )
   .then(result => {
       res.json(result);
     })
@@ -51,6 +44,16 @@ app.post('/addMessage', (req, res) => {
 });
 
 
+app.delete('/deleteMsg', (req, res) => {
+  console.log("DELETE", req.body)
+  db.collection('Main').deleteOne({"_id": req.body._id})
+  .then(result => {
+    res.json(result);
+  })
+  .catch(err => {
+    res.status(500).json({ error: err.message });
+  });
+})
 
 
 

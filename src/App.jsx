@@ -118,13 +118,16 @@ function App() {
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     let yyyy = today.getFullYear();
-    return mm + "/" + dd + "/" + yyyy;
+    let hour = today.getUTCHours();
+    let min = String(today.getUTCMinutes()).padStart(2, "0");
+    return `${mm}/${dd}/${yyyy} ~ ${hour}:${min}`;
   };
 
   return !dataRetrieved ? (
     <h1>Loading...</h1>
   ) : (
     <>
+      {/* <h1 className="text-6xl">hi</h1> */}
       <Header user={user} />
       <Routes>
         <Route
