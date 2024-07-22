@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 const ChatTxt = ({ message, user, deleteMsg }) => {
-  const [edit, setEdit] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [text, setText] = useState(message.text);
+  const [editedTxt, setEditedTxt] = useState(message.text);
 
   const highlightMyMessages = (messageSender) => {
     if (user.loggedIn) {
@@ -16,8 +17,9 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
   };
 
   const editMessage = () => {
-    setEdit(false);
-    message.text = text;
+    setEditing(false);
+    setText(editedTxt);
+    message.text = editedTxt;
     fetch("http://localhost:3006/editMessage", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -36,16 +38,18 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
           {myMsg && (
             <>
               <button onClick={() => deleteMsg(message)}>Delete</button>
-              <button onClick={() => setEdit(true)}>Edit</button>
+              <button onClick={() => setEditing(!editing)}>
+                {editing ? <>Cancel</> : <>Edit</>}
+              </button>
             </>
           )}
         </h3>
-        {edit ? (
+        {editing ? (
           <>
             <input
               type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              value={editedTxt}
+              onChange={(e) => setEditedTxt(e.target.value)}
             />
             <button onClick={editMessage}>Save</button>
           </>
