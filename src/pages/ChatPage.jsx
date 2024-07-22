@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
+import ChatTxt from "../../components/ChatTxt";
 
 const ChatPage = ({ user, getDate }) => {
   const [messages, setMessages] = useState([]);
@@ -31,10 +32,11 @@ const ChatPage = ({ user, getDate }) => {
       websocket.close();
     };
   }, []);
-  let compiledMsg = {};
+
+  let msgFormat = {};
   const sendMessage = () => {
     if (ws) {
-      compiledMsg = {
+      msgFormat = {
         text: message,
         username: user.username,
         userId: user._id,
@@ -44,7 +46,7 @@ const ChatPage = ({ user, getDate }) => {
       ws.send(
         JSON.stringify({
           type: "message",
-          payload: compiledMsg,
+          payload: msgFormat,
         })
       );
       addMsgToDB();
@@ -80,7 +82,7 @@ const ChatPage = ({ user, getDate }) => {
     fetch("http://localhost:3006/addMessage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(compiledMsg),
+      body: JSON.stringify(msgFormat),
     }).then((response) => {
       console.log(response);
     });
@@ -88,18 +90,6 @@ const ChatPage = ({ user, getDate }) => {
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);
-  };
-
-  const highlightMyMessages = (messageSender) => {
-    if (user.loggedIn) {
-      return user.username == messageSender ? "myMessage" : "";
-    }
-    return "";
-  };
-
-  const dateTime = (message) => {
-    let date = message.date;
-    return date.split("~");
   };
 
   const deleteMsg = (msg) => {
@@ -111,7 +101,7 @@ const ChatPage = ({ user, getDate }) => {
         return msgItem._id != msg._id;
       })
     );
-    fetch("http://localhost:3006/deleteMsg", {
+    fetch("http://localhost:3006/deleteMessage", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ _id: msg._id }),
@@ -126,20 +116,12 @@ const ChatPage = ({ user, getDate }) => {
       <h1>{chatRoom} Chat</h1>
       <div className="chatDisplay">
         {messages.map((message, index) => (
-          <div key={index}>
-            {lastDate != dateTime(message)[0] && (
-              <h2>-{(lastDate = dateTime(message)[0])}-</h2>
+          <>
+            {lastDate != message.date.split(" ~ ")[0] && (
+              <h2>-{(lastDate = message.date.split(" ~ ")[0])}-</h2>
             )}
-            <div className={"message " + highlightMyMessages(message.username)}>
-              <h3>
-                {message.username} ~ {dateTime(message)[1]}
-                {highlightMyMessages(message.username) && (
-                  <button onClick={() => deleteMsg(message)}>Delete</button>
-                )}
-              </h3>
-              <h3>{message.text}</h3>
-            </div>
-          </div>
+            <ChatTxt message={message} user={user} deleteMsg={deleteMsg} />
+          </>
         ))}
       </div>
       <input type="text" value={message} onChange={handleInputChange} />
