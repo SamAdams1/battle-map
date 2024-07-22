@@ -7,7 +7,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
 
   const highlightMyMessages = (messageSender) => {
     if (user.loggedIn) {
-      return user.username == messageSender ? "myMessage" : "";
+      return user.username == messageSender ? " bg-red-100" : "";
     }
     return "";
   };
@@ -37,8 +37,13 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
           {message.username} ~ {dateTime(message)[1]}
           {myMsg && (
             <>
-              <button onClick={() => deleteMsg(message)}>Delete</button>
-              <button onClick={() => setEditing(!editing)}>
+              <button onClick={() => deleteMsg(message)} className="scale-[.8]">
+                Delete
+              </button>
+              <button
+                onClick={() => setEditing(!editing)}
+                className="scale-[.8]"
+              >
                 {editing ? <>Cancel</> : <>Edit</>}
               </button>
             </>

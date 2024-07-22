@@ -58,15 +58,15 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
 
           return (
             <tr key={battle + index}>
-              <td className="centerTxt">{index + 1}</td>
-              <td className={battleCoords ? "green" : "red"}>
+              <td className="text-center">{index + 1}</td>
+              <td className={battleCoords ? "bg-green-500" : "bg-red-500"}>
                 {battle.split(" or ")[0]}
               </td>
-              <td className="centerTxt">{year}</td>
+              <td className="text-center">{year}</td>
               <td>
                 {battleCoords ? (
                   <button
-                    className="addLocBtn"
+                    className="w-full"
                     title="Copy to Clipboard"
                     onClick={() => copyToClipboard(battleCoords)}
                   >
@@ -74,7 +74,7 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                   </button>
                 ) : (
                   <button
-                    className="addLocBtn"
+                    className="w-full"
                     title="Add Location Data"
                     onClick={() => showPopup(battle, country)}
                     disabled={!user.loggedIn}

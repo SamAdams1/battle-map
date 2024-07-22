@@ -20,10 +20,22 @@ const Contributions = ({ user }) => {
     <div>
       <h1>Your Contributions</h1>
       <button onClick={() => console.log(user.contributions)}>test</button>
-      {Object.keys(user.contributions).map((contr) => {
-        console.log(user.contributions[contr]);
-        return <h2>{user.contributions[contr].battle}</h2>;
-      })}
+      <table>
+        <tbody>
+          <tr>
+            <th>Country</th>
+            <th>Battle</th>
+            <th>Date Added</th>
+          </tr>
+          {Object.keys(user.contributions).map((item) => (
+            <tr>
+              <td>{user.contributions[item]["country"]}</td>
+              <td>{user.contributions[item]["battle"]}</td>
+              <td>{user.contributions[item]["dateAdded"]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

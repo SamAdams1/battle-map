@@ -114,7 +114,7 @@ const ChatPage = ({ user, getDate }) => {
   return (
     <div>
       <h1>{chatRoom} Chat</h1>
-      <div className="chatDisplay">
+      <div className="overflow-y-auto ">
         {messages.map((message, index) => (
           <>
             {lastDate != message.date.split(" ~ ")[0] && (
@@ -124,11 +124,18 @@ const ChatPage = ({ user, getDate }) => {
           </>
         ))}
       </div>
-      <input type="text" value={message} onChange={handleInputChange} />
-      <button onClick={sendMessage} disabled={!user.loggedIn}>
-        Send Message
-      </button>
-      <button onClick={() => console.log(messages)}>test</button>
+      <div className="absolute bottom-0 w-full flex">
+        <input
+          type="text"
+          value={message}
+          onChange={handleInputChange}
+          className="flex-1"
+          placeholder={"Message " + chatRoom}
+        />
+        <button onClick={sendMessage} disabled={!user.loggedIn}>
+          Send Message
+        </button>
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const AccountDropdown = ({ user, setUser }) => {
   const [dropdownVis, setDropdownVis] = useState(false);
 
   return (
-    <div className="accountDropdownDiv">
+    <div className="absolute top-0 right-0 w-">
       <button
         className="accountPfp"
         onClick={() => setDropdownVis(!dropdownVis)}
@@ -13,21 +13,33 @@ const AccountDropdown = ({ user, setUser }) => {
         {user.username.charAt(0)}
       </button>
       {dropdownVis && (
-        <div className="dropdown">
-          <h2>{user.username}</h2>
+        <div
+          className="absolute z-40 -translate-x-[3.8rem] bg-red-800 
+        border-solid border-2 border-white p-2
+        text-center "
+        >
+          <h2 className="text-gray-100">{user.username}</h2>
           <h3>Emperor</h3> {/* User Permission Level */}
           <ul>
             <li>
-              <Link to="favorites">Favorites</Link>
+              <button className="w-full">
+                <Link to="favorites">Favorites</Link>
+              </button>
             </li>
           </ul>
           <ul>
             <li>
-              <Link to="contributions">Contributions</Link>
+              <button className="w-full">
+                <Link to="contributions">Contributions</Link>
+              </button>
             </li>
           </ul>
-          <button onClick={() => console.log(user)}>Settings</button>
-          <button onClick={() => setUser({})}>Log out</button>
+          <button onClick={() => console.log(user)} className="w-full">
+            Settings
+          </button>
+          <button onClick={() => setUser({})} className="w-full">
+            Log out
+          </button>
         </div>
       )}
     </div>

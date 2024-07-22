@@ -1,4 +1,3 @@
-import "./reset.css";
 import "./App.css";
 
 import "leaflet/dist/leaflet.css";
@@ -127,7 +126,6 @@ function App() {
     <h1>Loading...</h1>
   ) : (
     <>
-      {/* <h1 className="text-6xl">hi</h1> */}
       <Header user={user} />
       <Routes>
         <Route

@@ -5,34 +5,41 @@ const NavSideBar = ({ countryList }) => {
   let lastLetter = "";
 
   return (
-    <div className="idk">
+    <div className="absolute left-0 top-24">
       <button
-        className="showHideNav"
+        className="fixed -translate-y-8"
         onClick={() => setSideBarVis(!sideBarVis)}
       >
         {sideBarVis ? <>Hide</> : <>Show</>} Side Bar
       </button>
       {sideBarVis && (
-        <div className="navCountry">
-          <a href="#Top" className="topBtn">
+        <div className="fixed bg-slate-100 max-h-[40em] overflow-auto px-2">
+          <a href="#Top" className="fixed bg-slate-100 w-60 top">
             (Top)
           </a>
-          {countryList.map((country) => {
-            if (country != "_id") {
-              return (
-                <div key={country + "nav"}>
-                  {lastLetter != country.at(0) && (
-                    <h2>{(lastLetter = country.at(0))}</h2>
-                  )}
-                  <p>
-                    <a href={"#" + country} className="navBtn">
-                      {country}
-                    </a>
-                  </p>
-                </div>
-              );
-            }
-          })}
+          <div className="mt-7 mb-2">
+            {countryList.map((country) => {
+              if (country != "_id") {
+                return (
+                  <div key={country + "nav"}>
+                    {lastLetter != country.at(0) && (
+                      <h2
+                        className="border-b-2 border-gray-400 border-solid mt-2 pl-1 pb-1 
+                    "
+                      >
+                        {(lastLetter = country.at(0))}
+                      </h2>
+                    )}
+                    <p>
+                      <a href={"#" + country} className="underline">
+                        {country}
+                      </a>
+                    </p>
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
       )}
     </div>

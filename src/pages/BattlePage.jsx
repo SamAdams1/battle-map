@@ -33,7 +33,7 @@ const BattlePage = ({
   }
 
   return (
-    <div className="battlePage">
+    <div className="flex flex-col items-center">
       <a
         href="https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location"
         target="_blank"

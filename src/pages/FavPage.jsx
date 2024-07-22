@@ -21,21 +21,33 @@ const FavPage = ({ user }) => {
     <div>
       <h1>Your Favorites</h1>
       <button onClick={() => console.log(user.favorites)}>test</button>
-      {Object.keys(user.favorites).map((battle) => {
-        const fav = user.favorites[battle];
-        return (
-          <>
-            <h2>
-              {fav.country} - {fav.battle} - {fav.dateAdded}
-              <FavButton
-                battle={fav.battle}
-                country={fav.country}
-                user={user}
-              />
-            </h2>
-          </>
-        );
-      })}
+      <table>
+        <tbody>
+          <tr>
+            <th>Country</th>
+            <th>Battle</th>
+            <th>Date Saved</th>
+            <th></th>
+          </tr>
+        </tbody>
+        {Object.keys(user.favorites).map((battle) => {
+          const fav = user.favorites[battle];
+          return (
+            <tr>
+              <td>{fav.country}</td>
+              <td>{fav.battle}</td>
+              <td>{fav.dateAdded}</td>
+              <td>
+                <FavButton
+                  battle={fav.battle}
+                  country={fav.country}
+                  user={user}
+                />
+              </td>
+            </tr>
+          );
+        })}
+      </table>
     </div>
   );
 };
