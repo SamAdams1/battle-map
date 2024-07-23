@@ -23,10 +23,7 @@ const NavSideBar = ({ countryList }) => {
                 return (
                   <div key={country + "nav"}>
                     {lastLetter != country.at(0) && (
-                      <h2
-                        className="border-b-2 border-gray-400 border-solid mt-2 pl-1 pb-1 
-                    "
-                      >
+                      <h2 className="border-b-2 border-red-800 border-solid mt-2 pl-1 pb-1 ">
                         {(lastLetter = country.at(0))}
                       </h2>
                     )}

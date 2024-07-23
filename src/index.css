@@ -1,0 +1,251 @@
+/* OLD NO LONGER USED CSS
+REPLACED WITH TAILWIND.CSS */
+
+body {
+  margin: 0;
+  background-color: gray;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.4em;
+}
+h2 {
+  font-size: 1.5em;
+  line-height: 1.4em;
+}
+h3 {
+  font-size: 1em;
+  line-height: 1.4em;
+}
+h4 {
+  font-size: 0.75em;
+  line-height: 1.4em;
+}
+
+.leaflet-container {
+  height: 94vh;
+  width: 100%;
+  z-index: 1;
+}
+.infoPanel {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  background-color: rgb(190, 144, 28);
+  border-radius: 1em 0 0 1em;
+  padding: 0 0 0 0.7em;
+  margin-top: 1em;
+}
+
+/* top right bottom left */
+/* top right-left bottom */
+.countryList,
+.battleList {
+  padding: 0.5em;
+  background-color: goldenrod;
+  max-height: 50vh;
+  /* width: 20vw; */
+  overflow-y: auto;
+}
+.battleBtn {
+  display: flex;
+  align-items: center;
+}
+.infoPanelVisBtn {
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+}
+
+.header {
+  /* position: fixed; */
+  background-color: maroon;
+  color: whitesmoke;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+}
+div > ul > li {
+  background-color: goldenrod;
+  margin: 1em;
+  display: flex;
+  align-items: center;
+}
+.battlemap {
+  margin: 0em;
+}
+
+.zoomSlider {
+  display: flex;
+  padding: 0.25em 0;
+}
+/* login/register popup */
+.loginRegister {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: antiquewhite;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+/* user pfp button and dropdown */
+.accountBtns {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 102;
+  display: flex;
+  align-items: end;
+}
+.accountDropdownDiv {
+  display: flex;
+  flex-flow: column;
+  align-items: end;
+  align-content: flex-end;
+}
+.accountPfp {
+  --diameter: 4em;
+  border-radius: var(--diameter);
+  height: var(--diameter);
+  width: var(--diameter);
+}
+.dropdown {
+  background-color: pink;
+  color: black;
+  z-index: 101;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.dropdown > button {
+  width: 100%;
+}
+
+/* battlelist page */
+.battlePage {
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.countrySect {
+  margin: 0em 0em 2em;
+}
+.countryTitle {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+.countryTitle > * {
+  /* margin: 0 .4em; */
+  position: sticky;
+  top: 0;
+}
+.battleRow {
+  margin: 0 1em;
+  color: whitesmoke;
+  display: flex;
+}
+.battleRow > * {
+  margin: 0 1em;
+}
+.coordSect {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+th {
+  background-color: aliceblue;
+}
+td {
+  padding: 0.2em;
+  border: solid black;
+  background-color: whitesmoke;
+}
+
+td > button {
+  width: 100%;
+}
+
+.green,
+.red {
+  color: whitesmoke;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: maroon;
+}
+
+.navCountry {
+  position: fixed;
+  left: 0em;
+  overflow-y: auto;
+  border-radius: 1em 0 0 1em;
+
+  background-color: gainsboro;
+  width: 15em;
+  height: 40em;
+  z-index: 10;
+}
+.navCountry > * {
+  padding: 0.8em 1.4em;
+}
+.navBtn {
+  text-decoration: none;
+}
+.topBtn {
+  position: fixed;
+  background-color: gainsboro;
+  width: 13.5em;
+  margin: 0;
+  padding: 0;
+}
+.showHideNav {
+  position: fixed;
+  transform: translateY(-1.7em);
+  left: 0;
+  z-index: 10;
+}
+.popup {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  transform: translateY(-3.5em);
+
+  background-color: goldenrod;
+
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.isFav {
+  background-color: gold;
+}
+.centerTxt {
+  text-align: center;
+}
+/* CHAT PAGE */
+.chatDisplay {
+  overflow-y: auto;
+  height: 45em;
+  background-color: gainsboro;
+  padding: 1em;
+}
+
+/* ABOUT PAGE */
+.about {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.myMessage {
+  position: relative;
+  background-color: antiquewhite;
+  right: 0;
+}

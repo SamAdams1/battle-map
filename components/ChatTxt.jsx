@@ -32,8 +32,8 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
   let myMsg = highlightMyMessages(message.username);
   return (
     <div>
-      <div className={"message " + myMsg}>
-        <h3>
+      <div className={"message p-1 " + (myMsg || "bg-slate-50")}>
+        <h4>
           {message.username} ~ {dateTime(message)[1]}
           {myMsg && (
             <>
@@ -48,7 +48,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
               </button>
             </>
           )}
-        </h3>
+        </h4>
         {editing ? (
           <>
             <input
@@ -59,7 +59,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
             <button onClick={editMessage}>Save</button>
           </>
         ) : (
-          <h3>{text}</h3>
+          <h4>{text}</h4>
         )}
       </div>
     </div>

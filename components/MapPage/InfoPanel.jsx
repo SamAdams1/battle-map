@@ -13,7 +13,6 @@ const InfoPanel = ({
   const [showDisplay, setShowDisplay] = useState(true);
   const [country, setCountry] = useState("");
   const [lastCountry, setLastCountry] = useState("");
-  const [inputLatLon, setInputLatLon] = useState("");
 
   const [header, setHeader] = useState("Select a Country");
 
@@ -42,7 +41,7 @@ const InfoPanel = ({
     setHeader("Select a Country");
   };
 
-  const goToLatLon = () => {
+  const goToLatLon = (inputLatLon) => {
     if (inputLatLon) {
       let latLonArr = inputLatLon
         .replace(" ", "")
@@ -103,19 +102,9 @@ const InfoPanel = ({
                 panToCountry={panFunc}
                 showBattles={showBattles}
                 setHeader={setHeader}
+                goToLatLon={goToLatLon}
               />
             )}
-          </div>
-          <div className="bg-red-800">
-            <input
-              type="text"
-              placeholder="Enter LatLon: Ex: 1,1"
-              onChange={(e) => setInputLatLon(e.target.value)}
-              className="w-min"
-            />
-            <button onClick={goToLatLon} className="">
-              Go To
-            </button>
           </div>
         </>
       )}

@@ -20,6 +20,7 @@ import Contributions from "./pages/Contributions";
 import About from "./pages/About";
 import ChatPage from "./pages/ChatPage";
 import Header from "../components/Header";
+import Settings from "./pages/Settings";
 
 function App() {
   // handle map data
@@ -175,6 +176,7 @@ function App() {
         />
         <Route path="favorites" element={<FavPage user={user} />} />
         <Route path="contributions" element={<Contributions user={user} />} />
+        <Route path="settings" element={<Settings user={user} />} />
       </Routes>
       <div className="accountBtns">
         {Object.keys(user).length > 1 && (

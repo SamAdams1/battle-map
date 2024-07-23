@@ -7,7 +7,7 @@ const Header = ({ user }) => {
       id="Top"
       className="top-0 flex content-evenly  bg-red-800 header text-white *:mr-6 "
     >
-      <div className="flex items-center *:mr-5">
+      <div className=" flex items-center *:mr-5">
         <ul>
           <li className="battlemap">
             <Link to="/about">
@@ -32,15 +32,19 @@ const Header = ({ user }) => {
         </ul>
       </div>
       {!(Object.keys(user).length > 1) && (
-        <div className="absolute right-0">
+        <div className="absolute flex right-0 translate-x-6 items-center">
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <button className="text-black">
+                <Link to="/login">Login</Link>
+              </button>
             </li>
           </ul>
           <ul>
             <li>
-              <Link to="/register">Register</Link>
+              <button className="text-black">
+                <Link to="/register">Register</Link>
+              </button>
             </li>
           </ul>
         </div>

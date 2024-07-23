@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AccountDropdown = ({ user, setUser }) => {
   const [dropdownVis, setDropdownVis] = useState(false);
@@ -14,8 +14,8 @@ const AccountDropdown = ({ user, setUser }) => {
       </button>
       {dropdownVis && (
         <div
-          className="absolute z-40 -translate-x-[3.8rem] bg-red-800 
-        border-solid border-2 border-white p-2
+          className="absolute z-40 -translate-x-[4.5rem] bg-red-800 
+        border-solid border-x-2 border-b-2 border-white p-2 rounded-b-lg
         text-center "
         >
           <h2 className="text-gray-100">{user.username}</h2>
@@ -34,9 +34,13 @@ const AccountDropdown = ({ user, setUser }) => {
               </button>
             </li>
           </ul>
-          <button onClick={() => console.log(user)} className="w-full">
-            Settings
-          </button>
+          <ul>
+            <li>
+              <button onClick={() => console.log(user)} className="w-full">
+                <Link to="settings">Settings</Link>
+              </button>
+            </li>
+          </ul>
           <button onClick={() => setUser({})} className="w-full">
             Log out
           </button>

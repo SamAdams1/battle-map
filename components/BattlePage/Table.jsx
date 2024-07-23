@@ -88,9 +88,6 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                   <FavButton battle={battle} country={country} user={user} />
                 </td>
               )}
-              {/* <td>
-                <button onClick={() => getYear(battle)}>test</button>
-              </td> */}
             </tr>
           );
         })}
