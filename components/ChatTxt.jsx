@@ -5,9 +5,9 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
   const [text, setText] = useState(message.text);
   const [editedTxt, setEditedTxt] = useState(message.text);
 
-  const highlightMyMessages = (messageSender) => {
+  const highlightMyMessages = () => {
     if (user.loggedIn) {
-      return user.username == messageSender ? " bg-red-100" : "";
+      return user._id == message.userId ? " bg-red-100" : "";
     }
     return "";
   };
@@ -29,7 +29,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
     });
   };
 
-  let myMsg = highlightMyMessages(message.username);
+  let myMsg = highlightMyMessages();
   return (
     <div>
       <div className={"message p-1 " + (myMsg || "bg-slate-50")}>
