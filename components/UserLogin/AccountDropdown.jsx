@@ -5,6 +5,11 @@ const AccountDropdown = ({ user, setUser }) => {
   const [dropdownVis, setDropdownVis] = useState(false);
   const navigate = useNavigate();
 
+  const goTo = (route) => {
+    navigate(route);
+    setDropdownVis(false);
+  };
+
   return (
     <div className="absolute top-0 right-0 w-">
       <button
@@ -19,16 +24,15 @@ const AccountDropdown = ({ user, setUser }) => {
         border-solid border-x-2 border-b-2 border-white p-2 rounded-b-lg
         text-center "
         >
-          <h2 className="text-gray-100">{user.username}</h2>
-          <h3 className="text-gray-100 mb-2">{user.title}</h3>{" "}
-          {/* User Permission Level */}
+          <h2 className="text-gray-100 mb-2">{user.username}</h2>
+          <h3 className="text-gray-100 mb-2 underline">
+            <Link to="titles">{user.title}</Link>
+          </h3>
           <div className="*:w-full">
-            <button onClick={() => navigate("admin")}>Admin</button>
-            <button onClick={() => navigate("favorites")}>Favorites</button>
-            <button onClick={() => navigate("contributions")}>
-              Contributions
-            </button>
-            <button onClick={() => navigate("settings")}>Settings</button>
+            <button onClick={() => goTo("admin")}>Admin</button>
+            <button onClick={() => goTo("favorites")}>Favorites</button>
+            <button onClick={() => goTo("contributions")}>Contributions</button>
+            <button onClick={() => goTo("settings")}>Settings</button>
             <button onClick={() => setUser({})} className="w-full">
               Log out
             </button>

@@ -41,16 +41,22 @@ const Battles = ({
 
   return (
     <>
-      <div className="*:mt-1 overflow-auto max-h-[45em] m-1">
+      <div className="*:mt-1 overflow-auto max-h-[40em] mb-1">
         {data[country].map((battleName, index) => {
           battleName = battleName.split(" – ")[0];
           const battleData = battleLocations[country][battleName];
           return (
             <div key={country + index} className="flex">
-              <p className="mr-1 ml-1">{index + 1 + ":"}</p>
-              {battleData != undefined ? (
+              <p
+                className={
+                  "mx-1 pr-1 border-r-4 " +
+                  (battleData ? "border-green-400" : "border-red-400")
+                }
+              >
+                {index + 1 + ":"}
+              </p>
+              {battleData ? (
                 <>
-                  <span className="w-1 bg-green-400 mr-1"></span>
                   <button
                     onClick={() => onClick(battleData, battleName)}
                     className="max-w-45 w-full"
@@ -60,7 +66,6 @@ const Battles = ({
                 </>
               ) : (
                 <>
-                  <span className="w-1 bg-red-400 mr-2"></span>
                   <p>{battleName}</p>
                 </>
               )}

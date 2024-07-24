@@ -22,6 +22,17 @@ import ChatPage from "./pages/ChatPage";
 import Header from "../components/Header";
 import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
+import Titles from "./pages/Titles";
+
+const userTitles = [
+  { title: "Emperor", desc: "Owner of the website." },
+  {
+    title: "Marshal",
+    desc: "Second in command. Can submit battles, approve battles, and demote users.",
+  },
+  { title: "Corporal", desc: "Can submit and approve battles." },
+  { title: "Soldier", desc: "Can suggest battles and talk in chat." },
+];
 
 function App() {
   // handle map data
@@ -95,18 +106,11 @@ function App() {
     setDataRetrieved(true);
   }, []);
 
-  const userTitles = {
-    0: "Emperor",
-    1: "General",
-    2: "Corporal",
-    3: "Soldier",
-  };
-
   useEffect(() => {
     user["loggedIn"] = Object.keys(user).length > 1;
     if (user.loggedIn) {
-      user["title"] = userTitles[user.lvl];
-      console.log(user);
+      user["title"] = userTitles[user.lvl].title;
+      // console.log(user);
     }
   }, [user]);
 
@@ -192,6 +196,10 @@ function App() {
           }
         />
         <Route path="admin" element={<Admin user={user} />} />
+        <Route
+          path="titles"
+          element={<Titles user={user} titles={userTitles} />}
+        />
         <Route path="favorites" element={<Favorites user={user} />} />
         <Route path="contributions" element={<Contributions user={user} />} />
         <Route path="settings" element={<Settings user={user} />} />
