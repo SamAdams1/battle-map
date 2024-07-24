@@ -31,7 +31,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
 
   let myMsg = highlightMyMessages();
   return (
-    <div className={"message p-2 " + (myMsg || "bg-slate-50")}>
+    <div className={"p-2 " + (myMsg || "bg-slate-50")}>
       <h4 className="font-medium">
         {message.username} ~ {dateTime(message)[1]}
         {myMsg && (
@@ -57,7 +57,6 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
             type="text"
             value={editedTxt}
             onChange={(e) => setEditedTxt(e.target.value)}
-            className="max-w-[100em]"
           />
           <button onClick={editMessage}>Save</button>
         </>

@@ -114,17 +114,15 @@ const ChatPage = ({ user, getDate }) => {
   let lastDate = "";
   return (
     <div className="flex flex-row w-full">
-      <div className="min-w-1/6 *:w-full px-2 bg-slate-200 overflow-y-auto">
-        <h1>{chatRoom} Chat</h1>
-        <h3 className="mb-3">Channels</h3>
+      <div className="*:w-full px-2 bg-slate-200 overflow-y-auto">
+        <h1 className="overflow-x-auto text-nowrap">{chatRoom} Chat</h1>
+        <h3 className="mb-3">Channels:</h3>
         <button>{chatRoom}</button>
         {chatRooms.map((room) => (
-          <>
-            <button>{room}</button>
-          </>
+          <button>{room}</button>
         ))}
       </div>
-      <div className="overflow-y-auto w-full h-[50.62em]">
+      <div className="overflow-y-auto  w-full h-[86vh] ">
         {messages.map((message, index) => (
           <>
             {lastDate != message.date.split(" ~ ")[0] && (

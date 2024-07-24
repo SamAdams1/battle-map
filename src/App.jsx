@@ -15,7 +15,7 @@ import Axios from "axios";
 
 // React router
 import { Routes, Route } from "react-router-dom";
-import FavPage from "./pages/FavPage";
+import Favorites from "./pages/Favorites";
 import Contributions from "./pages/Contributions";
 import About from "./pages/About";
 import ChatPage from "./pages/ChatPage";
@@ -76,11 +76,15 @@ function App() {
     console.log(battleLocs[country]);
     addToUserData(battle, country, "contributions");
 
-    // Axios.put(`http://localhost:3005/${"addBattleLoc"}`, {
-    //   "battles": battleLocs[country], country, total}
-    // ).then((response) => {
-    //   console.log(response);
-    // }).catch((e) => console.log(e))
+    Axios.put(`http://localhost:3005/${"addBattleLoc"}`, {
+      battles: battleLocs[country],
+      country,
+      total,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => console.log(e));
   };
 
   useEffect(() => {
@@ -91,10 +95,22 @@ function App() {
     setDataRetrieved(true);
   }, []);
 
+  const userTitles = {
+    0: "Emperor",
+    1: "General",
+    2: "Corporal",
+    3: "Soldier",
+  };
+
   useEffect(() => {
     user["loggedIn"] = Object.keys(user).length > 1;
+    if (user.loggedIn) {
+      user["title"] = userTitles[user.lvl];
+      console.log(user);
+    }
   }, [user]);
 
+  // favorited and contributed battles added to user card
   const addToUserData = (battleName, countryName, route) => {
     if (user.loggedIn) {
       const newInfo = {
@@ -176,7 +192,7 @@ function App() {
           }
         />
         <Route path="admin" element={<Admin user={user} />} />
-        <Route path="favorites" element={<FavPage user={user} />} />
+        <Route path="favorites" element={<Favorites user={user} />} />
         <Route path="contributions" element={<Contributions user={user} />} />
         <Route path="settings" element={<Settings user={user} />} />
       </Routes>

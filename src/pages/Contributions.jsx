@@ -13,7 +13,7 @@ const Contributions = ({ user }) => {
   return !user.loggedIn ? (
     <h1>Must be logged in to see contributions...</h1>
   ) : (
-    <div>
+    <div className="flex flex-col">
       <h1>Your Contributions</h1>
       <table>
         <tbody>
@@ -23,9 +23,23 @@ const Contributions = ({ user }) => {
             <th>Date Added</th>
           </tr>
           {Object.keys(user.contributions).map((item) => (
-            <tr>
+            <tr key={item}>
               <td>{user.contributions[item]["country"]}</td>
-              <td>{user.contributions[item]["battle"]}</td>
+              <td>
+                <a
+                  href={
+                    "https://en.wikipedia.org/wiki/" +
+                    user.contributions[item]["battle"]
+                      .split(" or ")
+                      .at(0)
+                      .replace(" ", "_")
+                  }
+                  target="_blank"
+                  className="underline"
+                >
+                  {user.contributions[item]["battle"]}
+                </a>
+              </td>
               <td>{user.contributions[item]["dateAdded"]}</td>
             </tr>
           ))}
