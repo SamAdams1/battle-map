@@ -19,7 +19,8 @@ const AccountDropdown = ({ user, setUser }) => {
         text-center "
         >
           <h2 className="text-gray-100">{user.username}</h2>
-          <h3>Emperor</h3> {/* User Permission Level */}
+          <h3 className="text-gray-100 mb-2">Emperor</h3>{" "}
+          {/* User Permission Level */}
           <ul>
             <li>
               <button className="w-full">

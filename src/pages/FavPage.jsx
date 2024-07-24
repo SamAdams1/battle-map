@@ -5,22 +5,17 @@ import FavButton from "../../components/FavButton";
 const FavPage = ({ user }) => {
   const navigate = useNavigate();
 
-  const userLoggedIn = () => {
-    return Object.keys(user).length >= 1;
-  };
-
   useEffect(() => {
-    if (!userLoggedIn()) {
+    if (!user.loggedIn) {
       navigate("/");
     }
   }, [user]);
 
-  return !userLoggedIn() ? (
-    <h1>Must be logged in to see favorites.</h1>
+  return !user.loggedIn ? (
+    <h1>Must be logged in to see favorites...</h1>
   ) : (
     <div>
       <h1>Your Favorites</h1>
-      <button onClick={() => console.log(user.favorites)}>test</button>
       <table>
         <tbody>
           <tr>
@@ -29,24 +24,24 @@ const FavPage = ({ user }) => {
             <th>Date Saved</th>
             <th></th>
           </tr>
+          {Object.keys(user.favorites).map((battle) => {
+            const fav = user.favorites[battle];
+            return (
+              <tr>
+                <td>{fav.country}</td>
+                <td>{fav.battle}</td>
+                <td>{fav.dateAdded}</td>
+                <td>
+                  <FavButton
+                    battle={fav.battle}
+                    country={fav.country}
+                    user={user}
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
-        {Object.keys(user.favorites).map((battle) => {
-          const fav = user.favorites[battle];
-          return (
-            <tr>
-              <td>{fav.country}</td>
-              <td>{fav.battle}</td>
-              <td>{fav.dateAdded}</td>
-              <td>
-                <FavButton
-                  battle={fav.battle}
-                  country={fav.country}
-                  user={user}
-                />
-              </td>
-            </tr>
-          );
-        })}
       </table>
     </div>
   );

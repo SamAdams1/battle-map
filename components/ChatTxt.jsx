@@ -31,37 +31,39 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
 
   let myMsg = highlightMyMessages();
   return (
-    <div>
-      <div className={"message p-1 " + (myMsg || "bg-slate-50")}>
-        <h4>
-          {message.username} ~ {dateTime(message)[1]}
-          {myMsg && (
-            <>
-              <button onClick={() => deleteMsg(message)} className="scale-[.8]">
-                Delete
-              </button>
-              <button
-                onClick={() => setEditing(!editing)}
-                className="scale-[.8]"
-              >
-                {editing ? <>Cancel</> : <>Edit</>}
-              </button>
-            </>
-          )}
-        </h4>
-        {editing ? (
+    <div className={"message p-2 " + (myMsg || "bg-slate-50")}>
+      <h4 className="font-medium">
+        {message.username} ~ {dateTime(message)[1]}
+        {myMsg && (
           <>
-            <input
-              type="text"
-              value={editedTxt}
-              onChange={(e) => setEditedTxt(e.target.value)}
-            />
-            <button onClick={editMessage}>Save</button>
+            <button
+              onClick={() => deleteMsg(message)}
+              className="scale-[.8] font-normal"
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => setEditing(!editing)}
+              className="scale-[.8] font-normal"
+            >
+              {editing ? <>Cancel</> : <>Edit</>}
+            </button>
           </>
-        ) : (
-          <h4>{text}</h4>
         )}
-      </div>
+      </h4>
+      {editing && user.loggedIn ? (
+        <>
+          <input
+            type="text"
+            value={editedTxt}
+            onChange={(e) => setEditedTxt(e.target.value)}
+            className="max-w-[100em]"
+          />
+          <button onClick={editMessage}>Save</button>
+        </>
+      ) : (
+        <h4 className="py-1 pl-4">{text}</h4>
+      )}
     </div>
   );
 };

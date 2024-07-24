@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Settings = ({ user }) => {
   const [img, setImg] = useState(user.pfp);
   const [newUsername, setNewUsername] = useState(user.username);
   const [newPassword, setNewPassword] = useState(user.password);
   const [edit, setEdit] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     console.log(e.target.files);
@@ -36,10 +39,18 @@ const Settings = ({ user }) => {
     console.log(newUsername, newPassword);
   };
 
-  return (
+  useEffect(() => {
+    if (!user.loggedIn) {
+      navigate("/");
+    }
+  }, [user]);
+
+  return !user.loggedIn ? (
+    <h1>Must be logged in to see settings...</h1>
+  ) : (
     <div>
       <h1>Settings</h1>
-      <img src={img} alt="No pfp found." />
+      {/* <img src={img} alt="No pfp found." /> */}
       {!img && <input type="file" onChange={handleChange} accept="image" />}
       {img && !user.pfp && (
         <>
@@ -74,7 +85,9 @@ const Settings = ({ user }) => {
         </>
       )}
       <br />
-      <button className="mt-10">Verify Email</button>
+      <button className="mt-10" disabled>
+        Verify Email
+      </button>
     </div>
   );
 };

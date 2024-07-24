@@ -113,44 +113,43 @@ const ChatPage = ({ user, getDate }) => {
   let chatRooms = ["Germany", "France", "England", "Spain"];
   let lastDate = "";
   return (
-    <div>
-      <h1>{chatRoom} Chat</h1>
-      <div className="flex flex-row w-full">
-        <div className="w-1/6 *:w-full mx-2">
-          <h3>Channels</h3>
-          <button>{chatRoom}</button>
-          {chatRooms.map((room) => (
-            <>
-              <button>{room}</button>
-            </>
-          ))}
-        </div>
-        <div className="overflow-y-auto w-full h-80">
-          {messages.map((message, index) => (
-            <>
-              {lastDate != message.date.split(" ~ ")[0] && (
-                <div className="flex flex-col items-center bg-slate-50">
-                  <h3 className="bg-slate-200 solid border-2 border-slate-800 rounded-md">
-                    -{(lastDate = message.date.split(" ~ ")[0])}-
-                  </h3>
-                </div>
-              )}
-              <ChatTxt message={message} user={user} deleteMsg={deleteMsg} />
-            </>
-          ))}
-        </div>
-        <div className="absolute bottom-0 w-full flex h-20 p-3">
-          <input
-            type="text"
-            value={message}
-            onChange={handleInputChange}
-            className="flex-1"
-            placeholder={"Message " + chatRoom}
-          />
-          <button onClick={sendMessage} disabled={!user.loggedIn || !message}>
-            Send Message
-          </button>
-        </div>
+    <div className="flex flex-row w-full">
+      <div className="min-w-1/6 *:w-full px-2 bg-slate-200 overflow-y-auto">
+        <h1>{chatRoom} Chat</h1>
+        <h3 className="mb-3">Channels</h3>
+        <button>{chatRoom}</button>
+        {chatRooms.map((room) => (
+          <>
+            <button>{room}</button>
+          </>
+        ))}
+      </div>
+      <div className="overflow-y-auto w-full h-[50.62em]">
+        {messages.map((message, index) => (
+          <>
+            {lastDate != message.date.split(" ~ ")[0] && (
+              <div className="flex flex-col items-center bg-slate-50 py-2">
+                <span className="bg-slate-400 h-[.2rem] w-full translate-y-[1.22rem]"></span>
+                <h4 className="bg-slate-200 solid border-2 border-slate-800 rounded-md z-10 p-1 font-medium">
+                  {(lastDate = message.date.split(" ~ ")[0])}
+                </h4>
+              </div>
+            )}
+            <ChatTxt message={message} user={user} deleteMsg={deleteMsg} />
+          </>
+        ))}
+      </div>
+      <div className="bg-white absolute bottom-0 w-full flex h-20 p-3 pt-0">
+        <input
+          type="text"
+          value={message}
+          onChange={handleInputChange}
+          className="flex-1 w-10"
+          placeholder={"Message " + chatRoom}
+        />
+        <button onClick={sendMessage} disabled={!user.loggedIn || !message}>
+          Send Message
+        </button>
       </div>
     </div>
   );

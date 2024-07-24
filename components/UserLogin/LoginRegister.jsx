@@ -50,8 +50,10 @@ const LoginRegister = ({ formType, setUser, user }) => {
   };
 
   return (
-    <div className="loginRegister">
-      <button onClick={() => quitForm()}>X</button>
+    <div className="">
+      <button onClick={() => quitForm()} className="w-8 absolute right-0">
+        X
+      </button>
       {user.loggedIn ? (
         <h1>Success!</h1>
       ) : (
