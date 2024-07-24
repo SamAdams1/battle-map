@@ -21,6 +21,7 @@ import About from "./pages/About";
 import ChatPage from "./pages/ChatPage";
 import Header from "../components/Header";
 import Settings from "./pages/Settings";
+import Admin from "./pages/Admin";
 
 function App() {
   // handle map data
@@ -174,6 +175,7 @@ function App() {
             />
           }
         />
+        <Route path="admin" element={<Admin user={user} />} />
         <Route path="favorites" element={<FavPage user={user} />} />
         <Route path="contributions" element={<Contributions user={user} />} />
         <Route path="settings" element={<Settings user={user} />} />

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AccountDropdown = ({ user, setUser }) => {
   const [dropdownVis, setDropdownVis] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="absolute top-0 right-0 w-">
@@ -21,30 +22,17 @@ const AccountDropdown = ({ user, setUser }) => {
           <h2 className="text-gray-100">{user.username}</h2>
           <h3 className="text-gray-100 mb-2">Emperor</h3>{" "}
           {/* User Permission Level */}
-          <ul>
-            <li>
-              <button className="w-full">
-                <Link to="favorites">Favorites</Link>
-              </button>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <button className="w-full">
-                <Link to="contributions">Contributions</Link>
-              </button>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <button onClick={() => console.log(user)} className="w-full">
-                <Link to="settings">Settings</Link>
-              </button>
-            </li>
-          </ul>
-          <button onClick={() => setUser({})} className="w-full">
-            Log out
-          </button>
+          <div className="*:w-full">
+            <button onClick={() => navigate("admin")}>Admin</button>
+            <button onClick={() => navigate("favorites")}>Favorites</button>
+            <button onClick={() => navigate("contributions")}>
+              Contributions
+            </button>
+            <button onClick={() => navigate("settings")}>Settings</button>
+            <button onClick={() => setUser({})} className="w-full">
+              Log out
+            </button>
+          </div>
         </div>
       )}
     </div>
