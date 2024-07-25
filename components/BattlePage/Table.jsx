@@ -27,7 +27,7 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
     alert("Location copied to clipboard: " + txt);
   };
 
-  // const getYear = (battleName) => {
+  // const getYearFromName = (battleName) => {
   //   let num = "";
   //   let lastChar = "0";
   //   for (let index = 0; index < battleName.length; index++) {
@@ -69,18 +69,38 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
               <td className="text-center">{year}</td>
               <td>
                 {battleCoords ? (
-                  <button
-                    className="w-full"
-                    title="Copy to Clipboard"
-                    onClick={() => copyToClipboard(battleCoords)}
-                  >
-                    [{battleCoords[0]}, {battleCoords[1]}]
-                  </button>
+                  <div className="flex">
+                    <button
+                      className="flex-1"
+                      title="Copy to Clipboard"
+                      onClick={() => copyToClipboard(battleCoords)}
+                    >
+                      [{battleCoords[0]}, {battleCoords[1]}]
+                    </button>
+                    {user.loggedIn && (
+                      <>
+                        {user.perms.canReportData && (
+                          <button
+                            onClick={() => showPopup(country, battle, "report")}
+                          >
+                            Report
+                          </button>
+                        )}
+                        {user.perms.canEditData && (
+                          <button
+                            onClick={() => showPopup(country, battle, "edit")}
+                          >
+                            Edit
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </div>
                 ) : (
                   <button
                     className="w-full"
                     title="Add Location Data"
-                    onClick={() => showPopup(battle, country)}
+                    onClick={() => showPopup(country, battle, "add")}
                     disabled={!user.loggedIn}
                   >
                     Add

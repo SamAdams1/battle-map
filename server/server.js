@@ -163,6 +163,20 @@ app.put("/updateUsernamePassword", (req, res) => {
     });
 });
 
+app.get("/admin/users", (req, res) => {
+  // console.log(req);
+  let idk = [];
+  pipeline = [{ $unset: ["password", "pfp", "favorites"] }];
+  // https://www.mongodb.com/docs/drivers/node/current/aggregation-tutorials/filtered-subset/
+  db.collection("users")
+    .aggregate(pipeline)
+    .toArray()
+    .then((result) => {
+      idk = [...idk, result];
+      res.json(idk);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

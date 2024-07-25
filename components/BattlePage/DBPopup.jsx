@@ -24,7 +24,7 @@ const DBPopup = ({ battle, country, addBattleLoc, setPopupVis }) => {
   }
 
   return (
-    <div className="z-30 fixed bg-white w-full h-full -translate-y-14">
+    <div>
       <button onClick={() => setPopupVis(false)}>X</button>
       <h1>{country}</h1>
       <h1>{battle}</h1>

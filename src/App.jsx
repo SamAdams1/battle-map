@@ -30,14 +30,16 @@ import { addBattle } from "../components/UserLogin/userFuncs";
 const userTitles = [
   {
     title: "Emperor",
-    desc: "Owner of the website.                              ",
+    desc: "Owner of the website.",
     funcs: {
-      locData: addBattle,
+      addLocData: addBattle,
     },
     permissions: {
-      canDemoteUsers: true,
       canPremoteUsers: true,
+      canDemoteUsers: true,
       seeAdminPanel: true,
+      canReportData: true,
+      canEditData: true,
     },
   },
   {
@@ -46,13 +48,11 @@ const userTitles = [
   },
   {
     title: "Corporal",
-    desc: "Can submit and approve battles.                         ",
-    funcs: {},
+    desc: "Can submit and approve battles.",
   },
   {
     title: "Soldier",
-    desc: "Can suggest battles and talk in chat.                          ",
-    funcs: {},
+    desc: "Can suggest battles and talk in chat.",
   },
 ];
 
@@ -78,8 +78,9 @@ function App() {
     user["loggedIn"] = Object.keys(user).length > 1;
     if (user.loggedIn) {
       user["title"] = userTitles[user.lvl].title;
-      user["funcs"] = userTitles[user.lvl].funcs.locData;
-      // console.log(user);
+      user["funcs"] = userTitles[user.lvl].funcs;
+      user["perms"] = userTitles[user.lvl].permissions;
+      console.log(user);
     }
   }, [user]);
 
@@ -194,8 +195,6 @@ function App() {
               locationData={battleLocs}
               addLocationData={addBattleLoc}
               user={user}
-              dataRetrieved={dataRetrieved}
-              //
             />
           }
         />
