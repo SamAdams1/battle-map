@@ -155,7 +155,6 @@ function App() {
             <BattlePage
               battleNameData={battleNames}
               locationData={battleLocs}
-              addLocationData={addBattleLoc}
               user={user}
             />
           }

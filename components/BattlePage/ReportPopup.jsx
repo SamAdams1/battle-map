@@ -1,6 +1,6 @@
 import React from "react";
 
-const Report = () => {
+const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
   return (
     <div>
       <h1>Report</h1>

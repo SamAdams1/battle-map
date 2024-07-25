@@ -5,12 +5,7 @@ import SingleCountry from "../../components/BattlePage/SingleCountry";
 import Report from "../../components/BattlePage/ReportPopup";
 import EditPopup from "../../components/BattlePage/EditPopup";
 
-const BattlePage = ({
-  battleNameData,
-  locationData,
-  addLocationData,
-  user,
-}) => {
+const BattlePage = ({ battleNameData, locationData, user }) => {
   const [popupVis, setPopupVis] = useState(false);
   const [popupType, setPopupType] = useState("");
 
