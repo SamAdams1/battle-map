@@ -11,11 +11,15 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
   }
 
   function battleHasLoc(country, battleName) {
-    let data = battleLocs[country][battleName];
-    if (data) {
-      return [tensPlace(data.latLon[0]), tensPlace(data.latLon[1])];
+    try {
+      let data = battleLocs[country][battleName];
+      if (data) {
+        return [tensPlace(data.latLon[0]), tensPlace(data.latLon[1])];
+      }
+      return data;
+    } catch {
+      return undefined;
     }
-    return data;
   }
 
   const copyToClipboard = (txt) => {

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavSideBar from "../../components/BattlePage/NavSideBar";
-import Table from "../../components/BattlePage/Table";
 import DBPopup from "../../components/BattlePage/DBPopup";
+import SingleCountry from "../../components/BattlePage/SingleCountry";
+import { useNavigate } from "react-router-dom";
 
 const BattlePage = ({
-  nameData,
+  battleNameData,
   locationData,
   addLocationData,
-  favBattle,
   user,
+  dataRetrieved,
 }) => {
   const [popupVis, setPopupVis] = useState(false);
   const [selectedBattle, setSelectedBattle] = useState("");
@@ -20,19 +21,16 @@ const BattlePage = ({
     setPopupVis(true);
   }
 
-  function getTotalBattles(countryName) {
-    try {
-      let total = Object.keys(locationData[countryName]).length;
-      if (total) {
-        return total;
-      }
-      return 0;
-    } catch {
-      return 0;
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!dataRetrieved) {
+      navigate("/");
     }
-  }
+  }, [user]);
 
-  return (
+  return locationData == undefined ? (
+    <h1>Loading...</h1>
+  ) : (
     <div className="flex flex-col items-center">
       <a
         href="https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location"
@@ -40,39 +38,21 @@ const BattlePage = ({
       >
         <h1>All Battles</h1>
       </a>
-      <NavSideBar countryList={Object.keys(nameData)} />
+      <NavSideBar countryList={Object.keys(battleNameData)} />
 
-      {Object.keys(nameData).map((country) => {
-        if (country != "_id") {
-          const [collapseable, setCollapseable] = useState(true);
-          const totalBattles = nameData[country].length;
-          return (
-            <div key={"title" + country} className="countrySect">
-              <div className="countryTitle">
-                <h1 id={country}>{country}</h1>
-                <h2>
-                  {" "}
-                  {getTotalBattles(country)} / {totalBattles} battles{" "}
-                </h2>
-                {totalBattles > 0 && (
-                  <button onClick={() => setCollapseable(!collapseable)}>
-                    {collapseable ? <>hide</> : <>show</>}
-                  </button>
-                )}
-              </div>
-              {totalBattles > 0 && collapseable && (
-                <Table
-                  battleNames={nameData}
-                  battleLocs={locationData}
-                  country={country}
-                  showPopup={showPopup}
-                  user={user}
-                  setPopupVis={setPopupVis}
-                />
-              )}
-            </div>
-          );
-        }
+      {Object.keys(battleNameData).map((country) => {
+        return (
+          country != "_id" && (
+            <SingleCountry
+              country={country}
+              battleNames={battleNameData}
+              battleLocs={locationData}
+              showPopup={showPopup}
+              user={user}
+              setPopupVis={setPopupVis}
+            />
+          )
+        );
       })}
       {popupVis && (
         <DBPopup

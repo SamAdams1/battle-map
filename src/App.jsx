@@ -24,14 +24,36 @@ import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
 import Titles from "./pages/Titles";
 
+// user permission functions
+import { addBattle } from "../components/UserLogin/userFuncs";
+
 const userTitles = [
-  { title: "Emperor", desc: "Owner of the website." },
+  {
+    title: "Emperor",
+    desc: "Owner of the website.                              ",
+    funcs: {
+      locData: addBattle,
+    },
+    permissions: {
+      canDemoteUsers: true,
+      canPremoteUsers: true,
+      seeAdminPanel: true,
+    },
+  },
   {
     title: "Marshal",
-    desc: "Second in command. Can submit battles, approve battles, and demote users.",
+    desc: "Second in command. Can submit battles, approve battles, and premote/demote users.",
   },
-  { title: "Corporal", desc: "Can submit and approve battles." },
-  { title: "Soldier", desc: "Can suggest battles and talk in chat." },
+  {
+    title: "Corporal",
+    desc: "Can submit and approve battles.                         ",
+    funcs: {},
+  },
+  {
+    title: "Soldier",
+    desc: "Can suggest battles and talk in chat.                          ",
+    funcs: {},
+  },
 ];
 
 function App() {
@@ -44,6 +66,23 @@ function App() {
   // user
   const [user, setUser] = useState({});
 
+  useEffect(() => {
+    getDBData("countryCenter", setCountryCenter);
+    getDBData("names", setBattleNames);
+    getBattleLocations("locations");
+
+    setDataRetrieved(true);
+  }, []);
+
+  useEffect(() => {
+    user["loggedIn"] = Object.keys(user).length > 1;
+    if (user.loggedIn) {
+      user["title"] = userTitles[user.lvl].title;
+      user["funcs"] = userTitles[user.lvl].funcs.locData;
+      // console.log(user);
+    }
+  }, [user]);
+
   const getDBData = (route, setState) => {
     Axios.get(`http://localhost:3005/${route}`)
       .then((response) => {
@@ -55,6 +94,7 @@ function App() {
       })
       .catch((e) => console.log(e));
   };
+
   // for battle locations
   const getBattleLocations = (route) => {
     Axios.get(`http://localhost:3005/${route}`)
@@ -97,22 +137,6 @@ function App() {
       })
       .catch((e) => console.log(e));
   };
-
-  useEffect(() => {
-    getDBData("countryCenter", setCountryCenter);
-    getDBData("names", setBattleNames);
-    getBattleLocations("locations");
-
-    setDataRetrieved(true);
-  }, []);
-
-  useEffect(() => {
-    user["loggedIn"] = Object.keys(user).length > 1;
-    if (user.loggedIn) {
-      user["title"] = userTitles[user.lvl].title;
-      // console.log(user);
-    }
-  }, [user]);
 
   // favorited and contributed battles added to user card
   const addToUserData = (battleName, countryName, route) => {
@@ -166,10 +190,12 @@ function App() {
           path="battleList"
           element={
             <BattlePage
-              nameData={battleNames}
+              battleNameData={battleNames}
               locationData={battleLocs}
               addLocationData={addBattleLoc}
               user={user}
+              dataRetrieved={dataRetrieved}
+              //
             />
           }
         />

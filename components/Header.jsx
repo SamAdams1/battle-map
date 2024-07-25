@@ -9,7 +9,7 @@ const Header = ({ user }) => {
     >
       <div className=" flex items-center *:mr-5">
         <Link to="/about">
-          <h1>Battle Map</h1>
+          <h1 className="ml-2">Battle Map</h1>
         </Link>
         <Link to="/">Map</Link>
         <Link to="/battleList">Battle List</Link>
@@ -25,6 +25,7 @@ const Header = ({ user }) => {
           </button>
         </div>
       )}
+      <button onClick={() => console.log(user)}>log</button>
     </div>
   );
 };

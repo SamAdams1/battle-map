@@ -7,7 +7,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
 
   const highlightMyMessages = () => {
     if (user.loggedIn) {
-      return user._id == message.userId ? " bg-red-100" : "";
+      return user._id == message.userId ? " bg-red-50" : "";
     }
     return "";
   };

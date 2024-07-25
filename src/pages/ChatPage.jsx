@@ -110,17 +110,23 @@ const ChatPage = ({ user, getDate }) => {
     });
   };
 
-  let chatRooms = ["Germany", "France", "England", "Spain"];
+  const currentRoom = (room) => {
+    return room == chatRoom ? "bg-yellow-200" : "";
+  };
+  let chatRooms = ["Main", "Germany", "France", "England", "Spain"];
   let lastDate = "";
   return (
     <div className="flex flex-row w-full">
-      <div className="*:w-full px-2 bg-slate-200 overflow-y-auto">
-        <h1 className="overflow-x-auto text-nowrap">{chatRoom} Chat</h1>
-        <h3 className="mb-3">Channels:</h3>
-        <button>{chatRoom}</button>
-        {chatRooms.map((room) => (
-          <button>{room}</button>
-        ))}
+      <div className="w-72 *:w-full px-2 bg-red-800 overflow-y-auto">
+        <h3 className="my-3 text-white">Channels:</h3>
+        {chatRooms.map((room) => {
+          let a = currentRoom(room);
+          return (
+            <button className={a} onClick={() => setChatRoom(room)}>
+              {room}
+            </button>
+          );
+        })}
       </div>
       <div className="overflow-y-auto  w-full h-[86vh] ">
         {messages.map((message, index) => (
@@ -137,7 +143,7 @@ const ChatPage = ({ user, getDate }) => {
           </>
         ))}
       </div>
-      <div className="bg-white absolute bottom-0 w-full flex h-20 p-3 pt-0">
+      <div className="bg-red-800 absolute bottom-0 w-full flex h-20 p-3 pt-0">
         <input
           type="text"
           value={message}

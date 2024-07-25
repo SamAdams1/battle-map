@@ -47,7 +47,9 @@ const FavButton = ({ battle, country, user }) => {
   return (
     <>
       <button
-        className={favStatus + " favBtn w-full"}
+        className={
+          "favBtn w-full " + (favStatus == "isFav" ? "bg-yellow-200" : "")
+        }
         onClick={() => favFunctions[favStatus](battle, country, setFavStatus)}
       >
         {favStatus == "isFav" ? <>Unfavorite</> : <>Favorite</>}

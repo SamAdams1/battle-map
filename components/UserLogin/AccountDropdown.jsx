@@ -29,10 +29,12 @@ const AccountDropdown = ({ user, setUser }) => {
             <Link to="titles">{user.title}</Link>
           </h3>
           <div className="*:w-full">
-            <button onClick={() => goTo("admin")}>Admin</button>
-            <button onClick={() => goTo("favorites")}>Favorites</button>
-            <button onClick={() => goTo("contributions")}>Contributions</button>
-            <button onClick={() => goTo("settings")}>Settings</button>
+            <button onClick={() => navigate("admin")}>Admin</button>
+            <button onClick={() => navigate("favorites")}>Favorites</button>
+            <button onClick={() => navigate("contributions")}>
+              Contributions
+            </button>
+            <button onClick={() => navigate("settings")}>Settings</button>
             <button onClick={() => setUser({})} className="w-full">
               Log out
             </button>
