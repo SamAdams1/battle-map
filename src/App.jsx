@@ -121,44 +121,6 @@ function App() {
     }
   };
 
-  const addBattleLoc = (country, battle, data) => {
-    data["addedByUser"] = "Sam";
-    battleLocs[country][battle] = data;
-    const total = Object.keys(battleLocs[country]).length;
-    console.log(battleLocs[country]);
-    addToUserData(battle, country, "contributions");
-
-    Axios.put(`http://localhost:3005/${"addBattleLoc"}`, {
-      battles: battleLocs[country],
-      country,
-      total,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
-  };
-
-  // favorited and contributed battles added to user card
-  const addToUserData = (battleName, countryName, route) => {
-    if (user.loggedIn) {
-      const newInfo = {
-        battle: battleName,
-        country: countryName,
-        dateAdded: getCurrentDate(),
-      };
-      user[route][battleName] = newInfo;
-
-      Axios.put(`http://localhost:3005/${route}`, user)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => console.log(e));
-    } else {
-      alert("Must be logged in to favorite.");
-    }
-  };
-
   const getCurrentDate = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");

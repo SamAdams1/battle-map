@@ -122,7 +122,7 @@ const ChatPage = ({ user, getDate }) => {
         {chatRooms.map((room) => {
           let a = currentRoom(room);
           return (
-            <button className={a} onClick={() => setChatRoom(room)}>
+            <button key={room} className={a} onClick={() => setChatRoom(room)}>
               {room}
             </button>
           );
@@ -130,7 +130,7 @@ const ChatPage = ({ user, getDate }) => {
       </div>
       <div className="overflow-y-auto  w-full h-[86vh] ">
         {messages.map((message, index) => (
-          <>
+          <div key={index}>
             {lastDate != message.date.split(" ~ ")[0] && (
               <div className="flex flex-col items-center bg-slate-50 py-2">
                 <span className="bg-slate-400 h-[.2rem] w-full translate-y-[1.22rem]"></span>
@@ -140,7 +140,7 @@ const ChatPage = ({ user, getDate }) => {
               </div>
             )}
             <ChatTxt message={message} user={user} deleteMsg={deleteMsg} />
-          </>
+          </div>
         ))}
       </div>
       <div className="bg-red-800 absolute bottom-0 w-full flex h-20 p-3 pt-0">

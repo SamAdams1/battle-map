@@ -108,7 +108,7 @@ app.post("/registerUser", (req, res) => {
     });
 });
 
-app.put("/favorites", (req, res) => {
+app.put("/updateFavorites", (req, res) => {
   // console.log(req.body)
   console.log(req.body._id);
   db.collection("users")
@@ -128,7 +128,7 @@ app.put("/favorites", (req, res) => {
     });
 });
 
-app.put("/contributions", (req, res) => {
+app.put("/updateContributions", (req, res) => {
   // console.log(req.body)
   // console.log(req.body._id)
   db.collection("users")

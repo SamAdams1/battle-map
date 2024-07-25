@@ -32,7 +32,7 @@ const FavButton = ({ battle, country, user }) => {
   };
   const changeFavorites = () => {
     console.log(user.favorites);
-    Axios.put(`http://localhost:3005/${"favorites"}`, user)
+    Axios.put("http://localhost:3005/updateFavorites", user)
       .then((response) => {
         console.log(response);
       })

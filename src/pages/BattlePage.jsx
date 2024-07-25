@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import NavSideBar from "../../components/BattlePage/NavSideBar";
 import DBPopup from "../../components/BattlePage/DBPopup";
 import SingleCountry from "../../components/BattlePage/SingleCountry";
+import Report from "../../components/BattlePage/ReportPopup";
+import EditPopup from "../../components/BattlePage/EditPopup";
 
 const BattlePage = ({
   battleNameData,
@@ -25,13 +27,31 @@ const BattlePage = ({
   const popupTypes = {
     add: (
       <DBPopup
+        user={user}
         battle={selectedBattle}
         country={battleCountry}
-        addBattleLoc={addLocationData}
+        battleLocs={locationData}
         setPopupVis={setPopupVis}
       />
     ),
-    report: <h2>report</h2>,
+    report: (
+      <Report
+        user={user}
+        battle={selectedBattle}
+        country={battleCountry}
+        battleLocs={locationData}
+        setPopupVis={setPopupVis}
+      />
+    ),
+    edit: (
+      <EditPopup
+        user={user}
+        battle={selectedBattle}
+        country={battleCountry}
+        battleLocs={locationData}
+        setPopupVis={setPopupVis}
+      />
+    ),
   };
   return (
     <div className="flex flex-col items-center">
@@ -45,16 +65,18 @@ const BattlePage = ({
 
       {Object.keys(battleNameData).map((country) => {
         return (
-          country != "_id" && (
-            <SingleCountry
-              country={country}
-              battleNames={battleNameData}
-              battleLocs={locationData}
-              showPopup={showPopup}
-              user={user}
-              setPopupVis={setPopupVis}
-            />
-          )
+          <div key={country}>
+            {country != "_id" && (
+              <SingleCountry
+                country={country}
+                battleNames={battleNameData}
+                battleLocs={locationData}
+                showPopup={showPopup}
+                user={user}
+                setPopupVis={setPopupVis}
+              />
+            )}
+          </div>
         );
       })}
       {popupVis && (
