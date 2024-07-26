@@ -15,7 +15,9 @@ const Admin = ({ user, titles, battleLocs }) => {
   const tabs = {
     Users: <Users titles={titles} />,
     Reports: <Reports user={user} battleLocs={battleLocs} />,
-    "Approve Contributions": <ContribHistory />,
+    "Approve Contributions": (
+      <ContribHistory user={user} battleLocs={battleLocs} />
+    ),
   };
 
   return !user.loggedIn ? (

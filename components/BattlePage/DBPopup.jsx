@@ -25,7 +25,7 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   }
 
   const addBattleLoc = (country, battle, data) => {
-    data["addedByUser"] = user._id;
+    data["addedBy"] = user._id;
     battleLocs[country][battle] = data;
     const total = Object.keys(battleLocs[country]).length;
     console.log(battleLocs[country]);

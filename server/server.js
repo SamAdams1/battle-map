@@ -224,6 +224,25 @@ app.get("/admin/contrib-history", (req, res) => {
     });
 });
 
+app.put("/admin/approveContrib", (req, res) => {
+  console.log(req.body);
+  db.collection("history")
+    .updateOne(
+      { _id: ObjectId.createFromHexString(req.body.id) },
+      {
+        $set: {
+          approved: req.body.approved,
+        },
+      }
+    )
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
