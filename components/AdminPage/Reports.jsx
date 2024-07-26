@@ -18,7 +18,22 @@ const Reports = ({ user, battleLocs }) => {
       .catch((e) => console.log(e));
   };
 
-  const approveReport = () => {};
+  const approveReport = (id, index) => {
+    setReports(
+      reports.filter((i) => {
+        return i._id != id;
+      })
+    );
+    Axios.delete("http://localhost:3005/admin/delReport", { params: { id } })
+      .then((response) => {
+        if (response.data.length == 0) {
+          console.log(route + " not found.");
+        } else {
+          console.log(response.data);
+        }
+      })
+      .catch((e) => console.error(e));
+  };
 
   useEffect(() => {
     getReports();
@@ -36,7 +51,7 @@ const Reports = ({ user, battleLocs }) => {
             <th>Battle</th>
             <th></th>
           </tr>
-          {reports.map((report) => (
+          {reports.map((report, index) => (
             <tr key={report.author}>
               <td className={report.author == user._id ? "bg-yellow-200" : ""}>
                 <UserDisplay id={report.author} />
@@ -44,6 +59,11 @@ const Reports = ({ user, battleLocs }) => {
               <td>{report.country}</td>
               <td>{report.battle}</td>
               <td>{report.reason}</td>
+              <td>
+                <button onClick={() => approveReport(report._id, index)}>
+                  Done
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

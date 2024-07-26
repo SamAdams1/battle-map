@@ -212,6 +212,18 @@ app.get("/admin/reports", (req, res) => {
     });
 });
 
+app.delete("/admin/delReport", (req, res) => {
+  console.log("DELETE", req.query);
+  db.collection("reports")
+    .deleteOne({ _id: ObjectId.createFromHexString(req.query.id) })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 app.get("/admin/contrib-history", (req, res) => {
   // console.log(req);
   let idk = [];
@@ -244,7 +256,7 @@ app.put("/admin/approveContrib", (req, res) => {
 });
 
 app.get("/userDisplay", (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   const pipeline = [
     { $match: { _id: ObjectId.createFromHexString(req.query.id) } },
     { $unset: ["password", "favorites", "contributions"] },
