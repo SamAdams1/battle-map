@@ -201,6 +201,18 @@ app.get("/admin/reports", (req, res) => {
     });
 });
 
+app.get("/admin/reports", (req, res) => {
+  // console.log(req);
+  let idk = [];
+  db.collection("reports")
+    .find({})
+    .toArray()
+    .then((result) => {
+      idk = [...idk, result];
+      res.json(idk);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

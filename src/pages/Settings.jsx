@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
 
 const Settings = ({ user }) => {
   const [img, setImg] = useState(user.pfp);
   const [newUsername, setNewUsername] = useState(user.username);
   const [newPassword, setNewPassword] = useState(user.password);
   const [edit, setEdit] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     console.log(e.target.files);
@@ -39,19 +37,13 @@ const Settings = ({ user }) => {
     console.log(newUsername, newPassword);
   };
 
-  useEffect(() => {
-    if (!user.loggedIn) {
-      navigate("/");
-    }
-  }, [user]);
-
   return !user.loggedIn ? (
-    <h1>Must be logged in to see settings...</h1>
+    <NotLoggedIn pageTitle="Settings" />
   ) : (
     <div>
       <h1>Settings</h1>
-      {/* <img src={img} alt="No pfp found." /> */}
-      {!img && <input type="file" onChange={handleChange} accept="image" />}
+      {/* <img src={img} alt="No pfp found." /> 
+      {!img && <input type="file" onChange={handleChange} accept="image" />}*/}
       {img && !user.pfp && (
         <>
           <button onClick={submitPfp}>Submit</button>

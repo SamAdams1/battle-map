@@ -1,18 +1,10 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import FavButton from "../../components/FavButton";
+import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
 
 const Favorites = ({ user }) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user.loggedIn) {
-      navigate("/");
-    }
-  }, [user]);
-
   return !user.loggedIn ? (
-    <h1>Must be logged in to see favorites...</h1>
+    <NotLoggedIn pageTitle="Contributions" />
   ) : (
     <div className="flex flex-col">
       <h1>Your Favorites</h1>

@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import Users from "../../components/AdminPage/Users";
 import Reports from "../../components/AdminPage/Reports";
 import ContribHistory from "../../components/AdminPage/ContribHistory";
+import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
 
-const Admin = ({}) => {
+const Admin = ({ user, titles, battleLocs }) => {
   const [tab, setTab] = useState("Users");
 
   const highlightTab = (page) => {
@@ -12,14 +13,15 @@ const Admin = ({}) => {
   };
 
   const tabs = {
-    Users: <Users />,
-    Reports: <Reports />,
+    Users: <Users titles={titles} />,
+    Reports: <Reports user={user} battleLocs={battleLocs} />,
     "Approve Contributions": <ContribHistory />,
   };
 
-  return (
+  return !user.loggedIn ? (
+    <NotLoggedIn pageTitle="Admin Page" />
+  ) : (
     <div className="mt-3">
-      {/* <h1>Admin</h1> */}
       <div className="w-full">
         {Object.keys(tabs).map((page) => {
           const highlight = highlightTab(page);

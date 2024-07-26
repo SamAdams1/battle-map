@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Users = () => {
+const Users = ({ titles }) => {
   const [users, setUsers] = useState([]);
 
   const getUsers = () => {
@@ -24,7 +24,7 @@ const Users = () => {
   return (
     <div>
       <h1>Users</h1>
-      <button onClick={() => console.log(users)}>idfhal</button>
+      <button onClick={() => console.log(users)}>test</button>
       <table>
         <tbody>
           <tr>
@@ -35,7 +35,7 @@ const Users = () => {
           {users.map((user) => (
             <tr key={user._id}>
               <td>{user.username}</td>
-              <td className="px-5">{user.lvl}</td>
+              <td className="px-5">{titles[user.lvl].title}</td>
               <td>{Object.keys(user.contributions).length}</td>
               {/* <td><button>report</button></td> */}
             </tr>

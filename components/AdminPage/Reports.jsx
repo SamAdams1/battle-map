@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
-const Reports = () => {
+const Reports = ({ user, battleLocs }) => {
   const [reports, setReports] = useState([]);
 
   const getReports = () => {
@@ -17,12 +17,15 @@ const Reports = () => {
       .catch((e) => console.log(e));
   };
 
+  const approveReport = () => {};
+
   useEffect(() => {
     getReports();
   }, []);
 
   return (
     <div>
+      <button onClick={() => console.log(reports)}>print</button>
       <h1>Reports</h1>
       <table className="w-full">
         <tbody>

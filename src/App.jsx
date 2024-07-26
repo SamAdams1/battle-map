@@ -199,7 +199,12 @@ function App() {
             />
           }
         />
-        <Route path="admin" element={<Admin user={user} />} />
+        <Route
+          path="admin"
+          element={
+            <Admin user={user} titles={userTitles} battleLocs={battleLocs} />
+          }
+        />
         <Route
           path="titles"
           element={<Titles user={user} titles={userTitles} />}

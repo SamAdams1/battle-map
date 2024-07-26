@@ -4,6 +4,7 @@ import DBPopup from "../../components/BattlePage/DBPopup";
 import SingleCountry from "../../components/BattlePage/SingleCountry";
 import Report from "../../components/BattlePage/ReportPopup";
 import EditPopup from "../../components/BattlePage/EditPopup";
+import Popup from "../../components/Popup";
 
 const BattlePage = ({ battleNameData, locationData, user }) => {
   const [popupVis, setPopupVis] = useState(false);
@@ -75,10 +76,7 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
         );
       })}
       {popupVis && (
-        <div className="z-30 fixed bg-white w-full h-full -translate-y-14">
-          <button onClick={() => setPopupVis(false)}>X</button>
-          {popupTypes[popupType]}
-        </div>
+        <Popup children={popupTypes[popupType]} setVis={setPopupVis} />
       )}
     </div>
   );

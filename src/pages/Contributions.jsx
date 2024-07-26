@@ -1,17 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
 
 const Contributions = ({ user }) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user.loggedIn) {
-      navigate("/");
-    }
-  }, [user]);
-
   return !user.loggedIn ? (
-    <h1>Must be logged in to see contributions...</h1>
+    <NotLoggedIn pageTitle="Contributions" />
   ) : (
     <div className="flex flex-col">
       <h1>Your Contributions</h1>
