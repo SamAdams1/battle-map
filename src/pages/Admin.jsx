@@ -13,7 +13,7 @@ const Admin = ({ user, titles, battleLocs }) => {
   };
 
   const tabs = {
-    Users: <Users titles={titles} />,
+    Users: <Users titles={titles} user={user} />,
     Reports: <Reports user={user} battleLocs={battleLocs} />,
     "Approve Contributions": (
       <ContribHistory user={user} battleLocs={battleLocs} />

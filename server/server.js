@@ -241,11 +241,22 @@ app.put("/admin/approveContrib", (req, res) => {
   db.collection("history")
     .updateOne(
       { _id: ObjectId.createFromHexString(req.body.id) },
-      {
-        $set: {
-          approved: req.body.approved,
-        },
-      }
+      { $set: { approved: req.body.approved } }
+    )
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+app.put("/admin/changeUserLvl", (req, res) => {
+  console.log(req.body);
+  db.collection("users")
+    .updateOne(
+      { _id: ObjectId.createFromHexString(req.body.id) },
+      { $set: { lvl: req.body.lvl } }
     )
     .then((result) => {
       res.json(result);

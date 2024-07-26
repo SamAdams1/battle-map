@@ -32,8 +32,7 @@ const userTitles = [
     title: "Emperor",
     desc: "Owner of the website.",
     permissions: {
-      premoteUsers: true,
-      demoteUsers: true,
+      changeUserLvl: true,
       seeAdminPanel: true,
       reportData: true,
       editData: true,
@@ -45,8 +44,7 @@ const userTitles = [
     title: "Marshal",
     desc: "Second in command. Can submit battles, approve battles, and premote/demote users.",
     permissions: {
-      premoteUsers: true,
-      demoteUsers: true,
+      changeUserLvl: true,
       seeAdminPanel: true,
       reportData: false,
       editData: true,
@@ -58,8 +56,7 @@ const userTitles = [
     title: "Corporal",
     desc: "Can submit and approve battles.",
     permissions: {
-      premoteUsers: false,
-      demoteUsers: false,
+      changeUserLvl: false,
       seeAdminPanel: true,
       reportData: true,
       editData: false,
@@ -71,10 +68,10 @@ const userTitles = [
     title: "Soldier",
     desc: "Can suggest battles and talk in chat.",
     permissions: {
-      premoteUsers: false,
+      changeUserLvl: false,
       demoteUsers: false,
       seeAdminPanel: false,
-      reportData: false,
+      reportData: true,
       editData: false,
       addLoc: false,
       addNewBattle: false,
