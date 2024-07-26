@@ -27,7 +27,7 @@ const Reports = ({ user, battleLocs }) => {
     <div>
       <button onClick={() => console.log(reports)}>print</button>
       <h1>Reports</h1>
-      <table className="w-full">
+      <table className="w-ful">
         <tbody>
           <tr>
             <th>User</th>

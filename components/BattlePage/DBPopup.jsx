@@ -66,7 +66,9 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   // if not battle will need to be approved by admin
   const suggestBattle = (battle, country, latLon, year) => {
     const data = {
-      [battle]: { latLon, year },
+      latLon,
+      year,
+      battle,
       country,
       dateAdded: getCurrentDate(),
       user: user._id,
