@@ -5,7 +5,6 @@ const Titles = ({ user, titles }) => {
     <div>
       <h1>Titles</h1>
       <div>
-        <button onClick={() => user.funcs("hi")}>test</button>
         {titles.map((title) => (
           <div key={title.title}>
             <h2>{title.title}</h2>

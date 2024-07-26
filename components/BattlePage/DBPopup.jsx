@@ -1,5 +1,5 @@
+import React, { useEffect } from "react";
 import Axios from "axios";
-import React from "react";
 
 const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   let latLon = "";
@@ -18,17 +18,18 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
     ) {
       latLon = latLon.map((num) => parseFloat(num));
       const data = { latLon: latLon, year: year };
-      addBattleLoc(country, battle, data);
+      if (user.perms.addLoc) addBattleLoc(country, battle, data);
+      suggestBattle(battle, country, latLon, year);
       setPopupVis(false);
     }
   }
 
   const addBattleLoc = (country, battle, data) => {
-    data["addedByUser"] = "Sam";
+    data["addedByUser"] = user._id;
     battleLocs[country][battle] = data;
     const total = Object.keys(battleLocs[country]).length;
     console.log(battleLocs[country]);
-    addToUserData(battle, country, "contributions");
+    addToUserContributions(battle, country);
 
     Axios.put("http://localhost:3005/addBattleLoc", {
       battles: battleLocs[country],
@@ -41,25 +42,42 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
       .catch((e) => console.log(e));
   };
 
-  // favorited and contributed battles added to user card
-  const addToUserData = (battleName, countryName, route) => {
-    if (user.loggedIn) {
-      const newInfo = {
-        battle: battleName,
-        country: countryName,
-        dateAdded: getCurrentDate(),
-      };
-      user[route][battleName] = newInfo;
+  // contributed battles added to user card
+  const addToUserContributions = (battleName, countryName) => {
+    const newInfo = {
+      battle: battleName,
+      country: countryName,
+      dateAdded: getCurrentDate(),
+    };
+    user["contributions"][battleName] = newInfo;
 
-      Axios.put("http://localhost:3005/updateContributions", {
-        _id: user._id,
-        contributions: user.contributions,
+    Axios.put("http://localhost:3005/updateContributions", {
+      _id: user._id,
+      contributions: user.contributions,
+    })
+      .then((response) => {
+        console.log(response);
       })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => console.log(e));
-    }
+      .catch((e) => console.log(e));
+  };
+
+  // adds battle to contribution history collection
+  // if user has correct perms will be approved and added to location db
+  // if not battle will need to be approved by admin
+  const suggestBattle = (battle, country, latLon, year) => {
+    const data = {
+      [battle]: { latLon, year },
+      country,
+      dateAdded: getCurrentDate(),
+      user: user._id,
+      source: "urmom",
+      approved: user.perms.addLoc,
+    };
+    Axios.post("http://localhost:3005/suggestLoc", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => console.log(e));
   };
 
   const getCurrentDate = () => {
@@ -71,6 +89,10 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
     let min = String(today.getUTCMinutes()).padStart(2, "0");
     return `${mm}/${dd}/${yyyy} ~ ${hour}:${min}`;
   };
+
+  useEffect(() => {
+    if (!user.loggedIn) setPopupVis(false);
+  }, [user]);
 
   return (
     <div>

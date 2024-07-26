@@ -175,8 +175,19 @@ app.post("/reportBattle", (req, res) => {
     });
 });
 
+app.post("/suggestLoc", (req, res) => {
+  console.log(req.body);
+  db.collection("history")
+    .insertOne(req.body)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 app.get("/admin/users", (req, res) => {
-  // console.log(req);
   let idk = [];
   pipeline = [{ $unset: ["password", "pfp", "favorites"] }];
   // https://www.mongodb.com/docs/drivers/node/current/aggregation-tutorials/filtered-subset/
@@ -201,10 +212,10 @@ app.get("/admin/reports", (req, res) => {
     });
 });
 
-app.get("/admin/reports", (req, res) => {
+app.get("/admin/contrib-history", (req, res) => {
   // console.log(req);
   let idk = [];
-  db.collection("reports")
+  db.collection("history")
     .find({})
     .toArray()
     .then((result) => {

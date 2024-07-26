@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
 const EditPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
@@ -22,6 +22,10 @@ const EditPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
       .catch((e) => console.log(e));
     setPopupVis(false);
   };
+
+  useEffect(() => {
+    if (!user.loggedIn) setPopupVis(false);
+  }, [user]);
 
   return (
     <div>

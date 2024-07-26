@@ -32,44 +32,52 @@ const userTitles = [
     title: "Emperor",
     desc: "Owner of the website.",
     permissions: {
-      canPremoteUsers: true,
-      canDemoteUsers: true,
+      premoteUsers: true,
+      demoteUsers: true,
       seeAdminPanel: true,
-      canReportData: true,
-      canEditData: true,
+      reportData: true,
+      editData: true,
+      addLoc: true,
+      addNewBattle: true,
     },
   },
   {
     title: "Marshal",
     desc: "Second in command. Can submit battles, approve battles, and premote/demote users.",
     permissions: {
-      canPremoteUsers: true,
-      canDemoteUsers: true,
+      premoteUsers: true,
+      demoteUsers: true,
       seeAdminPanel: true,
-      canReportData: false,
-      canEditData: true,
+      reportData: false,
+      editData: true,
+      addLoc: true,
+      addNewBattle: true,
     },
   },
   {
     title: "Corporal",
     desc: "Can submit and approve battles.",
     permissions: {
-      canPremoteUsers: false,
-      canDemoteUsers: false,
+      premoteUsers: false,
+      demoteUsers: false,
       seeAdminPanel: true,
-      canReportData: true,
-      canEditData: false,
+      reportData: true,
+      editData: false,
+      addLoc: true,
+      addNewBattle: true,
     },
   },
   {
     title: "Soldier",
     desc: "Can suggest battles and talk in chat.",
     permissions: {
-      canPremoteUsers: false,
-      canDemoteUsers: false,
+      premoteUsers: false,
+      demoteUsers: false,
       seeAdminPanel: false,
-      canReportData: false,
-      canEditData: false,
+      reportData: false,
+      editData: false,
+      addLoc: false,
+      addNewBattle: false,
     },
   },
 ];
@@ -96,7 +104,6 @@ function App() {
     user["loggedIn"] = Object.keys(user).length > 1;
     if (user.loggedIn) {
       user["title"] = userTitles[user.lvl].title;
-      user["funcs"] = userTitles[user.lvl].funcs;
       user["perms"] = userTitles[user.lvl].permissions;
       console.log(user);
     }

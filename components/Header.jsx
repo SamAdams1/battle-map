@@ -25,7 +25,9 @@ const Header = ({ user }) => {
           </button>
         </div>
       )}
-      <button onClick={() => console.log(user)}>user</button>
+      <button onClick={() => console.log(user)} className="text-black">
+        user
+      </button>
     </div>
   );
 };

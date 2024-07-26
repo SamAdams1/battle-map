@@ -103,7 +103,11 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                     onClick={() => showPopup(country, battle, "add")}
                     disabled={!user.loggedIn}
                   >
-                    Add
+                    {user.loggedIn && user.perms.addLoc ? (
+                      <>Add</>
+                    ) : (
+                      <>Suggest</>
+                    )}
                   </button>
                 )}
               </td>

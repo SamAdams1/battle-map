@@ -22,6 +22,7 @@ const Admin = ({ user, titles, battleLocs }) => {
     <NotLoggedIn pageTitle="Admin Page" />
   ) : (
     <div className="mt-3">
+      <p>admin</p>
       <div className="w-full">
         {Object.keys(tabs).map((page) => {
           const highlight = highlightTab(page);

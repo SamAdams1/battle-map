@@ -36,8 +36,10 @@ const Reports = ({ user, battleLocs }) => {
             <th></th>
           </tr>
           {reports.map((report) => (
-            <tr>
-              <td>{report.author}</td>
+            <tr key={report.author}>
+              <td className={report.author == user._id ? "bg-yellow-200" : ""}>
+                {report.author}
+              </td>
               <td>{report.country}</td>
               <td>{report.battle}</td>
               <td>{report.reason}</td>
