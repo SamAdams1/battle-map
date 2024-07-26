@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UserDisplay from "./UserLogin/UserDisplay";
 
 const ChatTxt = ({ message, user, deleteMsg }) => {
   const [editing, setEditing] = useState(false);
@@ -33,7 +34,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
   return (
     <div className={"p-2 " + (myMsg || "bg-slate-50")}>
       <h4 className="font-medium">
-        {message.username} ~ {dateTime(message)[1]}
+        <UserDisplay id={message.userId} /> ~ {dateTime(message)[1]}
         {myMsg && (
           <>
             <button

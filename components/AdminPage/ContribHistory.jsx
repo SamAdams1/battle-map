@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import UserDisplay from "../UserLogin/UserDisplay";
 
 const ContribHistory = ({ user, battleLocs }) => {
   const [history, setHistory] = useState([]);
@@ -97,7 +98,9 @@ const ContribHistory = ({ user, battleLocs }) => {
                       <button onClick={() => approve(doc)}>Approve</button>
                     )}
                   </td>
-                  <td>{doc.user}</td>
+                  <td>
+                    <UserDisplay id={doc.addedBy} />
+                  </td>
                   <td>{doc.dateAdded}</td>
                   <td>{doc.country}</td>
                   <td>{doc.battle}</td>

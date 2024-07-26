@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import UserDisplay from "../UserLogin/UserDisplay";
 
 const Reports = ({ user, battleLocs }) => {
   const [reports, setReports] = useState([]);
@@ -38,7 +39,7 @@ const Reports = ({ user, battleLocs }) => {
           {reports.map((report) => (
             <tr key={report.author}>
               <td className={report.author == user._id ? "bg-yellow-200" : ""}>
-                {report.author}
+                <UserDisplay id={report.author} />
               </td>
               <td>{report.country}</td>
               <td>{report.battle}</td>

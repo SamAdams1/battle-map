@@ -243,6 +243,20 @@ app.put("/admin/approveContrib", (req, res) => {
     });
 });
 
+app.get("/userDisplay", (req, res) => {
+  console.log(req.query);
+  const pipeline = [
+    { $match: { _id: ObjectId.createFromHexString(req.query.id) } },
+    { $unset: ["password", "favorites", "contributions"] },
+  ];
+  db.collection("users")
+    .aggregate(pipeline)
+    .toArray()
+    .then((result) => {
+      res.json(result);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
