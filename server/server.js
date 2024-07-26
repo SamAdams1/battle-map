@@ -163,6 +163,18 @@ app.put("/updateUsernamePassword", (req, res) => {
     });
 });
 
+app.post("/reportBattle", (req, res) => {
+  console.log(req.body);
+  db.collection("reports")
+    .insertOne(req.body)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 app.get("/admin/users", (req, res) => {
   // console.log(req);
   let idk = [];

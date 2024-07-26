@@ -31,9 +31,6 @@ const userTitles = [
   {
     title: "Emperor",
     desc: "Owner of the website.",
-    funcs: {
-      addLocData: addBattle,
-    },
     permissions: {
       canPremoteUsers: true,
       canDemoteUsers: true,
@@ -45,14 +42,35 @@ const userTitles = [
   {
     title: "Marshal",
     desc: "Second in command. Can submit battles, approve battles, and premote/demote users.",
+    permissions: {
+      canPremoteUsers: true,
+      canDemoteUsers: true,
+      seeAdminPanel: true,
+      canReportData: false,
+      canEditData: true,
+    },
   },
   {
     title: "Corporal",
     desc: "Can submit and approve battles.",
+    permissions: {
+      canPremoteUsers: false,
+      canDemoteUsers: false,
+      seeAdminPanel: true,
+      canReportData: true,
+      canEditData: false,
+    },
   },
   {
     title: "Soldier",
     desc: "Can suggest battles and talk in chat.",
+    permissions: {
+      canPremoteUsers: false,
+      canDemoteUsers: false,
+      seeAdminPanel: false,
+      canReportData: false,
+      canEditData: false,
+    },
   },
 ];
 

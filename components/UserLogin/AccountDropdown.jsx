@@ -29,7 +29,9 @@ const AccountDropdown = ({ user, setUser }) => {
             <Link to="titles">{user.title}</Link>
           </h3>
           <div className="*:w-full">
-            <button onClick={() => navigate("admin")}>Admin</button>
+            {user.perms.seeAdminPanel && (
+              <button onClick={() => navigate("admin")}>Admin</button>
+            )}
             <button onClick={() => navigate("favorites")}>Favorites</button>
             <button onClick={() => navigate("contributions")}>
               Contributions

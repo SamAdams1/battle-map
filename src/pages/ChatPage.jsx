@@ -144,8 +144,7 @@ const ChatPage = ({ user, getDate }) => {
         ))}
       </div>
       <div className="bg-red-800 absolute bottom-0 w-full flex h-20 p-3 pt-0">
-        <input
-          type="text"
+        <textarea
           value={message}
           onChange={handleInputChange}
           className="flex-1 w-10"
