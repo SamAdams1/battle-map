@@ -34,6 +34,8 @@ const LoginRegister = ({ formType, setUser, user }) => {
   const registerUser = (data) => {
     data["favorites"] = {};
     data["contributions"] = {};
+    data["pfp"] = "";
+    data["lvl"] = 3;
     console.log(data);
     Axios.post(`http://localhost:3005/${"registerUser"}`, data)
       .then((response) => {

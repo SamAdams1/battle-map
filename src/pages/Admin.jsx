@@ -4,7 +4,7 @@ import Users from "../../components/AdminPage/Users";
 import Reports from "../../components/AdminPage/Reports";
 import ContribHistory from "../../components/AdminPage/ContribHistory";
 
-const Admin = () => {
+const Admin = ({}) => {
   const [tab, setTab] = useState("Users");
 
   const highlightTab = (page) => {

@@ -53,7 +53,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
       </h4>
       {editing && user.loggedIn ? (
         <>
-          <input
+          <textarea
             type="text"
             value={editedTxt}
             onChange={(e) => setEditedTxt(e.target.value)}
