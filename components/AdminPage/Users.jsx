@@ -68,8 +68,8 @@ const Users = ({ titles, user }) => {
                 {titles[thisUser.lvl].title} {thisUser.lvl}
               </td>
               <td>{Object.keys(thisUser.contributions).length}</td>
-              {user.perms.changeUserLvl && (
-                <td>
+              <td>
+                {user.perms.changeUserLvl && user._id != thisUser._id && (
                   <>
                     <button
                       onClick={() => updateUserLvl(1, thisUser)}
@@ -84,8 +84,8 @@ const Users = ({ titles, user }) => {
                       Demote
                     </button>
                   </>
-                </td>
-              )}
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

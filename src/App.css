@@ -10,6 +10,16 @@
   width: 100%;
   z-index: 1;
 }
+.headerHeight {
+}
+.belowHeader {
+  position: absolute;
+  top: 3.4rem; /* header height */
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+}
 
 h1 {
   font-size: 2.4em;

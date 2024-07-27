@@ -50,12 +50,12 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
     ),
   };
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col  items-center belowHeader overflow-auto bg-slate-300">
       <a
         href="https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location"
         target="_blank"
       >
-        <h1>All Battles</h1>
+        <h1 id="Top">All Battles</h1>
       </a>
       <NavSideBar countryList={Object.keys(battleNameData)} />
 

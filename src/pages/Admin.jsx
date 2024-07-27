@@ -39,7 +39,7 @@ const Admin = ({ user, titles, battleLocs }) => {
           );
         })}
       </div>
-      <div className="bg-red-400 h-">{tabs[tab]}</div>
+      <div className="bg-red-400">{tabs[tab]}</div>
     </div>
   );
 };

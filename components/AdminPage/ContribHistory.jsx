@@ -4,6 +4,8 @@ import UserDisplay from "../UserLogin/UserDisplay";
 
 const ContribHistory = ({ user, battleLocs }) => {
   const [history, setHistory] = useState([]);
+  const [approvedVis, setApprovedVis] = useState(true);
+  const [unapprovedVis, setUnapprovedVis] = useState(true);
 
   const getHistory = () => {
     Axios.get("http://localhost:3005/admin/contrib-history")
@@ -75,43 +77,68 @@ const ContribHistory = ({ user, battleLocs }) => {
   return (
     <div>
       <h1>Contribution History</h1>
-      <button onClick={() => console.log(history)}>test</button>
-      <table className="w-full">
+      {/* <button onClick={() => console.log(history)}>test</button> */}
+      <div className="flex *:m-2">
+        <div className="*:mr-1">
+          <input
+            type="checkbox"
+            name="approved"
+            onChange={() => setApprovedVis(!approvedVis)}
+            checked={approvedVis}
+          />
+          <label htmlFor="approved">View Approved</label>
+        </div>
+        <div className="*:mr-1">
+          <input
+            type="checkbox"
+            name="unapproved"
+            onChange={() => setUnapprovedVis(!unapprovedVis)}
+            checked={unapprovedVis}
+          />
+          <label htmlFor="unapproved">View Unapproved</label>
+        </div>
+      </div>
+      <table className="w-ful">
         <tbody>
-          <tr>
-            <th>Approved Status</th>
-            <th>User</th>
-            <th>Date Added</th>
-            <th>Country</th>
-            <th>Battle</th>
-            <th>Year</th>
-            <th>LatLon</th>
-            <th>Source</th>
-          </tr>
+          {(approvedVis || unapprovedVis) && (
+            <tr>
+              <th>Approved Status</th>
+              <th>User</th>
+              <th>Date Added</th>
+              <th>Country</th>
+              <th>Battle</th>
+              <th>Year</th>
+              <th>LatLon</th>
+              <th>Source</th>
+            </tr>
+          )}
           {history &&
             history.map((doc) => {
               const a = doc.approved ? "bg-green-400" : "bg-red-700";
               return (
-                <tr key={doc._id}>
-                  <td className={a}>
-                    {!doc.approved && (
-                      <button onClick={() => approve(doc)}>Approve</button>
-                    )}
-                  </td>
-                  <td>
-                    <UserDisplay id={doc.addedBy} />
-                  </td>
-                  <td>{doc.dateAdded}</td>
-                  <td>{doc.country}</td>
-                  <td>{doc.battle}</td>
-                  <td>{doc.year}</td>
-                  <td>
-                    {doc.latLon[0]}, {doc.latLon[1]}
-                  </td>
-                  <td className="overflow-auto text-wrap w-10 text-xs max-w-[15em]">
-                    {doc.source}
-                  </td>
-                </tr>
+                ((doc.approved && approvedVis) ||
+                  (!doc.approved && unapprovedVis)) && (
+                  <tr key={doc._id}>
+                    <td className={a}>
+                      {!doc.approved && (
+                        <button onClick={() => approve(doc)}>Approve</button>
+                      )}
+                    </td>
+                    <td>
+                      <UserDisplay id={doc.addedBy} />
+                    </td>
+                    <td>{doc.dateAdded}</td>
+                    <td>{doc.country}</td>
+                    <td>{doc.battle}</td>
+                    <td>{doc.year}</td>
+                    <td>
+                      {doc.latLon[0]}, {doc.latLon[1]}
+                    </td>
+                    <td className="overflow-auto text-wrap text-xs max-w-">
+                      {doc.source}
+                    </td>
+                  </tr>
+                )
               );
             })}
         </tbody>

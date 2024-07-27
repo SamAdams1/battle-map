@@ -9,8 +9,8 @@ const EditPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   const editBattleLocation = () => {
     let editedLatlon = [parseFloat(lat), parseFloat(lon)];
     battleLocs[country][battle].latLon = editedLatlon;
-    console.log(lat + ", " + lon);
-    console.log(Object.keys(battleLocs[country]).length);
+    battleLocs[country][battle]["editedBy"] = user._id;
+
     Axios.put("http://localhost:3005/addBattleLoc", {
       battles: battleLocs[country],
       country: country,

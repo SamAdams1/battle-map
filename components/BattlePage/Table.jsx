@@ -79,14 +79,14 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                     </button>
                     {user.loggedIn && (
                       <>
-                        {user.perms.canReportData && (
+                        {user.perms.reportData && (
                           <button
                             onClick={() => showPopup(country, battle, "report")}
                           >
                             Report
                           </button>
                         )}
-                        {user.perms.canEditData && (
+                        {user.perms.editData && (
                           <button
                             onClick={() => showPopup(country, battle, "edit")}
                           >

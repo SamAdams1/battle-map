@@ -25,8 +25,8 @@ const SingleCountry = ({
   const totalBattles = battleNames[country].length;
 
   return (
-    <div key={"title" + country} className="countrySect">
-      <div className="countryTitle">
+    <div key={"title" + country} className="my-5 flex flex-col ">
+      <div className="flex">
         <h1 id={country}>{country}</h1>
         <h2>
           {" "}
