@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import {
+  postToHistory,
+  updateCountryBattleLocs,
+  updateUserContributions,
+} from "./dbFuncs";
 
 const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   const [latLon, setLatLon] = useState("");
@@ -30,18 +34,10 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
     data["addedBy"] = user._id;
     battleLocs[country][battle] = data;
     const total = Object.keys(battleLocs[country]).length;
-    console.log(battleLocs[country]);
+    // console.log(battleLocs[country]);
     addToUserContributions(battle, country);
 
-    Axios.put("http://localhost:3005/addBattleLoc", {
-      battles: battleLocs[country],
-      country,
-      total,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
+    updateCountryBattleLocs(country, battleLocs[country]);
   };
 
   // contributed battles added to user card
@@ -53,14 +49,7 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
     };
     user["contributions"][battleName] = newInfo;
 
-    Axios.put("http://localhost:3005/updateContributions", {
-      _id: user._id,
-      contributions: user.contributions,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
+    updateUserContributions(user._id, user.contributions);
   };
 
   // adds battle to contribution history collection
@@ -77,11 +66,8 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
       source: src,
       approved: user.perms.addLoc,
     };
-    Axios.post("http://localhost:3005/suggestLoc", data)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
+
+    postToHistory(data);
   };
 
   const getCurrentDate = () => {

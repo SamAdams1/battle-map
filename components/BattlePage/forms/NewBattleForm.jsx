@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import { postToHistory, updateCountryBattleLocs } from "./dbFuncs";
 
 const NewBattleForm = ({ user, battleLocs, battleNames, setPopupVis }) => {
   const [battle, setBattle] = useState("");
@@ -13,25 +14,28 @@ const NewBattleForm = ({ user, battleLocs, battleNames, setPopupVis }) => {
   }, [user]);
 
   const submit = () => {
-    addToBattleNames(country, battle);
-    addToBattleLocation();
+    addBattleName(country, battle);
+    addBattleLocation();
     addToHistory();
     addToUserContributions();
 
     setPopupVis(false);
   };
 
-  const addToBattleNames = () => {
+  const addBattleName = () => {
     battleNames[country].push(battle);
     console.log(battleNames[country]);
   };
-  const addToBattleLocation = () => {
+  const addBattleLocation = () => {
     const data = { latLon: latLon, year: year, addedBy: user._id };
 
     battleLocs[country][battle] = data;
+    updateCountryBattleLocs(country, battleLocs[country]);
   };
   const addToHistory = () => {
     const data = { latLon: latLon, year: year, addedBy: user._id, source: src };
+
+    postToHistory(data);
   };
 
   return (

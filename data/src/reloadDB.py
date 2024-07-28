@@ -4,7 +4,7 @@ import json
 myclient = pymongo.MongoClient("mongodb+srv://sammyadams04:gDAMx07CaXQuhcQL@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
 myDB = myclient["battle-map"]
-testCollection = myDB["test2"]
+testCollection = myDB["test"]
 
 # print(myclient.list_database_names())
 # print(testCollection.find_one({ "country": "Afghanistan" }))
@@ -12,30 +12,35 @@ testCollection = myDB["test2"]
 
 
 
-with open("./battleLocs.json", "r",encoding="utf-8") as json_file:
-  battleLocs = json.load(json_file)
-def addData():
-  for country in battleLocs:
-    countryData = {}
-    countryData["battles"] = battleLocs[country]
-    if type(countryData) != int:
-      try:
-        dbFormat = {"country": country, "numBattlesInCountry": battleLocs[country]["numBattlesInCountry"]}
-        battleLocs[country].pop("numBattlesInCountry")
-        dbFormat.update(countryData)
-        testCollection.insert_one(dbFormat)
-      except:
-        {}
+# with open("./battleLocs.json", "r",encoding="utf-8") as json_file:
+#   battleLocs = json.load(json_file)
+# def addLocationData():
+#   for country in battleLocs:
+#     countryData = {}
+#     countryData["battles"] = battleLocs[country]
+#     if type(countryData) != int:
+#       try:
+#         dbFormat = {"country": country, "numBattlesInCountry": battleLocs[country]["numBattlesInCountry"]}
+#         battleLocs[country].pop("numBattlesInCountry")
+#         dbFormat.update(countryData)
+#         testCollection.insert_one(dbFormat)
+#       except:
+#         {}
+# addLocationData()
+
+
+
+with open("../battleNames.json", "r",encoding="utf-8") as json_file:
+  battleNames = json.load(json_file)
+def addBattleNames():
+  for country in battleNames:
+    print(country)
+    countryDoc = {}
+    countryDoc["country"] = country
+    countryDoc["names"] = battleNames[country]
+    testCollection.insert_one(countryDoc)
+addBattleNames()
 
 
 
 
-
-
-      # for battle in countryData:
-      #   if type(countryData[battle])!= int:
-      #     battleLocs[country][battle]["battle"] = battle
-
-      # print(battleLocs[country])
-
-# addData()
