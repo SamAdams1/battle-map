@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import NavSideBar from "../../components/BattlePage/NavSideBar";
-import DBPopup from "../../components/BattlePage/DBPopup";
+import DBPopup from "../../components/BattlePage/forms/DBPopup";
 import SingleCountry from "../../components/BattlePage/SingleCountry";
-import Report from "../../components/BattlePage/ReportPopup";
-import EditPopup from "../../components/BattlePage/EditPopup";
+import Report from "../../components/BattlePage/forms/ReportPopup";
+import EditPopup from "../../components/BattlePage/forms/EditPopup";
 import Popup from "../../components/Popup";
+import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
 
 const BattlePage = ({ battleNameData, locationData, user }) => {
   const [popupVis, setPopupVis] = useState(false);
@@ -45,6 +46,14 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
         battle={selectedBattle}
         country={battleCountry}
         battleLocs={locationData}
+        setPopupVis={setPopupVis}
+      />
+    ),
+    new: (
+      <NewBattleForm
+        user={user}
+        battleLocs={locationData}
+        battleNames={battleNameData}
         setPopupVis={setPopupVis}
       />
     ),

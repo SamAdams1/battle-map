@@ -105,10 +105,10 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
       {!user.perms.addLoc && (
         <>
           <p>
-            Due to low trust level of your account an admin will have to approve
-            your addition.
+            Due to the low trust level of your account, an admin will need to
+            approve your addition.
           </p>
-          <p>Make good contributions with sources to be promoted!</p>
+          <p>Make good contributions, with sources, to be promoted!</p>
         </>
       )}
       <h1>{battle}</h1>

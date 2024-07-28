@@ -29,13 +29,15 @@ const SingleCountry = ({
       <div className="flex">
         <h1 id={country}>{country}</h1>
         <h2>
-          {" "}
-          {getTotalBattles(country)} / {totalBattles} battles{" "}
+          {getTotalBattles(country)} / {totalBattles} battles
         </h2>
         {totalBattles > 0 && (
           <button onClick={() => setCollapseable(!collapseable)}>
             {collapseable ? <>hide</> : <>show</>}
           </button>
+        )}
+        {user.loggedIn && user.perms.addLoc && (
+          <button onClick={() => showPopup("", "", "new")}>New Battle</button>
         )}
       </div>
       {totalBattles > 0 && collapseable && (
