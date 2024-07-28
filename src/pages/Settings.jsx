@@ -40,7 +40,7 @@ const Settings = ({ user }) => {
   return !user.loggedIn ? (
     <NotLoggedIn pageTitle="Settings" />
   ) : (
-    <div>
+    <div className="flex flex-col items-center belowHeader">
       <h1>Settings</h1>
       {/* <img src={img} alt="No pfp found." /> 
       {!img && <input type="file" onChange={handleChange} accept="image" />}*/}

@@ -5,7 +5,7 @@ const Contributions = ({ user }) => {
   return !user.loggedIn ? (
     <NotLoggedIn pageTitle="Contributions" />
   ) : (
-    <div className="flex flex-col">
+    <div className="flex flex-col belowHeader">
       <h1>Your Contributions</h1>
       <table>
         <tbody>

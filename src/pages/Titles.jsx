@@ -2,7 +2,7 @@ import React from "react";
 
 const Titles = ({ user, titles }) => {
   return (
-    <div>
+    <div className="belowHeader">
       <h1>Titles</h1>
       <div>
         {titles.map((title) => (

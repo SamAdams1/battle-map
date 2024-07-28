@@ -1,25 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 
 const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
-  let latLon = "";
-  let year = 0;
+  const [latLon, setLatLon] = useState("");
+  const [year, setYear] = useState(0);
+  const [src, setSrc] = useState("");
 
-  function addToDB() {
-    latLon = latLon
+  function addToDB(latlon) {
+    latlon = latlon
       .replace("[", "")
       .replace("]", "")
       .replace(" ", "")
       .split(",");
+    // console.log(latLon, latlon);
     if (
-      latLon.length > 1 &&
-      !isNaN(Number.parseFloat(latLon[0])) &&
-      !isNaN(Number.parseFloat(latLon[1]))
+      latlon.length > 1 &&
+      !isNaN(Number.parseFloat(latlon[0])) &&
+      !isNaN(Number.parseFloat(latlon[1]))
     ) {
-      latLon = latLon.map((num) => parseFloat(num));
-      const data = { latLon: latLon, year: year };
+      latlon = latlon.map((num) => parseFloat(num));
+      const data = { latLon: latlon, year: year };
       if (user.perms.addLoc) addBattleLoc(country, battle, data);
-      suggestBattle(battle, country, latLon, year);
+      suggestBattle(battle, country, latlon, year);
       setPopupVis(false);
     }
   }
@@ -71,8 +73,8 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
       battle,
       country,
       dateAdded: getCurrentDate(),
-      user: user._id,
-      source: "urmom",
+      addedBy: user._id,
+      source: src,
       approved: user.perms.addLoc,
     };
     Axios.post("http://localhost:3005/suggestLoc", data)
@@ -97,33 +99,50 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   }, [user]);
 
   return (
-    <div>
+    <div className="*:m-1 flex flex-col items-center">
       {/* <button onClick={() => setPopupVis(false)}>X</button> */}
-      <h1>{country}</h1>
+      <h1>{user.perms.addLoc ? <>Add Location</> : <>Suggest Location</>}</h1>
+      {!user.perms.addLoc && (
+        <>
+          <p>
+            Due to low trust level of your account an admin will have to approve
+            your addition.
+          </p>
+          <p>Make good contributions with sources to be promoted!</p>
+        </>
+      )}
       <h1>{battle}</h1>
-      <h2>Latitude, Longitude:</h2>
-      <h3>No brackets or spaces.</h3>
+      <h2>{country}</h2>
+      <h3>Latitude, Longitude:</h3>
+      <h3>(No brackets or spaces)</h3>
       <input
         type="text"
         placeholder="Example: 34.37,62.17"
-        onChange={(e) => (latLon = e.target.value)}
+        value={latLon}
+        onChange={(e) => setLatLon(e.target.value)}
       />
       <h2>Year:</h2>
       <h3>Negative Number if BC</h3>
       <input
         type="number"
         placeholder="Year"
-        onChange={(e) => (year = parseInt(e.target.value))}
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
       />
-      <br />
-      <br />
-      <button onClick={() => addToDB()}>Submit</button>
+      <h3>Source:</h3>
+      <textarea
+        value={src}
+        onChange={(e) => setSrc(e.target.value)}
+        placeholder="Source:"
+      />
 
-      {/* <select name="popupFunc" id="popupFunc" onChange={(e) => console.log(e.target.value)}>
-        <option value="Add">Add</option>
-        <option value="Report">Report</option>
-        <option value="Delete">Delete</option>
-      </select> */}
+      <br />
+      <button
+        onClick={() => addToDB(latLon)}
+        disabled={!year || !latLon || !src}
+      >
+        Submit
+      </button>
     </div>
   );
 };

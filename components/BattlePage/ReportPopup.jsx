@@ -19,11 +19,11 @@ const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
   }, [user]);
 
   return (
-    <div>
+    <div className="*:my-2">
       <h1>Report</h1>
       <h2>{country}</h2>
       <h2>{battle}</h2>
-      <h3>Sources will make your report be looked at sooner.</h3>
+      <h3>Including sources will result in your report be looked at sooner.</h3>
       <textarea
         type="text"
         placeholder="Reason"

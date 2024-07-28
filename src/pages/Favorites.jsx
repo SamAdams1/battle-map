@@ -6,7 +6,7 @@ const Favorites = ({ user }) => {
   return !user.loggedIn ? (
     <NotLoggedIn pageTitle="Contributions" />
   ) : (
-    <div className="flex flex-col">
+    <div className="flex flex-col belowHeader ">
       <h1>Your Favorites</h1>
       <table>
         <tbody>
