@@ -91,8 +91,8 @@ function App() {
 
   useEffect(() => {
     getDBData("countryCenter", setCountryCenter);
-    getDBData("names", setBattleNames);
-    getBattleLocations("locations");
+    getBattleData("names", combineNames);
+    getBattleData("locations", combineLocs);
 
     setDataRetrieved(true);
   }, []);
@@ -119,29 +119,41 @@ function App() {
   };
 
   // for battle locations
-  const getBattleLocations = (route) => {
+  const getBattleData = (route, combineFunc) => {
     Axios.get(`http://localhost:3005/${route}`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
         } else {
-          combineDbDocuments(response.data[0], setBattleLocs);
+          combineFunc(response.data[0]);
         }
       })
       .catch((e) => console.log(e));
   };
 
-  const combineDbDocuments = (data, setState) => {
+  const combineLocs = (data) => {
     if (data) {
       const retrievedData = {};
       data.map((country) => {
         retrievedData[country["country"]] = country["battles"];
       });
       if (retrievedData) {
-        setState(retrievedData);
+        setBattleLocs(retrievedData);
       }
     }
   };
+  const combineNames = (data) => {
+    if (data) {
+      const retrievedData = {};
+      data.map((country) => {
+        retrievedData[country["country"]] = country["names"];
+      });
+      if (retrievedData) {
+        setBattleNames(retrievedData);
+      }
+    }
+  };
+  // Siege of Dyrrhachium (1107–1108)
 
   const getCurrentDate = () => {
     let today = new Date();

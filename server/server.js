@@ -22,11 +22,13 @@ MongoClient.connect(mongoURI)
   .catch((err) => console.error("MongoDB connection error:", err));
 
 app.get("/names", (req, res) => {
+  let idk = [];
   db.collection("battleNames")
     .find({})
     .toArray()
     .then((result) => {
-      res.json(result);
+      idk = [...idk, result];
+      res.json(idk);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });

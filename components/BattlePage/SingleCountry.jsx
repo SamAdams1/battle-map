@@ -37,7 +37,9 @@ const SingleCountry = ({
           </button>
         )}
         {user.loggedIn && user.perms.addLoc && (
-          <button onClick={() => showPopup("", "", "new")}>New Battle</button>
+          <button onClick={() => showPopup(country, "", "new")}>
+            New Battle
+          </button>
         )}
       </div>
       {totalBattles > 0 && collapseable && (
