@@ -31,4 +31,4 @@ dist-ssr
 # ignore local backup data
 data/*.json
 
-getFromDB.py
+# getFromDB.py

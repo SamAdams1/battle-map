@@ -2,10 +2,11 @@ import pymongo
 import json
 
 # get password from env
-myclient = pymongo.MongoClient(f"mongodb+srv://sammyadams04:{""}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
+DB_AUTH = ""
+myclient = pymongo.MongoClient(f"mongodb+srv://sammyadams04:{DB_AUTH}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
 myDB = myclient["battle-map"]
-testCollection = myDB["test"]
+testCollection = myDB["battleNames"]
 
 # print(myclient.list_database_names())
 # print(testCollection.find_one({ "country": "Afghanistan" }))
@@ -30,8 +31,7 @@ testCollection = myDB["test"]
 # addLocationData()
 
 
-
-with open("../battleNames.json", "r",encoding="utf-8") as json_file:
+with open("data/b.json", "r",encoding="utf-8") as json_file:
   battleNames = json.load(json_file)
 def addBattleNames():
   for country in battleNames:
@@ -40,8 +40,10 @@ def addBattleNames():
     countryDoc["country"] = country
     countryDoc["names"] = battleNames[country]
     testCollection.insert_one(countryDoc)
-addBattleNames()
+# addBattleNames()
 
+# print(battleNames["Germany"])
+# testCollection.update_one({"country": "Germany"}, {"$set":{"names":battleNames["Germany"]}})
 
 
 
