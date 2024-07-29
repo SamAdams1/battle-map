@@ -150,6 +150,25 @@ app.put("/updateContributions", (req, res) => {
     });
 });
 
+app.put("/updateNameList", (req, res) => {
+  console.log(req.body.country);
+  db.collection("battleNames")
+    .updateOne(
+      { country: req.body.country },
+      {
+        $set: {
+          names: req.body.nameList,
+        },
+      }
+    )
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 app.put("/updateUsernamePassword", (req, res) => {
   console.log(req.body);
   db.collection("users")

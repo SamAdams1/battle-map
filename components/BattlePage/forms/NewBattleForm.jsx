@@ -52,11 +52,12 @@ const NewBattleForm = ({
       const element = name[index];
       if (parseInt(element) || element == "0") {
         if (!parseInt(lastletter) && lastletter != "0") {
-          console.log("deleting: ", num, element, lastletter);
+          // console.log("deleting: ", num, element, lastletter);
           num = "";
         }
         num += element;
       }
+      if (lastletter + element == "BC") num = "-" + num;
       lastletter = element;
     }
     return num;
@@ -66,14 +67,22 @@ const NewBattleForm = ({
     return extractYear(name2);
   }
 
+  // loop through namelist, search for matching battlename and grab index insert before or before year
   function searchNameForYear() {
-    // loop through namelist, search for matching battlename and grab index insert before or before year
     battleNames[country].map((b) => {
       let thisYear;
-      b = b.split(" – ");
-      if (b.length >= 2) thisYear = searchSecondPart(b[1]);
-      else console.log(b);
-      console.log(thisYear, b[0]);
+      let a = b.split(" – ");
+      // if has dash search for year
+      if (a.length >= 2) {
+        thisYear = searchSecondPart(a[1].split(" or ")[0].split(",")[0]);
+        console.log("yes", thisYear);
+      } else {
+        // if not search battle name for year
+        thisYear = extractYear(b);
+        // console.log("no", thisYear);
+      }
+      // if (parseInt(thisYear)) console.log(b);
+      // console.log(thisYear, a[0]);
     });
   }
 

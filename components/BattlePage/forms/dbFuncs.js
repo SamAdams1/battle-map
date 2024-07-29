@@ -34,3 +34,12 @@ export function postToHistory(data) {
     })
     .catch((e) => console.error(e));
 }
+
+export function updateNameList(country, nameList) {
+  // console.log("history", data);
+  Axios.put("http://localhost:3005/updateNameList", { country, nameList })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((e) => console.error(e));
+}

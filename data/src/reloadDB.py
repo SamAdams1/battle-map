@@ -1,7 +1,8 @@
 import pymongo
 import json
 
-myclient = pymongo.MongoClient("mongodb+srv://sammyadams04:gDAMx07CaXQuhcQL@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
+# get password from env
+myclient = pymongo.MongoClient(f"mongodb+srv://sammyadams04:{""}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
 myDB = myclient["battle-map"]
 testCollection = myDB["test"]

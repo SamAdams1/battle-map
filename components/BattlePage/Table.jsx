@@ -1,5 +1,6 @@
 import React from "react";
 import FavButton from "../FavButton";
+import EditName from "./EditName";
 
 const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
   function tensPlace(coord) {
@@ -57,26 +58,43 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
 
         {battleNames[country].map((battle, index) => {
           let a = battle.split(" – ");
-          battle = a[0];
+          // battle = a[0];
           const battleCoords = battleHasLoc(country, battle);
           let year = battleCoords ? battleLocs[country][battle]["year"] : a[1];
           if (year < 0) year = String((year *= -1)).concat(" BC");
+          if (!parseInt(year) && a.length >= 2) {
+            year = a[2];
+          }
           return (
             <tr key={battle + index}>
               <td className="text-center">{index + 1}</td>
               <td className={battleCoords ? "bg-green-500" : "bg-red-500"}>
-                <a
+                {/* <a
                   href={
                     "https://en.wikipedia.org/wiki/" +
                     battle.split(" or ")[0].replace(" ", "_")
                   }
                   target="_blank"
                   className="learnMoreBtn"
-                >
-                  {battle.split(" or ")[0]}
-                </a>
+                > */}
+                {parseInt(year) || year == undefined ? (
+                  battle.split(" or ")[0]
+                ) : (
+                  <>
+                    <EditName
+                      index={index}
+                      battleName={battle}
+                      nameList={battleNames[country]}
+                      country={country}
+                    />
+                  </>
+                )}
+                {/* </a> */}
               </td>
-              <td className="text-center">{year}</td>
+              <td className="text-center">
+                {year}
+                {!parseInt(year) && year != undefined && <>fortnite</>}
+              </td>
               <td>
                 {battleCoords ? (
                   <div className="flex">
