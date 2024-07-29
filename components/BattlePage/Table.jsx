@@ -56,15 +56,25 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
         </tr>
 
         {battleNames[country].map((battle, index) => {
-          battle = battle.split(" – ").at(0);
+          let a = battle.split(" – ");
+          battle = a[0];
           const battleCoords = battleHasLoc(country, battle);
-          const year = battleCoords ? battleLocs[country][battle]["year"] : "";
-
+          let year = battleCoords ? battleLocs[country][battle]["year"] : a[1];
+          if (year < 0) year = String((year *= -1)).concat(" BC");
           return (
             <tr key={battle + index}>
               <td className="text-center">{index + 1}</td>
               <td className={battleCoords ? "bg-green-500" : "bg-red-500"}>
-                {battle.split(" or ")[0]}
+                <a
+                  href={
+                    "https://en.wikipedia.org/wiki/" +
+                    battle.split(" or ")[0].replace(" ", "_")
+                  }
+                  target="_blank"
+                  className="learnMoreBtn"
+                >
+                  {battle.split(" or ")[0]}
+                </a>
               </td>
               <td className="text-center">{year}</td>
               <td>

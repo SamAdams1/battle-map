@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import { updateCountryBattleLocs } from "./dbFuncs";
 
 const EditPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
   const latLon = String(battleLocs[country][battle].latLon).split(",");
@@ -11,15 +12,7 @@ const EditPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
     battleLocs[country][battle].latLon = editedLatlon;
     battleLocs[country][battle]["editedBy"] = user._id;
 
-    Axios.put("http://localhost:3005/addBattleLoc", {
-      battles: battleLocs[country],
-      country: country,
-      total: Object.keys(battleLocs[country]).length,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
+    updateCountryBattleLocs(country, battleLocs[country]);
     setPopupVis(false);
   };
 

@@ -52,6 +52,7 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
     new: (
       <NewBattleForm
         user={user}
+        country={battleCountry}
         battleLocs={locationData}
         battleNames={battleNameData}
         setPopupVis={setPopupVis}
