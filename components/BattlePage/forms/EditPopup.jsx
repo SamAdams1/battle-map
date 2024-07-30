@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { updateCountryBattleLocs } from "./dbFuncs";
+import { updateCountryBattleLocs, updateNameList } from "./dbFuncs";
 
 const EditPopup = ({
   battleArr,
@@ -13,12 +13,13 @@ const EditPopup = ({
   // battle format: ["battle name", " year", "campaign/war", ...]
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
-
   const [newName, setNewName] = useState("");
   const [newYear, setNewYear] = useState("");
 
+  const hasLatLon = battleLocs[battleArr[0]] ? true : false;
+
   useEffect(() => {
-    splitName();
+    setNameYear();
     try {
       const latLon = String(battleLocs[battleArr[0]].latLon).split(",");
       setLat(String(latLon[0]));
@@ -26,7 +27,7 @@ const EditPopup = ({
     } catch (error) {}
   }, []);
 
-  const splitName = () => {
+  const setNameYear = () => {
     try {
       setNewName(battleArr[0]);
       setNewYear(battleArr[1]);
@@ -38,6 +39,7 @@ const EditPopup = ({
   const saveChanges = () => {
     editBattleLocation();
     editNameList();
+
     setPopupVis(false);
   };
 
@@ -52,7 +54,7 @@ const EditPopup = ({
     battleLocs[newName] = data;
 
     console.log(battleLocs);
-    // updateCountryBattleLocs(country, battleLocs);
+    updateCountryBattleLocs(country, battleLocs);
   };
 
   const editNameList = () => {
@@ -60,6 +62,8 @@ const EditPopup = ({
     battleArr[1] = newYear;
 
     battleNames[index] = battleArr.join(" – ");
+
+    updateNameList(country, battleNames);
   };
 
   useEffect(() => {
@@ -81,18 +85,16 @@ const EditPopup = ({
           onChange={(e) => setNewName(e.target.value)}
         ></textarea>
       </div>
-      {newYear && (
-        <div className="flex flex-col items-center ">
-          <h1>Year</h1>
-          <input
-            type="text"
-            name="year"
-            value={newYear}
-            onChange={(e) => setNewYear(e.target.value)}
-          />
-        </div>
-      )}
-      {lat && lon && (
+      <div className="flex flex-col items-center ">
+        <h1>Year</h1>
+        <input
+          type="text"
+          name="year"
+          value={newYear}
+          onChange={(e) => setNewYear(e.target.value)}
+        />
+      </div>
+      {hasLatLon && (
         <div className="flex flex-col">
           <div className="flex ">
             <h3 className="mr-2">Lat:</h3>
@@ -114,7 +116,12 @@ const EditPopup = ({
           </div>
         </div>
       )}
-      <button onClick={saveChanges}>Save</button>
+      <button
+        onClick={saveChanges}
+        disabled={!newName || !newYear || (hasLatLon && !(lat && lon))}
+      >
+        Save
+      </button>
     </div>
   );
 };

@@ -40,8 +40,6 @@ const NewBattleForm = ({
   };
 
   function searchNameForYear() {
-    let largerYear;
-    let largerIndex = -1;
     for (let index = 0; index < battleNames.length; index++) {
       const bStr = battleNames[index];
       let bArr = bStr.split(" – ");
@@ -58,7 +56,6 @@ const NewBattleForm = ({
           thisYear = extractYear(bStr);
         }
       }
-      // console.log(thisYear, bStr, index);
 
       // check if greater
       if (year < parseInt(thisYear)) {
