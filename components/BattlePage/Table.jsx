@@ -28,22 +28,23 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
     alert("Location copied to clipboard: " + txt);
   };
 
-  // const getYearFromName = (battleName) => {
-  //   let num = "";
-  //   let lastChar = "0";
-  //   for (let index = 0; index < battleName.length; index++) {
-  //     const element = battleName[index];
-  //     if (Number(element) || element == "0") {
-  //       if ((!Number(lastChar) || (element != "0") && !isNaN(element))) {
-  //         num = "";
-  //         console.log(Number("–"), lastChar, element);
-  //       }
-  //       lastChar = element;
-  //       num += element;
-  //     }
-  //   }
-  //   console.log(num);
-  // };
+  function extractYear(name) {
+    let num = "";
+    let lastletter = "1";
+    for (let index = 0; index < name.length; index++) {
+      const element = name[index];
+      if (parseInt(element) || element == "0") {
+        if (!parseInt(lastletter) && lastletter != "0") {
+          // console.log("deleting: ", num, element, lastletter);
+          num = "";
+        }
+        num += element;
+      }
+      if (lastletter + element == "BC") num = "-" + num;
+      lastletter = element;
+    }
+    return num;
+  }
 
   return (
     <table>
@@ -58,13 +59,14 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
 
         {battleNames[country].map((battle, index) => {
           let a = battle.split(" – ");
-          // battle = a[0];
+          battle = a[0];
           const battleCoords = battleHasLoc(country, battle);
           let year = battleCoords ? battleLocs[country][battle]["year"] : a[1];
-          if (year < 0) year = String((year *= -1)).concat(" BC");
+          // if (year < 0) year = String((year *= -1)).concat(" BC");
           if (!parseInt(year) && a.length >= 2) {
             year = a[2];
           }
+          if (!parseInt(year)) year = extractYear(battle);
           return (
             <tr key={battle + index}>
               <td className="text-center">{index + 1}</td>
@@ -72,11 +74,13 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                 {/* <a
                   href={
                     "https://en.wikipedia.org/wiki/" +
-                    battle.split(" or ")[0].replace(" ", "_")
+                    a[0].split(" or ")[0].replace(" ", "_")
                   }
                   target="_blank"
                   className="learnMoreBtn"
-                > */}
+                >
+                  clickme
+                </a> */}
                 {parseInt(year) || year == undefined ? (
                   battle.split(" or ")[0]
                 ) : (
@@ -87,13 +91,13 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                       nameList={battleNames[country]}
                       country={country}
                     />
+                    <>bruh</>
                   </>
                 )}
-                {/* </a> */}
               </td>
               <td className="text-center">
                 {year}
-                {!parseInt(year) && year != undefined && <>fortnite</>}
+                {!parseInt(year) && <>nodata</>}
               </td>
               <td>
                 {battleCoords ? (

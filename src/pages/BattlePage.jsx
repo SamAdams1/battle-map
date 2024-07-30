@@ -53,8 +53,8 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
       <NewBattleForm
         user={user}
         country={battleCountry}
-        battleLocs={locationData}
-        battleNames={battleNameData}
+        battleLocs={locationData[battleCountry]}
+        battleNames={battleNameData[battleCountry]}
         setPopupVis={setPopupVis}
       />
     ),
@@ -67,6 +67,7 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
       >
         <h1 id="Top">All Battles</h1>
       </a>
+      <button onClick={() => console.log(locationData)}>fdha</button>
       <NavSideBar countryList={Object.keys(battleNameData)} />
 
       {Object.keys(battleNameData).map((country) => {

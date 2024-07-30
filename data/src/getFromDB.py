@@ -15,5 +15,5 @@ for doc in nameCollection.find({}, {"_id":0, "country":1, "names": 1}):
     country = doc.pop("country")
     battleNames[country] = doc["names"]
     
-with open("./b.json", "w") as outfile:
+with open("./bnames.json", "w") as outfile:
   outfile.write(json.dumps(battleNames, indent=1))

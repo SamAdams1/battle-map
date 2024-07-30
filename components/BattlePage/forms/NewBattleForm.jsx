@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import { postToHistory, updateCountryBattleLocs } from "./dbFuncs";
+import {
+  getCurrentDate,
+  postToHistory,
+  updateCountryBattleLocs,
+  updateNameList,
+  updateUserContributions,
+} from "./dbFuncs";
 
 const NewBattleForm = ({
   user,
@@ -19,31 +25,53 @@ const NewBattleForm = ({
   }, [user]);
 
   const submit = () => {
-    searchNameForYear();
+    const index = searchNameForYear();
+    let name = `${battle} – ${year}`;
+
+    battleNames.splice(index, 0, name);
+
     // console.log(battle, country, year);
-    // addBattleName();
-    // addBattleLocation();
-    // addToHistory();
-    // addToUserContributions();
+    updateNameList(country, battleNames);
+    addToBattleLocation();
+    addToHistory();
+    addToUserContributions();
 
-    // setPopupVis(false);
+    setPopupVis(false);
   };
 
-  const addBattleName = () => {
-    battleNames[country].push(battle);
-    // check battlelocs for 2 battles one with larger year and another with smaller year
+  function searchNameForYear() {
     let largerYear;
-    let smallerYear;
-    Object.keys(battleLocs[country]).map((battle) => {
-      let idk = battleLocs[country][battle];
-      if (idk.year > year && !largerYear) {
-        largerYear = idk;
+    let largerIndex = -1;
+    for (let index = 0; index < battleNames.length; index++) {
+      const bStr = battleNames[index];
+      let bArr = bStr.split(" – ");
+      let thisYear;
+      try {
+        // check if battle has loc as then it will have year
+        thisYear = String(battleLocs[bArr[0]].year);
+      } catch {
+        // if has dash search for year
+        if (bArr.length >= 2) {
+          thisYear = searchSecondPart(bArr[1].split(" or ")[0].split(",")[0]);
+        } else {
+          // if not search battle name for year
+          thisYear = extractYear(bStr);
+        }
       }
-      // if (idk.year < year) {smallerYear = idk;}
-    });
-    // console.log("smaller", smallerYear, "larger", largerYear);
-    searchNameForYear();
-  };
+      // console.log(thisYear, bStr, index);
+
+      // check if greater
+      if (year < parseInt(thisYear)) {
+        console.log(thisYear, year);
+        return index;
+      }
+    }
+  }
+
+  function searchSecondPart(name2) {
+    if (parseInt(name2)) return name2;
+    return extractYear(name2);
+  }
 
   function extractYear(name) {
     let num = "";
@@ -62,41 +90,34 @@ const NewBattleForm = ({
     }
     return num;
   }
-  function searchSecondPart(name2) {
-    if (parseInt(name2)) return name2;
-    return extractYear(name2);
-  }
 
-  // loop through namelist, search for matching battlename and grab index insert before or before year
-  function searchNameForYear() {
-    battleNames[country].map((b) => {
-      let thisYear;
-      let a = b.split(" – ");
-      // if has dash search for year
-      if (a.length >= 2) {
-        thisYear = searchSecondPart(a[1].split(" or ")[0].split(",")[0]);
-        console.log("yes", thisYear);
-      } else {
-        // if not search battle name for year
-        thisYear = extractYear(b);
-        // console.log("no", thisYear);
-      }
-      // if (parseInt(thisYear)) console.log(b);
-      // console.log(thisYear, a[0]);
-    });
-  }
+  const addToBattleLocation = () => {
+    const data = { latLon: latLon.split(","), year: year, addedBy: user._id };
 
-  const addBattleLocation = () => {
-    const data = { latLon: latLon, year: year, addedBy: user._id };
-
-    battleLocs[country][battle] = data;
-    updateCountryBattleLocs(country, battleLocs[country]);
+    battleLocs[battle] = data;
+    updateCountryBattleLocs(country, battleLocs);
   };
 
   const addToHistory = () => {
-    const data = { latLon: latLon, year: year, addedBy: user._id, source: src };
+    const data = {
+      country,
+      battle,
+      latLon: latLon.split(","),
+      year,
+      dateAdded: getCurrentDate(),
+      source: src,
+      addedBy: user._id,
+      approved: user.perms.addNewBattle,
+    };
 
     postToHistory(data);
+  };
+
+  const addToUserContributions = () => {
+    const data = { country, battle, dateAdded: getCurrentDate() };
+    user.contributions[battle] = data;
+
+    updateUserContributions(user._id, user.contributions);
   };
 
   return (
@@ -133,7 +154,7 @@ const NewBattleForm = ({
         onChange={(e) => setSrc(e.target.value)}
       />
       <button
-        disabled={!battle || !country || !year || !src || !latLon}
+        // disabled={!battle || !country || !year || !src || !latLon}
         onClick={submit}
       >
         Submit

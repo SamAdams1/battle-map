@@ -1,8 +1,9 @@
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import ChatTxt from "../../components/ChatTxt";
+import { getCurrentDate } from "../../components/BattlePage/forms/dbFuncs";
 
-const ChatPage = ({ user, getDate }) => {
+const ChatPage = ({ user }) => {
   const [messages, setMessages] = useState([]);
   const [ws, setWs] = useState(null);
   const [message, setMessage] = useState("");
@@ -40,7 +41,7 @@ const ChatPage = ({ user, getDate }) => {
         text: message,
         username: user.username,
         userId: user._id,
-        date: getDate(),
+        date: getCurrentDate(),
         _id: objectId(),
       };
       ws.send(

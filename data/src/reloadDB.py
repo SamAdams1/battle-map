@@ -43,7 +43,7 @@ def addBattleNames():
 # addBattleNames()
 
 # print(battleNames["Germany"])
-# testCollection.update_one({"country": "Germany"}, {"$set":{"names":battleNames["Germany"]}})
+testCollection.update_one({"country": "Germany"}, {"$set":{"names":battleNames["Germany"]}})
 
 
 
