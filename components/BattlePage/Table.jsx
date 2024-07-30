@@ -1,6 +1,6 @@
 import React from "react";
 import FavButton from "../FavButton";
-import EditName from "./EditName";
+import EditName from "./EditNameDev";
 
 const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
   function tensPlace(coord) {
@@ -55,32 +55,35 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
           <th>Year</th>
           <th>Location</th>
           <th></th>
+          <th></th>
         </tr>
 
         {battleNames[country].map((battle, index) => {
-          let a = battle.split(" – ");
-          battle = a[0];
+          let battleArr = battle.split(" – ");
+          battle = battleArr[0];
           const battleCoords = battleHasLoc(country, battle);
-          let year = battleCoords ? battleLocs[country][battle]["year"] : a[1];
+          let year = battleCoords
+            ? battleLocs[country][battle]["year"]
+            : battleArr[1];
           // if (year < 0) year = String((year *= -1)).concat(" BC");
-          if (!parseInt(year) && a.length >= 2) {
-            year = a[2];
+          if (!parseInt(year) && battleArr.length >= 2) {
+            year = battleArr[2];
           }
           if (!parseInt(year)) year = extractYear(battle);
           return (
             <tr key={battle + index}>
               <td className="text-center">{index + 1}</td>
               <td className={battleCoords ? "bg-green-500" : "bg-red-500"}>
-                {/* <a
+                {/* <battleArr
                   href={
                     "https://en.wikipedia.org/wiki/" +
-                    a[0].split(" or ")[0].replace(" ", "_")
+                    battleArr[0].split(" or ")[0].replace(" ", "_")
                   }
                   target="_blank"
                   className="learnMoreBtn"
                 >
                   clickme
-                </a> */}
+                </battleArr> */}
                 {parseInt(year) || year == undefined ? (
                   battle.split(" or ")[0]
                 ) : (
@@ -109,24 +112,6 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                     >
                       [{battleCoords[0]}, {battleCoords[1]}]
                     </button>
-                    {user.loggedIn && (
-                      <>
-                        {user.perms.reportData && (
-                          <button
-                            onClick={() => showPopup(country, battle, "report")}
-                          >
-                            Report
-                          </button>
-                        )}
-                        {user.perms.editData && (
-                          <button
-                            onClick={() => showPopup(country, battle, "edit")}
-                          >
-                            Edit
-                          </button>
-                        )}
-                      </>
-                    )}
                   </div>
                 ) : (
                   <button
@@ -146,6 +131,26 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
               {user.loggedIn && (
                 <td>
                   <FavButton battle={battle} country={country} user={user} />
+                </td>
+              )}
+              {user.loggedIn && (
+                <td>
+                  {user.perms.editData && (
+                    <button
+                      onClick={() =>
+                        showPopup(country, battleArr, "edit", index)
+                      }
+                    >
+                      Edit
+                    </button>
+                  )}
+                  {user.perms.reportData && (
+                    <button
+                      onClick={() => showPopup(country, battle, "report")}
+                    >
+                      Report
+                    </button>
+                  )}
                 </td>
               )}
             </tr>

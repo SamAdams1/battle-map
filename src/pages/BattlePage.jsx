@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
 import NavSideBar from "../../components/BattlePage/NavSideBar";
-import DBPopup from "../../components/BattlePage/forms/DBPopup";
 import SingleCountry from "../../components/BattlePage/SingleCountry";
+import Popup from "../../components/Popup";
+
+// Forms to interact with Data
+import DBPopup from "../../components/BattlePage/forms/DBPopup";
 import Report from "../../components/BattlePage/forms/ReportPopup";
 import EditPopup from "../../components/BattlePage/forms/EditPopup";
-import Popup from "../../components/Popup";
 import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
 
 const BattlePage = ({ battleNameData, locationData, user }) => {
   const [popupVis, setPopupVis] = useState(false);
   const [popupType, setPopupType] = useState("");
 
-  const [selectedBattle, setSelectedBattle] = useState("");
+  const [selectedBattle, setSelectedBattle] = useState([]);
   const [battleCountry, setBattleCountry] = useState("");
+  const [index, setIndex] = useState("");
 
-  function showPopup(country, battleName, type) {
-    setSelectedBattle(battleName);
+  function showPopup(country, battle, type, bIndex) {
     setBattleCountry(country);
+    setSelectedBattle(battle);
+    setIndex(bIndex);
     setPopupType(type);
     setPopupVis(true);
   }
@@ -42,11 +46,13 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
     ),
     edit: (
       <EditPopup
-        user={user}
-        battle={selectedBattle}
+        battleArr={selectedBattle}
         country={battleCountry}
-        battleLocs={locationData}
+        index={index}
+        battleNames={battleNameData[battleCountry]}
+        battleLocs={locationData[battleCountry]}
         setPopupVis={setPopupVis}
+        user={user}
       />
     ),
     new: (
