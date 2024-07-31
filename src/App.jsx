@@ -87,10 +87,6 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    getDBData("countryCenter", setCountryCenter);
-    getBattleData("names", combineNames);
-    getBattleData("locations", combineLocs);
-
     setDataRetrieved(true);
   }, []);
 

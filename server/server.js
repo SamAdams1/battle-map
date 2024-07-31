@@ -36,23 +36,14 @@ app.get("/battles", (req, res) => {
     });
 });
 
-app.get("/names", (req, res) => {
-  let idk = [];
-  db.collection("battleNames")
-    .find({})
-    .toArray()
-    .then((result) => {
-      idk = [...idk, result];
-      res.json(idk);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
-
 app.get("/countryCenter", (req, res) => {
-  db.collection("countryCenter")
-    .find({})
+  console.log(req.query);
+  pipeline = [
+    { $match: req.query },
+    { $unset: ["_id", "withLocation", "battles", "country"] },
+  ];
+  db.collection("battles")
+    .aggregate(pipeline)
     .toArray()
     .then((result) => {
       res.json(result);

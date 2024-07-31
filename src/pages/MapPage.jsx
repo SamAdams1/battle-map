@@ -33,11 +33,13 @@ const MapPage = ({ user }) => {
   };
 
   const formatData = (dataArr) => {
+    let idk = {};
     for (let index = 0; index < dataArr.length; index++) {
       const item = dataArr[index];
-      data[item.country] = item.battles;
+      idk[item.country] = item.battles;
     }
-    console.log(data);
+    console.log(idk);
+    setData(idk);
   };
 
   const showMarkerPopup = (battleName) => {
@@ -45,17 +47,18 @@ const MapPage = ({ user }) => {
       markersRef.current[battleName].openPopup();
     }, 350);
   };
+
   const panToPoint = (latLon, zoom) => {
     map.setView(latLon, zoom);
   };
 
   return (
     <div>
-      {/* <InfoPanel
-        countries={Object.keys(data)}
+      <InfoPanel
+        data={data}
         panFunc={panToPoint}
         showMarkerPopup={showMarkerPopup}
-      /> */}
+      />
       <Map mapRef={setMap} classname="Map">
         <Markers data={data} markersRef={markersRef} user={user} />
       </Map>

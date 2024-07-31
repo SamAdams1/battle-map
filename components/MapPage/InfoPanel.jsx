@@ -3,21 +3,38 @@ import { useState, useEffect } from "react";
 import Countries from "./CountryList";
 import Battles from "./BattleList";
 
-const InfoPanel = ({
-  countriesData,
-  battlesNames,
-  battleLocs,
-  panFunc,
-  showMarkerPopup,
-}) => {
+import Axios from "axios";
+
+const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
   const [showDisplay, setShowDisplay] = useState(true);
+
+  // arrows buttons
   const [country, setCountry] = useState("");
   const [lastCountry, setLastCountry] = useState("");
+  const [center, setCenter] = useState({});
 
   const [header, setHeader] = useState("Select a Country");
 
-  const showBattles = (countryName) => {
+  const getCountryCenter = (country) => {
+    Axios.get("http://localhost:3005/countryCenter", { params: { country } })
+      .then((response) => {
+        if (response.data.length == 0) {
+          console.log(route + " not found.");
+        } else {
+          const countryCenter = response.data[0]["countryCenter"];
+          setLastCountry("");
+          setCenter(countryCenter);
+          focusCountry(countryCenter, country);
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const focusCountry = (countryData, countryName) => {
+    // console.log(countryData);
+    panFunc(countryData.latLon, countryData.zoom);
     setCountry(countryName);
+    setHeader("Select a Country");
   };
 
   const onReset = () => {
@@ -28,13 +45,11 @@ const InfoPanel = ({
   };
 
   const onRightArrow = () => {
-    if (country == "" && lastCountry != "") {
-      setCountry(lastCountry);
-      setLastCountry("");
-      let countryCenter = countriesData[lastCountry];
-      panFunc(countryCenter.latLon, countryCenter.zoom);
-    }
+    setCountry(lastCountry);
+    setLastCountry("");
+    panFunc(center.latLon, center.zoom);
   };
+
   const onLeftArrow = () => {
     setLastCountry(country);
     setCountry("");
@@ -78,7 +93,11 @@ const InfoPanel = ({
             </button>
             <button
               onClick={() => onRightArrow()}
-              disabled={(!lastCountry && country) || (!country && !lastCountry)}
+              disabled={
+                (!lastCountry && country) ||
+                (!country && !lastCountry) ||
+                (country != "" && lastCountry == "")
+              }
               className="w-7"
             >
               {">"}
@@ -89,19 +108,16 @@ const InfoPanel = ({
             <h2 className="p-1 bg-red-800 text-white">{header}</h2>
             {country ? (
               <Battles
-                data={battlesNames}
-                panToBattle={panFunc}
+                data={data}
                 country={country}
-                battleLocations={battleLocs}
+                panToBattle={panFunc}
                 showMarkerPopup={showMarkerPopup}
                 setHeader={setHeader}
               />
             ) : (
               <Countries
-                data={countriesData}
-                panToCountry={panFunc}
-                showBattles={showBattles}
-                setHeader={setHeader}
+                data={data}
+                getCountryCenter={getCountryCenter}
                 goToLatLon={goToLatLon}
               />
             )}

@@ -36,7 +36,7 @@ const Markers = ({ data, markersRef, user }) => {
                 <Popup>
                   <h3>{country}</h3>
                   <h3>
-                    {/* {index}: */}
+                    {parseInt(index) + 1}:
                     <a
                       href={
                         "https://en.wikipedia.org/wiki/" +
@@ -44,7 +44,7 @@ const Markers = ({ data, markersRef, user }) => {
                       }
                       target="_blank"
                     >
-                      {index}: {battleName}
+                      {battleName}
                     </a>
                   </h3>
                   <h3>{countryData[index]["year"]}</h3>
