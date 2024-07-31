@@ -9,15 +9,12 @@ import InfoPanel from "../../components/MapPage/InfoPanel";
 
 const MapPage = ({ user }) => {
   const [data, setData] = useState({});
-  const [dataRetrieved, setDataRetrieved] = useState(false);
 
   const [map, setMap] = useState(null);
   const markersRef = useRef([]);
 
   useEffect(() => {
     getData();
-
-    setDataRetrieved(true);
   }, []);
 
   const getData = () => {

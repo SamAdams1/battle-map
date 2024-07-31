@@ -10,9 +10,6 @@ import MapPage from "./pages/MapPage";
 import LoginRegister from "../components/UserLogin/LoginRegister";
 import AccountDropdown from "../components/UserLogin/AccountDropdown";
 
-// Better fetch
-import Axios from "axios";
-
 // React router
 import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites";
@@ -77,18 +74,7 @@ const userTitles = [
 ];
 
 function App() {
-  // handle map data
-  const [dataRetrieved, setDataRetrieved] = useState(false);
-  const [countryCenter, setCountryCenter] = useState({});
-  const [battleLocs, setBattleLocs] = useState({});
-  const [battleNames, setBattleNames] = useState({});
-
-  // user
   const [user, setUser] = useState({});
-
-  useEffect(() => {
-    setDataRetrieved(true);
-  }, []);
 
   useEffect(() => {
     user["loggedIn"] = Object.keys(user).length > 1;
@@ -99,71 +85,12 @@ function App() {
     }
   }, [user]);
 
-  const getDBData = (route, setState) => {
-    Axios.get(`http://localhost:3005/${route}`)
-      .then((response) => {
-        if (response.data.length == 0) {
-          console.log(route + " not found.");
-        } else {
-          setState(response.data[0]);
-        }
-      })
-      .catch((e) => console.log(e));
-  };
-
-  // for battle locations
-  const getBattleData = (route, combineFunc) => {
-    Axios.get(`http://localhost:3005/${route}`)
-      .then((response) => {
-        if (response.data.length == 0) {
-          console.log(route + " not found.");
-        } else {
-          combineFunc(response.data[0]);
-        }
-      })
-      .catch((e) => console.log(e));
-  };
-
-  const combineLocs = (data) => {
-    if (data) {
-      const retrievedData = {};
-      data.map((country) => {
-        retrievedData[country["country"]] = country["battles"];
-      });
-      if (retrievedData) {
-        setBattleLocs(retrievedData);
-      }
-    }
-  };
-  const combineNames = (data) => {
-    if (data) {
-      const retrievedData = {};
-      data.map((country) => {
-        retrievedData[country["country"]] = country["names"];
-      });
-      if (retrievedData) {
-        setBattleNames(retrievedData);
-      }
-    }
-  };
-
-  return !dataRetrieved ? (
-    <h1>Loading...</h1>
-  ) : (
+  return (
     <>
       <Header user={user} />
       <Routes>
         <Route index path="/" element={<MapPage user={user} />} />
-        <Route
-          path="battleList"
-          element={
-            <BattlePage
-              battleNameData={battleNames}
-              locationData={battleLocs}
-              user={user}
-            />
-          }
-        />
+        <Route path="battleList" element={<BattlePage user={user} />} />
         <Route path="chat" element={<ChatPage user={user} />}></Route>
         <Route path="about" element={<About />} />
 
@@ -185,9 +112,7 @@ function App() {
         />
         <Route
           path="admin"
-          element={
-            <Admin user={user} titles={userTitles} battleLocs={battleLocs} />
-          }
+          element={<Admin user={user} titles={userTitles} />}
         />
         <Route
           path="titles"
