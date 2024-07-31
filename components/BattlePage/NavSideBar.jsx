@@ -10,7 +10,7 @@ const NavSideBar = ({ countryList, setCountry }) => {
         className="fixed -translate-y-8"
         onClick={() => setSideBarVis(!sideBarVis)}
       >
-        {sideBarVis ? <>Hide</> : <>Show</>} Nav Countries
+        {sideBarVis ? <>Hide</> : <>Show</>} Nav
       </button>
       {sideBarVis && (
         <div className="fixed bg-slate-100 max-h-[40em] overflow-auto px-2">

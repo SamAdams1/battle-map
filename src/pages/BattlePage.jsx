@@ -111,13 +111,13 @@ const BattlePage = ({ user }) => {
   };
   return (
     <div className="flex flex-col  items-center belowHeader overflow-auto bg-slate-300">
-      <a
+      {/* <a
         href="https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location"
         target="_blank"
       >
         <h1 id="Top">All Battles</h1>
       </a>
-      <button onClick={() => console.log(countries)}>print</button>
+      <button onClick={() => console.log(countries)}>print</button> */}
       <NavSideBar countryList={countries} setCountry={changeCountry} />
 
       <div>
