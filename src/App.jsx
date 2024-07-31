@@ -24,9 +24,6 @@ import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
 import Titles from "./pages/Titles";
 
-// user permission functions
-import { addBattle } from "../components/UserLogin/userFuncs";
-
 const userTitles = [
   {
     title: "Emperor",
@@ -160,18 +157,7 @@ function App() {
     <>
       <Header user={user} />
       <Routes>
-        <Route
-          index
-          path="/"
-          element={
-            <MapPage
-              countryCenter={countryCenter}
-              battleNames={battleNames}
-              battleLocs={battleLocs}
-              user={user}
-            />
-          }
-        />
+        <Route index path="/" element={<MapPage user={user} />} />
         <Route
           path="battleList"
           element={

@@ -21,6 +21,21 @@ MongoClient.connect(mongoURI)
   })
   .catch((err) => console.error("MongoDB connection error:", err));
 
+app.get("/battles", (req, res) => {
+  let idk = [];
+  pipeline = [{ $unset: ["_id", "withLocation", "countryCenter"] }];
+  db.collection("battles")
+    .aggregate(pipeline)
+    .toArray()
+    .then((result) => {
+      idk = [...idk, result];
+      res.json(idk);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 app.get("/names", (req, res) => {
   let idk = [];
   db.collection("battleNames")

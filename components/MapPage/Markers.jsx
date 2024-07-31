@@ -12,16 +12,17 @@ const icon = new Icon({
 });
 // let wikiLink = "https://en.wikipedia.org/wiki/" + battleName.replace(" ","_")
 
-const Markers = ({ battlesData, markersRef, user }) => {
+const Markers = ({ data, markersRef, user }) => {
   const totalBattles = 3374;
   let count = 0;
   return (
     <>
-      {Object.keys(battlesData).map((country) => {
-        let firstLetter = country.charAt(0);
+      {Object.keys(data).map((country) => {
+        let countryData = data[country];
         //returns each country, skips non-country data
-        return Object.keys(battlesData[country]).map((battleName, index) => {
-          const latLon = battlesData[country][battleName].latLon;
+        return Object.keys(countryData).map((index) => {
+          const latLon = countryData[index].latLon;
+          let battleName = countryData[index]["name"].split(" – ")[0];
           if (latLon) {
             // goes through battles and creates the marker if latlon is defined
             count += 1;
@@ -39,15 +40,14 @@ const Markers = ({ battlesData, markersRef, user }) => {
                     <a
                       href={
                         "https://en.wikipedia.org/wiki/" +
-                        battleName.split(" or ").at(0).replace(" ", "_")
+                        battleName.split(" or ")[0].replace(" ", "_")
                       }
                       target="_blank"
-                      className="learnMoreBtn"
                     >
-                      {battleName}
+                      {index}: {battleName}
                     </a>
                   </h3>
-                  <h3>{battlesData[country][battleName]["year"]}</h3>
+                  <h3>{countryData[index]["year"]}</h3>
                   <h4>
                     {latLon[0]}, {latLon[1]}
                   </h4>
