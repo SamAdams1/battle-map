@@ -5,7 +5,7 @@ import {
   updateUserContributions,
 } from "./dbFuncs";
 
-const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
+const DBPopup = ({ user, battle, country, battleLocs, setPopupVis }) => {
   const [latLon, setLatLon] = useState("");
   const [year, setYear] = useState(0);
   const [src, setSrc] = useState("");
@@ -32,12 +32,12 @@ const DBPopup = ({ battle, country, battleLocs, setPopupVis, user }) => {
 
   const addBattleLoc = (country, battle, data) => {
     data["addedBy"] = user._id;
-    battleLocs[country][battle] = data;
-    const total = Object.keys(battleLocs[country]).length;
-    // console.log(battleLocs[country]);
+    battleLocs[battle] = data;
+    const total = Object.keys(battleLocs).length;
+    // console.log(battleLocs);
     addToUserContributions(battle, country);
 
-    updateCountryBattleLocs(country, battleLocs[country]);
+    updateCountryBattleLocs(country, battleLocs);
   };
 
   // contributed battles added to user card

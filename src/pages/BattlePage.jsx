@@ -65,7 +65,7 @@ const BattlePage = ({ user }) => {
     type: "",
     battle: "",
     country: "",
-    index: "",
+    index: "add",
   };
   function showPopup(bcountry, battle, type, bIndex) {
     popup.country = bcountry;
@@ -79,8 +79,7 @@ const BattlePage = ({ user }) => {
     add: (
       <DBPopup
         user={user}
-        battle={popup.battle}
-        country={popup.country}
+        displayData={popup}
         battleLocs={data}
         setPopupVis={setPopupVis}
       />
@@ -88,8 +87,7 @@ const BattlePage = ({ user }) => {
     report: (
       <Report
         user={user}
-        battle={popup.battle}
-        country={popup.country}
+        displayData={popup}
         battleLocs={data}
         setPopupVis={setPopupVis}
       />
@@ -97,9 +95,7 @@ const BattlePage = ({ user }) => {
     edit: (
       <EditPopup
         user={user}
-        battleArr={popup.battle}
-        country={popup.country}
-        index={popup.index}
+        displayData={popup}
         battleLocs={data}
         setPopupVis={setPopupVis}
       />
@@ -107,7 +103,7 @@ const BattlePage = ({ user }) => {
     new: (
       <NewBattleForm
         user={user}
-        country={popup.country}
+        displayData={popup}
         battleLocs={data}
         setPopupVis={setPopupVis}
       />

@@ -73,14 +73,14 @@ const Table = ({ user, data, country, showPopup }) => {
           let battle = battleData["name"];
 
           let battleArr = battle.split(" – ");
-          battle = battleArr[0];
+          let name = battleArr[0];
 
           const battleCoords =
             "latLon" in battleData ? battleData["latLon"] : "";
           let year = setYear(battleCoords, battleData, battleArr);
 
           return (
-            <tr key={battle + index}>
+            <tr key={name + index}>
               <td className="text-center">{index + 1}</td>
               <td className={battleCoords ? "bg-green-500" : "bg-red-500"}>
                 {/* <battleArr
@@ -94,7 +94,7 @@ const Table = ({ user, data, country, showPopup }) => {
                   clickme
                 </battleArr> */}
                 {parseInt(year) || year == undefined ? (
-                  battle.split(" or ")[0]
+                  name.split(" or ")[0]
                 ) : (
                   <>
                     <EditName
