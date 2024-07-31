@@ -53,10 +53,27 @@ app.get("/countryCenter", (req, res) => {
     });
 });
 
-app.get("/locations", (req, res) => {
+app.get("/countryBattles", (req, res) => {
+  pipeline = [
+    { $match: req.query },
+    { $unset: ["_id", "countryCenter", "withLocation", "country"] },
+  ];
+  db.collection("battles")
+    .aggregate(pipeline)
+    .toArray()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+app.get("/countries", (req, res) => {
   let idk = [];
-  db.collection("battleLocations")
-    .find({})
+  pipeline = [{ $unset: ["_id", "countryCenter", "withLocation", "battles"] }];
+  db.collection("battles")
+    .aggregate(pipeline)
     .toArray()
     .then((result) => {
       idk = [...idk, result];

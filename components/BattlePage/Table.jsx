@@ -2,26 +2,26 @@ import React from "react";
 import FavButton from "../FavButton";
 import EditName from "./EditNameDev";
 
-const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
-  function tensPlace(coord) {
-    coord = coord.toString();
-    if (coord.length > 5) {
-      coord = coord.slice(0, 5);
-    }
-    return parseFloat(coord);
-  }
+const Table = ({ user, data, country, showPopup }) => {
+  // function tensPlace(coord) {
+  //   coord = coord.toString();
+  //   if (coord.length > 5) {
+  //     coord = coord.slice(0, 5);
+  //   }
+  //   return parseFloat(coord);
+  // }
 
-  function battleHasLoc(country, battleName) {
-    try {
-      let data = battleLocs[country][battleName];
-      if (data) {
-        return [tensPlace(data.latLon[0]), tensPlace(data.latLon[1])];
-      }
-      return data;
-    } catch {
-      return undefined;
-    }
-  }
+  // function battleHasLoc(country, battleName) {
+  //   try {
+  //     let data = battleLocs[country][battleName];
+  //     if (data) {
+  //       return [tensPlace(data.latLon[0]), tensPlace(data.latLon[1])];
+  //     }
+  //     return data;
+  //   } catch {
+  //     return undefined;
+  //   }
+  // }
 
   const copyToClipboard = (txt) => {
     navigator.clipboard.writeText(txt);
@@ -46,30 +46,39 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
     return num;
   }
 
+  function setYear(battleCoords, battleData, battleArr) {
+    let year = battleCoords ? battleData["year"] : battleArr[1];
+    // if (year < 0) year = String((year *= -1)).concat(" BC");
+
+    if (!parseInt(year) && battleArr.length >= 2) {
+      year = battleArr[2];
+    }
+    if (!parseInt(year)) year = extractYear(battleArr[0]);
+    return year;
+  }
+
   return (
     <table>
       <tbody>
         <tr>
           <th></th>
           <th>Battle</th>
+          {user.loggedIn && <th></th>}
           <th>Year</th>
           <th>Location</th>
           <th></th>
-          <th></th>
         </tr>
 
-        {battleNames[country].map((battle, index) => {
+        {data.map((battleData, index) => {
+          let battle = battleData["name"];
+
           let battleArr = battle.split(" – ");
           battle = battleArr[0];
-          const battleCoords = battleHasLoc(country, battle);
-          let year = battleCoords
-            ? battleLocs[country][battle]["year"]
-            : battleArr[1];
-          // if (year < 0) year = String((year *= -1)).concat(" BC");
-          if (!parseInt(year) && battleArr.length >= 2) {
-            year = battleArr[2];
-          }
-          if (!parseInt(year)) year = extractYear(battle);
+
+          const battleCoords =
+            "latLon" in battleData ? battleData["latLon"] : "";
+          let year = setYear(battleCoords, battleData, battleArr);
+
           return (
             <tr key={battle + index}>
               <td className="text-center">{index + 1}</td>
@@ -98,6 +107,11 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                   </>
                 )}
               </td>
+              {user.loggedIn && (
+                <td>
+                  <FavButton battle={battle} country={country} user={user} />
+                </td>
+              )}
               <td className="text-center">
                 {year}
                 {!parseInt(year) && <>nodata</>}
@@ -128,11 +142,6 @@ const Table = ({ battleNames, battleLocs, country, showPopup, user }) => {
                   </button>
                 )}
               </td>
-              {user.loggedIn && (
-                <td>
-                  <FavButton battle={battle} country={country} user={user} />
-                </td>
-              )}
               {user.loggedIn && (
                 <td>
                   {user.perms.editData && (
