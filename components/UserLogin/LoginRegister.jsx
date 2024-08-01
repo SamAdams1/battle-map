@@ -16,7 +16,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
 
   const loginUser = (data) => {
     // console.log({data})
-    Axios.get(`http://localhost:3005/${"userLogin"}`, { params: data })
+    Axios.post("http://localhost:3005/userLogin", data)
       .then((response) => {
         if (response.data.length == 0) {
           // console.log(response)

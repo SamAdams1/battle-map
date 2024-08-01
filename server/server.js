@@ -104,16 +104,16 @@ app.put("/updateBattle", (req, res) => {
     });
 });
 
-app.get("/userLogin", (req, res) => {
-  console.log(req.query);
+app.post("/userLogin", (req, res) => {
+  console.log(req.body);
   db.collection("users")
     .find({
-      username: req.query.username,
-      password: req.query.password,
+      username: req.body.username,
+      password: req.body.password,
     })
     .toArray()
     .then((result) => {
-      // const accessToken = jwt.sign(req.query.username, process.env.ACCESS_TOKEN_SECRET)
+      // const accessToken = jwt.sign(req.body.username, process.env.ACCESS_TOKEN_SECRET)
       res.json(result);
     })
     .catch((err) => {
