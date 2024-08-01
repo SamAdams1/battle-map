@@ -8,13 +8,7 @@ import {
   updateUserContributions,
 } from "./dbFuncs";
 
-const NewBattleForm = ({
-  user,
-  country,
-  battleLocs,
-  battleNames,
-  setPopupVis,
-}) => {
+const NewBattleForm = ({ user, battleLocs, setPopupVis }) => {
   const [battle, setBattle] = useState("");
   const [latLon, setLatLon] = useState("");
   const [year, setYear] = useState(0);

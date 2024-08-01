@@ -86,13 +86,13 @@ app.get("/countries", (req, res) => {
 
 app.put("/addBattleLoc", (req, res) => {
   console.log(req.body);
-  db.collection("battleLocations")
+  db.collection("battles")
     .updateOne(
       { country: req.body.country },
       {
         $set: {
           battles: req.body.battles,
-          numBattlesInCountry: req.body.total,
+          withLocation: req.body.total,
         },
       }
     )

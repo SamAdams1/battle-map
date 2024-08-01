@@ -5,38 +5,40 @@ import {
   updateUserContributions,
 } from "./dbFuncs";
 
-const DBPopup = ({ user, battle, country, battleLocs, setPopupVis }) => {
+const AddPopup = ({
+  user,
+  battle,
+  index,
+  country,
+  battleLocs,
+  setPopupVis,
+}) => {
   const [latLon, setLatLon] = useState("");
   const [year, setYear] = useState(0);
   const [src, setSrc] = useState("");
 
-  function addToDB(latlon) {
-    latlon = latlon
-      .replace("[", "")
-      .replace("]", "")
-      .replace(" ", "")
-      .split(",");
-    // console.log(latLon, latlon);
+  function addToDB(loc) {
+    loc = loc.replace("[", "").replace("]", "").replace(" ", "").split(",");
+    // console.log(loc, loc);
     if (
-      latlon.length > 1 &&
-      !isNaN(Number.parseFloat(latlon[0])) &&
-      !isNaN(Number.parseFloat(latlon[1]))
+      loc.length > 1 &&
+      !isNaN(Number.parseFloat(loc[0])) &&
+      !isNaN(Number.parseFloat(loc[1]))
     ) {
-      latlon = latlon.map((num) => parseFloat(num));
-      const data = { latLon: latlon, year: year };
-      if (user.perms.addLoc) addBattleLoc(country, battle, data);
-      suggestBattle(battle, country, latlon, year);
+      loc = loc.map((num) => parseFloat(num));
+      const data = { name: battle, latLon: loc, year: year };
+      if (user.perms.addLoc) addBattleLoc(data);
+      suggestBattle(loc, year);
       setPopupVis(false);
     }
   }
 
-  const addBattleLoc = (country, battle, data) => {
+  const addBattleLoc = (data) => {
     data["addedBy"] = user._id;
-    battleLocs[battle] = data;
-    const total = Object.keys(battleLocs).length;
-    // console.log(battleLocs);
-    addToUserContributions(battle, country);
+    battleLocs[index] = data;
+    console.log(index);
 
+    addToUserContributions(battle, country);
     updateCountryBattleLocs(country, battleLocs);
   };
 
@@ -55,7 +57,7 @@ const DBPopup = ({ user, battle, country, battleLocs, setPopupVis }) => {
   // adds battle to contribution history collection
   // if user has correct perms will be approved and added to location db
   // if not battle will need to be approved by admin
-  const suggestBattle = (battle, country, latLon, year) => {
+  const suggestBattle = (latLon, year) => {
     const data = {
       latLon,
       year,
@@ -80,13 +82,13 @@ const DBPopup = ({ user, battle, country, battleLocs, setPopupVis }) => {
     return `${mm}/${dd}/${yyyy} ~ ${hour}:${min}`;
   };
 
-  useEffect(() => {
-    if (!user.loggedIn) setPopupVis(false);
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user.loggedIn) setPopupVis(false);
+  // }, [user]);
 
   return (
     <div className="*:m-1 flex flex-col items-center">
-      {/* <button onClick={() => setPopupVis(false)}>X</button> */}
+      <button onClick={() => setPopupVis(false)}>X</button>
       <h1>{user.perms.addLoc ? <>Add Location</> : <>Suggest Location</>}</h1>
       {!user.perms.addLoc && (
         <>
@@ -97,7 +99,7 @@ const DBPopup = ({ user, battle, country, battleLocs, setPopupVis }) => {
           <p>Make good contributions, with sources, to be promoted!</p>
         </>
       )}
-      <h1>{battle}</h1>
+      <h1>{battle.split(" – ")[0]}</h1>
       <h2>{country}</h2>
       <h3>Latitude, Longitude:</h3>
       <h3>(No brackets or spaces)</h3>
@@ -133,4 +135,4 @@ const DBPopup = ({ user, battle, country, battleLocs, setPopupVis }) => {
   );
 };
 
-export default DBPopup;
+export default AddPopup;

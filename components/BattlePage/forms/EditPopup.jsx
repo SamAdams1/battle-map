@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { updateCountryBattleLocs, updateNameList } from "./dbFuncs";
 
-const EditPopup = ({
-  battleArr,
-  country,
-  index,
-  battleLocs,
-  battleNames,
-  setPopupVis,
-  user,
-}) => {
+const EditPopup = ({ user, battleArr, index, battleLocs, setPopupVis }) => {
   // battle format: ["battle name", " year", "campaign/war", ...]
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");

@@ -131,8 +131,8 @@ const Table = ({ user, data, country, showPopup }) => {
                   <button
                     className="w-full"
                     title="Add Location Data"
-                    onClick={() => showPopup(country, battle, "add")}
-                    disabled={!user.loggedIn}
+                    onClick={() => showPopup(battle, "add", index)}
+                    // disabled={!user.loggedIn}
                   >
                     {user.loggedIn && user.perms.addLoc ? (
                       <>Add</>
@@ -145,18 +145,12 @@ const Table = ({ user, data, country, showPopup }) => {
               {user.loggedIn && (
                 <td>
                   {user.perms.editData && (
-                    <button
-                      onClick={() =>
-                        showPopup(country, battleArr, "edit", index)
-                      }
-                    >
+                    <button onClick={() => showPopup(battleArr, "edit", index)}>
                       Edit
                     </button>
                   )}
                   {user.perms.reportData && (
-                    <button
-                      onClick={() => showPopup(country, battle, "report")}
-                    >
+                    <button onClick={() => showPopup(battle, "report", index)}>
                       Report
                     </button>
                   )}

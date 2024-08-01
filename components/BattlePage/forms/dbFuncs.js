@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 export function updateCountryBattleLocs(country, countryBattleLocs) {
-  let total = Object.keys(countryBattleLocs).length;
+  let total = getNumWLoc(countryBattleLocs);
   // console.log(country, countryBattleLocs, total);
   Axios.put("http://localhost:3005/addBattleLoc", {
     country,
@@ -52,4 +52,12 @@ export function getCurrentDate() {
   let hour = today.getUTCHours();
   let min = String(today.getUTCMinutes()).padStart(2, "0");
   return `${mm}/${dd}/${yyyy} ~ ${hour}:${min}`;
+}
+
+export function getNumWLoc(data) {
+  let count = 0;
+  data.map((battle) => {
+    if ("latLon" in battle) count += 1;
+  });
+  return count;
 }
