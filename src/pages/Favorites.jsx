@@ -18,7 +18,7 @@ const Favorites = ({ user }) => {
           </tr>
           {Object.keys(user.favorites).map((battle) => {
             const fav = user.favorites[battle];
-            console.log(fav);
+            // console.log(fav);
             return (
               <tr key={battle}>
                 <td>{fav.country}</td>
@@ -41,9 +41,6 @@ const Favorites = ({ user }) => {
                     country={fav.country}
                     user={user}
                   />
-                </td>
-                <td>
-                  <button onClick={() => console.log(fav)}>cli</button>
                 </td>
               </tr>
             );

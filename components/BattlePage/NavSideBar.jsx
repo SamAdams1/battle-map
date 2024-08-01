@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NavSideBar = ({ countryList, setCountry }) => {
+const NavSideBar = ({ countryList, setCountry, selectedCountry }) => {
   const [sideBarVis, setSideBarVis] = useState(false);
   let lastLetter = "";
 
@@ -28,7 +28,12 @@ const NavSideBar = ({ countryList, setCountry }) => {
                   )}
                   <p>
                     <a href={"#" + country} className="underline">
-                      <button onClick={() => setCountry(country)}>
+                      <button
+                        onClick={() => setCountry(country)}
+                        className={
+                          selectedCountry == country ? "bg-red-500" : ""
+                        }
+                      >
                         {country}
                       </button>
                     </a>

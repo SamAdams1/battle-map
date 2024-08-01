@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  searchNamesForYear,
-  updateCountryBattleLocs,
-  updateNameList,
-} from "./dbFuncs";
+import { searchNamesForYear, updateCountryBattleLocs } from "./dbFuncs";
 
 const EditPopup = ({
   user,

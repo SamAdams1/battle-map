@@ -10,6 +10,7 @@ import EditPopup from "../../components/BattlePage/forms/EditPopup";
 import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
 
 import Axios from "axios";
+import { updateCountryBattleLocs } from "../../components/BattlePage/forms/dbFuncs";
 
 const BattlePage = ({ user }) => {
   const [popupVis, setPopupVis] = useState(false);
@@ -116,14 +117,20 @@ const BattlePage = ({ user }) => {
   };
   return (
     <div className="flex flex-col  items-center belowHeader overflow-auto bg-slate-300">
-      <a
+      {/* <a
         href="https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location"
         target="_blank"
       >
         <h1 id="Top">All Battles</h1>
-      </a>
-      <button onClick={() => console.log(data)}>print</button>
-      <NavSideBar countryList={countries} setCountry={changeCountry} />
+      </a> */}
+      <button onClick={() => updateCountryBattleLocs(country, data)}>
+        print
+      </button>
+      <NavSideBar
+        countryList={countries}
+        setCountry={changeCountry}
+        selectedCountry={country}
+      />
 
       <div>
         {country != "_id" && (

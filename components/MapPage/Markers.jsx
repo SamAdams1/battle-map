@@ -53,7 +53,7 @@ const Markers = ({ data, markersRef, user }) => {
                   <br />
                   {user.loggedIn && (
                     <FavButton
-                      battle={battleName}
+                      battleDict={countryData[index]}
                       country={country}
                       user={user}
                     />

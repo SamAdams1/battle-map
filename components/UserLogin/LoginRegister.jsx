@@ -52,7 +52,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
   };
 
   return (
-    <div className="belowHeader">
+    <div className="absolute top-0 left-0 right-0 bottom-0 bg-slate-400">
       <button onClick={() => quitForm()} className="w-8 absolute right-0">
         X
       </button>

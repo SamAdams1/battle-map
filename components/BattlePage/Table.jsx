@@ -1,5 +1,6 @@
 import React from "react";
 import FavButton from "../FavButton";
+import Axios from "axios";
 
 const Table = ({ user, data, country, showPopup }) => {
   function tensPlace(coord) {
@@ -34,17 +35,28 @@ const Table = ({ user, data, country, showPopup }) => {
       if (lastletter + element == "BC") num = "-" + num;
       lastletter = element;
     }
-    return num;
+    return parseInt("" + num);
   }
 
   function setYear(battleData, battleArr) {
-    let year = "year" in battleData ? battleData["year"] : battleArr[1];
-    // if (year < 0) year = String((year *= -1)).concat(" BC");
-
-    if (!parseInt(year) && battleArr.length >= 2) {
-      year = battleArr[2];
+    let name = battleData.name;
+    if (name.split(" – ").length >= 3) {
+      name = name.split(" – ").slice(0, -1).join(" – ");
     }
-    if (!parseInt(year)) year = extractYear(battleArr[0]);
+    let year = extractYear(name);
+    if (Number.isNaN(year) && "year" in battleData) {
+      year = battleData["year"];
+    }
+    // console.log(Number.isNaN(year), battleData, year);
+
+    // let year = "year" in battleData ? battleData["year"] : "a";
+
+    // if (!parseInt(year) && battleArr.length >= 1) console.log(battleArr[1]);
+    // if (!parseInt(year) && battleArr.length >= 3) {
+    //   year = extractYear(battleArr[2]);
+    // }
+    // if (!parseInt(year)) year = extractYear(battleArr[0]);
+    // if (year < 0) year = String((year *= -1)).concat(" BC");
     return year;
   }
 
@@ -68,7 +80,8 @@ const Table = ({ user, data, country, showPopup }) => {
 
           const battleCoords =
             "latLon" in battleData ? battleHasLoc(battleData["latLon"]) : "";
-          let year = setYear(battleData, battleArr);
+          // let year = setYear(battleData, battleArr);
+          let year = battleData["year"];
 
           if (parseInt(year)) data[index]["year"] = parseInt(year);
           else data[index]["year"] = year;
@@ -77,17 +90,18 @@ const Table = ({ user, data, country, showPopup }) => {
             <tr key={name + index}>
               <td className="text-center">{index + 1}</td>
               <td className={battleCoords ? "bg-green-500" : "bg-red-500"}>
-                {/* <battleArr
+                <a
                   href={
                     "https://en.wikipedia.org/wiki/" +
-                    battleArr[0].split(" or ")[0].replace(" ", "_")
+                    name.split(" or ")[0].replace(" ", "_")
                   }
                   target="_blank"
-                  className="learnMoreBtn"
+                  className="underline"
                 >
-                  clickme
-                </battleArr> */}
-                {name.split(" or ")[0]}
+                  {battleArr.length >= 3
+                    ? battleArr.slice(0, -1).join(" – ")
+                    : name}
+                </a>
               </td>
               {user.loggedIn && (
                 <td>
@@ -99,10 +113,11 @@ const Table = ({ user, data, country, showPopup }) => {
                 </td>
               )}
               <td className="text-center">
-                <button onClick={() => console.log(data[index]["year"])}>
-                  {year}
-                  {!parseInt(year) && <>nodata</>}
-                </button>
+                {/* <button onClick={() => console.log(data[index]["year"])}> */}
+                {year}
+                {!parseInt(year) && <>nodata</>}
+                {!parseInt(year) && console.log(index, battle)}
+                {/* </button> */}
               </td>
               <td>
                 {battleCoords ? (
