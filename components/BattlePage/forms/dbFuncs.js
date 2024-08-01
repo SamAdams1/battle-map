@@ -1,11 +1,11 @@
 import Axios from "axios";
 
-export function updateCountryBattleLocs(country, countryBattleLocs) {
-  let total = getNumWLoc(countryBattleLocs);
-  // console.log(country, countryBattleLocs, total);
-  Axios.put("http://localhost:3005/addBattleLoc", {
+export function updateCountryBattleLocs(country, battles) {
+  let total = getNumWLoc(battles);
+  // console.log(country, battles, total);
+  Axios.put("http://localhost:3005/updateBattle", {
     country,
-    battles: countryBattleLocs,
+    battles,
     total,
   })
     .then((response) => {

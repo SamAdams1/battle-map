@@ -84,7 +84,7 @@ app.get("/countries", (req, res) => {
     });
 });
 
-app.put("/addBattleLoc", (req, res) => {
+app.put("/updateBattle", (req, res) => {
   console.log(req.body);
   db.collection("battles")
     .updateOne(

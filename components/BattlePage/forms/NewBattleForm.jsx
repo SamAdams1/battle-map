@@ -8,7 +8,7 @@ import {
   updateUserContributions,
 } from "./dbFuncs";
 
-const NewBattleForm = ({ user, battleLocs, setPopupVis }) => {
+const NewBattleForm = ({ user, country, battleLocs, setPopupVis }) => {
   const [battle, setBattle] = useState("");
   const [latLon, setLatLon] = useState("");
   const [year, setYear] = useState(0);
@@ -19,23 +19,29 @@ const NewBattleForm = ({ user, battleLocs, setPopupVis }) => {
   }, [user]);
 
   const submit = () => {
-    const index = searchNameForYear();
+    setYear(parseInt(year));
+    const index = searchNamesForYear();
     let name = `${battle} – ${year}`;
+    const data = {
+      name: name,
+      latLon: latLon.split(","),
+      year: year,
+      addedBy: user._id,
+    };
 
-    battleNames.splice(index, 0, name);
+    battleLocs.splice(index, 0, data);
 
     // console.log(battle, country, year);
-    updateNameList(country, battleNames);
-    addToBattleLocation();
+    updateCountryBattleLocs(country, battleLocs);
     addToHistory();
     addToUserContributions();
 
     setPopupVis(false);
   };
 
-  function searchNameForYear() {
-    for (let index = 0; index < battleNames.length; index++) {
-      const bStr = battleNames[index];
+  function searchNamesForYear() {
+    for (let index = 0; index < battleLocs.length; index++) {
+      const bStr = battleLocs[index].name;
       let bArr = bStr.split(" – ");
       let thisYear;
       try {
@@ -82,19 +88,12 @@ const NewBattleForm = ({ user, battleLocs, setPopupVis }) => {
     return num;
   }
 
-  const addToBattleLocation = () => {
-    const data = { latLon: latLon.split(","), year: year, addedBy: user._id };
-
-    battleLocs[battle] = data;
-    updateCountryBattleLocs(country, battleLocs);
-  };
-
   const addToHistory = () => {
     const data = {
       country,
       battle,
       latLon: latLon.split(","),
-      year,
+      year: parseInt(year),
       dateAdded: getCurrentDate(),
       source: src,
       addedBy: user._id,
@@ -145,7 +144,7 @@ const NewBattleForm = ({ user, battleLocs, setPopupVis }) => {
         onChange={(e) => setSrc(e.target.value)}
       />
       <button
-        // disabled={!battle || !country || !year || !src || !latLon}
+        disabled={!battle || !country || !year || !src || !latLon}
         onClick={submit}
       >
         Submit

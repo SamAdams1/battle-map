@@ -132,7 +132,7 @@ const Table = ({ user, data, country, showPopup }) => {
                     className="w-full"
                     title="Add Location Data"
                     onClick={() => showPopup(battle, "add", index)}
-                    // disabled={!user.loggedIn}
+                    disabled={!user.loggedIn}
                   >
                     {user.loggedIn && user.perms.addLoc ? (
                       <>Add</>

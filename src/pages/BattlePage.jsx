@@ -96,6 +96,7 @@ const BattlePage = ({ user }) => {
       <EditPopup
         user={user}
         battle={battle}
+        index={index}
         country={country}
         battleLocs={data}
         setPopupVis={setPopupVis}
@@ -104,7 +105,6 @@ const BattlePage = ({ user }) => {
     new: (
       <NewBattleForm
         user={user}
-        battle={battle}
         country={country}
         battleLocs={data}
         setPopupVis={setPopupVis}
