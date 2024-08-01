@@ -9,9 +9,8 @@ const getSavedZoom = () => {
 
 const Battles = ({
   data,
-  battleLocations,
-  panToBattle,
   country,
+  panToBattle,
   showMarkerPopup,
   setHeader,
 }) => {
@@ -30,11 +29,18 @@ const Battles = ({
     showMarkerPopup(battleName);
   };
 
+  const countBattlesWLocs = () => {
+    let count = 0;
+    data[country].map((battle) => {
+      if ("latLon" in battle) count += 1;
+    });
+    return count;
+  };
+
   useEffect(() => {
     setHeader(
       <>
-        {country} - {Object.keys(battleLocations[country]).length}/
-        {data[country].length}
+        {country} - {countBattlesWLocs()}/{data[country].length}
       </>
     );
   }, []);
@@ -42,20 +48,20 @@ const Battles = ({
   return (
     <>
       <div className="*:mt-1 overflow-auto max-h-[40em] mb-1">
-        {data[country].map((battleName, index) => {
-          battleName = battleName.split(" – ")[0];
-          const battleData = battleLocations[country][battleName];
+        {data[country].map((battleData, index) => {
+          const battleName = battleData["name"].split(" – ")[0];
+          const latLon = battleData["latLon"];
           return (
             <div key={country + index} className="flex">
               <p
                 className={
                   "mx-1 pr-1 border-r-4 " +
-                  (battleData ? "border-green-400" : "border-red-400")
+                  (latLon ? "border-green-400" : "border-red-400")
                 }
               >
                 {index + 1 + ":"}
               </p>
-              {battleData ? (
+              {latLon ? (
                 <>
                   <button
                     onClick={() => onClick(battleData, battleName)}
@@ -75,7 +81,7 @@ const Battles = ({
       </div>
       <div className="bg-red-800 text-white flex *:m-1">
         <p>
-          Zoom: {zoomLvl < 10 && 0}
+          Zoom: {zoomLvl < 10 && <>0</>}
           {zoomLvl}
         </p>
         <input

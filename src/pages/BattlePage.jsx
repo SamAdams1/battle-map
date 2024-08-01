@@ -4,63 +4,109 @@ import SingleCountry from "../../components/BattlePage/SingleCountry";
 import Popup from "../../components/Popup";
 
 // Forms to interact with Data
-import DBPopup from "../../components/BattlePage/forms/DBPopup";
+import AddPopup from "../../components/BattlePage/forms/AddPopup";
 import Report from "../../components/BattlePage/forms/ReportPopup";
 import EditPopup from "../../components/BattlePage/forms/EditPopup";
 import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
 
-const BattlePage = ({ battleNameData, locationData, user }) => {
+import Axios from "axios";
+
+const BattlePage = ({ user }) => {
   const [popupVis, setPopupVis] = useState(false);
-  const [popupType, setPopupType] = useState("");
 
-  const [selectedBattle, setSelectedBattle] = useState([]);
-  const [battleCountry, setBattleCountry] = useState("");
-  const [index, setIndex] = useState("");
+  const [data, setData] = useState([]);
+  const [country, setCountry] = useState(
+    localStorage.getItem("country") || "Germany"
+  );
+  const [countries, setCountries] = useState([]);
 
-  function showPopup(country, battle, type, bIndex) {
-    setBattleCountry(country);
-    setSelectedBattle(battle);
-    setIndex(bIndex);
+  const [popupType, setPopupType] = useState([]);
+  const [battle, setBattle] = useState([]);
+  const [index, setIndex] = useState([]);
+
+  useEffect(() => {
+    getData();
+    getCountries();
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, [country]);
+
+  const getData = () => {
+    Axios.get("http://localhost:3005/countryBattles", { params: { country } })
+      .then((response) => {
+        if (response.data.length == 0) {
+          console.log(route + " not found.");
+        } else {
+          setData(response.data[0]["battles"]);
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const getCountries = () => {
+    Axios.get("http://localhost:3005/countries")
+      .then((response) => {
+        if (response.data.length == 0) {
+          console.log(route + " not found.");
+        } else {
+          let bruh = [];
+          response.data[0].map((country) => bruh.push(country.country));
+          setCountries(bruh);
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const changeCountry = (country) => {
+    localStorage.setItem("country", country);
+    setCountry(country);
+  };
+
+  function showPopup(thisBattle, type, thisIndex) {
+    setBattle(thisBattle);
+    setIndex(thisIndex);
     setPopupType(type);
+    console.log(battle, index, popupType);
     setPopupVis(true);
   }
 
   const popupTypes = {
     add: (
-      <DBPopup
+      <AddPopup
         user={user}
-        battle={selectedBattle}
-        country={battleCountry}
-        battleLocs={locationData}
+        battle={battle}
+        index={index}
+        country={country}
+        battleLocs={data}
         setPopupVis={setPopupVis}
       />
     ),
     report: (
       <Report
         user={user}
-        battle={selectedBattle}
-        country={battleCountry}
-        battleLocs={locationData}
+        battle={battle}
+        country={country}
+        battleLocs={data}
         setPopupVis={setPopupVis}
       />
     ),
     edit: (
       <EditPopup
-        battleArr={selectedBattle}
-        country={battleCountry}
-        index={index}
-        battleNames={battleNameData[battleCountry]}
-        battleLocs={locationData[battleCountry]}
-        setPopupVis={setPopupVis}
         user={user}
+        battle={battle}
+        index={index}
+        country={country}
+        battleLocs={data}
+        setPopupVis={setPopupVis}
       />
     ),
     new: (
       <NewBattleForm
         user={user}
-        country={battleCountry}
-        battleLocs={locationData[battleCountry]}
-        battleNames={battleNameData[battleCountry]}
+        country={country}
+        battleLocs={data}
         setPopupVis={setPopupVis}
       />
     ),
@@ -73,25 +119,20 @@ const BattlePage = ({ battleNameData, locationData, user }) => {
       >
         <h1 id="Top">All Battles</h1>
       </a>
-      <button onClick={() => console.log(locationData)}>fdha</button>
-      <NavSideBar countryList={Object.keys(battleNameData)} />
+      <button onClick={() => console.log(data)}>print</button>
+      <NavSideBar countryList={countries} setCountry={changeCountry} />
 
-      {Object.keys(battleNameData).map((country) => {
-        return (
-          <div key={country}>
-            {country != "_id" && (
-              <SingleCountry
-                country={country}
-                battleNames={battleNameData}
-                battleLocs={locationData}
-                showPopup={showPopup}
-                user={user}
-                setPopupVis={setPopupVis}
-              />
-            )}
-          </div>
-        );
-      })}
+      <div>
+        {country != "_id" && (
+          <SingleCountry
+            user={user}
+            country={country}
+            data={data}
+            showPopup={showPopup}
+            setPopupVis={setPopupVis}
+          />
+        )}
+      </div>
       {popupVis && (
         <Popup children={popupTypes[popupType]} setVis={setPopupVis} />
       )}

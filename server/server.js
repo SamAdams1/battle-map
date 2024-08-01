@@ -21,10 +21,11 @@ MongoClient.connect(mongoURI)
   })
   .catch((err) => console.error("MongoDB connection error:", err));
 
-app.get("/names", (req, res) => {
+app.get("/battles", (req, res) => {
   let idk = [];
-  db.collection("battleNames")
-    .find({})
+  pipeline = [{ $unset: ["_id", "withLocation", "countryCenter"] }];
+  db.collection("battles")
+    .aggregate(pipeline)
     .toArray()
     .then((result) => {
       idk = [...idk, result];
@@ -36,8 +37,13 @@ app.get("/names", (req, res) => {
 });
 
 app.get("/countryCenter", (req, res) => {
-  db.collection("countryCenter")
-    .find({})
+  console.log(req.query);
+  pipeline = [
+    { $match: req.query },
+    { $unset: ["_id", "withLocation", "battles", "country"] },
+  ];
+  db.collection("battles")
+    .aggregate(pipeline)
     .toArray()
     .then((result) => {
       res.json(result);
@@ -47,10 +53,27 @@ app.get("/countryCenter", (req, res) => {
     });
 });
 
-app.get("/locations", (req, res) => {
+app.get("/countryBattles", (req, res) => {
+  pipeline = [
+    { $match: req.query },
+    { $unset: ["_id", "countryCenter", "withLocation", "country"] },
+  ];
+  db.collection("battles")
+    .aggregate(pipeline)
+    .toArray()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+app.get("/countries", (req, res) => {
   let idk = [];
-  db.collection("battleLocations")
-    .find({})
+  pipeline = [{ $unset: ["_id", "countryCenter", "withLocation", "battles"] }];
+  db.collection("battles")
+    .aggregate(pipeline)
     .toArray()
     .then((result) => {
       idk = [...idk, result];
@@ -61,15 +84,15 @@ app.get("/locations", (req, res) => {
     });
 });
 
-app.put("/addBattleLoc", (req, res) => {
+app.put("/updateBattle", (req, res) => {
   console.log(req.body);
-  db.collection("battleLocations")
+  db.collection("battles")
     .updateOne(
       { country: req.body.country },
       {
         $set: {
           battles: req.body.battles,
-          numBattlesInCountry: req.body.total,
+          withLocation: req.body.total,
         },
       }
     )

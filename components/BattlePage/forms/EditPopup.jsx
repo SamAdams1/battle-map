@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { updateCountryBattleLocs, updateNameList } from "./dbFuncs";
 
 const EditPopup = ({
-  battleArr,
+  user,
+  battle,
   country,
   index,
   battleLocs,
-  battleNames,
   setPopupVis,
-  user,
 }) => {
   // battle format: ["battle name", " year", "campaign/war", ...]
   const [lat, setLat] = useState("");
@@ -16,65 +15,51 @@ const EditPopup = ({
   const [newName, setNewName] = useState("");
   const [newYear, setNewYear] = useState("");
 
-  const hasLatLon = battleLocs[battleArr[0]] ? true : false;
+  const hasLatLon = "latLon" in battleLocs[index];
 
+  // console.log(hasLatLon, battleLocs[index]);
   useEffect(() => {
-    setNameYear();
+    setNameYearStart();
     try {
-      const latLon = String(battleLocs[battleArr[0]].latLon).split(",");
+      const latLon = String(battleLocs[index].latLon).split(",");
       setLat(String(latLon[0]));
       setLon(String(latLon[1]));
     } catch (error) {}
   }, []);
 
-  const setNameYear = () => {
+  const setNameYearStart = () => {
     try {
-      setNewName(battleArr[0]);
-      setNewYear(battleArr[1]);
+      setNewName(battle[0]);
+      setNewYear(battle[1]);
     } catch (error) {
-      console.log("Battle Array too short: ", battleArr);
+      console.log("Battle Array too short: ", battle);
     }
   };
 
   const saveChanges = () => {
     editBattleLocation();
-    editNameList();
 
     setPopupVis(false);
   };
 
   const editBattleLocation = () => {
-    let data = battleLocs[battleArr[0]];
-    console.log(battleLocs, battleArr[0]);
-    data.latLon = [parseFloat(lat), parseFloat(lon)];
-    data.year = newYear;
+    battleLocs[index].latLon = [parseFloat(lat), parseFloat(lon)];
+    battleLocs[index].year = parseInt(newYear);
+    battleLocs[index].name = newName;
 
-    delete battleLocs[battleArr[0]];
-
-    battleLocs[newName] = data;
-
-    console.log(battleLocs);
+    console.log(battleLocs[index]);
     updateCountryBattleLocs(country, battleLocs);
   };
 
-  const editNameList = () => {
-    battleArr[0] = newName;
-    battleArr[1] = newYear;
-
-    battleNames[index] = battleArr.join(" – ");
-
-    updateNameList(country, battleNames);
-  };
-
-  useEffect(() => {
-    if (!user.loggedIn) setPopupVis(false);
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user.loggedIn) setPopupVis(false);
+  // }, [user]);
 
   return (
     <div className="flex flex-col items-center *:m-2">
       <h1>Edit</h1>
       <h2>{country}</h2>
-      <h3>{battleArr.join(" – ")}</h3>
+      <h3>{battle.join(" – ")}</h3>
       <div className="flex flex-col items-center *:mb-1">
         <h2>Battle Name:</h2>
         <textarea
