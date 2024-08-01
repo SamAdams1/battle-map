@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
-import { Marker, Tooltip, Popup } from "react-leaflet";
+import React from "react";
+import { Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
-import { useState } from "react";
 import FavButton from "../FavButton";
 
 const iconSize = 15;

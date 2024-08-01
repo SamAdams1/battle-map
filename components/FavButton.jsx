@@ -3,7 +3,7 @@ import Axios from "axios";
 
 const FavButton = ({ battle, country, user }) => {
   const [favStatus, setFavStatus] = useState(
-    !(battle in user.favorites) ? "notFav" : "isFav"
+    battle in user.favorites ? "isFav" : "notFav"
   );
 
   const getCurrentDate = () => {

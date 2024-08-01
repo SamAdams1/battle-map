@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { updateCountryBattleLocs, updateNameList } from "./dbFuncs";
+import {
+  searchNamesForYear,
+  updateCountryBattleLocs,
+  updateNameList,
+} from "./dbFuncs";
 
 const EditPopup = ({
   user,
-  battle,
+  battleArr,
+  year,
   country,
   index,
   battleLocs,
@@ -13,7 +18,7 @@ const EditPopup = ({
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
   const [newName, setNewName] = useState("");
-  const [newYear, setNewYear] = useState("");
+  const [newYear, setNewYear] = useState(year);
 
   const hasLatLon = "latLon" in battleLocs[index];
 
@@ -29,10 +34,10 @@ const EditPopup = ({
 
   const setNameYearStart = () => {
     try {
-      setNewName(battle[0]);
-      setNewYear(battle[1]);
+      setNewName(battleArr[0]);
+      setNewYear(battleArr[1]);
     } catch (error) {
-      console.log("Battle Array too short: ", battle);
+      console.log("Battle Array too short: ", battleArr);
     }
   };
 
@@ -43,23 +48,31 @@ const EditPopup = ({
   };
 
   const editBattleLocation = () => {
-    battleLocs[index].latLon = [parseFloat(lat), parseFloat(lon)];
+    if (hasLatLon) {
+      battleLocs[index].latLon = [parseFloat(lat), parseFloat(lon)];
+    }
+    battleArr[0] = newName;
     battleLocs[index].year = parseInt(newYear);
-    battleLocs[index].name = newName;
+    battleLocs[index].name = battleArr.join(" – ");
+    battleLocs[index].pop;
 
-    console.log(battleLocs[index]);
+    const data = battleLocs[index];
+    battleLocs.splice(index, 1);
+    let insertSpot = searchNamesForYear(battleLocs, newYear);
+    battleLocs.splice(insertSpot, 0, data);
+
     updateCountryBattleLocs(country, battleLocs);
   };
 
-  // useEffect(() => {
-  //   if (!user.loggedIn) setPopupVis(false);
-  // }, [user]);
+  useEffect(() => {
+    if (!user.loggedIn) setPopupVis(false);
+  }, [user]);
 
   return (
     <div className="flex flex-col items-center *:m-2">
       <h1>Edit</h1>
       <h2>{country}</h2>
-      <h3>{battle.join(" – ")}</h3>
+      <h3>{battleArr.join(" – ")}</h3>
       <div className="flex flex-col items-center *:mb-1">
         <h2>Battle Name:</h2>
         <textarea

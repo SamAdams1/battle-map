@@ -10,9 +10,9 @@ const SingleCountry = ({ user, country, data, showPopup, setPopupVis }) => {
         <h2>
           {getNumWLoc(data)} / {data.length} battles
         </h2>
-        {/* {user.loggedIn && user.perms.addLoc && ( */}
-        <button onClick={() => showPopup(country, "new")}>New Battle</button>
-        {/* )} */}
+        {user.loggedIn && user.perms.addLoc && (
+          <button onClick={() => showPopup(country, "new")}>New Battle</button>
+        )}
       </div>
       {data.length > 0 ? (
         <Table

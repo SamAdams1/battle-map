@@ -3,25 +3,17 @@ import FavButton from "../FavButton";
 import EditName from "./EditNameDev";
 
 const Table = ({ user, data, country, showPopup }) => {
-  // function tensPlace(coord) {
-  //   coord = coord.toString();
-  //   if (coord.length > 5) {
-  //     coord = coord.slice(0, 5);
-  //   }
-  //   return parseFloat(coord);
-  // }
+  function tensPlace(coord) {
+    coord = coord.toString();
+    if (coord.length > 5) {
+      coord = coord.slice(0, 5);
+    }
+    return parseFloat(coord);
+  }
 
-  // function battleHasLoc(country, battleName) {
-  //   try {
-  //     let data = battleLocs[country][battleName];
-  //     if (data) {
-  //       return [tensPlace(data.latLon[0]), tensPlace(data.latLon[1])];
-  //     }
-  //     return data;
-  //   } catch {
-  //     return undefined;
-  //   }
-  // }
+  function battleHasLoc(latLon) {
+    return [tensPlace(latLon[0]), tensPlace(latLon[1])];
+  }
 
   const copyToClipboard = (txt) => {
     navigator.clipboard.writeText(txt);
@@ -46,8 +38,8 @@ const Table = ({ user, data, country, showPopup }) => {
     return num;
   }
 
-  function setYear(battleCoords, battleData, battleArr) {
-    let year = battleCoords ? battleData["year"] : battleArr[1];
+  function setYear(battleData, battleArr) {
+    let year = "year" in battleData ? battleData["year"] : battleArr[1];
     // if (year < 0) year = String((year *= -1)).concat(" BC");
 
     if (!parseInt(year) && battleArr.length >= 2) {
@@ -76,8 +68,8 @@ const Table = ({ user, data, country, showPopup }) => {
           let name = battleArr[0];
 
           const battleCoords =
-            "latLon" in battleData ? battleData["latLon"] : "";
-          let year = setYear(battleCoords, battleData, battleArr);
+            "latLon" in battleData ? battleHasLoc(battleData["latLon"]) : "";
+          let year = setYear(battleData, battleArr);
 
           return (
             <tr key={name + index}>
@@ -93,19 +85,7 @@ const Table = ({ user, data, country, showPopup }) => {
                 >
                   clickme
                 </battleArr> */}
-                {parseInt(year) || year == undefined ? (
-                  name.split(" or ")[0]
-                ) : (
-                  <>
-                    <EditName
-                      index={index}
-                      battleName={battle}
-                      nameList={battleNames[country]}
-                      country={country}
-                    />
-                    <>bruh</>
-                  </>
-                )}
+                {name.split(" or ")[0]}
               </td>
               {user.loggedIn && (
                 <td>
@@ -131,7 +111,7 @@ const Table = ({ user, data, country, showPopup }) => {
                   <button
                     className="w-full"
                     title="Add Location Data"
-                    onClick={() => showPopup(battle, "add", index)}
+                    onClick={() => showPopup(battle, "add", index, year)}
                     disabled={!user.loggedIn}
                   >
                     {user.loggedIn && user.perms.addLoc ? (
@@ -145,7 +125,9 @@ const Table = ({ user, data, country, showPopup }) => {
               {user.loggedIn && (
                 <td>
                   {user.perms.editData && (
-                    <button onClick={() => showPopup(battleArr, "edit", index)}>
+                    <button
+                      onClick={() => showPopup(battleArr, "edit", index, year)}
+                    >
                       Edit
                     </button>
                   )}

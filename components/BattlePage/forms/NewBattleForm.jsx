@@ -3,6 +3,7 @@ import Axios from "axios";
 import {
   getCurrentDate,
   postToHistory,
+  searchNamesForYear,
   updateCountryBattleLocs,
   updateNameList,
   updateUserContributions,
@@ -20,15 +21,15 @@ const NewBattleForm = ({ user, country, battleLocs, setPopupVis }) => {
 
   const submit = () => {
     setYear(parseInt(year));
-    const index = searchNamesForYear();
+    const index = searchNamesForYear(battleLocs, year);
     let name = `${battle} – ${year}`;
+    let a = latLon.split(",").map((l) => parseFloat(l));
     const data = {
       name: name,
-      latLon: latLon.split(","),
-      year: year,
+      latLon: a,
+      year: parseInt(year),
       addedBy: user._id,
     };
-
     battleLocs.splice(index, 0, data);
 
     // console.log(battle, country, year);
@@ -38,55 +39,6 @@ const NewBattleForm = ({ user, country, battleLocs, setPopupVis }) => {
 
     setPopupVis(false);
   };
-
-  function searchNamesForYear() {
-    for (let index = 0; index < battleLocs.length; index++) {
-      const bStr = battleLocs[index].name;
-      let bArr = bStr.split(" – ");
-      let thisYear;
-      try {
-        // check if battle has loc as then it will have year
-        thisYear = String(battleLocs[bArr[0]].year);
-      } catch {
-        // if has dash search for year
-        if (bArr.length >= 2) {
-          thisYear = searchSecondPart(bArr[1].split(" or ")[0].split(",")[0]);
-        } else {
-          // if not search battle name for year
-          thisYear = extractYear(bStr);
-        }
-      }
-
-      // check if greater
-      if (year < parseInt(thisYear)) {
-        console.log(thisYear, year);
-        return index;
-      }
-    }
-  }
-
-  function searchSecondPart(name2) {
-    if (parseInt(name2)) return name2;
-    return extractYear(name2);
-  }
-
-  function extractYear(name) {
-    let num = "";
-    let lastletter = "1";
-    for (let index = 0; index < name.length; index++) {
-      const element = name[index];
-      if (parseInt(element) || element == "0") {
-        if (!parseInt(lastletter) && lastletter != "0") {
-          // console.log("deleting: ", num, element, lastletter);
-          num = "";
-        }
-        num += element;
-      }
-      if (lastletter + element == "BC") num = "-" + num;
-      lastletter = element;
-    }
-    return num;
-  }
 
   const addToHistory = () => {
     const data = {

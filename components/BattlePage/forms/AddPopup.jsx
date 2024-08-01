@@ -9,12 +9,13 @@ const AddPopup = ({
   user,
   battle,
   index,
+  bYear,
   country,
   battleLocs,
   setPopupVis,
 }) => {
   const [latLon, setLatLon] = useState("");
-  const [year, setYear] = useState(0);
+  const [year, setYear] = useState(bYear);
   const [src, setSrc] = useState("");
 
   function addToDB(loc) {
@@ -82,13 +83,13 @@ const AddPopup = ({
     return `${mm}/${dd}/${yyyy} ~ ${hour}:${min}`;
   };
 
-  // useEffect(() => {
-  //   if (!user.loggedIn) setPopupVis(false);
-  // }, [user]);
+  useEffect(() => {
+    if (!user.loggedIn) setPopupVis(false);
+  }, [user]);
+  console.log(bYear);
 
   return (
     <div className="*:m-1 flex flex-col items-center">
-      <button onClick={() => setPopupVis(false)}>X</button>
       <h1>{user.perms.addLoc ? <>Add Location</> : <>Suggest Location</>}</h1>
       {!user.perms.addLoc && (
         <>
@@ -99,10 +100,10 @@ const AddPopup = ({
           <p>Make good contributions, with sources, to be promoted!</p>
         </>
       )}
-      <h1>{battle.split(" – ")[0]}</h1>
-      <h2>{country}</h2>
+      <h1>{country}</h1>
+      <h2>{battle.split(" – ")[0]}</h2>
       <h3>Latitude, Longitude:</h3>
-      <h3>(No brackets or spaces)</h3>
+      <p>(No brackets or spaces)</p>
       <input
         type="text"
         placeholder="Example: 34.37,62.17"
@@ -110,7 +111,7 @@ const AddPopup = ({
         onChange={(e) => setLatLon(e.target.value)}
       />
       <h2>Year:</h2>
-      <h3>Negative Number if BC</h3>
+      <p>Negative Number if BC</p>
       <input
         type="number"
         placeholder="Year"
