@@ -3,7 +3,7 @@ import json
 import bson
 
 # get password from env
-DB_AUTH = "gDAMx07CaXQuhcQL"
+DB_AUTH = ""
 myclient = pymongo.MongoClient(f"mongodb+srv://sammyadams04:{DB_AUTH}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
 myDB = myclient["battle-map"]
