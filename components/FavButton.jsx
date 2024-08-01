@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-const FavButton = ({ battle, country, user }) => {
+const FavButton = ({ battleDict, country, user }) => {
   const [favStatus, setFavStatus] = useState(
-    battle in user.favorites ? "isFav" : "notFav"
+    battleDict.id in user.favorites ? "isFav" : "notFav"
   );
 
   const getCurrentDate = () => {
@@ -18,11 +18,12 @@ const FavButton = ({ battle, country, user }) => {
   const favoriteBattle = (battleName, countryName, setFav) => {
     setFav("isFav");
     const newInfo = {
+      id: battleDict.id,
       battle: battleName,
       country: countryName,
       dateAdded: getCurrentDate(),
     };
-    user["favorites"][battleName] = newInfo;
+    user["favorites"][battleDict.id] = newInfo;
     changeFavorites();
   };
   const unfavoriteBattle = (battleName, countryName, setFav) => {
@@ -50,7 +51,9 @@ const FavButton = ({ battle, country, user }) => {
         className={
           "favBtn w-full " + (favStatus == "isFav" ? "bg-yellow-200" : "")
         }
-        onClick={() => favFunctions[favStatus](battle, country, setFavStatus)}
+        onClick={() =>
+          favFunctions[favStatus](battleDict.name, country, setFavStatus)
+        }
       >
         {favStatus == "isFav" ? <>Unfavorite</> : <>Favorite</>}
       </button>

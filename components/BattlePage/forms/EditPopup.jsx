@@ -35,7 +35,6 @@ const EditPopup = ({
   const setNameYearStart = () => {
     try {
       setNewName(battleArr[0]);
-      setNewYear(battleArr[1]);
     } catch (error) {
       console.log("Battle Array too short: ", battleArr);
     }
@@ -85,6 +84,7 @@ const EditPopup = ({
       </div>
       <div className="flex flex-col items-center ">
         <h1>Year</h1>
+        <p>Negative if before BC.</p>
         <input
           type="text"
           name="year"

@@ -4,7 +4,7 @@ import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
 
 const Favorites = ({ user }) => {
   return !user.loggedIn ? (
-    <NotLoggedIn pageTitle="Contributions" />
+    <NotLoggedIn pageTitle="Favorites" />
   ) : (
     <div className="flex flex-col belowHeader ">
       <h1>Your Favorites</h1>
@@ -18,6 +18,7 @@ const Favorites = ({ user }) => {
           </tr>
           {Object.keys(user.favorites).map((battle) => {
             const fav = user.favorites[battle];
+            console.log(fav);
             return (
               <tr key={battle}>
                 <td>{fav.country}</td>
@@ -36,10 +37,13 @@ const Favorites = ({ user }) => {
                 <td>{fav.dateAdded}</td>
                 <td>
                   <FavButton
-                    battle={fav.battle}
+                    battleDict={fav}
                     country={fav.country}
                     user={user}
                   />
+                </td>
+                <td>
+                  <button onClick={() => console.log(fav)}>cli</button>
                 </td>
               </tr>
             );

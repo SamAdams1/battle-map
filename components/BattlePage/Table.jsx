@@ -1,6 +1,5 @@
 import React from "react";
 import FavButton from "../FavButton";
-import EditName from "./EditNameDev";
 
 const Table = ({ user, data, country, showPopup }) => {
   function tensPlace(coord) {
@@ -71,6 +70,9 @@ const Table = ({ user, data, country, showPopup }) => {
             "latLon" in battleData ? battleHasLoc(battleData["latLon"]) : "";
           let year = setYear(battleData, battleArr);
 
+          if (parseInt(year)) data[index]["year"] = parseInt(year);
+          else data[index]["year"] = year;
+
           return (
             <tr key={name + index}>
               <td className="text-center">{index + 1}</td>
@@ -89,12 +91,18 @@ const Table = ({ user, data, country, showPopup }) => {
               </td>
               {user.loggedIn && (
                 <td>
-                  <FavButton battle={battle} country={country} user={user} />
+                  <FavButton
+                    battleDict={battleData}
+                    country={country}
+                    user={user}
+                  />
                 </td>
               )}
               <td className="text-center">
-                {year}
-                {!parseInt(year) && <>nodata</>}
+                <button onClick={() => console.log(data[index]["year"])}>
+                  {year}
+                  {!parseInt(year) && <>nodata</>}
+                </button>
               </td>
               <td>
                 {battleCoords ? (
@@ -126,7 +134,9 @@ const Table = ({ user, data, country, showPopup }) => {
                 <td>
                   {user.perms.editData && (
                     <button
-                      onClick={() => showPopup(battleArr, "edit", index, year)}
+                      onClick={() =>
+                        showPopup(battleArr, "edit", index, data[index]["year"])
+                      }
                     >
                       Edit
                     </button>
