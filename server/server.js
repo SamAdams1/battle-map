@@ -3,6 +3,7 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const cors = require("cors");
@@ -121,7 +122,10 @@ app.post("/userLogin", (req, res) => {
     });
 });
 
-app.post("/registerUser", (req, res) => {
+const saltRounds = 10;
+app.post("/registerUser", async (req, res) => {
+  req.body.password = await hashedPassword(req.body.password);
+
   console.log(req.body);
   db.collection("users")
     .insertOne(req.body)
@@ -132,6 +136,17 @@ app.post("/registerUser", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+async function hashedPassword(password) {
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    console.log(hash);
+    return hash;
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 app.put("/updateFavorites", (req, res) => {
   // console.log(req.body)
