@@ -106,21 +106,33 @@ app.put("/updateBattle", (req, res) => {
 });
 
 app.post("/userLogin", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   db.collection("users")
     .find({
       username: req.body.username,
-      password: req.body.password,
+      // password: req.body.password,
     })
     .toArray()
     .then((result) => {
       // const accessToken = jwt.sign(req.body.username, process.env.ACCESS_TOKEN_SECRET)
-      res.json(result);
+      // console.log(result[0].password);
+      if (comparePasswords(req.body.password, result[0].password)) {
+        res.json(result);
+      } else throw err;
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
 });
+
+async function comparePasswords(password, hashedPassword) {
+  // console.log(password, hashedPassword);
+  try {
+    return await bcrypt.compare(password, hashedPassword);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 const saltRounds = 10;
 app.post("/registerUser", async (req, res) => {
