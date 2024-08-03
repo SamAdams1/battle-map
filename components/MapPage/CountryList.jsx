@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Countries = ({ data, getCountryCenter, goToLatLon }) => {
   const [inputLatLon, setInputLatLon] = useState("");
   let lastLetter = "";
 
+  const scrollDemoRef = useRef(0);
+
+  const handleScroll = () => {
+    if (scrollDemoRef.current) {
+      const scrollTop = scrollDemoRef.current.scrollTop;
+      localStorage.setItem("countryScroll", scrollTop);
+    }
+  };
+
+  useEffect(() => {
+    scrollDemoRef.current.scrollTop = localStorage.getItem("countryScroll");
+  }, []);
+
   // console.log(data);
   return (
     <>
-      <div className="*:mt-2 overflow-auto max-h-[45em]">
+      <div
+        className="*:mt-2 overflow-auto max-h-[45em]"
+        ref={scrollDemoRef}
+        onScroll={handleScroll}
+      >
         {Object.keys(data).map((countryName) => {
           let currentLetter = countryName.charAt(0);
           return (

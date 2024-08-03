@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const getSavedZoom = () => {
   let savedZoomLevel = localStorage.getItem("zoomLvl");
@@ -18,10 +18,25 @@ const Battles = ({
   const maxZoom = 15;
   const [zoomLvl, setZoomLvl] = useState(getSavedZoom() || maxZoom);
 
+  const scrollDemoRef = useRef(0);
+
+  const handleScroll = () => {
+    if (scrollDemoRef.current) {
+      const scrollTop = scrollDemoRef.current.scrollTop;
+      localStorage.setItem("battleScroll", scrollTop);
+      localStorage.setItem("country", country);
+    }
+  };
+
+  const setScrollOnMount = () => {
+    if (localStorage.getItem("country") === country) {
+      scrollDemoRef.current.scrollTop = localStorage.getItem("battleScroll");
+    }
+  };
+
   const saveZoom = (num) => {
     setZoomLvl(parseInt(num));
     localStorage.setItem("zoomLvl", num);
-    // console.log(localStorage.getItem("zoomLvl"))
   };
 
   const onClick = (battleData, battleName) => {
@@ -38,6 +53,7 @@ const Battles = ({
   };
 
   useEffect(() => {
+    setScrollOnMount();
     setHeader(
       <>
         {country} - {countBattlesWLocs()}/{data[country].length}
@@ -47,7 +63,11 @@ const Battles = ({
 
   return (
     <>
-      <div className="*:mt-1 overflow-auto max-h-[40em] mb-1">
+      <div
+        className="*:mt-1 overflow-auto max-h-[40em] mb-1"
+        ref={scrollDemoRef}
+        onScroll={handleScroll}
+      >
         {data[country].map((battleData, index) => {
           const battleName = battleData["name"].split(" – ")[0];
           const latLon = battleData["latLon"];
