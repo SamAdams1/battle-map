@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const app = express();
 const cors = require("cors");
 app.use(express.json());
-app.use(cors({ origin: "https://battle-map-silk.vercel.app" }));
+app.use(cors());
 
 const mongoURI = `mongodb+srv://sammyadams04:${process.env.DB_AUTH}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0`;
 const dbName = "battle-map";
