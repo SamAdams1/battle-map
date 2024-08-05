@@ -32,3 +32,4 @@ dist-ssr
 data/*.json
 
 # getFromDB.py
+.vercel
