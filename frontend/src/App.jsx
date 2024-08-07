@@ -32,6 +32,7 @@ const userTitles = [
       editData: true,
       addLoc: true,
       addNewBattle: true,
+      deleteBattle: true,
     },
   },
   {
@@ -44,6 +45,7 @@ const userTitles = [
       editData: true,
       addLoc: true,
       addNewBattle: true,
+      deleteBattle: false,
     },
   },
   {
@@ -56,6 +58,7 @@ const userTitles = [
       editData: false,
       addLoc: true,
       addNewBattle: false,
+      deleteBattle: false,
     },
   },
   {
@@ -69,6 +72,21 @@ const userTitles = [
       editData: false,
       addLoc: false,
       addNewBattle: false,
+      deleteBattle: false,
+    },
+  },
+  {
+    title: "",
+    desc: "",
+    permissions: {
+      changeUserLvl: false,
+      demoteUsers: false,
+      seeAdminPanel: false,
+      reportData: false,
+      editData: false,
+      addLoc: false,
+      addNewBattle: false,
+      deleteBattle: false,
     },
   },
 ];
@@ -77,12 +95,18 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    user["loggedIn"] = Object.keys(user).length > 1;
+    if (Object.keys(user).length > 4) {
+      user["loggedIn"] = true;
+    }
     if (user.loggedIn) {
       user["title"] = userTitles[user.lvl].title;
-      user["perms"] = userTitles[user.lvl].permissions;
-      console.log(user);
+    } else {
+      // if not logged in give no perms
+      user["title"] = "Peasant";
+      user["lvl"] = 4;
     }
+    console.log(user);
+    user["perms"] = userTitles[user.lvl].permissions;
   }, [user]);
 
   return (
@@ -123,7 +147,7 @@ function App() {
         <Route path="settings" element={<Settings user={user} />} />
       </Routes>
       <div className="accountBtns">
-        {Object.keys(user).length > 1 && (
+        {Object.keys(user).length > 4 && (
           <AccountDropdown user={user} setUser={setUser} />
         )}
       </div>

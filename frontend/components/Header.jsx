@@ -12,7 +12,7 @@ const Header = ({ user }) => {
         <Link to="/battleList">Battle List</Link>
         <Link to="chat">Chat</Link>
       </div>
-      {!(Object.keys(user).length > 1) && (
+      {!(Object.keys(user).length > 4) && (
         <div className="absolute flex right-[-1.5em] top-3 *:mx-1">
           <button className="text-black">
             <Link to="/login">Login</Link>

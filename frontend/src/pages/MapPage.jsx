@@ -18,7 +18,7 @@ const MapPage = ({ user }) => {
   }, []);
 
   const getData = () => {
-    Axios.get("https://battle-map-server.vercel.app/battles")
+    Axios.get("http://localhost:3005/battles")
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");

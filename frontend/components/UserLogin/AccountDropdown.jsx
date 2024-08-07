@@ -10,6 +10,25 @@ const AccountDropdown = ({ user, setUser }) => {
     setDropdownVis(false);
   };
 
+  const logOut = () => {
+    const bruh = {
+      loggedIn: false,
+      title: "Peasant",
+      lvl: 4,
+      perms: {
+        changeUserLvl: false,
+        demoteUsers: false,
+        seeAdminPanel: false,
+        reportData: false,
+        editData: false,
+        addLoc: false,
+        addNewBattle: false,
+        deleteBattle: false,
+      },
+    };
+    setUser(bruh);
+  };
+
   return (
     <div className="absolute top-0 right-0 w-">
       <button
@@ -36,8 +55,8 @@ const AccountDropdown = ({ user, setUser }) => {
             <button onClick={() => navigate("contributions")}>
               Contributions
             </button>
-            <button onClick={() => navigate("settings")}>Settings</button>
-            <button onClick={() => setUser({})} className="w-full">
+            {/* <button onClick={() => navigate("settings")}>Settings</button> */}
+            <button onClick={logOut} className="w-full">
               Log out
             </button>
           </div>

@@ -70,6 +70,7 @@ const Table = ({ user, data, country, showPopup }) => {
           <th>Year</th>
           <th>Location</th>
           <th></th>
+          <th></th>
         </tr>
 
         {data.map((battleData, index) => {
@@ -98,9 +99,10 @@ const Table = ({ user, data, country, showPopup }) => {
                   target="_blank"
                   className="underline"
                 >
-                  {battleArr.length >= 3
+                  {/* {battleArr.length >= 3
                     ? battleArr.slice(0, -1).join(" – ")
-                    : name}
+                    : name} */}
+                  {name}
                 </a>
               </td>
               {user.loggedIn && (
@@ -137,30 +139,33 @@ const Table = ({ user, data, country, showPopup }) => {
                     onClick={() => showPopup(battle, "add", index, year)}
                     disabled={!user.loggedIn}
                   >
-                    {user.loggedIn && user.perms.addLoc ? (
-                      <>Add</>
-                    ) : (
-                      <>Suggest</>
-                    )}
+                    {user.perms.addLoc ? <>Add</> : <>Suggest</>}
                   </button>
                 )}
               </td>
-              {user.loggedIn && (
+              {user.perms.editData && (
                 <td>
-                  {user.perms.editData && (
-                    <button
-                      onClick={() =>
-                        showPopup(battleArr, "edit", index, data[index]["year"])
-                      }
-                    >
-                      Edit
-                    </button>
-                  )}
-                  {user.perms.reportData && (
-                    <button onClick={() => showPopup(battle, "report", index)}>
-                      Report
-                    </button>
-                  )}
+                  <button
+                    onClick={() =>
+                      showPopup(battleArr, "edit", index, data[index]["year"])
+                    }
+                  >
+                    Edit
+                  </button>
+                </td>
+              )}
+              {user.perms.reportData && (
+                <td>
+                  <button onClick={() => showPopup(battle, "report", index)}>
+                    Report
+                  </button>
+                </td>
+              )}
+              {user.perms.deleteBattle && (
+                <td>
+                  <button onClick={() => showPopup(battleArr, "delete", index)}>
+                    Delete
+                  </button>
                 </td>
               )}
             </tr>

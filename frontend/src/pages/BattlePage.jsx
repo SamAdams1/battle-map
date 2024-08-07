@@ -11,6 +11,7 @@ import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
 
 import Axios from "axios";
 import { updateCountryBattleLocs } from "../../components/BattlePage/forms/dbFuncs";
+import DeleteForm from "../../components/BattlePage/forms/DeleteForm";
 
 const BattlePage = ({ user }) => {
   const [popupVis, setPopupVis] = useState(false);
@@ -111,6 +112,15 @@ const BattlePage = ({ user }) => {
         user={user}
         country={country}
         battleLocs={data}
+        setPopupVis={setPopupVis}
+      />
+    ),
+    delete: (
+      <DeleteForm
+        user={user}
+        country={country}
+        index={index}
+        battles={data}
         setPopupVis={setPopupVis}
       />
     ),
