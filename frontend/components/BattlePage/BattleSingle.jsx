@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import FavButton from "../FavButton";
 
-const BattleSingle = ({ user, data, country, showPopup }) => {
+const BattleSingle = ({ user, data, index, country, showPopup }) => {
   const char = " – ";
   const hasLatLon = "latLon" in data;
 
@@ -42,7 +42,7 @@ const BattleSingle = ({ user, data, country, showPopup }) => {
           <button
             className=""
             title="Add Location Data"
-            onClick={() => showPopup(battle, "add", index, year)}
+            onClick={() => showPopup(data.name, "add", index, data.year)}
             disabled={!user.loggedIn}
           >
             {user.perms.addLoc ? <>Add</> : <>Suggest</>} Data
@@ -53,9 +53,7 @@ const BattleSingle = ({ user, data, country, showPopup }) => {
       <div className="flex ">
         {user.perms.editData && (
           <button
-            onClick={() =>
-              showPopup(battleArr, "edit", index, data[index]["year"])
-            }
+            onClick={() => showPopup(data.name, "edit", index, data.year)}
             className="w-full"
           >
             Edit
@@ -64,7 +62,7 @@ const BattleSingle = ({ user, data, country, showPopup }) => {
 
         {user.perms.reportData && (
           <button
-            onClick={() => showPopup(battle, "report", index)}
+            onClick={() => showPopup(data.name, "report", index)}
             className="w-full"
           >
             Report
@@ -73,7 +71,7 @@ const BattleSingle = ({ user, data, country, showPopup }) => {
 
         {user.perms.deleteBattle && (
           <button
-            onClick={() => showPopup(battleArr, "delete", index)}
+            onClick={() => showPopup(data.name, "delete", index)}
             className="w-full"
           >
             Delete
