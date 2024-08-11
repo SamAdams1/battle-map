@@ -133,7 +133,7 @@ const BattlePage = ({ user }) => {
       >
         <h1 id="Top">All Battles</h1>
       </a> */}
-      <button onClick={() => console.log(data)}>print</button>
+      {/* <button onClick={() => console.log(data)}>print</button> */}
       <NavSideBar
         countryList={countries}
         setCountry={changeCountry}

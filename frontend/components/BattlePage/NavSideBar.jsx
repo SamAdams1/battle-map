@@ -5,7 +5,7 @@ const NavSideBar = ({ countryList, setCountry, selectedCountry }) => {
   let lastLetter = "";
 
   return (
-    <div className="absolute left-0 top-24">
+    <div className="absolute left-0 top-24 z-50">
       <button
         className="fixed -translate-y-8"
         onClick={() => setSideBarVis(!sideBarVis)}

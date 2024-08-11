@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Table from "./Table";
 import { getNumWLoc } from "./forms/dbFuncs";
+import Display from "./Display";
 
 const SingleCountry = ({ user, country, data, showPopup, setPopupVis }) => {
   return (
-    <div key={"title" + country} className="my-5 flex flex-col ">
+    <div key={"title" + country} className="my-5 flex flex-col overflow-hidden">
       <div className="flex">
         <h1 id={country}>{country}</h1>
         <h2>
@@ -15,12 +16,18 @@ const SingleCountry = ({ user, country, data, showPopup, setPopupVis }) => {
         )}
       </div>
       {data.length > 0 ? (
-        <Table
+        // <Table
+        //   user={user}
+        //   data={data}
+        //   country={country}
+        //   showPopup={showPopup}
+        //   setPopupVis={setPopupVis}
+        // />
+        <Display
           user={user}
           data={data}
           country={country}
           showPopup={showPopup}
-          setPopupVis={setPopupVis}
         />
       ) : (
         <h1>No Data</h1>

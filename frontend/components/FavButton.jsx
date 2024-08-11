@@ -48,9 +48,7 @@ const FavButton = ({ battleDict, country, user }) => {
   return (
     <>
       <button
-        className={
-          "favBtn w-full " + (favStatus == "isFav" ? "bg-yellow-200" : "")
-        }
+        className={"favBtn  " + (favStatus == "isFav" ? "bg-yellow-200" : "")}
         onClick={() =>
           favFunctions[favStatus](battleDict.name, country, setFavStatus)
         }
