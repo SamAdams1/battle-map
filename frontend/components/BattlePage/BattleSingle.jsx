@@ -50,30 +50,23 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
         )}
       </div>
 
-      <div className="flex ">
+      <div className="flex *:w-full">
         {user.perms.editData && (
           <button
             onClick={() => showPopup(data.name, "edit", index, data.year)}
-            className="w-full"
           >
             Edit
           </button>
         )}
 
         {user.perms.reportData && (
-          <button
-            onClick={() => showPopup(data.name, "report", index)}
-            className="w-full"
-          >
+          <button onClick={() => showPopup(data.name, "report", index)}>
             Report
           </button>
         )}
 
         {user.perms.deleteBattle && (
-          <button
-            onClick={() => showPopup(data.name, "delete", index)}
-            className="w-full"
-          >
+          <button onClick={() => showPopup(data.name, "delete", index)}>
             Delete
           </button>
         )}

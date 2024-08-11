@@ -5,8 +5,8 @@ import Display from "./Display";
 
 const SingleCountry = ({ user, country, data, showPopup, setPopupVis }) => {
   return (
-    <div key={"title" + country} className="my-5 flex flex-col overflow-hidden">
-      <div className="flex">
+    <div key={"title" + country} className="my-2 flex flex-col overflow-hidden">
+      <div className="flex flex-row items-center *:mx-2 mb-6">
         <h1 id={country}>{country}</h1>
         <h2>
           {getNumWLoc(data)} / {data.length} battles
