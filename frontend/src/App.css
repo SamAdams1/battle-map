@@ -53,6 +53,10 @@ button {
 
   padding: 0.15rem;
   line-break: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 button:disabled {
   text-decoration: wavy;

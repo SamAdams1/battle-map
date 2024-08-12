@@ -3,7 +3,7 @@ import { searchNamesForYear, updateCountryBattleLocs } from "./dbFuncs";
 
 const EditPopup = ({
   user,
-  battleArr,
+  battle,
   year,
   country,
   index,
@@ -13,28 +13,19 @@ const EditPopup = ({
   // battle format: ["battle name", " year", "campaign/war", ...]
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState(battle);
   const [newYear, setNewYear] = useState(year);
 
   const hasLatLon = "latLon" in battleLocs[index];
 
   // console.log(hasLatLon, battleLocs[index]);
   useEffect(() => {
-    setNameYearStart();
     try {
       const latLon = String(battleLocs[index].latLon).split(",");
       setLat(String(latLon[0]));
       setLon(String(latLon[1]));
     } catch (error) {}
   }, []);
-
-  const setNameYearStart = () => {
-    try {
-      setNewName(battleArr[0]);
-    } catch (error) {
-      console.log("Battle Array too short: ", battleArr);
-    }
-  };
 
   const saveChanges = () => {
     editBattleLocation();
@@ -46,9 +37,9 @@ const EditPopup = ({
     if (hasLatLon) {
       battleLocs[index].latLon = [parseFloat(lat), parseFloat(lon)];
     }
-    battleArr[0] = newName;
+    battle = newName;
     battleLocs[index].year = parseInt(newYear);
-    battleLocs[index].name = battleArr.join(" – ");
+    battleLocs[index].name = battle;
     battleLocs[index].pop;
 
     const data = battleLocs[index];
@@ -67,9 +58,11 @@ const EditPopup = ({
     <div className="flex flex-col items-center *:m-2">
       <h1>Edit</h1>
       <h2>{country}</h2>
-      <h3>{battleArr.join(" – ")}</h3>
+      <h3>{battle}</h3>
       <div className="flex flex-col items-center *:mb-1">
         <h2>Battle Name:</h2>
+        <p>Format is: Battle – Year – Campaign/War</p>
+        <p>Use " – " as separator.</p>
         <textarea
           name="battle"
           cols="30"

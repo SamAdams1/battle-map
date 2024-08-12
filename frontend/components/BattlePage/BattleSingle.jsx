@@ -20,17 +20,17 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
       // onClick={() => console.log(data)}
       className={
         `flex flex-col flex-1
-        max-w-64 m-2
+        max-w-72 m-2
         border-2 border-gray-400 rounded` +
         (hasLatLon ? " bg-green-500" : " bg-red-500")
       }
     >
       <div className="flex mb-auto">
-        <div className="p- w-80 *:mb-">
+        <div className="p-1 w-80 *:mb-1">
           <h2 className="underline">
             {data.name.split(char)[0].split(" or ")[0]}
           </h2>
-          <div className="px-2">
+          <div className="px-">
             {hasLatLon ? (
               <h3>
                 Location:

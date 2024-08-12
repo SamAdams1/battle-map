@@ -99,7 +99,7 @@ const BattlePage = ({ user }) => {
     edit: (
       <EditPopup
         user={user}
-        battleArr={battle}
+        battle={battle}
         year={year}
         index={index}
         country={country}
