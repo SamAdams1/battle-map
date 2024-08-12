@@ -5,7 +5,7 @@ const Wiki = ({ text }) => {
     <div className="flex flex-col  px-8 top-0 absolute bottom-0 right-0 left-0 overflow-y-auto">
       <h1>Wiki</h1>
       <div>
-        <p className="max-w-[50em] min-w-96 leading-loose">{text}</p>
+        <p className="max-w-[50em]  leading-loose">{text}</p>
       </div>
     </div>
   );

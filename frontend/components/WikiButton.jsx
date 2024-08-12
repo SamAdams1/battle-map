@@ -23,14 +23,15 @@ const WikiButton = ({ battleName, showPopup }) => {
         format: "json",
         action: "parse",
         page: battleName,
-        prop: "wikitext",
+        prop: "sections",
+        // section: 0,
       },
     })
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
         } else {
-          // if (response["data"]["query"]["search"][0]) setArticleStatus(true);
+          console.log(response);
           const text = response["data"]["parse"]["wikitext"]["*"];
           console.log(text);
           if (text) {
@@ -38,7 +39,10 @@ const WikiButton = ({ battleName, showPopup }) => {
           } else setArticleStatus(false);
         }
       })
-      .catch(() => setArticleStatus(false));
+      .catch((e) => {
+        setArticleStatus(false);
+        console.error(e);
+      });
   }
 
   useEffect(() => {
