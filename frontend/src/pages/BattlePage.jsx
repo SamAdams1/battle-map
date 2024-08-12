@@ -1,3 +1,5 @@
+import Axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import NavSideBar from "../../components/BattlePage/NavSideBar";
 import SingleCountry from "../../components/BattlePage/SingleCountry";
@@ -8,10 +10,9 @@ import AddPopup from "../../components/BattlePage/forms/AddPopup";
 import Report from "../../components/BattlePage/forms/ReportPopup";
 import EditPopup from "../../components/BattlePage/forms/EditPopup";
 import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
-
-import Axios from "axios";
-import { updateCountryBattleLocs } from "../../components/BattlePage/forms/dbFuncs";
 import DeleteForm from "../../components/BattlePage/forms/DeleteForm";
+
+import Wiki from "../../components/Wiki";
 
 const BattlePage = ({ user }) => {
   const [popupVis, setPopupVis] = useState(false);
@@ -124,6 +125,7 @@ const BattlePage = ({ user }) => {
         setPopupVis={setPopupVis}
       />
     ),
+    wiki: <Wiki text={battle} />,
   };
   return (
     <div className="flex flex-col  items-center belowHeader overflow-auto bg-slate-300">

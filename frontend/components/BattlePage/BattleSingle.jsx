@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import FavButton from "../FavButton";
+import WikiButton from "../WikiButton";
 // import EditIcon from "@mui/icons-material/Edit";
 const BattleSingle = ({ user, data, index, country, showPopup }) => {
-  const char = " – ";
+  const nameOnly = data.name.split(" – ")[0].split(" or ")[0];
   const hasLatLon = "latLon" in data;
 
   function tensPlace(coord) {
@@ -27,9 +28,8 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
     >
       <div className="flex mb-auto">
         <div className="p-1 w-80 *:mb-1">
-          <h2 className="underline">
-            {data.name.split(char)[0].split(" or ")[0]}
-          </h2>
+          <h2 className="underline">{nameOnly}</h2>
+          <WikiButton battleName={nameOnly} showPopup={showPopup} />
           <div className="px-">
             {hasLatLon ? (
               <h3>
