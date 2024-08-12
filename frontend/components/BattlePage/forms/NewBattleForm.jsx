@@ -57,7 +57,7 @@ const NewBattleForm = ({ user, country, battleLocs, setPopupVis }) => {
 
   const addToUserContributions = () => {
     const data = { country, battle, dateAdded: getCurrentDate() };
-    user.contributions[battle] = data;
+    user.contributions.push(data);
 
     updateUserContributions(user._id, user.contributions);
   };

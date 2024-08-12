@@ -1,5 +1,6 @@
 import React from "react";
 import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
+import FavButton from "../../components/FavButton";
 
 const Contributions = ({ user }) => {
   return !user.loggedIn ? (
@@ -7,36 +8,41 @@ const Contributions = ({ user }) => {
   ) : (
     <div className="flex flex-col belowHeader">
       <h1>Your Contributions</h1>
-      <table>
-        <tbody>
-          <tr>
-            <th>Country</th>
-            <th>Battle</th>
-            <th>Date Added</th>
-          </tr>
-          {Object.keys(user.contributions).map((item) => (
-            <tr key={item}>
-              <td>{user.contributions[item]["country"]}</td>
-              <td>
+
+      <div className="flex flex-wrap">
+        {user.contributions.map((battleDict) => {
+          return (
+            <div
+              key={battleDict.id}
+              className={`flex flex-col flex-1 p-2
+            w-72 m-2 bg-red-700 text-white
+            border-2 border-gray-900 rounded`}
+            >
+              <h2>
                 <a
                   href={
                     "https://en.wikipedia.org/wiki/" +
-                    user.contributions[item]["battle"]
-                      .split(" or ")
-                      .at(0)
-                      .replace(" ", "_")
+                    battleDict.battle.split(" or ").at(0).replace(" ", "_")
                   }
                   target="_blank"
                   className="underline"
                 >
-                  {user.contributions[item]["battle"]}
+                  {battleDict.battle}
                 </a>
-              </td>
-              <td>{user.contributions[item]["dateAdded"]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </h2>
+              <h3>{battleDict.country}</h3>
+              <h3>{battleDict["dateAdded"]}</h3>
+              <span className="text-black">
+                <FavButton
+                  country={battleDict.country}
+                  battleDict={battleDict}
+                  user={user}
+                />
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

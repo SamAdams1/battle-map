@@ -50,7 +50,7 @@ const AddPopup = ({
       country: countryName,
       dateAdded: getCurrentDate(),
     };
-    user["contributions"][battleName] = newInfo;
+    user["contributions"].push(newInfo);
 
     updateUserContributions(user._id, user.contributions);
   };

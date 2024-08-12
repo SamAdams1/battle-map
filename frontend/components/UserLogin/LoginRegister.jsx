@@ -33,7 +33,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
 
   const registerUser = (data) => {
     data["favorites"] = {};
-    data["contributions"] = {};
+    data["contributions"] = [];
     data["pfp"] = "";
     data["lvl"] = 3;
     console.log(data);

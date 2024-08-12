@@ -24,6 +24,7 @@ const Favorites = ({ user }) => {
             max-w-72 m-2 bg-red-700 text-white
             border-2 border-gray-900 rounded`}
             >
+              <FavButton battleDict={fav} country={fav.country} user={user} />
               <h2>{nameOnly}</h2>
               <h3>{fav.country}</h3>
               <h3>{fav.dateAdded}</h3>
