@@ -14,27 +14,34 @@ const mongoURI = `mongodb+srv://sammyadams04:${process.env.DB_AUTH}@cluster0.ux5
 const dbName = "battle-map";
 const PORT = process.env.PORT || 3005;
 let db;
-
-MongoClient.connect(mongoURI)
-  .then((client) => {
-    console.log("MongoDB connected");
-    db = client.db(dbName);
-  })
-  .catch((err) => console.error("MongoDB connection error:", err));
-
-app.get("/battles", (req, res) => {
-  let idk = [];
-  pipeline = [{ $unset: ["_id", "withLocation", "countryCenter"] }];
-  db.collection("battles")
-    .aggregate(pipeline)
-    .toArray()
-    .then((result) => {
-      idk = [...idk, result];
-      res.json(idk);
+async function connectToMongoDB() {
+  MongoClient.connect(mongoURI)
+    .then((client) => {
+      console.log("MongoDB connected");
+      db = client.db(dbName);
     })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+    .catch((err) => console.error("MongoDB connection error:", err));
+}
+
+connectToMongoDB();
+
+app.get("/battles", async (req, res) => {
+  if (!db) {
+    return res.status(500).json({ error: "Database not connected" });
+  }
+  try {
+    let idk = [];
+    const pipeline = [{ $unset: ["_id", "withLocation", "countryCenter"] }];
+    const battles = await db
+      .collection("battles")
+      .aggregate(pipeline)
+      .toArray();
+    idk = [...idk, battles];
+    res.json(idk);
+  } catch (err) {
+    console.error("Error fetching battles:", err);
+    res.status(500).json({ error: "Error fetching battles" });
+  }
 });
 
 app.get("/countryCenter", (req, res) => {

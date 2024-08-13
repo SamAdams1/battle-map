@@ -16,9 +16,10 @@ const MapPage = ({ user }) => {
   useEffect(() => {
     getData();
   }, []);
-
+  // http://localhost:3005
+  // https://map-backend-7ravbvmifa-nn.a.run.app
   const getData = () => {
-    Axios.get("https://map-backend-7ravbvmifa-nn.a.run.app/battles")
+    Axios.get("http://localhost:3005/battles")
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
