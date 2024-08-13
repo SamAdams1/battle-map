@@ -14,8 +14,9 @@ const NavSideBar = ({ countryList, setCountry, selectedCountry }) => {
   };
 
   useEffect(() => {
-    if (sideBarVis)
+    if (sideBarVis) {
       scrollRef.current.scrollTop = localStorage.getItem("navScroll");
+    }
   }, [sideBarVis]);
 
   return (
