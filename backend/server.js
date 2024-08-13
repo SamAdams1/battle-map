@@ -30,6 +30,7 @@ app.get("/battles", async (req, res) => {
     return res.status(500).json({ error: "Database not connected" });
   }
   try {
+    if (!db) await connectToMongoDB();
     let idk = [];
     const pipeline = [{ $unset: ["_id", "withLocation", "countryCenter"] }];
     const battles = await db
