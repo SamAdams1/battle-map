@@ -6,7 +6,7 @@ import Battles from "./BattleList";
 import Axios from "axios";
 
 const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
-  const [showDisplay, setShowDisplay] = useState(true);
+  const [showDisplay, setShowDisplay] = useState(false);
 
   // arrows buttons
   const [country, setCountry] = useState("");

@@ -26,9 +26,9 @@ async function connectToMongoDB() {
 connectToMongoDB();
 
 app.get("/battles", async (req, res) => {
-  if (!db) {
-    return res.status(500).json({ error: "Database not connected" });
-  }
+  // if (!db) {
+  //   return res.status(500).json({ error: "Database not connected" });
+  // }
   try {
     if (!db) await connectToMongoDB();
     let idk = [];
