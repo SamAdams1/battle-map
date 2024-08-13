@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import { ENDPOINT } from "../../../environment";
 
 const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
   const [input, setInput] = useState("");

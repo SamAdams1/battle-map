@@ -2,6 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserDisplay from "../UserLogin/UserDisplay";
 import { ENDPOINT } from "../../environment";
+import Card from "../Card";
 
 const ContribHistory = ({ user, battleLocs }) => {
   const [history, setHistory] = useState([]);
@@ -99,51 +100,32 @@ const ContribHistory = ({ user, battleLocs }) => {
           <label htmlFor="unapproved">View Unapproved</label>
         </div>
       </div>
-      <table className="w-ful">
-        <tbody>
-          {(approvedVis || unapprovedVis) && (
-            <tr>
-              <th>Approved Status</th>
-              <th>User</th>
-              <th>Date Added</th>
-              <th>Country</th>
-              <th>Battle</th>
-              <th>Year</th>
-              <th>LatLon</th>
-              <th>Source</th>
-            </tr>
-          )}
-          {history &&
-            history.map((doc) => {
-              const a = doc.approved ? "bg-green-400" : "bg-red-700";
-              return (
-                ((doc.approved && approvedVis) ||
-                  (!doc.approved && unapprovedVis)) && (
-                  <tr key={doc._id}>
-                    <td className={a}>
-                      {!doc.approved && (
-                        <button onClick={() => approve(doc)}>Approve</button>
-                      )}
-                    </td>
-                    <td>
-                      <UserDisplay id={doc.addedBy} />
-                    </td>
-                    <td>{doc.dateAdded}</td>
-                    <td>{doc.country}</td>
-                    <td>{doc.battle}</td>
-                    <td>{doc.year}</td>
-                    <td>
-                      {doc.latLon[0]}, {doc.latLon[1]}
-                    </td>
-                    <td className="overflow-auto text-wrap text-xs max-w-">
-                      {doc.source}
-                    </td>
-                  </tr>
-                )
-              );
-            })}
-        </tbody>
-      </table>
+      <div className="flex flex-row flex-wrap">
+        {history.map((doc) => (
+          <Card
+            children={
+              <>
+                <p className={doc.approved ? "bg-green-400" : "bg-red-700"}>
+                  {!doc.approved && (
+                    <button onClick={() => approve(doc)}>Approve</button>
+                  )}
+                </p>
+                <UserDisplay id={doc.addedBy} />
+                <h2>{doc.battle}</h2>
+                <h3>{doc.country}</h3>
+                <h>{doc.dateAdded}</h>
+                <h>{doc.year}</h>
+                <h>
+                  {doc.latLon[0]}, {doc.latLon[1]}
+                </h>
+                <h className="overflow-auto text-wrap text-xs max-w-">
+                  {doc.source}
+                </h>
+              </>
+            }
+          />
+        ))}
+      </div>
     </div>
   );
 };

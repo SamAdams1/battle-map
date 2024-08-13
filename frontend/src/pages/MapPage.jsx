@@ -36,7 +36,7 @@ const MapPage = ({ user }) => {
       const item = dataArr[index];
       idk[item.country] = item.battles;
     }
-    console.log(idk);
+    // console.log(idk);
     setData(idk);
   };
 

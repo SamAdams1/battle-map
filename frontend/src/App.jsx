@@ -20,6 +20,7 @@ import Header from "../components/Header";
 import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
 import Titles from "./pages/Titles";
+import { ENDPOINT } from "../environment";
 
 const userTitles = [
   {
@@ -94,6 +95,8 @@ const userTitles = [
 function App() {
   const [user, setUser] = useState({});
 
+  useEffect(() => console.log(ENDPOINT), []);
+
   useEffect(() => {
     if (Object.keys(user).length > 4) {
       user["loggedIn"] = true;
@@ -105,7 +108,7 @@ function App() {
       user["title"] = "Peasant";
       user["lvl"] = 4;
     }
-    console.log(user);
+    // console.log(user);
     user["perms"] = userTitles[user.lvl].permissions;
   }, [user]);
 

@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ENDPOINT } from "../../environment";
+import Card from "../Card";
 
 const Users = ({ titles, user }) => {
   const [users, setUsers] = useState([]);
@@ -53,44 +54,45 @@ const Users = ({ titles, user }) => {
     <div>
       <h1>Users</h1>
       <button onClick={() => console.log(users)}>test</button>
-      <table>
-        <tbody>
-          <tr>
-            <th>Username</th>
-            <th>Lvl</th>
-            <th># of Contributes</th>
-          </tr>
-          {users.map((thisUser) => (
-            <tr key={thisUser._id}>
-              <td className={thisUser._id === user._id ? "bg-yellow-400" : ""}>
-                {thisUser.username}
-              </td>
-              <td className="px-5">
-                {titles[thisUser.lvl].title} {thisUser.lvl}
-              </td>
-              <td>{Object.keys(thisUser.contributions).length}</td>
-              <td>
+      <div className="flex flex-wrap ">
+        {users.map((thisUser) => (
+          <Card
+            children={
+              <div>
+                <h2
+                  className={thisUser._id === user._id ? "bg-yellow-400" : ""}
+                >
+                  {thisUser.username}
+                </h2>
+                <h3>
+                  {titles[thisUser.lvl].title} {thisUser.lvl}
+                </h3>
+                <h3>
+                  Contributions: {Object.keys(thisUser.contributions).length}
+                </h3>
                 {user.perms.changeUserLvl && user._id != thisUser._id && (
-                  <>
+                  <div className="flex flex-row">
                     <button
                       onClick={() => updateUserLvl(1, thisUser)}
                       disabled={thisUser.lvl <= user.lvl || thisUser.lvl == 1}
+                      className="text-black"
                     >
                       Premote
                     </button>
                     <button
                       onClick={() => updateUserLvl(-1, thisUser)}
                       disabled={thisUser.lvl <= user.lvl || thisUser.lvl == 3}
+                      className="text-black"
                     >
                       Demote
                     </button>
-                  </>
+                  </div>
                 )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            }
+          />
+        ))}
+      </div>
     </div>
   );
 };

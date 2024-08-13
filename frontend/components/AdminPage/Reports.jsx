@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import UserDisplay from "../UserLogin/UserDisplay";
 import { ENDPOINT } from "../../environment";
+import Card from "../Card";
 
 const Reports = ({ user, battleLocs }) => {
   const [reports, setReports] = useState([]);
@@ -44,31 +45,24 @@ const Reports = ({ user, battleLocs }) => {
     <div>
       <button onClick={() => console.log(reports)}>print</button>
       <h1>Reports</h1>
-      <table className="w-ful">
-        <tbody>
-          <tr>
-            <th>User</th>
-            <th>Country</th>
-            <th>Battle</th>
-            <th></th>
-          </tr>
-          {reports.map((report, index) => (
-            <tr key={index}>
-              <td className={report.author == user._id ? "bg-yellow-200" : ""}>
-                <UserDisplay id={report.author} />
-              </td>
-              <td>{report.country}</td>
-              <td>{report.battle}</td>
-              <td>{report.reason}</td>
-              <td>
-                <button onClick={() => approveReport(report._id, index)}>
-                  Done
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {reports.map((report, index) => (
+        <Card
+          children={
+            <>
+              <h5>{report.author}</h5>
+              <h3>{report.country}</h3>
+              <h3>{report.battle}</h3>
+              <h3>{report.reason}</h3>
+              <button
+                onClick={() => approveReport(report._id, index)}
+                className="text-black"
+              >
+                Mark Complete
+              </button>
+            </>
+          }
+        />
+      ))}
     </div>
   );
 };
