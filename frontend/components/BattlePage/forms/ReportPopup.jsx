@@ -6,7 +6,7 @@ const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
 
   const reportBattle = () => {
     const report = { country, battle, reason: input, author: user._id };
-    Axios.post("http://localhost:3005/reportBattle", report)
+    Axios.post(`${ENDPOINT}/reportBattle`, report)
       .then((response) => {
         console.log(response);
       })

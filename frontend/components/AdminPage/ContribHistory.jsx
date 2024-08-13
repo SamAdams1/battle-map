@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserDisplay from "../UserLogin/UserDisplay";
+import { ENDPOINT } from "../../environment";
 
 const ContribHistory = ({ user, battleLocs }) => {
   const [history, setHistory] = useState([]);
@@ -8,7 +9,7 @@ const ContribHistory = ({ user, battleLocs }) => {
   const [unapprovedVis, setUnapprovedVis] = useState(true);
 
   const getHistory = () => {
-    Axios.get("http://localhost:3005/admin/contrib-history")
+    Axios.get(`${ENDPOINT}/admin/contrib-history`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
@@ -44,7 +45,7 @@ const ContribHistory = ({ user, battleLocs }) => {
     battleLocs[country][doc.battle] = data;
     const total = Object.keys(battleLocs[country]).length;
 
-    Axios.put("http://localhost:3005/addBattleLoc", {
+    Axios.put(`${ENDPOINT}/addBattleLoc`, {
       battles: battleLocs[country],
       country,
       total,
@@ -56,7 +57,7 @@ const ContribHistory = ({ user, battleLocs }) => {
   };
 
   const updateHistory = (doc) => {
-    Axios.put("http://localhost:3005/admin/approveContrib", {
+    Axios.put(`${ENDPOINT}/admin/approveContrib`, {
       id: doc._id,
       approved: doc.approved,
     })

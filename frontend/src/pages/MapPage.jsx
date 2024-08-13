@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import Map from "../../components/MapPage/Map";
 import Markers from "../../components/MapPage/Markers";
 import InfoPanel from "../../components/MapPage/InfoPanel";
+import { ENDPOINT } from "../../environment";
 
 const MapPage = ({ user }) => {
   const [data, setData] = useState({});
@@ -16,10 +17,9 @@ const MapPage = ({ user }) => {
   useEffect(() => {
     getData();
   }, []);
-  // http://localhost:3005/
-  // https://map-backend-7ravbvmifa-nn.a.run.app
+
   const getData = () => {
-    Axios.get("https://map-backend-7ravbvmifa-nn.a.run.app/battles")
+    Axios.get(`${ENDPOINT}/battles`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");

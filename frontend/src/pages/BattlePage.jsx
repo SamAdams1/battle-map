@@ -13,6 +13,7 @@ import NewBattleForm from "../../components/BattlePage/forms/NewBattleForm";
 import DeleteForm from "../../components/BattlePage/forms/DeleteForm";
 
 import Wiki from "../../components/Wiki";
+import { ENDPOINT } from "../../environment";
 
 const BattlePage = ({ user }) => {
   const [popupVis, setPopupVis] = useState(false);
@@ -38,7 +39,7 @@ const BattlePage = ({ user }) => {
   }, [country]);
 
   const getData = () => {
-    Axios.get("http://localhost:3005/countryBattles", { params: { country } })
+    Axios.get(`${ENDPOINT}/countryBattles`, { params: { country } })
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
@@ -50,7 +51,7 @@ const BattlePage = ({ user }) => {
   };
 
   const getCountries = () => {
-    Axios.get("http://localhost:3005/countries")
+    Axios.get(`${ENDPOINT}/countries`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");

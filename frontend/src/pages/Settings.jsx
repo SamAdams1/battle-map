@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
+import { ENDPOINT } from "../../environment";
 
 const Settings = ({ user }) => {
   const [img, setImg] = useState(user.pfp);
@@ -22,7 +23,7 @@ const Settings = ({ user }) => {
     console.log(newUsername, newPassword);
     user.username = newUsername;
     user.password = newPassword;
-    fetch("http://localhost:3005/updateUsernamePassword", {
+    fetch(`${ENDPOINT}/updateUsernamePassword`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),

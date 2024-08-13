@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { ENDPOINT } from "../environment";
 
 const FavButton = ({ battleDict, country, user }) => {
   const [favStatus, setFavStatus] = useState(
@@ -35,7 +36,7 @@ const FavButton = ({ battleDict, country, user }) => {
 
   const changeFavorites = () => {
     // console.log(user.favorites);
-    Axios.put("http://localhost:3005/updateFavorites", user)
+    Axios.put(`${ENDPOINT}/updateFavorites`, user)
       .then((response) => {
         console.log(response);
       })

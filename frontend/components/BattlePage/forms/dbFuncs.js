@@ -1,9 +1,10 @@
 import Axios from "axios";
+import { ENDPOINT } from "../../../environment";
 
 export function updateCountryBattleLocs(country, battles) {
   let total = getNumWLoc(battles);
   // console.log(country, battles, total);
-  Axios.put("http://localhost:3005/updateBattle", {
+  Axios.put(`${ENDPOINT}/updateBattle`, {
     country,
     battles,
     total,
@@ -16,7 +17,7 @@ export function updateCountryBattleLocs(country, battles) {
 
 export function updateUserContributions(userID, contributions) {
   // console.log(userID, contributions);
-  Axios.put("http://localhost:3005/updateContributions", {
+  Axios.put(`${ENDPOINT}/updateContributions`, {
     _id: userID,
     contributions: contributions,
   })
@@ -28,7 +29,7 @@ export function updateUserContributions(userID, contributions) {
 
 export function postToHistory(data) {
   // console.log("history", data);
-  Axios.post("http://localhost:3005/suggestLoc", data)
+  Axios.post(`${ENDPOINT}/suggestLoc`, data)
     .then((response) => {
       console.log(response);
     })
@@ -37,7 +38,7 @@ export function postToHistory(data) {
 
 export function updateNameList(country, nameList) {
   // console.log("history", data);
-  Axios.put("http://localhost:3005/updateNameList", { country, nameList })
+  Axios.put(`${ENDPOINT}/updateNameList`, { country, nameList })
     .then((response) => {
       console.log(response);
     })

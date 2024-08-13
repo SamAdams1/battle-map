@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import UserDisplay from "../UserLogin/UserDisplay";
+import { ENDPOINT } from "../../environment";
 
 const Reports = ({ user, battleLocs }) => {
   const [reports, setReports] = useState([]);
 
   const getReports = () => {
-    Axios.get("http://localhost:3005/admin/reports")
+    Axios.get(`${ENDPOINT}/admin/reports`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
@@ -24,7 +25,7 @@ const Reports = ({ user, battleLocs }) => {
         return i._id != id;
       })
     );
-    Axios.delete("http://localhost:3005/admin/delReport", { params: { id } })
+    Axios.delete(`${ENDPOINT}/admin/delReport`, { params: { id } })
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");

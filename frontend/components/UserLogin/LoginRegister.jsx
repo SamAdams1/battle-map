@@ -3,6 +3,7 @@ import Form from "./Form";
 import Axios from "axios";
 
 import { useNavigate } from "react-router-dom";
+import { ENDPOINT } from "../../environment";
 
 // form type can either be "Login" or "Register"
 const LoginRegister = ({ formType, setUser, user }) => {
@@ -16,7 +17,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
 
   const loginUser = (data) => {
     // console.log({data})
-    Axios.post("http://localhost:3005/userLogin", data)
+    Axios.post(`${ENDPOINT}/userLogin`, data)
       .then((response) => {
         if (response.data.length == 0) {
           // console.log(response)
@@ -37,7 +38,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
     data["pfp"] = "";
     data["lvl"] = 3;
     console.log(data);
-    Axios.post(`http://localhost:3005/${"registerUser"}`, data)
+    Axios.post(`${ENDPOINT}/registerUser`, data)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(response);

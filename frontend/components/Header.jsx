@@ -10,7 +10,7 @@ const Header = ({ user }) => {
         </Link>
         <Link to="/">Map</Link>
         <Link to="/battleList">Battle List</Link>
-        <Link to="chat">Chat</Link>
+        {/* <Link to="chat">Chat</Link> */}
       </div>
       {!(Object.keys(user).length > 4) && (
         <div className="absolute flex right-[-1.5em] top-3 *:mx-1">

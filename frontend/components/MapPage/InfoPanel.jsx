@@ -4,6 +4,7 @@ import Countries from "./CountryList";
 import Battles from "./BattleList";
 
 import Axios from "axios";
+import { ENDPOINT } from "../../environment";
 
 const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
   const [showDisplay, setShowDisplay] = useState(false);
@@ -16,7 +17,7 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
   const [header, setHeader] = useState("Select a Country");
 
   const getCountryCenter = (country) => {
-    Axios.get("http://localhost:3005/countryCenter", { params: { country } })
+    Axios.get(`${ENDPOINT}/countryCenter`, { params: { country } })
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");

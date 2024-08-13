@@ -1,11 +1,12 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { ENDPOINT } from "../../environment";
 
 const Users = ({ titles, user }) => {
   const [users, setUsers] = useState([]);
 
   const getUsers = () => {
-    Axios.get("http://localhost:3005/admin/users")
+    Axios.get(`${ENDPOINT}/admin/users`)
       .then((response) => {
         if (response.data.length == 0) {
           console.log(route + " not found.");
@@ -29,7 +30,7 @@ const Users = ({ titles, user }) => {
   };
 
   const updateNewLvl = (thisUser) => {
-    Axios.put("http://localhost:3005/admin/changeUserLvl", {
+    Axios.put(`${ENDPOINT}/admin/changeUserLvl`, {
       id: thisUser._id,
       lvl: thisUser.lvl,
     })
