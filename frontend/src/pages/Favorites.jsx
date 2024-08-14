@@ -1,6 +1,7 @@
 import React from "react";
 import FavButton from "../../components/FavButton";
 import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
+import Card from "../../components/Card";
 
 {
   /* <th>Country</th>
@@ -19,17 +20,24 @@ const Favorites = ({ user }) => {
           const nameOnly = fav.battle.split(" – ")[0].split(" or ")[0];
           // console.log(fav);
           return (
-            <div
-              key={id}
-              className={`flex flex-col flex-1 p-2
-            max-w-72 m-2 bg-red-700 text-white
-            border-2 border-gray-900 rounded`}
-            >
-              <FavButton battleDict={fav} country={fav.country} user={user} />
-              <h2>{nameOnly}</h2>
-              <h3>{fav.country}</h3>
-              <h3>{fav.dateAdded}</h3>
-            </div>
+            <Card
+              children={
+                <div key={id} className="flex">
+                  <div>
+                    <h2>{nameOnly}</h2>
+                    <h3>{fav.country}</h3>
+                    <h3>{fav.dateAdded}</h3>
+                  </div>
+                  <div>
+                    <FavButton
+                      battleDict={fav}
+                      country={fav.country}
+                      user={user}
+                    />
+                  </div>
+                </div>
+              }
+            />
           );
         })}
       </div>
