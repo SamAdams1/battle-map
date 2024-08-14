@@ -13,7 +13,7 @@ const Favorites = ({ user }) => {
     <NotLoggedIn pageTitle="Favorites" />
   ) : (
     <div className="flex flex-col belowHeader ">
-      <h1>Your Favorites</h1>
+      <h1 className="ml-4">Your Favorites</h1>
       <div className="flex flex-wrap">
         {Object.keys(user.favorites).map((id) => {
           const fav = user.favorites[id];
@@ -21,9 +21,10 @@ const Favorites = ({ user }) => {
           // console.log(fav);
           return (
             <Card
+              bgColor={"bg-red-700"}
               children={
                 <div key={id} className="flex">
-                  <div>
+                  <div className=" p-2">
                     <h2>{nameOnly}</h2>
                     <h3>{fav.country}</h3>
                     <h3>{fav.dateAdded}</h3>

@@ -43,28 +43,35 @@ const Reports = ({ user, battleLocs }) => {
 
   return (
     <div>
-      <button onClick={() => console.log(reports)}>print</button>
-      <h1>Reports</h1>
-      {reports.map((report, index) => (
-        <Card
-          key={report._id}
-          children={
-            <>
-              <UserDisplay id={report.author} />
+      {/* <h1>Reports</h1>
+      <button onClick={() => console.log(reports)}>print</button> */}
+      <div className="flex flex-wrap">
+        {reports.map((report, index) => (
+          <Card
+            key={report._id}
+            bgColor={"bg-red-700"}
+            children={
+              <div className="flex flex-col flex-1">
+                <div className="p-2 flex flex-col mb-auto">
+                  <span>
+                    <UserDisplay id={report.author} />
+                  </span>
 
-              <h3>{report.country}</h3>
-              <h3>{report.battle}</h3>
-              <h3>Reason: {report.reason}</h3>
-              <button
-                onClick={() => approveReport(report._id, index)}
-                className="text-black"
-              >
-                Mark Complete
-              </button>
-            </>
-          }
-        />
-      ))}
+                  <h3>{report.country}</h3>
+                  <h3>{report.battle}</h3>
+                  <h3>Reason: {report.reason}</h3>
+                </div>
+                <button
+                  onClick={() => approveReport(report._id, index)}
+                  className="text-black w-full"
+                >
+                  Mark Complete
+                </button>
+              </div>
+            }
+          />
+        ))}
+      </div>
     </div>
   );
 };

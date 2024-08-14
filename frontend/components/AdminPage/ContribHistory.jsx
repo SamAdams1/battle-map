@@ -100,9 +100,9 @@ const ContribHistory = ({ user, battleLocs }) => {
 
   return (
     <div>
-      <h1>Contribution History</h1>
-      {/* <button onClick={() => console.log(history)}>test</button> */}
-      <div className="flex *:m-2">
+      {/* <h1>Contribution History</h1>
+      <button onClick={() => console.log(history)}>test</button> */}
+      <div className="flex *:m-2 w-full bg-gray-400">
         <div className="*:mr-1">
           <input
             type="checkbox"
@@ -129,21 +129,27 @@ const ContribHistory = ({ user, battleLocs }) => {
             showCard && (
               <Card
                 key={doc._id}
-                bgColor={doc.approved ? "bg-green-700" : "bg-red-600"}
+                bgColor={doc.approved ? "bg-green-600" : "bg-red-700"}
                 children={
-                  <div className="*:my-2" key={doc._id}>
+                  <div className="flex flex-col flex-1" key={doc._id}>
+                    <div className="*:my-1 p-2 mb-auto">
+                      <span>
+                        <UserDisplay id={doc.addedBy} />
+                      </span>
+                      <h3>Battle: {doc.battle}</h3>
+                      <h4>Country: {doc.country}</h4>
+                      <h4>Year: {doc.year}</h4>
+                      <h4>
+                        Loc: [{doc.latLon[0]}, {doc.latLon[1]}]
+                      </h4>
+                      <h4>Added: {doc.dateAdded}</h4>
+                      <h4>Source: {doc.source}</h4>
+                    </div>
                     {!doc.approved && (
-                      <button onClick={() => approve(doc)}>Approve</button>
+                      <button onClick={() => approve(doc)} className="">
+                        Approve
+                      </button>
                     )}
-                    <UserDisplay id={doc.addedBy} />
-                    <h3>Battle: {doc.battle}</h3>
-                    <h4>Country: {doc.country}</h4>
-                    <h4>Year: {doc.year}</h4>
-                    <h4>
-                      Loc: [{doc.latLon[0]}, {doc.latLon[1]}]
-                    </h4>
-                    <h4>Added: {doc.dateAdded}</h4>
-                    <h4>Source: {doc.source}</h4>
                   </div>
                 }
               />

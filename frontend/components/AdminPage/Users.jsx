@@ -52,15 +52,15 @@ const Users = ({ titles, user }) => {
 
   return (
     <div>
-      <h1>Users</h1>
-      <button onClick={() => console.log(users)}>test</button>
+      {/* <h1>Users</h1>
+      <button onClick={() => console.log(users)}>test</button> */}
       <div className="flex flex-wrap ">
         {users.map((thisUser) => (
           <Card
             key={thisUser._id}
-            bgColor={thisUser._id === user._id ? "bg-yellow-600" : ""}
+            bgColor={thisUser._id === user._id ? "bg-yellow-600" : "bg-red-700"}
             children={
-              <div>
+              <div className="p-2">
                 <h2>{thisUser.username}</h2>
                 <h3>
                   {titles[thisUser.lvl].title} {thisUser.lvl}

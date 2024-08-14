@@ -6,7 +6,7 @@ const Card = ({ children, bgColor }) => {
     <motion.div
       className={
         `flex flex-col p-
-            w-64 m-2 bg-red-700 text-white
+            w-72 m-2 text-white
             border-2 border-gray-900 rounded ` + bgColor
       }
       whileHover={{ scale: 1.05 }}

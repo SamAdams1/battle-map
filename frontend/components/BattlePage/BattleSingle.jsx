@@ -18,20 +18,14 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
 
   return (
     <Card
-      bgColor={hasLatLon ? " bg-green-600" : " bg-red-500"}
+      bgColor={hasLatLon ? " bg-green-600" : " bg-red-700"}
       children={
-        <div
-          whileHover={{ scale: 1.05 }}
-          // onClick={() => console.log(data)}
-          className={`flex flex-col flex-1
-        
-        `}
-        >
+        <div className="flex flex-col flex-1">
           <div className="flex mb-auto">
-            <div className="p-1 w-80 *:mb-1">
+            <div className="p-1 *:mb-1">
               <h2 className="underline">{nameOnly}</h2>
               {/* <WikiButton battleName={nameOnly} showPopup={showPopup} /> */}
-              <div className="px-">
+              <div>
                 {hasLatLon ? (
                   <h3>
                     Location:

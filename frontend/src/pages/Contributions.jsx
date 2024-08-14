@@ -8,16 +8,16 @@ const Contributions = ({ user }) => {
     <NotLoggedIn pageTitle="Contributions" />
   ) : (
     <div className="flex flex-col belowHeader">
-      <h1>Your Contributions</h1>
+      <h1 className="ml-4">Your Contributions</h1>
 
       <div className="flex flex-wrap">
         {user.contributions.map((battleDict) => {
           return (
             <Card
-              // bgColor={}
+              bgColor={"bg-red-700"}
               children={
                 <div key={battleDict.id} className="flex">
-                  <div>
+                  <div className="w-full p-2">
                     <h2>
                       <a
                         href={
