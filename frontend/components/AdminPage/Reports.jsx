@@ -47,12 +47,14 @@ const Reports = ({ user, battleLocs }) => {
       <h1>Reports</h1>
       {reports.map((report, index) => (
         <Card
+          key={report._id}
           children={
             <>
-              <h5>{report.author}</h5>
+              <UserDisplay id={report.author} />
+
               <h3>{report.country}</h3>
               <h3>{report.battle}</h3>
-              <h3>{report.reason}</h3>
+              <h3>Reason: {report.reason}</h3>
               <button
                 onClick={() => approveReport(report._id, index)}
                 className="text-black"

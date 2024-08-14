@@ -57,13 +57,11 @@ const Users = ({ titles, user }) => {
       <div className="flex flex-wrap ">
         {users.map((thisUser) => (
           <Card
+            key={thisUser._id}
+            bgColor={thisUser._id === user._id ? "bg-yellow-600" : ""}
             children={
               <div>
-                <h2
-                  className={thisUser._id === user._id ? "bg-yellow-400" : ""}
-                >
-                  {thisUser.username}
-                </h2>
+                <h2>{thisUser.username}</h2>
                 <h3>
                   {titles[thisUser.lvl].title} {thisUser.lvl}
                 </h3>

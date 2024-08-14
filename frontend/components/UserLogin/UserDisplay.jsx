@@ -4,21 +4,28 @@ import { ENDPOINT } from "../../environment";
 
 const UserDisplay = ({ id }) => {
   const [user, setUser] = useState({});
+  const [showUser, setShowUser] = useState(false);
 
-  useEffect(() => {
+  function getThisUser() {
     Axios.get(`${ENDPOINT}/userDisplay`, { params: { id } })
       .then((response) => {
         if (response.data.length == 0) {
           console.log("UserDisplay error.");
+          setUser({ username: "User not found" });
         } else {
           setUser(response.data[0]);
           // console.log(response.data[0]);
         }
+        setShowUser(true);
       })
       .catch((e) => console.error(e));
-  }, []);
+  }
 
-  return <>{user.username}</>;
+  return showUser ? (
+    <h3>{user.username}</h3>
+  ) : (
+    <button onClick={getThisUser}>Fetch Username</button>
+  );
 };
 
 export default UserDisplay;

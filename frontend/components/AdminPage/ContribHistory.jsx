@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import UserDisplay from "../UserLogin/UserDisplay";
 import { ENDPOINT } from "../../environment";
 import Card from "../Card";
+import {
+  searchNamesForYear,
+  updateCountryBattleLocs,
+} from "../BattlePage/forms/dbFuncs";
 
 const ContribHistory = ({ user, battleLocs }) => {
   const [history, setHistory] = useState([]);
@@ -30,31 +34,44 @@ const ContribHistory = ({ user, battleLocs }) => {
       return item;
     });
 
-    setHistory(idk);
+    // setHistory(idk);
     addBattleLoc(doc);
-    updateHistory(doc);
+    // updateHistory(doc);
   };
+
+  function getCountryBattles(country) {
+    return Axios.get(`${ENDPOINT}/countryBattles`, { params: { country } })
+      .then((response) => {
+        if (response.data.length == 0) {
+          console.log(route + " not found.");
+          return null;
+        } else {
+          return response.data[0];
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        throw e;
+      });
+  }
 
   const addBattleLoc = (doc) => {
     const country = doc.country;
     const data = {
+      name: doc.battle,
       latLon: doc.latLon,
       year: doc.year,
-      addedBy: doc.user,
+      addedBy: doc.addedBy,
       approvedBy: doc.approvedBy,
     };
-    battleLocs[country][doc.battle] = data;
-    const total = Object.keys(battleLocs[country]).length;
+    getCountryBattles(country).then((response) => {
+      const battles = response.battles;
+      let index = searchNamesForYear(battles, data.year);
+      battles.splice(index, 0, data);
+      console.log(battles);
+    });
 
-    Axios.put(`${ENDPOINT}/addBattleLoc`, {
-      battles: battleLocs[country],
-      country,
-      total,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
+    // updateCountryBattleLocs(country, battles);
   };
 
   const updateHistory = (doc) => {
@@ -75,6 +92,11 @@ const ContribHistory = ({ user, battleLocs }) => {
   useEffect(() => {
     getHistory();
   }, []);
+
+  function checkApproved(status) {
+    if (status) return approvedVis;
+    return unapprovedVis;
+  }
 
   return (
     <div>
@@ -100,31 +122,34 @@ const ContribHistory = ({ user, battleLocs }) => {
           <label htmlFor="unapproved">View Unapproved</label>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap">
-        {history.map((doc) => (
-          <Card
-            children={
-              <>
-                <p className={doc.approved ? "bg-green-400" : "bg-red-700"}>
-                  {!doc.approved && (
-                    <button onClick={() => approve(doc)}>Approve</button>
-                  )}
-                </p>
-                <UserDisplay id={doc.addedBy} />
-                <h2>{doc.battle}</h2>
-                <h3>{doc.country}</h3>
-                <h>{doc.dateAdded}</h>
-                <h>{doc.year}</h>
-                <h>
-                  {doc.latLon[0]}, {doc.latLon[1]}
-                </h>
-                <h className="overflow-auto text-wrap text-xs max-w-">
-                  {doc.source}
-                </h>
-              </>
-            }
-          />
-        ))}
+      <div className="flex flex-wrap">
+        {history.map((doc) => {
+          const showCard = checkApproved(doc.approved);
+          return (
+            showCard && (
+              <Card
+                key={doc._id}
+                bgColor={doc.approved ? "bg-green-700" : "bg-red-600"}
+                children={
+                  <div className="*:my-2" key={doc._id}>
+                    {!doc.approved && (
+                      <button onClick={() => approve(doc)}>Approve</button>
+                    )}
+                    <UserDisplay id={doc.addedBy} />
+                    <h3>Battle: {doc.battle}</h3>
+                    <h4>Country: {doc.country}</h4>
+                    <h4>Year: {doc.year}</h4>
+                    <h4>
+                      Loc: [{doc.latLon[0]}, {doc.latLon[1]}]
+                    </h4>
+                    <h4>Added: {doc.dateAdded}</h4>
+                    <h4>Source: {doc.source}</h4>
+                  </div>
+                }
+              />
+            )
+          );
+        })}
       </div>
     </div>
   );

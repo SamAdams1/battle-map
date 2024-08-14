@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
 import {
   getCurrentDate,
+  objectId,
   postToHistory,
   searchNamesForYear,
   updateCountryBattleLocs,
-  updateNameList,
   updateUserContributions,
 } from "./dbFuncs";
 
@@ -26,6 +25,7 @@ const NewBattleForm = ({ user, country, battleLocs, setPopupVis }) => {
     let a = latLon.split(",").map((l) => parseFloat(l));
     const data = {
       name: name,
+      id: objectId(),
       latLon: a,
       year: parseInt(year),
       addedBy: user._id,

@@ -11,7 +11,7 @@ export function getEveryBattle() {
         console.log("No battles found.");
         return null; // Return null if no data is found
       } else {
-        return formatAllBattlesData(response.data[0]); // Return the first battle (or adjust as needed)
+        return formatAllBattlesData(response.data[0]);
       }
     })
     .catch((error) => {

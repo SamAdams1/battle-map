@@ -29,7 +29,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
       <div className="flex mb-auto">
         <div className="p-1 w-80 *:mb-1">
           <h2 className="underline">{nameOnly}</h2>
-          <WikiButton battleName={nameOnly} showPopup={showPopup} />
+          {/* <WikiButton battleName={nameOnly} showPopup={showPopup} /> */}
           <div className="px-">
             {hasLatLon ? (
               <h3>

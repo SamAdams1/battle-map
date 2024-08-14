@@ -20,6 +20,7 @@ const Favorites = ({ user }) => {
           // console.log(fav);
           return (
             <div
+              key={id}
               className={`flex flex-col flex-1 p-2
             max-w-72 m-2 bg-red-700 text-white
             border-2 border-gray-900 rounded`}
