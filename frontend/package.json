@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
-    "framer-motion": "^11.3.24",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.27",
     "mongodb": "^6.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-leaflet": "^4.2.1"
+    "react-leaflet": "^4.2.1",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.12",
@@ -29,7 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.39",
     "react-router-dom": "^6.24.1",
-    "tailwindcss": "^3.4.6",
+    "tailwindcss": "^3.4.10",
     "vite": "^5.2.0"
   }
 }

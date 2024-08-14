@@ -22,7 +22,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
       children={
         <div className="flex flex-col flex-1">
           <div className="flex mb-auto">
-            <div className="p-1 *:mb-1">
+            <div className="p-1 *:mb-1 w-full">
               <h2 className="underline">{nameOnly}</h2>
               {/* <WikiButton battleName={nameOnly} showPopup={showPopup} /> */}
               <div>

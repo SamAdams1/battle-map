@@ -38,7 +38,7 @@ const userTitles = [
   },
   {
     title: "Marshal",
-    desc: "Second in command. Can submit battles, approve battles, and premote/demote users.",
+    desc: "Second in command. Premote/demote users, submit and approve battles, ",
     permissions: {
       changeUserLvl: true,
       seeAdminPanel: true,
@@ -51,7 +51,7 @@ const userTitles = [
   },
   {
     title: "Corporal",
-    desc: "Can submit and approve battles.",
+    desc: "Submit and approve battles.",
     permissions: {
       changeUserLvl: false,
       seeAdminPanel: true,
@@ -64,7 +64,7 @@ const userTitles = [
   },
   {
     title: "Soldier",
-    desc: "Can suggest battles and talk in chat.",
+    desc: "Suggest battles and talk in chat.",
     permissions: {
       changeUserLvl: false,
       demoteUsers: false,
@@ -77,8 +77,8 @@ const userTitles = [
     },
   },
   {
-    title: "",
-    desc: "",
+    title: "Recruit",
+    desc: "View battles.",
     permissions: {
       changeUserLvl: false,
       demoteUsers: false,

@@ -80,7 +80,24 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
         className="absolute right-0 top-0  p-1 min-w-7"
         onClick={() => setShowDisplay(!showDisplay)}
       >
-        {showDisplay ? "X" : "Open Display"}
+        {showDisplay ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        ) : (
+          "Open Display"
+        )}
       </button>
       {showDisplay && (
         <>
@@ -90,7 +107,20 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
               disabled={!country}
               className="w-7"
             >
-              {"<"}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                />
+              </svg>
             </button>
             <button
               onClick={() => onRightArrow()}
@@ -101,9 +131,37 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
               }
               className="w-7"
             >
-              {">"}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
+              </svg>
             </button>
-            <button onClick={onReset}>reset</button>
+            <button onClick={onReset}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5 mx-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+                />
+              </svg>
+            </button>
           </div>
           <div className="w-60 border-l-2 border-solid border-red-800">
             <h2 className="p-1 bg-red-800 text-white">{header}</h2>

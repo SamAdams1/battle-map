@@ -10,10 +10,11 @@ const Contributions = ({ user }) => {
     <div className="flex flex-col belowHeader">
       <h1 className="ml-4">Your Contributions</h1>
 
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap" key={"gagafda"}>
         {user.contributions.map((battleDict) => {
           return (
             <Card
+              key={battleDict.dateAdded}
               bgColor={"bg-red-700"}
               children={
                 <div key={battleDict.id} className="flex">

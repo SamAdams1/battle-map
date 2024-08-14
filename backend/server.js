@@ -15,10 +15,11 @@ const dbName = "battle-map";
 const PORT = process.env.PORT || 3005;
 let db;
 async function connectToMongoDB() {
-  MongoClient.connect(mongoURI)
+  return MongoClient.connect(mongoURI)
     .then((client) => {
       console.log("MongoDB connected");
       db = client.db(dbName);
+      return db;
     })
     .catch((err) => console.error("MongoDB connection error:", err));
 }
@@ -30,7 +31,7 @@ app.get("/battles", async (req, res) => {
   //   return res.status(500).json({ error: "Database not connected" });
   // }
   try {
-    if (!db) await connectToMongoDB();
+    if (db === undefined) db = await connectToMongoDB();
     let idk = [];
     const pipeline = [{ $unset: ["_id", "withLocation", "countryCenter"] }];
     const battles = await db

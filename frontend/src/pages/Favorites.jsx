@@ -21,6 +21,7 @@ const Favorites = ({ user }) => {
           // console.log(fav);
           return (
             <Card
+              key={fav.id}
               bgColor={"bg-red-700"}
               children={
                 <div key={id} className="flex">
