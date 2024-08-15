@@ -18,17 +18,19 @@ const Favorites = ({ user }) => {
         {Object.keys(user.favorites).map((id) => {
           const fav = user.favorites[id];
           const nameOnly = fav.battle.split(" – ")[0].split(" or ")[0];
+          const hasLatLon = "latLon" in fav;
           // console.log(fav);
           return (
             <Card
               key={fav.id}
-              bgColor={"bg-red-700"}
+              bgColor={hasLatLon ? "bg-green-600" : "bg-red-700"}
               children={
                 <div key={id} className="flex">
                   <div className=" p-2">
-                    <h2>{nameOnly}</h2>
+                    <h2>{nameOnly} </h2>
+                    <h3>{fav.year}</h3>
                     <h3>{fav.country}</h3>
-                    <h3>{fav.dateAdded}</h3>
+                    <h3>{hasLatLon && fav.latLon[0] + ", " + fav.latLon[1]}</h3>
                   </div>
                   <div>
                     <FavButton

@@ -7,23 +7,16 @@ const FavButton = ({ battleDict, country, user }) => {
     battleDict.id in user.favorites ? "isFav" : "notFav"
   );
 
-  const getCurrentDate = () => {
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    let yyyy = today.getFullYear();
-    return mm + "/" + dd + "/" + yyyy;
-  };
-
   // Favorite battle and add to contributions
   const favoriteBattle = (battleName, countryName, setFav) => {
     setFav("isFav");
     const newInfo = {
       id: battleDict.id,
       battle: battleName,
+      year: battleDict.year,
       country: countryName,
-      dateAdded: getCurrentDate(),
     };
+    if ("latLon" in battleDict) newInfo["latLon"] = battleDict["latLon"];
     user["favorites"][battleDict.id] = newInfo;
     changeFavorites();
   };

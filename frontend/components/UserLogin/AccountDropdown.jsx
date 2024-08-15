@@ -56,7 +56,7 @@ const AccountDropdown = ({ user, setUser }) => {
             <button onClick={() => navigate("contributions")}>
               Contributions
             </button>
-            {/* <button onClick={() => navigate("settings")}>Settings</button> */}
+            <button onClick={() => navigate("settings")}>Settings</button>
             <button onClick={logOut} className="w-full">
               Log out
             </button>

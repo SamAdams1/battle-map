@@ -105,20 +105,21 @@ function App() {
     // check if user logged in
     if (Object.keys(user).length > 4) {
       user["loggedIn"] = true;
-      user["lastLoggedIn"] = getCurrentDate().split(" ~ ")[0];
       localStorage.setItem("user", JSON.stringify(user));
     } else {
       user["lvl"] = 4;
     }
+    user["lastLoggedIn"] = getCurrentDate().split(" ~ ")[0];
     user["title"] = userTitles[user.lvl].title;
     user["perms"] = userTitles[user.lvl].permissions;
   }, [user]);
 
   function stayedLogged() {
-    const a = localStorage.getItem("user");
+    let a = localStorage.getItem("user");
     if (a) {
+      a = JSON.parse(a);
       if (a.lastLoggedIn == getCurrentDate().split(" ~ ")[0]) {
-        setUser(JSON.parse(a));
+        setUser(a);
       }
     }
   }
@@ -158,7 +159,10 @@ function App() {
         />
         <Route path="favorites" element={<Favorites user={user} />} />
         <Route path="contributions" element={<Contributions user={user} />} />
-        <Route path="settings" element={<Settings user={user} />} />
+        <Route
+          path="settings"
+          element={<Settings user={user} setUser={setUser} />}
+        />
       </Routes>
       <div className="accountBtns">
         {Object.keys(user).length > 4 && (

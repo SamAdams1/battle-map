@@ -14,6 +14,7 @@ const mongoURI = `mongodb+srv://sammyadams04:${process.env.DB_AUTH}@cluster0.ux5
 const dbName = "battle-map";
 const PORT = process.env.PORT || 3005;
 let db;
+connectToMongoDB();
 
 async function connectToMongoDB() {
   return MongoClient.connect(mongoURI)
@@ -24,8 +25,6 @@ async function connectToMongoDB() {
     })
     .catch((err) => console.error("MongoDB connection error:", err));
 }
-
-connectToMongoDB();
 
 app.get("/battles", async (req, res) => {
   // if (!db) {
@@ -115,7 +114,7 @@ app.put("/updateBattle", (req, res) => {
     });
 });
 
-app.post("/userLogin", (req, res) => {
+app.post("/userLogin", async (req, res) => {
   // console.log(req.body);
   db.collection("users")
     .find({
@@ -125,14 +124,19 @@ app.post("/userLogin", (req, res) => {
     .toArray()
     .then((result) => {
       // const accessToken = jwt.sign(req.body.username, process.env.ACCESS_TOKEN_SECRET)
-      // console.log(result[0].password);
-      if (comparePasswords(req.body.password, result[0].password)) {
-        delete result[0].password;
-        res.json(result);
-      } else throw err;
+      comparePasswords(req.body.password, result[0].password)
+        .then((samePass) => {
+          if (samePass) {
+            delete result[0].password;
+            res.json(result);
+          } else throw new Error();
+        })
+        .catch((e) => {
+          res.status(400).json("Passwords don't match.");
+        });
     })
     .catch((err) => {
-      res.status(500).json({ error: err.message });
+      res.status(400).json("Wrong username.");
     });
 });
 
@@ -148,7 +152,7 @@ async function comparePasswords(password, hashedPassword) {
 app.post("/registerUser", async (req, res) => {
   try {
     if (db === undefined) db = await connectToMongoDB();
-    const nameAvailable = await usernameAvailable(res, req.body.username);
+    const nameAvailable = await usernameAvailable(req.body.username);
     if (nameAvailable) {
       req.body.password = await hashedPassword(req.body.password);
       console.log(req.body);
@@ -163,7 +167,7 @@ app.post("/registerUser", async (req, res) => {
   }
 });
 
-async function usernameAvailable(res, username) {
+async function usernameAvailable(username) {
   pipeline = [
     { $match: { username: username } },
     { $unset: ["password", "pfp", "favorites", "contributions", "lvl"] },
@@ -191,6 +195,40 @@ async function hashedPassword(password) {
     console.error(err);
   }
 }
+
+app.put("/changeUsername", async (req, res) => {
+  console.log(req.body);
+  let nameAvailable = await usernameAvailable(req.body.newUsername);
+  if (nameAvailable) {
+    try {
+      db.collection("users").updateOne(
+        { _id: ObjectId.createFromHexString(req.body.id) },
+        {
+          $set: {
+            username: req.body.newUsername,
+          },
+        }
+      );
+      res.status(200).json("Username changed");
+    } catch (error) {}
+  } else res.status(400).json("Username not available");
+});
+
+app.put("/updatePassword", (req, res) => {
+  console.log(req);
+});
+
+app.delete("/deleteUser", async (req, res) => {
+  // console.log(req.query);
+  try {
+    let response = await db
+      .collection("users")
+      .deleteOne({ _id: ObjectId.createFromHexString(req.query.id) });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.put("/updateFavorites", (req, res) => {
   // console.log(req.body)

@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
 import { ENDPOINT } from "../../environment";
+import Axios from "axios";
 
-const Settings = ({ user }) => {
-  const [img, setImg] = useState(user.pfp);
+const Settings = ({ user, setUser }) => {
   const [newUsername, setNewUsername] = useState(user.username);
-  const [newPassword, setNewPassword] = useState(user.password);
+
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+
   const [edit, setEdit] = useState(false);
 
-  const handleChange = (e) => {
-    console.log(e.target.files);
-    setImg(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const submitPfp = () => {
-    user.pfp = img;
-    console.log(user);
-  };
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const saveEdit = () => {
     setEdit(false);
@@ -34,53 +30,136 @@ const Settings = ({ user }) => {
   const cancelEdit = () => {
     setEdit(false);
     setNewUsername(user.username);
-    setNewPassword(user.password);
+    setNewPassword("");
     console.log(newUsername, newPassword);
   };
+
+  async function deleteAccount() {
+    console.log("deleteing");
+
+    const response = await Axios.delete(`${ENDPOINT}/deleteUser`, {
+      params: { id: user._id },
+    });
+    console.log(response.data);
+    setUser({});
+    localStorage.removeItem("user");
+  }
+
+  async function login() {
+    console.log(newUsername, newPassword);
+
+    const response = await Axios.post(`${ENDPOINT}/userLogin`, {
+      username: newUsername,
+      password: newPassword,
+    });
+    if (response.status) {
+      console.log("good");
+      if (response.data[0]._id === user._id) {
+        console.log("same user");
+        setEdit(true);
+      } else throw new Error("login to current user");
+    }
+    console.log(response);
+  }
+
+  async function changeUsername() {
+    console.log("cahngeusername");
+    try {
+      const response = await Axios.put(`${ENDPOINT}/changeUsername`, {
+        newUsername: newUsername,
+        id: user._id,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return !user.loggedIn ? (
     <NotLoggedIn pageTitle="Settings" />
   ) : (
-    <div className="flex flex-col items-center belowHeader">
+    <div className="flex flex-col items-center belowHeader *:max-w-[28em] px-2">
       <h1>Settings</h1>
-      {/* <img src={img} alt="No pfp found." /> 
-      {!img && <input type="file" onChange={handleChange} accept="image" />}*/}
-      {img && !user.pfp && (
-        <>
-          <button onClick={submitPfp}>Submit</button>
-          <button onClick={() => setImg("")}>Cancel</button>
-        </>
-      )}
-      {edit ? (
-        <>
+
+      <div className="*:m-2">
+        <h2>Change your username. Enter a new username.</h2>
+        <div className="">
+          <p className="mr-1">Username</p>
           <input
             type="text"
-            name=""
-            id=""
             value={newUsername}
             onChange={(e) => setNewUsername(e.target.value)}
           />
+        </div>
+        <button
+          className="p-1"
+          onClick={changeUsername}
+          disabled={!newUsername}
+        >
+          Change username
+        </button>
+      </div>
+
+      <div className="*:m-1 self">
+        <h2>Change your password. Enter your new password. </h2>
+
+        <div>
+          <p className="mr-2">Old password</p>
           <input
-            type="text"
-            name=""
-            id=""
+            type="password"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          <p className="mr-2">New password</p>
+          <input
+            type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <button onClick={saveEdit}>Save</button>
-          <button onClick={cancelEdit}>Cancel</button>
-        </>
-      ) : (
-        <>
-          <h2>Username: {user.username}</h2>
-          <h2>Password: {user.password}</h2>
-          <button onClick={() => setEdit(true)}>Edit</button>
-        </>
-      )}
-      <br />
-      <button className="mt-10" disabled>
-        Verify Email
-      </button>
+        </div>
+        <div>
+          <p className="mr-2">Confirm new password</p>
+          <input
+            type="password"
+            value={confirmNewPassword}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+          />
+        </div>
+        <button
+          className="p-1"
+          onClick={login}
+          disabled={
+            !oldPassword ||
+            !newPassword ||
+            !confirmNewPassword ||
+            newPassword !== confirmNewPassword
+          }
+        >
+          Update password
+        </button>
+      </div>
+      <div className="flex flex-col *:my-1">
+        <h1 className="text-red-600 font-semibold">Delete Account</h1>
+        <p>
+          Delete your account and all of its data. This action is irreversible.
+        </p>
+        <span>
+          <button
+            className="text-red-600 p-1"
+            onClick={() => setConfirmDelete(!confirmDelete)}
+          >
+            Delete account
+          </button>
+        </span>
+        {confirmDelete && (
+          <div className="*:p-2 *:mx-1">
+            <button onClick={deleteAccount}>Confirm</button>
+            <button onClick={() => setConfirmDelete(false)}>Cancel</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

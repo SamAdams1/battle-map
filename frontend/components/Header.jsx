@@ -12,7 +12,8 @@ const Header = ({ user }) => {
         <Link to="/battleList">Battles</Link>
         {/* <Link to="chat">Chat</Link> */}
       </div>
-      {/* <button
+      <button
+        className="absolute left-0"
         onClick={() =>
           console.log(
             user,
@@ -21,7 +22,7 @@ const Header = ({ user }) => {
         }
       >
         user
-      </button> */}
+      </button>
       {!(Object.keys(user).length > 4) && (
         <div className="flex *:rounded-2xl">
           <button>
