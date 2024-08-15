@@ -14,6 +14,7 @@ const mongoURI = `mongodb+srv://sammyadams04:${process.env.DB_AUTH}@cluster0.ux5
 const dbName = "battle-map";
 const PORT = process.env.PORT || 3005;
 let db;
+
 async function connectToMongoDB() {
   return MongoClient.connect(mongoURI)
     .then((client) => {
@@ -144,21 +145,42 @@ async function comparePasswords(password, hashedPassword) {
   }
 }
 
-const saltRounds = 10;
 app.post("/registerUser", async (req, res) => {
-  req.body.password = await hashedPassword(req.body.password);
-
-  console.log(req.body);
-  db.collection("users")
-    .insertOne(req.body)
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+  try {
+    if (db === undefined) db = await connectToMongoDB();
+    const nameAvailable = await usernameAvailable(res, req.body.username);
+    if (nameAvailable) {
+      req.body.password = await hashedPassword(req.body.password);
+      console.log(req.body);
+      db.collection("users")
+        .insertOne(req.body)
+        .then((result) => {
+          res.json(result);
+        });
+    } else res.status(500).json({ message: "Username taken." });
+  } catch (error) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
+async function usernameAvailable(res, username) {
+  pipeline = [
+    { $match: { username: username } },
+    { $unset: ["password", "pfp", "favorites", "contributions", "lvl"] },
+  ];
+  return db
+    .collection("users")
+    .aggregate(pipeline)
+    .toArray()
+    .then((response) => {
+      console.log(response.length, response);
+      // if username is not taken nothing will be returned: length will = 0
+      return !response.length > 0;
+    })
+    .catch((e) => console.error(e));
+}
+
+const saltRounds = 10;
 async function hashedPassword(password) {
   try {
     const salt = await bcrypt.genSalt(saltRounds);

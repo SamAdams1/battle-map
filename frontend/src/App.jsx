@@ -102,8 +102,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("changing");
-
     // check if user logged in
     if (Object.keys(user).length > 4) {
       user["loggedIn"] = true;
