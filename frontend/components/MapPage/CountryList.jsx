@@ -21,7 +21,7 @@ const Countries = ({ data, getCountryCenter, goToLatLon }) => {
   return (
     <>
       <div
-        className="*:mt-2 overflow-auto max-h-[45em]"
+        className="*:mb-2 overflow-auto"
         ref={scrollDemoRef}
         onScroll={handleScroll}
       >
@@ -36,7 +36,7 @@ const Countries = ({ data, getCountryCenter, goToLatLon }) => {
               )}
               <button
                 onClick={() => getCountryCenter(countryName)}
-                className="ml-2"
+                className="ml-2 p-2"
               >
                 {countryName}
               </button>

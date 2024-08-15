@@ -13,7 +13,7 @@ const AccountDropdown = ({ user, setUser }) => {
   const logOut = () => {
     const bruh = {
       loggedIn: false,
-      title: "Peasant",
+      title: "Recruit",
       lvl: 4,
       perms: {
         changeUserLvl: false,
@@ -26,6 +26,7 @@ const AccountDropdown = ({ user, setUser }) => {
         deleteBattle: false,
       },
     };
+    localStorage.setItem("user", "");
     setUser(bruh);
   };
 

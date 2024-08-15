@@ -3,21 +3,31 @@ import { Link } from "react-router-dom";
 
 const Header = ({ user }) => {
   return (
-    <div className="top-0 flex content-evenly  bg-red-800 header text-white *:mr-6 z-50">
-      <div className=" flex items-center *:mr-5">
+    <div className="top-0 flex bg-red-800 text-white z-50">
+      <div className=" flex items-center w-full mr-auto *:mx-2">
         <Link to="/about">
-          <h1 className="ml-2 text-nowrap">Battle Map</h1>
+          <h1 className="text-nowrap whitespace-nowrap">Battle Map</h1>
         </Link>
         <Link to="/">Map</Link>
-        <Link to="/battleList">Battle List</Link>
+        <Link to="/battleList">Battles</Link>
         {/* <Link to="chat">Chat</Link> */}
       </div>
+      {/* <button
+        onClick={() =>
+          console.log(
+            user,
+            JSON.parse(localStorage.getItem("user"))["lastLoggedIn"]
+          )
+        }
+      >
+        user
+      </button> */}
       {!(Object.keys(user).length > 4) && (
-        <div className="absolute flex right-[-1.5em] top-3 *:mx-1">
-          <button className="text-black">
+        <div className="flex *:rounded-2xl">
+          <button>
             <Link to="/login">Login</Link>
           </button>
-          <button className="text-black">
+          <button className="ml-2">
             <Link to="/register">Register</Link>
           </button>
         </div>

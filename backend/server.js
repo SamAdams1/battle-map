@@ -126,6 +126,7 @@ app.post("/userLogin", (req, res) => {
       // const accessToken = jwt.sign(req.body.username, process.env.ACCESS_TOKEN_SECRET)
       // console.log(result[0].password);
       if (comparePasswords(req.body.password, result[0].password)) {
+        delete result[0].password;
         res.json(result);
       } else throw err;
     })

@@ -64,7 +64,7 @@ const Battles = ({
   return (
     <>
       <div
-        className="*:mt-1 overflow-auto max-h-[40em] mb-1"
+        className="*:mt-1 overflow-auto mb-1"
         ref={scrollDemoRef}
         onScroll={handleScroll}
       >

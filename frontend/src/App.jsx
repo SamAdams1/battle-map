@@ -11,7 +11,7 @@ import LoginRegister from "../components/UserLogin/LoginRegister";
 import AccountDropdown from "../components/UserLogin/AccountDropdown";
 
 // React router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, json } from "react-router-dom";
 import Favorites from "./pages/Favorites";
 import Contributions from "./pages/Contributions";
 import About from "./pages/About";
@@ -21,6 +21,7 @@ import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
 import Titles from "./pages/Titles";
 import { ENDPOINT } from "../environment";
+import { getCurrentDate } from "../components/BattlePage/forms/dbFuncs";
 
 const userTitles = [
   {
@@ -95,22 +96,34 @@ const userTitles = [
 function App() {
   const [user, setUser] = useState({});
 
-  useEffect(() => console.log(ENDPOINT), []);
+  useEffect(() => {
+    stayedLogged();
+    console.log(ENDPOINT);
+  }, []);
 
   useEffect(() => {
+    console.log("changing");
+
+    // check if user logged in
     if (Object.keys(user).length > 4) {
       user["loggedIn"] = true;
-    }
-    if (user.loggedIn) {
-      user["title"] = userTitles[user.lvl].title;
+      user["lastLoggedIn"] = getCurrentDate().split(" ~ ")[0];
+      localStorage.setItem("user", JSON.stringify(user));
     } else {
-      // if not logged in give no perms
-      user["title"] = "Peasant";
       user["lvl"] = 4;
     }
-    // console.log(user);
+    user["title"] = userTitles[user.lvl].title;
     user["perms"] = userTitles[user.lvl].permissions;
   }, [user]);
+
+  function stayedLogged() {
+    const a = localStorage.getItem("user");
+    if (a) {
+      if (a.lastLoggedIn == getCurrentDate().split(" ~ ")[0]) {
+        setUser(JSON.parse(a));
+      }
+    }
+  }
 
   return (
     <>

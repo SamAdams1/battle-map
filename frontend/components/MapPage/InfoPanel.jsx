@@ -165,21 +165,23 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
           </div>
           <div className="w-60 border-l-2 border-solid border-red-800">
             <h2 className="p-1 bg-red-800 text-white">{header}</h2>
-            {country ? (
-              <Battles
-                data={data}
-                country={country}
-                panToBattle={panFunc}
-                showMarkerPopup={showMarkerPopup}
-                setHeader={setHeader}
-              />
-            ) : (
-              <Countries
-                data={data}
-                getCountryCenter={getCountryCenter}
-                goToLatLon={goToLatLon}
-              />
-            )}
+            <div className=" *:max-h-[70vh]">
+              {country ? (
+                <Battles
+                  data={data}
+                  country={country}
+                  panToBattle={panFunc}
+                  showMarkerPopup={showMarkerPopup}
+                  setHeader={setHeader}
+                />
+              ) : (
+                <Countries
+                  data={data}
+                  getCountryCenter={getCountryCenter}
+                  goToLatLon={goToLatLon}
+                />
+              )}
+            </div>
           </div>
         </>
       )}
