@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 
 const app = express();
 const cors = require("cors");
+const auth = require("./middleware/auth");
 app.use(express.json());
 app.use(cors());
 
@@ -116,29 +117,65 @@ app.put("/updateBattle", (req, res) => {
 
 app.post("/userLogin", async (req, res) => {
   // console.log(req.body);
-  db.collection("users")
-    .find({
-      username: req.body.username,
-      // password: req.body.password,
-    })
-    .toArray()
-    .then((result) => {
-      // const accessToken = jwt.sign(req.body.username, process.env.ACCESS_TOKEN_SECRET)
-      comparePasswords(req.body.password, result[0].password)
-        .then((samePass) => {
-          if (samePass) {
-            delete result[0].password;
-            res.json(result);
-          } else throw new Error();
-        })
-        .catch((e) => {
-          res.status(400).json("Passwords don't match.");
-        });
-    })
-    .catch((err) => {
-      res.status(400).json("Wrong username.");
-    });
+  try {
+    const pipeline = [
+      { $match: { username: req.body.username } },
+      { $unset: ["username", "favorites", "contributions", "pfp", "lvl"] },
+    ];
+    const result = await db.collection("users").aggregate(pipeline).toArray();
+
+    const samePass = await comparePasswords(
+      req.body.password,
+      result[0].password
+    );
+    if (samePass) {
+      // delete result[0].password;
+
+      let jwtToken = await generateToken(result[0]._id);
+      // console.log(jwtToken);
+      res.json({ result, jwtToken });
+
+      // res.json(result);
+    } else throw new Error();
+  } catch (error) {
+    console.error("Error during user login:", error);
+    res.status(500).send("Internal server error");
+  }
 });
+
+app.put("/userInfo", auth, async (req, res) => {
+  // console.log("userinfo");
+  console.log(req.user);
+  try {
+    const pipeline = [
+      { $match: { _id: ObjectId.createFromHexString(req.user.id) } },
+      { $unset: ["password"] },
+    ];
+    const user = await db.collection("users").aggregate(pipeline).toArray();
+
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+async function generateToken(id) {
+  return new Promise((resolve, reject) => {
+    const payload = { user: { id: id } };
+    jwt.sign(
+      payload,
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "1h" },
+      (err, token) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(token);
+        }
+      }
+    );
+  });
+}
 
 async function comparePasswords(password, hashedPassword) {
   console.log(password, hashedPassword);
@@ -154,7 +191,7 @@ app.post("/registerUser", async (req, res) => {
     if (db === undefined) db = await connectToMongoDB();
     const nameAvailable = await usernameAvailable(req.body.username);
     if (nameAvailable) {
-      req.body.password = await hashedPassword(req.body.password);
+      req.body.password = await hashPassword(req.body.password);
       console.log(req.body);
       db.collection("users")
         .insertOne(req.body)
@@ -185,7 +222,7 @@ async function usernameAvailable(username) {
 }
 
 const saltRounds = 10;
-async function hashedPassword(password) {
+async function hashPassword(password) {
   try {
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(password, salt);
@@ -231,7 +268,7 @@ app.put("/updatePassword", async (req, res) => {
         { _id: ObjectId.createFromHexString(req.body.id) },
         {
           $set: {
-            password: await hashedPassword(req.body.newPassword),
+            password: await hashPassword(req.body.newPassword),
           },
         }
       );
@@ -241,6 +278,18 @@ app.put("/updatePassword", async (req, res) => {
   } catch (error) {
     res.status(400).json("Error updating password");
   }
+});
+
+app.put("/devUpdatePassword", async (req, res) => {
+  console.log(req.body);
+  await db.collection("users").updateOne(
+    { username: req.body.username },
+    {
+      $set: {
+        password: await hashPassword(req.body.newPassword),
+      },
+    }
+  );
 });
 
 app.delete("/deleteUser", async (req, res) => {

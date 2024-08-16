@@ -15,21 +15,38 @@ const LoginRegister = ({ formType, setUser, user }) => {
     navigate(-1);
   };
 
-  const loginUser = (data) => {
+  const loginUser = async (data) => {
     // console.log({data})
-    Axios.post(`${ENDPOINT}/userLogin`, data)
-      .then((response) => {
-        if (response.data.length == 0) {
-          // console.log(response)
-          console.log("User: " + data.username + " not found.");
-          setErrorMsg("Incorrect Credentials.");
-        } else {
-          setUser(response.data[0]);
-          console.log("LOGIN SUCCESS");
-          quitForm();
-        }
-      })
-      .catch((e) => console.log(e));
+    try {
+      const response = await Axios.post(`${ENDPOINT}/userLogin`, data);
+      if (response.data.length == 0) {
+        // console.log(response)
+        console.log("User: " + data.username + " not found.");
+        setErrorMsg("Incorrect Credentials.");
+      } else {
+        // console.log(response.data.jwtToken);
+        localStorage.setItem("JWT", response.data.jwtToken);
+        // setUser(response.data.result[0]);
+        console.log("LOGIN SUCCESS");
+        // quitForm();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    try {
+      const token = localStorage.getItem("JWT");
+      const response = await Axios.put(`${ENDPOINT}/userInfo`, { token });
+      if (response.data.length == 0) {
+        // console.log(response)
+        // console.log("User: " + data.username + " not found.");
+        setErrorMsg("Incorrect Credentials.");
+      } else {
+        setUser(response.data.user[0]);
+        console.log("JWT SUCCESS", response.data.user[0]);
+        quitForm();
+      }
+    } catch (error) {}
   };
 
   const registerUser = (data) => {

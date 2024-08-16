@@ -22,6 +22,7 @@ import Admin from "./pages/Admin";
 import Titles from "./pages/Titles";
 import { ENDPOINT } from "../environment";
 import { getCurrentDate } from "../components/BattlePage/forms/dbFuncs";
+import axios from "axios";
 
 const userTitles = [
   {
@@ -105,7 +106,6 @@ function App() {
     // check if user logged in
     if (Object.keys(user).length > 4) {
       user["loggedIn"] = true;
-      localStorage.setItem("user", JSON.stringify(user));
     } else {
       user["lvl"] = 4;
     }
@@ -114,13 +114,19 @@ function App() {
     user["perms"] = userTitles[user.lvl].permissions;
   }, [user]);
 
-  function stayedLogged() {
-    let a = localStorage.getItem("user");
-    if (a) {
-      a = JSON.parse(a);
-      if (a.lastLoggedIn == getCurrentDate().split(" ~ ")[0]) {
-        setUser(a);
+  async function stayedLogged() {
+    console.log("stay logged in");
+    try {
+      const token = localStorage.getItem("JWT");
+      const response = await axios.put(`${ENDPOINT}/userInfo`, { token });
+      if (response.data.length == 0) {
+        setErrorMsg("Token expired.");
+      } else {
+        console.log("JWT SUCCESS");
+        setUser(response.data.user[0]);
       }
+    } catch (error) {
+      // console.error(error);
     }
   }
 

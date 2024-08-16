@@ -26,7 +26,7 @@ const AccountDropdown = ({ user, setUser }) => {
         deleteBattle: false,
       },
     };
-    localStorage.setItem("user", "");
+    localStorage.removeItem("JWT");
     setUser(bruh);
   };
 
