@@ -10,29 +10,7 @@ const Settings = ({ user, setUser }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
-  const [edit, setEdit] = useState(false);
-
   const [confirmDelete, setConfirmDelete] = useState(false);
-
-  const saveEdit = () => {
-    setEdit(false);
-    console.log(newUsername, newPassword);
-    user.username = newUsername;
-    user.password = newPassword;
-    fetch(`${ENDPOINT}/updateUsernamePassword`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    }).then((response) => {
-      console.log(response);
-    });
-  };
-  const cancelEdit = () => {
-    setEdit(false);
-    setNewUsername(user.username);
-    setNewPassword("");
-    console.log(newUsername, newPassword);
-  };
 
   async function deleteAccount() {
     console.log("deleteing");
@@ -45,30 +23,28 @@ const Settings = ({ user, setUser }) => {
     localStorage.removeItem("user");
   }
 
-  async function login() {
-    console.log(newUsername, newPassword);
-
-    const response = await Axios.post(`${ENDPOINT}/userLogin`, {
-      username: newUsername,
-      password: newPassword,
-    });
-    if (response.status) {
-      console.log("good");
-      if (response.data[0]._id === user._id) {
-        console.log("same user");
-        setEdit(true);
-      } else throw new Error("login to current user");
+  async function updatePassword() {
+    console.log(oldPassword, newPassword, confirmNewPassword);
+    try {
+      const response = await Axios.put(`${ENDPOINT}/updatePassword`, {
+        oldPassword,
+        newPassword,
+        id: user._id,
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
-    console.log(response);
   }
 
   async function changeUsername() {
-    console.log("cahngeusername");
+    console.log("changeusername");
     try {
       const response = await Axios.put(`${ENDPOINT}/changeUsername`, {
         newUsername: newUsername,
         id: user._id,
       });
+      user.username = newUsername;
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -82,7 +58,7 @@ const Settings = ({ user, setUser }) => {
       <h1>Settings</h1>
 
       <div className="*:m-2">
-        <h2>Change your username. Enter a new username.</h2>
+        <h1>Change your username.</h1>
         <div className="">
           <p className="mr-1">Username</p>
           <input
@@ -101,7 +77,7 @@ const Settings = ({ user, setUser }) => {
       </div>
 
       <div className="*:m-1 self">
-        <h2>Change your password. Enter your new password. </h2>
+        <h1>Change your password.</h1>
 
         <div>
           <p className="mr-2">Old password</p>
@@ -129,7 +105,7 @@ const Settings = ({ user, setUser }) => {
         </div>
         <button
           className="p-1"
-          onClick={login}
+          onClick={updatePassword}
           disabled={
             !oldPassword ||
             !newPassword ||

@@ -141,7 +141,7 @@ app.post("/userLogin", async (req, res) => {
 });
 
 async function comparePasswords(password, hashedPassword) {
-  // console.log(password, hashedPassword);
+  console.log(password, hashedPassword);
   try {
     return await bcrypt.compare(password, hashedPassword);
   } catch (err) {
@@ -214,8 +214,33 @@ app.put("/changeUsername", async (req, res) => {
   } else res.status(400).json("Username not available");
 });
 
-app.put("/updatePassword", (req, res) => {
-  console.log(req);
+app.put("/updatePassword", async (req, res) => {
+  if (db === undefined) db = await connectToMongoDB();
+  console.log("updating", req.body);
+  const pipeline = [
+    { $match: { _id: ObjectId.createFromHexString(req.body.id) } },
+    { $unset: ["favorites", "contributions", "pfp", "lvl"] },
+  ];
+  try {
+    const response = await db.collection("users").aggregate(pipeline).toArray();
+
+    // if old password matches change password
+    if (await comparePasswords(req.body.oldPassword, response[0].password)) {
+      console.log("passwords match", response);
+      response = await db.collection("users").updateOne(
+        { _id: ObjectId.createFromHexString(req.body.id) },
+        {
+          $set: {
+            password: await hashedPassword(req.body.newPassword),
+          },
+        }
+      );
+      console.log("New password is: ", req.body.newPassword);
+      res.status(200).json("Password updated!");
+    } else res.status(400).json("Passwords do not match");
+  } catch (error) {
+    res.status(400).json("Error updating password");
+  }
 });
 
 app.delete("/deleteUser", async (req, res) => {
