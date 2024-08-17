@@ -29,9 +29,13 @@ const AccountDropdown = ({ user, setUser }) => {
     localStorage.removeItem("JWT");
     setUser(bruh);
   };
+  function goSettings() {
+    setDropdownVis(false);
+    navigate("settings");
+  }
 
   return (
-    <div className="absolute top-0 right-0 w-">
+    <div>
       <button
         className="accountPfp"
         onClick={() => setDropdownVis(!dropdownVis)}
@@ -40,14 +44,16 @@ const AccountDropdown = ({ user, setUser }) => {
       </button>
       {dropdownVis && (
         <div
-          className="absolute z-40 -translate-x-[4.5rem] bg-red-800 
-        border-solid border-x-2 border-b-2 border-white p-2 rounded-b-lg
-        text-center "
+          className="fixed z-40 -translate-x-[9rem] bg-red-800 
+        border-solid border-4 border-t-0 border-black p-2 rounded-b-lg
+        text-center w-48"
         >
-          <h2 className="text-gray-100 mb-2">{user.username}</h2>
-          <h3 className="text-gray-100 mb-2 underline">
-            <Link to="titles">{user.title}</Link>
-          </h3>
+          <div className="*:text-gray-100 *:mb-2">
+            <h2 className="overflow-auto">{user.username}</h2>
+            <h3 className="underline">
+              <Link to="titles">{user.title}</Link>
+            </h3>
+          </div>
           <div className="*:w-full">
             {user.perms.seeAdminPanel && (
               <button onClick={() => navigate("admin")}>Admin</button>
@@ -56,7 +62,7 @@ const AccountDropdown = ({ user, setUser }) => {
             <button onClick={() => navigate("contributions")}>
               Contributions
             </button>
-            <button onClick={() => navigate("settings")}>Settings</button>
+            <button onClick={goSettings}>Settings</button>
             <button onClick={logOut} className="w-full">
               Log out
             </button>

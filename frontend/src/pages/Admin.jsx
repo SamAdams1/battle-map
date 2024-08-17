@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Users from "../../components/AdminPage/Users";
 import Reports from "../../components/AdminPage/Reports";
@@ -12,15 +12,17 @@ const Admin = ({ user, titles, battleLocs }) => {
     return page == tab ? "bg-gray-400 " : "bg-gray-00 ";
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
   const tabs = {
     Users: <Users titles={titles} user={user} />,
     Reports: <Reports user={user} battleLocs={battleLocs} />,
     Contributions: <ContribHistory user={user} battleLocs={battleLocs} />,
   };
 
-  return !user.loggedIn ? (
-    <NotLoggedIn pageTitle="Admin Page" />
-  ) : (
+  return (
     <div className="mt- belowHeader">
       <div className="w-full">
         <div className="w-full bg-gray-200">

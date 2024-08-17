@@ -47,51 +47,56 @@ const Users = ({ titles, user }) => {
   };
 
   useEffect(() => {
+    console.log(user);
     getUsers();
   }, []);
 
   return (
-    <div>
-      {/* <h1>Users</h1>
+    Object.keys(user).length > 4 && (
+      <div>
+        {/* <h1>Users</h1>
       <button onClick={() => console.log(users)}>test</button> */}
-      <div className="flex flex-wrap ">
-        {users.map((thisUser) => (
-          <Card
-            key={thisUser._id}
-            bgColor={thisUser._id === user._id ? "bg-yellow-600" : "bg-red-700"}
-            children={
-              <div className="p-2">
-                <h2>{thisUser.username}</h2>
-                <h3>
-                  {titles[thisUser.lvl].title} {thisUser.lvl}
-                </h3>
-                <h3>
-                  Contributions: {Object.keys(thisUser.contributions).length}
-                </h3>
-                {user.perms.changeUserLvl && user._id != thisUser._id && (
-                  <div className="flex flex-row">
-                    <button
-                      onClick={() => updateUserLvl(1, thisUser)}
-                      disabled={thisUser.lvl <= user.lvl || thisUser.lvl == 1}
-                      className="text-black"
-                    >
-                      Premote
-                    </button>
-                    <button
-                      onClick={() => updateUserLvl(-1, thisUser)}
-                      disabled={thisUser.lvl <= user.lvl || thisUser.lvl == 3}
-                      className="text-black"
-                    >
-                      Demote
-                    </button>
-                  </div>
-                )}
-              </div>
-            }
-          />
-        ))}
+        <div className="flex flex-wrap ">
+          {users.map((thisUser) => (
+            <Card
+              key={thisUser._id}
+              bgColor={
+                thisUser._id === user._id ? "bg-yellow-600" : "bg-red-700"
+              }
+              children={
+                <div className="p-2">
+                  <h2>{thisUser.username}</h2>
+                  <h3>
+                    {titles[thisUser.lvl].title} {thisUser.lvl}
+                  </h3>
+                  <h3>
+                    Contributions: {Object.keys(thisUser.contributions).length}
+                  </h3>
+                  {user.perms.changeUserLvl && user._id != thisUser._id && (
+                    <div className="flex flex-row">
+                      <button
+                        onClick={() => updateUserLvl(1, thisUser)}
+                        disabled={thisUser.lvl <= user.lvl || thisUser.lvl == 1}
+                        className="text-black"
+                      >
+                        Premote
+                      </button>
+                      <button
+                        onClick={() => updateUserLvl(-1, thisUser)}
+                        disabled={thisUser.lvl <= user.lvl || thisUser.lvl == 3}
+                        className="text-black"
+                      >
+                        Demote
+                      </button>
+                    </div>
+                  )}
+                </div>
+              }
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
