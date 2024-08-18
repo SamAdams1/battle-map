@@ -1,23 +1,9 @@
-# battles-map
+# What is Battle Map?
 
-A map that displays important historical battles on a world map. Battles are sorted by modern country borders. Click on the red dot to get info on the battle. All location data and summaries are sourced from Wikipedia.
+https://battle-map-silk.vercel.app/
 
-## Notes:
+A website where history nerds can see historic battles mapped out.
 
-Could be useful in the future:
-https://openweathermap.org/api/geocoding-api
+Gain perspective on the history you might not know happened nearby.
 
-endpoint:
-https://en.wikipedia.org/w/api.php
-
-coordinates:
-https://en.wikipedia.org/w/api.php?action=help&modules=query%2Bcoordinates
-https://www.mediawiki.org/wiki/Extension:GeoData#prop=coordinates
-To find the coordinates on a page
-prop: 'coordinates',
-
-https://api-ninjas.com/api/historicalfigures
-can list out all conflicts someone was involved in
-
-vids:
-How To Manage User Roles In Node.js - https://www.youtube.com/watch?v=jI4K7L-LI58
+Favorite battles, help map battles and talk with people who have similar interests.

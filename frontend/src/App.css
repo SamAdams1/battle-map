@@ -88,6 +88,10 @@ input {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+
+  margin-bottom: 4em;
+
+  background-color: #cbd5e1;
 }
 .howToSect > div > p {
   margin-left: 1em;

@@ -345,7 +345,7 @@ const About = () => {
           />
           <SocialIcon
             className="socialIcons"
-            url="https://github.com/SamAdams1?tab=repositories"
+            url="https://github.com/SamAdams1"
             target="_blank"
           />
           <SocialIcon
