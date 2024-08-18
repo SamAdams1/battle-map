@@ -44,7 +44,7 @@ const AccountDropdown = ({ user, setUser }) => {
       </button>
       {dropdownVis && (
         <div
-          className="fixed z-40 -translate-x-[9rem] bg-red-800 
+          className="fixed z-40 -translate-x-[10rem] bg-red-800 
         border-solid border-4 border-t-0 border-black p-2 rounded-b-lg
         text-center w-48"
         >

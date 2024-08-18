@@ -83,3 +83,16 @@ input {
   border-radius: 0.5rem;
   padding: 0.2rem;
 }
+
+.howToSect {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.howToSect > div > p {
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+.howToSectSingle {
+  margin-top: 1em;
+}

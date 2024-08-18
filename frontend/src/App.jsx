@@ -43,7 +43,7 @@ const userTitles = [
     permissions: {
       changeUserLvl: true,
       seeAdminPanel: true,
-      reportData: false,
+      reportData: true,
       editData: true,
       addLoc: true,
       addNewBattle: true,
