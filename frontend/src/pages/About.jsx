@@ -6,7 +6,7 @@ import Card from "../../components/Card";
 import { SocialIcon } from "react-social-icons";
 
 const topBattles = [
-  { name: "Night Attack at Târgovişte", country: "Romania", year: 1462 },
+  // { name: "Night Attack at Târgovişte", country: "Romania", year: 1462 },
   {
     name: "Battle of the Teutoburg Forest",
     country: "Germany",
@@ -37,12 +37,12 @@ const topBattles = [
     year: 1415,
     latLon: "50.46, 2.14",
   },
-  {
-    name: "Battle of Austerlitz",
-    country: "Czechia",
-    year: 1805,
-    latLon: "49.12, 16.76",
-  },
+  // {
+  //   name: "Siege of Brundisium",
+  //   country: "Italy'",
+  //   year: -49,
+  //   latLon: "40.63, 17.93",
+  // },
 ];
 
 const About = () => {
@@ -266,6 +266,7 @@ const About = () => {
             return (
               showBattle(index) && (
                 <Card
+                  key={battle.name}
                   bgColor={bg + " max-w-64 p-3 *:py-1"}
                   children={
                     <>

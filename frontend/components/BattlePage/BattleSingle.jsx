@@ -23,7 +23,16 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
         <div className="flex flex-col flex-1">
           <div className="flex mb-auto">
             <div className="p-1 *:mb-1 w-full">
-              <h2 className="underline">{nameOnly}</h2>
+              <a
+                href={
+                  "https://en.wikipedia.org/wiki/" +
+                  nameOnly.split(" or ")[0].replace(" ", "_")
+                }
+                target="_blank"
+                className="underline"
+              >
+                <h2>{nameOnly}</h2>
+              </a>
               {/* <WikiButton battleName={nameOnly} showPopup={showPopup} /> */}
               <div>
                 {hasLatLon ? (

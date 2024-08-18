@@ -47,7 +47,6 @@ const Users = ({ titles, user }) => {
   };
 
   useEffect(() => {
-    console.log(user);
     getUsers();
   }, []);
 

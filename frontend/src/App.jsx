@@ -114,7 +114,7 @@ function App() {
   }, [user]);
 
   async function stayedLogged() {
-    console.log("stay logged in");
+    // console.log("stay logged in");
     try {
       const token = localStorage.getItem("JWT");
       const response = await axios.put(`${ENDPOINT}/userInfo`, { token });

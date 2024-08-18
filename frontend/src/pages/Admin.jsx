@@ -4,16 +4,25 @@ import Users from "../../components/AdminPage/Users";
 import Reports from "../../components/AdminPage/Reports";
 import ContribHistory from "../../components/AdminPage/ContribHistory";
 import NotLoggedIn from "../../components/UserLogin/NotLoggedIn";
+import { useNavigate } from "react-router-dom";
 
 const Admin = ({ user, titles, battleLocs }) => {
   const [tab, setTab] = useState("Users");
+  const navigate = useNavigate();
 
   const highlightTab = (page) => {
     return page == tab ? "bg-gray-400 " : "bg-gray-00 ";
   };
 
   useEffect(() => {
-    console.log(user);
+    async function checkUser() {
+      await user;
+      if (user) {
+        // console.log(user);
+        navigate("/");
+      }
+    }
+    checkUser();
   }, []);
 
   const tabs = {
