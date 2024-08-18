@@ -7,7 +7,7 @@ const Card = ({ children, bgColor }) => {
       className={
         `flex flex-col p-
             w-72 m-2 text-white
-            border-2 border-gray-900 rounded ` + bgColor
+            border-2 border-gray-900  ` + bgColor
       }
       whileHover={{ scale: 1.05 }}
     >
