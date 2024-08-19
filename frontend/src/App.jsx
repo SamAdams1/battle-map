@@ -65,7 +65,7 @@ const userTitles = [
   },
   {
     title: "Soldier",
-    desc: "Suggest battles and talk in chat.",
+    desc: "Suggest battles.",
     permissions: {
       changeUserLvl: false,
       demoteUsers: false,
@@ -79,7 +79,7 @@ const userTitles = [
   },
   {
     title: "Recruit",
-    desc: "View battles.",
+    desc: "Explore battles.",
     permissions: {
       changeUserLvl: false,
       demoteUsers: false,
@@ -98,7 +98,7 @@ function App() {
 
   useEffect(() => {
     stayedLogged();
-    console.log(ENDPOINT);
+    if (ENDPOINT === "http://localhost:3005") console.log(ENDPOINT);
   }, []);
 
   useEffect(() => {

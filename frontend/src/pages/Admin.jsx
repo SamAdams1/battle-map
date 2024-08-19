@@ -17,13 +17,19 @@ const Admin = ({ user, titles, battleLocs }) => {
   useEffect(() => {
     async function checkUser() {
       await user;
-      if (user) {
+      if (!user.perms.seeAdminPanel) {
         // console.log(user);
         navigate("/");
       }
     }
     checkUser();
   }, []);
+
+  useEffect(() => {
+    if (user.perms && !user.perms.seeAdminPanel) {
+      navigate("/");
+    }
+  }, [user]);
 
   const tabs = {
     Users: <Users titles={titles} user={user} />,

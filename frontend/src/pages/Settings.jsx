@@ -20,7 +20,7 @@ const Settings = ({ user, setUser }) => {
     });
     console.log(response.data);
     setUser({});
-    localStorage.removeItem("user");
+    localStorage.removeItem("JWT");
   }
 
   async function updatePassword() {
@@ -35,6 +35,9 @@ const Settings = ({ user, setUser }) => {
     } catch (error) {
       console.error(error);
     }
+    setOldPassword("");
+    setNewPassword("");
+    setConfirmNewPassword("");
   }
 
   async function changeUsername() {

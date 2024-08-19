@@ -165,7 +165,7 @@ async function generateToken(id) {
     jwt.sign(
       payload,
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1h" },
+      { expiresIn: "14d" },
       (err, token) => {
         if (err) {
           reject(err);
@@ -253,7 +253,7 @@ app.put("/changeUsername", async (req, res) => {
 
 app.put("/updatePassword", async (req, res) => {
   if (db === undefined) db = await connectToMongoDB();
-  console.log("updating", req.body);
+  console.log("attempting update", req.body);
   const pipeline = [
     { $match: { _id: ObjectId.createFromHexString(req.body.id) } },
     { $unset: ["favorites", "contributions", "pfp", "lvl"] },
@@ -264,15 +264,16 @@ app.put("/updatePassword", async (req, res) => {
     // if old password matches change password
     if (await comparePasswords(req.body.oldPassword, response[0].password)) {
       console.log("passwords match", response);
-      response = await db.collection("users").updateOne(
+      const hash = await hashPassword(req.body.newPassword);
+      await db.collection("users").updateOne(
         { _id: ObjectId.createFromHexString(req.body.id) },
         {
           $set: {
-            password: await hashPassword(req.body.newPassword),
+            password: hash,
           },
         }
       );
-      console.log("New password is: ", req.body.newPassword);
+      // console.log("New password is: ", req.body.newPassword);
       res.status(200).json("Password updated!");
     } else res.status(400).json("Passwords do not match");
   } catch (error) {

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const NavSideBar = ({ countryList, setCountry, selectedCountry }) => {
-  const [sideBarVis, setSideBarVis] = useState(false);
+  const [sideBarVis, setSideBarVis] = useState(true);
   let lastLetter = "";
 
   const scrollRef = useRef(0);

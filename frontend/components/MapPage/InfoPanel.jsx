@@ -7,7 +7,7 @@ import Axios from "axios";
 import { ENDPOINT } from "../../environment";
 
 const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
-  const [showDisplay, setShowDisplay] = useState(false);
+  const [showDisplay, setShowDisplay] = useState(true);
 
   // arrows buttons
   const [country, setCountry] = useState("");
