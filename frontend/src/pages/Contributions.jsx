@@ -8,7 +8,13 @@ const Contributions = ({ user }) => {
     <NotLoggedIn pageTitle="Contributions" />
   ) : (
     <div className="flex flex-col belowHeader">
-      <h1 className="ml-4">Your Contributions</h1>
+      <h1 className="ml-4">
+        {user.contributions.length === 0 ? (
+          <>No Contributions</>
+        ) : (
+          <>Your Contributions</>
+        )}
+      </h1>
 
       <div className="flex flex-wrap" key={"gagafda"}>
         {user.contributions.map((battleDict) => {

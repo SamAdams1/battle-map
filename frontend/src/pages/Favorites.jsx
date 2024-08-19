@@ -13,7 +13,13 @@ const Favorites = ({ user }) => {
     <NotLoggedIn pageTitle="Favorites" />
   ) : (
     <div className="flex flex-col belowHeader ">
-      <h1 className="ml-4">Your Favorites</h1>
+      <h1 className="ml-4">
+        {Object.keys(user.favorites).length === 0 ? (
+          <>No Favorites</>
+        ) : (
+          <>Your Favorites</>
+        )}
+      </h1>
       <div className="flex flex-wrap">
         {Object.keys(user.favorites).map((id) => {
           const fav = user.favorites[id];
