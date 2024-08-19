@@ -46,18 +46,12 @@ const NavSideBar = ({ countryList, setCountry, selectedCountry }) => {
                       {(lastLetter = country.charAt(0))}
                     </h2>
                   )}
-                  <p>
-                    <a href={"#" + country} className="underline">
-                      <button
-                        onClick={() => setCountry(country)}
-                        className={
-                          selectedCountry == country ? "bg-red-500" : ""
-                        }
-                      >
-                        {country}
-                      </button>
-                    </a>
-                  </p>
+                  <button
+                    onClick={() => setCountry(country)}
+                    className={selectedCountry == country ? "bg-red-500" : ""}
+                  >
+                    {country}
+                  </button>
                 </div>
               );
             })}

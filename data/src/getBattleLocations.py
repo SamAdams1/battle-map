@@ -20,10 +20,10 @@ secondParams = {
 battlesData = {}
 # with open("./b.json", "r",) as json_file:
 #     battlesData = json.load(json_file)
-with open("./battleList2.json", "r",encoding="utf-8") as json_file:
-    battleList = json.load(json_file)
-with open("./countries.json", "r") as json_file:
-    countriesList = json.load(json_file)
+# with open("./battleList2.json", "r",encoding="utf-8") as json_file:
+#     battleList = json.load(json_file)
+with open("../countryCenter.json", "r") as json_file:
+    countryCenters = json.load(json_file)
 
 def getBattleData(country, battleName):
     url = appendParamsToUrl(params, battleName)
@@ -121,3 +121,59 @@ def getcountryLatlon(country):
         countryCenterLatlon[country]["latLon"] = [0, 0]
         print("not found++++++++++++++++++", country)
 # findCountriesCenter()
+
+
+
+import pymongo 
+import bson
+
+DB_AUTH = "9TZTNT69uD4nkYD7"
+myclient = pymongo.MongoClient(f"mongodb+srv://sammyadams04:{DB_AUTH}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
+
+myDB = myclient["battle-map"]
+# collection = myDB["test"]
+
+collection = myDB["battles"]
+
+def getLatLon(battleName):
+    url = appendParamsToUrl(params, battleName)
+    response = requests.get(url)
+    data = response.json()
+    try:
+        battle = data["query"]['pages']
+        key = list(battle.keys())[0]
+        
+        latLon = [battle[key]["coordinates"][0]["lat"], battle[key]["coordinates"][0]["lon"]]
+        return latLon
+    except:
+        False
+
+# separate single battle string into json
+def sepBattles(country):
+    file = open("test.txt", "r",encoding="utf-8")
+    nameList = file.read().split("\n")
+    
+    countryDict = {"country": country, "battles": [], "countryCenter": countryCenters[country], "withLocation": 0}        
+    for battle in nameList:
+        battleArr = battle.split(" – ")
+        battleDict = {
+            "name": battleArr[1],
+            "year": battleArr[0],
+            "id": bson.ObjectId()
+        }
+        latLon = getLatLon(battleArr[1].split("[")[0])
+        if latLon:
+            battleDict["latLon"] = latLon
+            countryDict["withLocation"] += 1
+            
+        countryDict["battles"].append(battleDict)
+        
+    print(countryDict)
+    collection.insert_one(countryDict)
+    
+    filter = {"country": country}
+    update = {"$set": {"battles": countryDict["battles"], "withLocation": countryDict["withLocation"]} }
+    result = collection.update_one(filter, update, upsert=False)
+    # myDB["battles"].update
+
+sepBattles("Ireland")
