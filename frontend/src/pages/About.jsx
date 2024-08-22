@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import Card from "../../components/Card";
 import { SocialIcon } from "react-social-icons";
+import { Link } from "react-router-dom";
 
 const topBattles = [
   { name: "Night Attack at Târgovişte", country: "Romania", year: 1462 },
@@ -139,7 +140,27 @@ const About = () => {
         </div>
         <span className="bg-gray-200 flex flex-col items-center *:p-2 pb-20 *:max-w-[50em]">
           <h1 className="underline">How to use Battle Map</h1>
-          <h2>Map Page</h2>
+          <h2>
+            Map Page{" "}
+            <button>
+              <Link to="/">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </Link>
+            </button>
+          </h2>
           <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Free Roam</h3>
@@ -176,7 +197,27 @@ const About = () => {
               </p>
             </div>
           </div>
-          <h2>Wiki Page</h2>
+          <h2>
+            Wiki Page{" "}
+            <button>
+              <Link to="/wiki">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </Link>
+            </button>
+          </h2>
           <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Navigation Bar</h3>
@@ -202,6 +243,39 @@ const About = () => {
               </p>
             </div>
           </div>
+
+          <h2>
+            Chat Page{" "}
+            <button>
+              <Link to="/wiki">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </Link>
+            </button>
+          </h2>
+          <div className="howToSect">
+            <div className="howToSectSingle">
+              <h3>Interact with others</h3>
+              <p>
+                Open the nav bar to navigate different countries data. The
+                current selected country will be displayed in red. Click on the
+                country button to see all of its battles.
+              </p>
+            </div>
+          </div>
+
           <h2>Favorites and Contributions</h2>
           <div className="howToSect">
             <div className="howToSectSingle">
