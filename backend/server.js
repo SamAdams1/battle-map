@@ -20,6 +20,10 @@ let db;
 const chatRoutes = require("./routes/chats");
 app.use("/chats", chatRoutes);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
+
 connectToMongoDB();
 async function connectToMongoDB() {
   return MongoClient.connect(mongoURI)
