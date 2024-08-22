@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const Form = ({ formType, submitFunc }) => {
+const LoginForm = ({ submitFunc }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <div className="w-1/3 mx-auto text-center *:mt-4">
-      <h1>{formType}</h1>
+    <div className="mx-auto text-center *:mt-4">
+      <h1>Login</h1>
       <div>
         <h3 className="mb-2">Username</h3>
         <input
@@ -29,10 +29,10 @@ const Form = ({ formType, submitFunc }) => {
         onClick={() => submitFunc({ username, password })}
         disabled={!(username && password)}
       >
-        {formType}
+        Login
       </button>
     </div>
   );
 };
 
-export default Form;
+export default LoginForm;

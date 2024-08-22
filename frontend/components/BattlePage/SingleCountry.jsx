@@ -16,7 +16,7 @@ const SingleCountry = ({ user, country, data, showPopup, setPopupVis }) => {
         )}
       </div>
       {data.length > 0 ? (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap ">
           {data.map((battle, index) => (
             <BattleSingle
               key={index}

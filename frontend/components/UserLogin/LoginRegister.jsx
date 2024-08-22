@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Form from "./Form";
 import Axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import { ENDPOINT } from "../../environment";
+
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 // form type can either be "Login" or "Register"
 const LoginRegister = ({ formType, setUser, user }) => {
@@ -70,7 +72,7 @@ const LoginRegister = ({ formType, setUser, user }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 right-0 bottom-0 bg-slate-400">
+    <div className="z-50 absolute top-0 left-0 right-0 bottom-0 bg-slate-400">
       <button onClick={() => quitForm()} className="w-8 absolute right-0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -92,9 +94,9 @@ const LoginRegister = ({ formType, setUser, user }) => {
       ) : (
         <>
           {formType == "Register" ? (
-            <Form formType={formType} submitFunc={registerUser} />
+            <RegisterForm submitFunc={registerUser} />
           ) : (
-            <Form formType={formType} submitFunc={loginUser} />
+            <LoginForm submitFunc={loginUser} />
           )}
           <p>{errorMsg}</p>
         </>
