@@ -174,8 +174,8 @@ const ChatPage = ({ user }) => {
           </div>
         ))}
         <div ref={messagesEndRef}></div>
+        <div className="mt-20"></div>
       </div>
-      <div className="mt-20"></div>
       <div className="bg-red-800 flex p-2 fixed bottom-0 w-full h-20">
         <textarea
           value={message}
