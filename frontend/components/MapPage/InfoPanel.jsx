@@ -105,7 +105,7 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
             <button
               onClick={() => onLeftArrow()}
               disabled={!country}
-              className="w-7"
+              className="w-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
                 (!country && !lastCountry) ||
                 (country != "" && lastCountry == "")
               }
-              className="w-7"
+              className="w-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

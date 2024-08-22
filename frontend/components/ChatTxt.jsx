@@ -35,28 +35,26 @@ const ChatTxt = ({ message, user, deleteMsg, index }) => {
   return (
     <div className={"p-2 py-5  " + (myMsg || "bg-slate-50")}>
       <h4 className="font-medium">
-        {myMsg ? (
-          <>
-            {user.username}
-            <button
-              onClick={() => deleteMsg(index, message._id)}
-              className="scale-[.8] font-normal"
-            >
-              Delete
-            </button>
-            <button
-              onClick={() => setEditing(!editing)}
-              className="scale-[.8] font-normal"
-            >
-              {editing ? <>Cancel</> : <>Edit</>}
-            </button>
-          </>
-        ) : (
-          <>
-            {/* <UserDisplay id={message.userId} /> ~ {dateTime(message)[1]} */}
-            {message.username} ~ {dateTime(message)[1]}
-          </>
-        )}
+        <>
+          {/* <UserDisplay id={message.userId} /> ~ {dateTime(message)[1]} */}
+          {message.username} ~ {dateTime(message)[1]}
+          {myMsg && (
+            <>
+              <button
+                onClick={() => deleteMsg(index, message._id)}
+                className="scale-[.8] font-normal"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => setEditing(!editing)}
+                className="scale-[.8] font-normal"
+              >
+                {editing ? <>Cancel</> : <>Edit</>}
+              </button>
+            </>
+          )}
+        </>
       </h4>
       {editing && user.loggedIn ? (
         <div className="flex flex-wrap">
