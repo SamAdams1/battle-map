@@ -35,7 +35,7 @@ const AccountDropdown = ({ user, setUser }) => {
   }
 
   return (
-    <div>
+    <div className={"absolute right-0"}>
       <button
         className="accountPfp"
         onClick={() => setDropdownVis(!dropdownVis)}

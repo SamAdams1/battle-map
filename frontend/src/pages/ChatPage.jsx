@@ -129,8 +129,8 @@ const ChatPage = ({ user }) => {
   let lastDate = "";
   return (
     <div className="flex flex-row w-full">
-      <div className="w-72 *:w-full px-2 bg-red-800 overflow-y-auto">
-        <h3 className="my-3 text-white">Channels:</h3>
+      <div className="w-36 *:w-full px-1 bg-red-800 overflow-y-auto">
+        <h3 className="my-3 text-white">Channels</h3>
         {chatRooms.map((room) => {
           let a = currentRoom(room);
           return (
@@ -145,7 +145,7 @@ const ChatPage = ({ user }) => {
           );
         })}
       </div>
-      <div className="overflow-y-auto  w-full h-[86vh] ">
+      <div className="overflow-y-auto  w-full h-[86vh] pb-10">
         {messages.map((message, index) => (
           <div key={index}>
             {lastDate != message.date.split(" ~ ")[0] && (
