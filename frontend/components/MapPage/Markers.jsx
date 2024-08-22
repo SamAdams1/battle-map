@@ -33,31 +33,43 @@ const Markers = ({ data, markersRef, user }) => {
                 ref={(element) => (markersRef.current[battleName] = element)}
               >
                 <Popup>
-                  <h3>{country}</h3>
-                  <h3>
-                    {parseInt(index) + 1}:
+                  <div className="flex flex-col text-center *:mb-1">
                     <a
-                      href={
-                        "https://en.wikipedia.org/wiki/" +
-                        battleName.split(" or ")[0].replace(" ", "_")
-                      }
+                      href={"https://www.google.com/maps?q=" + latLon}
                       target="_blank"
+                      className="w-full *:w-full"
                     >
-                      {battleName}
+                      <button>View on Google Maps</button>
                     </a>
-                  </h3>
-                  <h3>{countryData[index]["year"]}</h3>
-                  <h4>
-                    {latLon[0]}, {latLon[1]}
-                  </h4>
-                  <br />
-                  {user.loggedIn && (
-                    <FavButton
-                      battleDict={countryData[index]}
-                      country={country}
-                      user={user}
-                    />
-                  )}
+                    <h3>{country}</h3>
+                    <h3 className="flex">
+                      <span className="flex mr-1">{parseInt(index) + 1}:</span>
+                      <a
+                        href={
+                          "https://en.wikipedia.org/wiki/" +
+                          battleName.split(" or ")[0].replace(" ", "_")
+                        }
+                        target="_blank"
+                        className="underline"
+                      >
+                        {battleName}
+                      </a>
+                    </h3>
+                    <h3>{countryData[index]["year"]}</h3>
+                    <h4>
+                      {latLon[0]}, {latLon[1]}
+                    </h4>
+                    <br />
+                    {/* <div className="*:w-full"> */}
+                    {user.loggedIn && (
+                      <FavButton
+                        battleDict={countryData[index]}
+                        country={country}
+                        user={user}
+                      />
+                    )}
+                    {/* </div> */}
+                  </div>
                 </Popup>
               </Marker>
             );
