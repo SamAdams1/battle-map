@@ -128,15 +128,11 @@ const BattlePage = ({ user }) => {
     ),
     wiki: <Wiki text={battle} />,
   };
-  return (
+
+  return user.perms === undefined ? (
+    <h1>Loading</h1>
+  ) : (
     <div className="flex flex-col  items-center belowHeader overflow-auto bg-slate-300">
-      {/* <a
-        href="https://en.wikipedia.org/wiki/List_of_battles_by_geographic_location"
-        target="_blank"
-      >
-        <h1 id="Top">All Battles</h1>
-      </a> */}
-      {/* <button onClick={() => console.log(data)}>print</button> */}
       <NavSideBar
         countryList={countries}
         setCountry={changeCountry}
