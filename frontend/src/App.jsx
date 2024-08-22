@@ -136,7 +136,7 @@ function App() {
         <div className="h-14"></div>
         <Routes>
           <Route index path="/" element={<MapPage user={user} />} />
-          <Route path="/battleList" element={<BattlePage user={user} />} />
+          <Route path="/wiki" element={<BattlePage user={user} />} />
           <Route path="/chat" element={<ChatPage user={user} />} />
           <Route path="/about" element={<About />} />
 

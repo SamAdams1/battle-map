@@ -12,7 +12,7 @@ const Header = ({ user, setUser }) => {
           </h2> */}
         </Link>
         <Link to="/">Map</Link>
-        <Link to="/battleList">Battles</Link>
+        <Link to="/wiki">Wiki</Link>
         <Link to="chat">Chat</Link>
         {/* <button onClick={() => console.log(user)}>user</button> */}
       </div>

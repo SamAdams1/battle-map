@@ -1,5 +1,5 @@
 import Axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ChatTxt from "../../components/ChatTxt";
 import { getCurrentDate } from "../../components/BattlePage/forms/dbFuncs";
 import { ENDPOINT } from "../../environment";
@@ -14,6 +14,8 @@ const ChatPage = ({ user }) => {
   const [ws, setWs] = useState(null);
   const [message, setMessage] = useState("");
   const [chatRoom, setChatRoom] = useState("Main");
+
+  const messagesEndRef = useRef({});
 
   useEffect(() => {
     getMessages();
@@ -40,6 +42,7 @@ const ChatPage = ({ user }) => {
 
     setWs(websocket);
 
+    // scrollToBottomOnMount();
     return () => {
       websocket.close();
     };
@@ -81,6 +84,13 @@ const ChatPage = ({ user }) => {
         return [];
       });
   };
+
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, []);
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const objectId = (
     m = Math,
@@ -163,9 +173,10 @@ const ChatPage = ({ user }) => {
             />
           </div>
         ))}
+        <div ref={messagesEndRef}></div>
       </div>
       {/* </div> */}
-      <div className="bg-red-800 flex p-2">
+      <div className="bg-red-800 flex p-2 fixed bottom-0 w-full h-20">
         <textarea
           value={message}
           onChange={handleInputChange}

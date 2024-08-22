@@ -33,7 +33,7 @@ const ChatTxt = ({ message, user, deleteMsg, index }) => {
 
   let myMsg = highlightMyMessages();
   return (
-    <div className={"p-2 " + (myMsg || "bg-slate-50")}>
+    <div className={"p-2 py-5  " + (myMsg || "bg-slate-50")}>
       <h4 className="font-medium">
         {myMsg ? (
           <>
@@ -59,14 +59,15 @@ const ChatTxt = ({ message, user, deleteMsg, index }) => {
         )}
       </h4>
       {editing && user.loggedIn ? (
-        <>
+        <div className="flex flex-wrap">
           <textarea
             type="text"
             value={editedTxt}
             onChange={(e) => setEditedTxt(e.target.value)}
+            className="w-[75vw]"
           />
           <button onClick={editMessage}>Save</button>
-        </>
+        </div>
       ) : (
         <h4 className="py-1 pl-4">{text}</h4>
       )}

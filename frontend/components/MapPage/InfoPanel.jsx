@@ -165,7 +165,7 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
           </div>
           <div className="w-60 border-l-2 border-solid border-red-800">
             <h2 className="p-1 bg-red-800 text-white">{header}</h2>
-            <div className=" *:max-h-[70vh] ">
+            <div className=" *:max-h-[60vh] ">
               {country ? (
                 <Battles
                   data={data}
