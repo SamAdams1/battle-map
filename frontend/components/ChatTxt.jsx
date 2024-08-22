@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UserDisplay from "./UserLogin/UserDisplay";
 import { ENDPOINT } from "../environment";
 
-const ChatTxt = ({ message, user, deleteMsg }) => {
+const ChatTxt = ({ message, user, deleteMsg, index }) => {
   const [editing, setEditing] = useState(false);
   const [text, setText] = useState(message.text);
   const [editedTxt, setEditedTxt] = useState(message.text);
@@ -39,7 +39,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
           <>
             {user.username}
             <button
-              onClick={() => deleteMsg(message)}
+              onClick={() => deleteMsg(index, message._id)}
               className="scale-[.8] font-normal"
             >
               Delete

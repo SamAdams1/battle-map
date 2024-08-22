@@ -133,6 +133,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header user={user} setUser={setUser} />
+        <div className="h-14"></div>
         <Routes>
           <Route index path="/" element={<MapPage user={user} />} />
           <Route path="/battleList" element={<BattlePage user={user} />} />

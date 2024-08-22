@@ -45,10 +45,9 @@ const ChatPage = ({ user }) => {
     };
   }, []);
 
-  let msgFormat = {};
   const sendMessage = () => {
     if (ws) {
-      msgFormat = {
+      let msgFormat = {
         text: message,
         username: user.username,
         userId: user._id,
@@ -61,7 +60,7 @@ const ChatPage = ({ user }) => {
           payload: msgFormat,
         })
       );
-      addMsgToDB();
+      addMsgToDB(msgFormat);
       setMessage("");
     }
   };
@@ -90,7 +89,7 @@ const ChatPage = ({ user }) => {
     s = (s) => m.floor(s).toString(h)
   ) => s(d.now() / 1000) + " ".repeat(h).replace(/./g, () => s(m.random() * h));
 
-  const addMsgToDB = () => {
+  const addMsgToDB = (msgFormat) => {
     fetch(`${ENDPOINT}/chats/addMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -104,19 +103,18 @@ const ChatPage = ({ user }) => {
     setMessage(event.target.value);
   };
 
-  const deleteMsg = (msg) => {
-    console.log(msg);
-    // console.log(messages);
-    // remove messsage from client variable
-    setMessages(
-      messages.filter((msgItem) => {
-        return msgItem._id != msg._id;
-      })
-    );
+  const deleteMsg = (index, id) => {
+    let bruh = [...messages];
+
+    console.log(bruh[index].text, index);
+    console.log(bruh.splice(index, 1));
+    console.log("msgs:", messages);
+    setMessages(bruh);
+
     fetch(`${ENDPOINT}/chats/deleteMessage`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _id: msg._id }),
+      body: JSON.stringify({ _id: id }),
     }).then((response) => {
       console.log(response);
     });
@@ -128,26 +126,27 @@ const ChatPage = ({ user }) => {
   let chatRooms = ["Main", "Germany", "France", "England", "Spain"];
   let lastDate = "";
   return (
-    <div className="flex flex-row w-full">
-      <div className="w-36 *:w-full px-1 bg-red-800 overflow-y-auto">
-        <h3 className="my-3 text-white">Channels</h3>
-        {chatRooms.map((room) => {
-          let a = currentRoom(room);
-          return (
-            <button
-              key={room}
-              className={a}
-              onClick={() => setChatRoom(room)}
-              disabled={room != "Main"}
-            >
-              {room}
-            </button>
-          );
-        })}
-      </div>
+    <div className="flex flex-col h-vh]">
+      {/* <div className="flex flex-row w-full">
+        <div className="w-36 *:w-full px- bg-red-800 overflow-y-auto">
+          <h3 className="my-3 text-white">Channels</h3>
+          {chatRooms.map((room) => {
+            let a = currentRoom(room);
+            return (
+              <button
+                key={room}
+                className={a}
+                onClick={() => setChatRoom(room)}
+                disabled={room != "Main"}
+              >
+                {room}
+              </button>
+            );
+          })}
+        </div> */}
       <div className="overflow-y-auto  w-full h-[86vh] pb-10">
         {messages.map((message, index) => (
-          <div key={index}>
+          <div key={message._id}>
             {lastDate != message.date.split(" ~ ")[0] && (
               <div className="flex flex-col items-center bg-slate-50 py-2">
                 <span className="bg-slate-400 h-[.2rem] w-full translate-y-[1.22rem]"></span>
@@ -156,15 +155,21 @@ const ChatPage = ({ user }) => {
                 </h4>
               </div>
             )}
-            <ChatTxt message={message} user={user} deleteMsg={deleteMsg} />
+            <ChatTxt
+              message={message}
+              user={user}
+              deleteMsg={deleteMsg}
+              index={index}
+            />
           </div>
         ))}
       </div>
-      <div className="bg-red-800 absolute bottom-0 w-full flex h-20 p-3 pt-0">
+      {/* </div> */}
+      <div className="bg-red-800 flex p-2">
         <textarea
           value={message}
           onChange={handleInputChange}
-          className="flex-1 w-10"
+          className="flex-1"
           placeholder={"Message " + chatRoom}
         />
         <button onClick={sendMessage} disabled={!user.loggedIn || !message}>

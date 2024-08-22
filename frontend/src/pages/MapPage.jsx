@@ -51,7 +51,7 @@ const MapPage = ({ user }) => {
   };
 
   return (
-    <div>
+    <>
       <InfoPanel
         data={data}
         panFunc={panToPoint}
@@ -60,7 +60,7 @@ const MapPage = ({ user }) => {
       <Map mapRef={setMap} classname="Map">
         <Markers data={data} markersRef={markersRef} user={user} />
       </Map>
-    </div>
+    </>
   );
 };
 
