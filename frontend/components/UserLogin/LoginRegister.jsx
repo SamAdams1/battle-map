@@ -45,7 +45,8 @@ const LoginRegister = ({ formType, setUser, user }) => {
         setErrorMsg("Incorrect Credentials.");
       } else {
         setUser(response.data.user[0]);
-        console.log("JWT SUCCESS", response.data.user[0]);
+        console.log("JWT SUCCESS");
+        // console.log(response.data.user[0])
         quitForm();
       }
     } catch (error) {}
