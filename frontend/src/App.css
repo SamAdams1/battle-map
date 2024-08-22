@@ -101,3 +101,23 @@ input {
 .howToSectSingle {
   margin-top: 1em;
 }
+
+/* change header on small screen */
+/* In your CSS file */
+.large-component {
+  display: block;
+}
+
+.small-component {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .large-component {
+    display: none;
+  }
+
+  .small-component {
+    display: block;
+  }
+}

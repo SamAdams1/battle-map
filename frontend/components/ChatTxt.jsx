@@ -54,7 +54,7 @@ const ChatTxt = ({ message, user, deleteMsg, index }) => {
         ) : (
           <>
             {/* <UserDisplay id={message.userId} /> ~ {dateTime(message)[1]} */}
-            {message.username}
+            {message.username} ~ {dateTime(message)[1]}
           </>
         )}
       </h4>
