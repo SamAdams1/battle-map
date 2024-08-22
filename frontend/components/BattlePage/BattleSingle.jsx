@@ -52,7 +52,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
                       onClick={() =>
                         showPopup(data.name, "add", index, data.year)
                       }
-                      disabled={!user?.loggedIn}
+                      disabled={!user.loggedIn}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
                 <h3>Year: {data.year}</h3>
               </div>
             </div>
-            {user?.loggedIn && (
+            {user.loggedIn && (
               <div className="right-0 self-start">
                 <FavButton battleDict={data} country={country} user={user} />
               </div>
@@ -76,7 +76,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
           </div>
 
           <div className="flex *:w-full *:mt-4">
-            {user?.perms.editData && (
+            {user.perms.editData && (
               <button
                 onClick={() => showPopup(data.name, "edit", index, data.year)}
                 title="Edit Battle"
@@ -98,7 +98,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
               </button>
             )}
 
-            {user?.perms.reportData && (
+            {user.perms.reportData && (
               <button
                 onClick={() => showPopup(data.name, "report", index)}
                 title="Report Battle"
@@ -120,7 +120,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
               </button>
             )}
 
-            {user?.perms.deleteBattle && (
+            {user.perms.deleteBattle && (
               <button
                 onClick={() => showPopup(data.name, "delete", index)}
                 title="Delete Battle"
