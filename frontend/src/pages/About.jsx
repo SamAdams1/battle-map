@@ -79,8 +79,8 @@ const About = () => {
       <span className=" absolute w-[25em] h-24 bg-red-700  translate-y-[10em] rounded-2xl opacity-80"></span>
       <div className="h-[800px]  ">
         <h1
-          className="text-white text-6xl font- text-nowrap
-          absolute right-[50%] left-[50%] translate-x-[-3.15em] translate-y-[3em]
+          className="text-white text-5xl font- text-nowrap
+          absolute right-[50%] left-[50%] translate-x-[-3.15em] translate-y-[3.9em]
           bg-gray-700 border-green-200 font-serif 
           "
         >
@@ -114,20 +114,24 @@ const About = () => {
         <div className=" flex flex-wrap w-full *:flex-1 *:*:p-4 *:min-w-64 text-white *:border-2 *:pb-20">
           <div className="bg-red-700" id="guide">
             <h1>Explore</h1>
-            <p>See major battles throughout history mapped out! </p>
+            <p>
+              See major battles throughout history mapped out! Explore over 8000
+              battles in 162 different countries.
+            </p>
           </div>
           <div className="bg-red-700">
             <h1>Learn</h1>
             <p>
-              Most battles have a wikipedia article. Click the battle name to
-              open a new tab to dive deep and learn the history behind a battle.
+              Click the battle name to open a new tab to dive deep and learn the
+              history behind a battle. Most battles have a wikipedia article,
+              some do not.
             </p>
           </div>
           <div className="bg-red-700">
             <h1>Contribute</h1>
             <p>
               Create an account and gain trust amoungst the community to
-              contribute data to the battle map wiki! Once permission is granted
+              contribute data to the battle map wiki. Once permission is granted
               you can add data to existing battles, edit existing battles, and
               add totally new battles to a country.
             </p>
