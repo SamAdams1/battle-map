@@ -7,6 +7,7 @@ const UserDisplay = ({ id }) => {
   const [showUser, setShowUser] = useState(false);
 
   function getThisUser() {
+    console.log(id);
     Axios.get(`${ENDPOINT}/userDisplay`, { params: { id } })
       .then((response) => {
         if (response.data.length == 0) {
@@ -22,7 +23,7 @@ const UserDisplay = ({ id }) => {
   }
 
   return showUser ? (
-    <h3>{user.username}</h3>
+    <>{user.username}</>
   ) : (
     <button onClick={getThisUser}>Fetch Username</button>
   );

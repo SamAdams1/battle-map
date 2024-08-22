@@ -56,7 +56,7 @@ const Battles = ({
     setScrollOnMount();
     setHeader(
       <>
-        {country} - {countBattlesWLocs()}/{data[country].length}
+        {country} ~ {countBattlesWLocs()}/{data[country].length}
       </>
     );
   }, []);
@@ -64,7 +64,7 @@ const Battles = ({
   return (
     <>
       <div
-        className="*:mt-1 overflow-auto mb-1"
+        className="*:mt-1 overflow-auto mb-"
         ref={scrollDemoRef}
         onScroll={handleScroll}
       >
@@ -82,22 +82,19 @@ const Battles = ({
                 {index + 1 + ":"}
               </p>
               {latLon ? (
-                <>
-                  <button
-                    onClick={() => onClick(battleData, battleName)}
-                    className="max-w-45 w-full"
-                  >
-                    {battleName}
-                  </button>
-                </>
+                <button
+                  onClick={() => onClick(battleData, battleName)}
+                  className="max-w-45 w-full"
+                >
+                  {battleName}
+                </button>
               ) : (
-                <>
-                  <p>{battleName}</p>
-                </>
+                <p>{battleName}</p>
               )}
             </div>
           );
         })}
+        <div className="m-2"></div>
       </div>
       <div className="bg-red-800 text-white flex *:m-1">
         <p>

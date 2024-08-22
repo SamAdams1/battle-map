@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserDisplay from "./UserLogin/UserDisplay";
+import { ENDPOINT } from "../environment";
 
 const ChatTxt = ({ message, user, deleteMsg }) => {
   const [editing, setEditing] = useState(false);
@@ -21,7 +22,7 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
     setEditing(false);
     setText(editedTxt);
     message.text = editedTxt;
-    fetch("http://localhost:3006/editMessage", {
+    fetch(`${ENDPOINT}/chats/editMessage`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message),
@@ -34,9 +35,9 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
   return (
     <div className={"p-2 " + (myMsg || "bg-slate-50")}>
       <h4 className="font-medium">
-        <UserDisplay id={message.userId} /> ~ {dateTime(message)[1]}
-        {myMsg && (
+        {myMsg ? (
           <>
+            {user.username}
             <button
               onClick={() => deleteMsg(message)}
               className="scale-[.8] font-normal"
@@ -49,6 +50,10 @@ const ChatTxt = ({ message, user, deleteMsg }) => {
             >
               {editing ? <>Cancel</> : <>Edit</>}
             </button>
+          </>
+        ) : (
+          <>
+            <UserDisplay id={message.userId} /> ~ {dateTime(message)[1]}
           </>
         )}
       </h4>

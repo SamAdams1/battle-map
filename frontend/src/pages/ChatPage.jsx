@@ -2,6 +2,12 @@ import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import ChatTxt from "../../components/ChatTxt";
 import { getCurrentDate } from "../../components/BattlePage/forms/dbFuncs";
+import { ENDPOINT } from "../../environment";
+const wsEndpoint =
+  ENDPOINT === "http://localhost:3005"
+    ? "ws://localhost:3005/ws"
+    : // ? "ws://127.0.0.1:3005/ws"
+      "wss://map-backend-7ravbvmifa-nn.a.run.app/ws";
 
 const ChatPage = ({ user }) => {
   const [messages, setMessages] = useState([]);
@@ -11,8 +17,13 @@ const ChatPage = ({ user }) => {
 
   useEffect(() => {
     getMessages();
+    const websocket = new WebSocket(wsEndpoint);
+    // const websocket = new WebSocket("ws://127.0.0.1:3005/ws");
+    // const websocket = new WebSocket("wss://localhost:8080/ws");
 
-    const websocket = new WebSocket("ws://127.0.0.1:8080");
+    console.log(wsEndpoint);
+    // const websocket = new WebSocket(`${wsEndpoint}/ws`);
+    // const websocket = new WebSocket(`wss://localhost:3005/ws`);
 
     websocket.onopen = () => {
       console.log("WebSocket is connected");
@@ -56,7 +67,7 @@ const ChatPage = ({ user }) => {
   };
 
   const getMessages = () => {
-    fetch("http://localhost:3006/messages")
+    fetch(`${ENDPOINT}/chats/messages`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response bad");
@@ -80,7 +91,7 @@ const ChatPage = ({ user }) => {
   ) => s(d.now() / 1000) + " ".repeat(h).replace(/./g, () => s(m.random() * h));
 
   const addMsgToDB = () => {
-    fetch("http://localhost:3006/addMessage", {
+    fetch(`${ENDPOINT}/chats/addMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(msgFormat),
@@ -102,7 +113,7 @@ const ChatPage = ({ user }) => {
         return msgItem._id != msg._id;
       })
     );
-    fetch("http://localhost:3006/deleteMessage", {
+    fetch(`${ENDPOINT}/chats/deleteMessage`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ _id: msg._id }),
@@ -123,7 +134,12 @@ const ChatPage = ({ user }) => {
         {chatRooms.map((room) => {
           let a = currentRoom(room);
           return (
-            <button key={room} className={a} onClick={() => setChatRoom(room)}>
+            <button
+              key={room}
+              className={a}
+              onClick={() => setChatRoom(room)}
+              disabled={room != "Main"}
+            >
               {room}
             </button>
           );
@@ -135,7 +151,7 @@ const ChatPage = ({ user }) => {
             {lastDate != message.date.split(" ~ ")[0] && (
               <div className="flex flex-col items-center bg-slate-50 py-2">
                 <span className="bg-slate-400 h-[.2rem] w-full translate-y-[1.22rem]"></span>
-                <h4 className="bg-slate-200 solid border-2 border-slate-800 rounded-md z-10 p-1 font-medium">
+                <h4 className="bg-slate-200 solid border-2 border-slate-800 rounded-md z-0 p-1 font-medium">
                   {(lastDate = message.date.split(" ~ ")[0])}
                 </h4>
               </div>

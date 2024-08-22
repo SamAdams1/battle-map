@@ -15,8 +15,12 @@ const mongoURI = `mongodb+srv://sammyadams04:${process.env.DB_AUTH}@cluster0.ux5
 const dbName = "battle-map";
 const PORT = process.env.PORT || 3005;
 let db;
-connectToMongoDB();
 
+// import routes
+const chatRoutes = require("./routes/chats");
+app.use("/chats", chatRoutes);
+
+connectToMongoDB();
 async function connectToMongoDB() {
   return MongoClient.connect(mongoURI)
     .then((client) => {
@@ -496,6 +500,66 @@ app.get("/userDisplay", (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// web socket
+const http = require("http");
+const server = http.createServer(app);
+const WebSocket = require("ws");
+// const wss = new WebSocket.Server({ server, path: "wss://localhost:8080/ws" });
+// const wss = new WebSocket.Server({ port: 8080, path: "/ws" });
+const wss = new WebSocket.Server({ noServer: true });
+
+// console.log(wss);
+wss.on("connection", (ws) => {
+  console.log("Client connected");
+
+  ws.on("message", (message) => {
+    const data = JSON.parse(message);
+    console.log(`From client ${data.payload.userId}: ${data.payload.text}`);
+    // Broadcast the message to all connected clients
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(data.payload));
+      }
+    });
+  });
+
+  ws.on("close", () => {
+    console.log("Client disconnected");
+  });
 });
+console.log(wss);
+// Listen for the 'upgrade' event on the HTTP server
+server.on("upgrade", (request, socket, head) => {
+  console.log("Upgrade event triggered for:", request.url);
+  // Check if this request should be handled by the WebSocket server
+  if (request.url === "/ws") {
+    console.log("/ws");
+    try {
+      wss.handleUpgrade(request, socket, head, (ws) => {
+        console.log("upgrading");
+        // Emit the connection event after a successful upgrade
+        wss.emit("connection", ws, request);
+        console.log("upgrade complete");
+      });
+    } catch (error) {
+      console.error("upgrade error", error);
+    }
+  } else {
+    // Destroy the socket if it's not meant for the WebSocket server
+    socket.destroy();
+  }
+});
+
+// Start the HTTP server
+server.listen(PORT, () => {
+  console.log(`HTTP server is listening on port ${PORT}`);
+});
+
+// Start server
+// server.listen(8080, () => {
+//   console.log(`Server is listening on port ${8080}`);
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
