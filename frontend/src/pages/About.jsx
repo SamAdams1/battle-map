@@ -6,7 +6,7 @@ import Card from "../../components/Card";
 import { SocialIcon } from "react-social-icons";
 
 const topBattles = [
-  // { name: "Night Attack at Târgovişte", country: "Romania", year: 1462 },
+  { name: "Night Attack at Târgovişte", country: "Romania", year: 1462 },
   {
     name: "Battle of the Teutoburg Forest",
     country: "Germany",
@@ -29,7 +29,7 @@ const topBattles = [
     name: "Battle of Thermopylae",
     country: "Greece",
     year: -480,
-    latLon: "38.79, 22.53",
+    // latLon: "38.79, 22.53",
   },
   {
     name: "Battle of Agincourt",
@@ -37,12 +37,12 @@ const topBattles = [
     year: 1415,
     latLon: "50.46, 2.14",
   },
-  // {
-  //   name: "Siege of Brundisium",
-  //   country: "Italy'",
-  //   year: -49,
-  //   latLon: "40.63, 17.93",
-  // },
+  {
+    name: "Siege of Brundisium",
+    country: "Italy'",
+    year: -49,
+    latLon: "40.63, 17.93",
+  },
 ];
 
 const About = () => {
@@ -134,7 +134,7 @@ const About = () => {
           </div>
         </div>
         <span className="bg-gray-200 flex flex-col items-center *:p-2 pb-20 *:max-w-[50em]">
-          <h1>How to use Battle Map</h1>
+          <h1 className="underline">How to use Battle Map</h1>
           <h2>Map Page</h2>
           <div className="howToSect">
             <div className="howToSectSingle">
@@ -142,9 +142,9 @@ const About = () => {
               <p>
                 Explore the map without borders, selecting random points on the
                 map. The best way to find battles that you do not yet know;
-                limits your selection to battles with location data (go to
-                battles page or select a country in the map display to see
-                battles without location data).
+                limits your selection to battles with location data (go to wiki
+                page or select a country in the map display to see battles
+                without location data).
               </p>
             </div>
             <div className="howToSectSingle">
@@ -172,7 +172,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          <h2>Battles Page</h2>
+          <h2>Wiki Page</h2>
           <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Navigation Bar</h3>
@@ -193,14 +193,13 @@ const About = () => {
             <div className="howToSectSingle">
               <h3>Edit and Report</h3>
               <p>
-                Open the nav bar to navigate different countries data. The
-                current selected country will be displayed in red. Click on the
-                country button to see all of its battles.
+                With the correct permissions users can report or edit incorrect
+                battle data. All changes will be kept track of.
               </p>
             </div>
           </div>
           <h2>Favorites and Contributions</h2>
-          <div className="howToSect *:my-2">
+          <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Favorite Battles</h3>
               <p>
@@ -235,9 +234,7 @@ const About = () => {
           </div>
         </span>
       </div>
-
-      <h2>Top Battles</h2>
-      <div className="flex p-2">
+      <div className="flex *:mx-1">
         <button
           onClick={() => setCarouselIndex(carouselIndex - 1)}
           disabled={carouselIndex - 1 === 0}
@@ -258,59 +255,7 @@ const About = () => {
             />
           </svg>
         </button>
-        <div className="flex flex-row *:flex-1 *:w-full ">
-          {topBattles.map((battle, index) => {
-            const haslatLon = "latLon" in battle;
-            const bg = haslatLon ? "bg-green-700" : "bg-red-700";
-
-            return (
-              showBattle(index) && (
-                <Card
-                  key={battle.name}
-                  bgColor={bg + " max-w-64 p-3 *:py-1"}
-                  children={
-                    <>
-                      <h3>
-                        <a
-                          href={
-                            "https://en.wikipedia.org/wiki/" +
-                            battle.name.split(" or ")[0].replace(" ", "_")
-                          }
-                          target="_blank"
-                          className="underline"
-                        >
-                          {/* {battleArr.length >= 3
-                    ? battleArr.slice(0, -1).join(" – ")
-                    : name} */}
-                          {battle.name}
-                        </a>
-                      </h3>
-                      <h4>{battle.country}</h4>
-                      <h4>
-                        Location:{" "}
-                        {haslatLon ? (
-                          <>{battle.latLon}</>
-                        ) : (
-                          <button className="text-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              className="size-4"
-                            >
-                              <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
-                            </svg>
-                          </button>
-                        )}
-                      </h4>
-                      <h4>Year: {battle.year}</h4>
-                    </>
-                  }
-                />
-              )
-            );
-          })}
-        </div>
+        <h2>Top Battles</h2>
         <button
           onClick={() => setCarouselIndex(carouselIndex + 1)}
           disabled={carouselIndex + 2 === topBattles.length}
@@ -331,6 +276,59 @@ const About = () => {
             />
           </svg>
         </button>
+      </div>
+      <div className="flex flex-row flex-wrap *:flex-1 *:w-full ">
+        {topBattles.map((battle, index) => {
+          const haslatLon = "latLon" in battle;
+          const bg = haslatLon ? "bg-green-700" : "bg-red-700";
+
+          return (
+            showBattle(index) && (
+              <Card
+                key={battle.name}
+                bgColor={bg + " max-w- p-3 *:py-1 w-full"}
+                children={
+                  <>
+                    <h3>
+                      <a
+                        href={
+                          "https://en.wikipedia.org/wiki/" +
+                          battle.name.split(" or ")[0].replace(" ", "_")
+                        }
+                        target="_blank"
+                        className="underline"
+                      >
+                        {/* {battleArr.length >= 3
+                    ? battleArr.slice(0, -1).join(" – ")
+                    : name} */}
+                        {battle.name}
+                      </a>
+                    </h3>
+                    <h4>{battle.country}</h4>
+                    <h4>
+                      Location:{" "}
+                      {haslatLon ? (
+                        <>{battle.latLon}</>
+                      ) : (
+                        <button className="text-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            className="size-4"
+                          >
+                            <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                          </svg>
+                        </button>
+                      )}
+                    </h4>
+                    <h4>Year: {battle.year}</h4>
+                  </>
+                }
+              />
+            )
+          );
+        })}
       </div>
       <div className="py-20 *:p-2 bg-red-700 w-full text-white text-center">
         <h2>About the Dev</h2>
