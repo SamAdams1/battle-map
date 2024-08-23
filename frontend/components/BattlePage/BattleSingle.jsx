@@ -52,7 +52,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
                       onClick={() =>
                         showPopup(data.name, "add", index, data.year)
                       }
-                      disabled={!user.loggedIn || !user.perms.addLoc}
+                      disabled={!user.loggedIn}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

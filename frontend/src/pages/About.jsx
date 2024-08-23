@@ -93,7 +93,7 @@ const About = () => {
 
       <div className="flex flex-col items-center bg-red-700 w-full">
         <a href="#guide" className="-translate-y-4 *:rounded-3xl *:p-2">
-          <motion.button whileHover={{ scale: 1.2 }}>
+          <motion.button whileHover={{ scale: 1.2 }} onTap={{ scale: 0.8 }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -138,11 +138,11 @@ const About = () => {
             </p>
           </div>
         </div>
-        <span className="bg-gray-200 flex flex-col items-center *:p-2 pb-20 *:max-w-[50em]">
+        <span className="bg-gray-200 flex flex-col items-center *:p-2 pb-20 ">
           <h1 className="underline">How to use Battle Map</h1>
-          <h2>
-            Map Page{" "}
-            <button>
+          <h2 className="underline">
+            Map Page{"  "}
+            <motion.button whileHover={{ scale: 1.2 }}>
               <Link to="/">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +159,7 @@ const About = () => {
                   />
                 </svg>
               </Link>
-            </button>
+            </motion.button>
           </h2>
           <div className="howToSect">
             <div className="howToSectSingle">
@@ -197,9 +197,9 @@ const About = () => {
               </p>
             </div>
           </div>
-          <h2>
+          <h2 className="underline">
             Wiki Page{" "}
-            <button>
+            <motion.button whileHover={{ scale: 1.2 }}>
               <Link to="/wiki">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +216,7 @@ const About = () => {
                   />
                 </svg>
               </Link>
-            </button>
+            </motion.button>
           </h2>
           <div className="howToSect">
             <div className="howToSectSingle">
@@ -244,10 +244,10 @@ const About = () => {
             </div>
           </div>
 
-          <h2>
+          <h2 className="underline">
             Chat Page{" "}
-            <button>
-              <Link to="/wiki">
+            <motion.button whileHover={{ scale: 1.2 }}>
+              <Link to="/chat">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -263,20 +263,19 @@ const About = () => {
                   />
                 </svg>
               </Link>
-            </button>
+            </motion.button>
           </h2>
           <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Interact with others</h3>
               <p>
-                Open the nav bar to navigate different countries data. The
-                current selected country will be displayed in red. Click on the
-                country button to see all of its battles.
+                Talk in the community and help others locate battles to gain
+                trust and get promoted by an admin.
               </p>
             </div>
           </div>
 
-          <h2>Favorites and Contributions</h2>
+          <h2 className="underline">Favorites and Contributions</h2>
           <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Favorite Battles</h3>
@@ -298,7 +297,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          <h2>Admin Page</h2>
+          <h2 className="underline">Admin Page</h2>
           <div className="howToSect">
             <div className="howToSectSingle">
               <h3>Permissions</h3>

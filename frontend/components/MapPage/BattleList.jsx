@@ -85,6 +85,7 @@ const Battles = ({
                 <button
                   onClick={() => onClick(battleData, battleName)}
                   className="max-w-45 w-full"
+                  title="Go to battle"
                 >
                   {battleName}
                 </button>

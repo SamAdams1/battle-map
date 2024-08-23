@@ -37,6 +37,7 @@ const Countries = ({ data, getCountryCenter, goToLatLon }) => {
               <button
                 onClick={() => getCountryCenter(countryName)}
                 className="ml-2 p-2"
+                title={`View ${countryName} Battles`}
               >
                 {countryName}
               </button>

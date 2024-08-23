@@ -92,7 +92,10 @@ input {
 
   margin-bottom: 4em;
 
+  width: 100%;
   background-color: #cbd5e1;
+  text-align: center;
+  align-items: center;
 }
 .howToSect > div > p {
   margin-left: 1em;
@@ -100,6 +103,9 @@ input {
 }
 .howToSectSingle {
   margin-top: 1em;
+  max-width: 50em;
+  text-align: center;
+  color: black;
 }
 
 /* change header on small screen */
