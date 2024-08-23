@@ -39,7 +39,6 @@ const EditPopup = ({
     battle.name = newName;
     battleLocs[index].year = parseInt(newYear);
     battleLocs[index].name = battle.name;
-    // battleLocs[index].pop;
 
     const data = battleLocs[index];
     battleLocs.splice(index, 1);

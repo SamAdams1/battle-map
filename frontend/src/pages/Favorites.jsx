@@ -32,7 +32,7 @@ const Favorites = ({ user }) => {
               bgColor={hasLatLon ? "bg-green-600" : "bg-red-700"}
               children={
                 <div key={id} className="flex">
-                  <div className=" p-2">
+                  <div className=" p-2 w-full">
                     <h2>{nameOnly} </h2>
                     <h3>{fav.year}</h3>
                     <h3>{fav.country}</h3>
