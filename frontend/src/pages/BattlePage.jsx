@@ -27,7 +27,6 @@ const BattlePage = ({ user }) => {
   const [popupType, setPopupType] = useState("");
   const [battle, setBattle] = useState([]);
   const [index, setIndex] = useState();
-  const [year, setYear] = useState("");
 
   useEffect(() => {
     getData();
@@ -69,11 +68,10 @@ const BattlePage = ({ user }) => {
     setCountry(country);
   };
 
-  function showPopup(thisBattle, type, thisIndex, thisYear) {
+  function showPopup(thisBattle, type, thisIndex) {
     setBattle(thisBattle);
     setIndex(thisIndex);
     setPopupType(type);
-    setYear(thisYear);
     setPopupVis(true);
   }
 
@@ -83,7 +81,6 @@ const BattlePage = ({ user }) => {
         user={user}
         battle={battle}
         index={index}
-        bYear={year}
         country={country}
         battleLocs={data}
         setPopupVis={setPopupVis}
@@ -102,7 +99,6 @@ const BattlePage = ({ user }) => {
       <EditPopup
         user={user}
         battle={battle}
-        year={year}
         index={index}
         country={country}
         battleLocs={data}

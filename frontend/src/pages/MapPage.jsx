@@ -12,7 +12,7 @@ const MapPage = ({ user }) => {
   const [data, setData] = useState({});
 
   const [map, setMap] = useState(null);
-  const markersRef = useRef([]);
+  const markersRef = useRef({});
 
   useEffect(() => {
     getData();
@@ -57,6 +57,12 @@ const MapPage = ({ user }) => {
         panFunc={panToPoint}
         showMarkerPopup={showMarkerPopup}
       />
+      {/* <div className="flex flex-row flex-1">
+        <p>Show Battles Between</p>
+        <input type="number" name="" id="" maxLength={4} className="w-16" />
+        -
+        <input type="number" name="" id="" maxLength={4} className="w-16" />
+      </div> */}
       <Map mapRef={setMap} classname="Map">
         <Markers data={data} markersRef={markersRef} user={user} />
       </Map>

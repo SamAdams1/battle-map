@@ -65,21 +65,7 @@ export function getNumWLoc(data) {
 
 export function searchNamesForYear(battleLocs, year) {
   for (let index = 0; index < battleLocs.length; index++) {
-    const bStr = battleLocs[index].name;
-    let bArr = bStr.split(" – ");
-    let thisYear;
-    try {
-      // check if battle has loc as then it will have year
-      thisYear = String(battleLocs[bArr[0]].year);
-    } catch {
-      // if has dash search for year
-      if (bArr.length >= 2) {
-        thisYear = searchSecondPart(bArr[1].split(" or ")[0].split(",")[0]);
-      } else {
-        // if not search battle name for year
-        thisYear = extractYear(bStr);
-      }
-    }
+    let thisYear = battleLocs[index].year;
 
     // check if greater
     if (year < parseInt(thisYear)) {

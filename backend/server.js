@@ -267,7 +267,6 @@ app.put("/updatePassword", async (req, res) => {
 
     // if old password matches change password
     if (await comparePasswords(req.body.oldPassword, response[0].password)) {
-      console.log("passwords match", response);
       const hash = await hashPassword(req.body.newPassword);
       await db.collection("users").updateOne(
         { _id: ObjectId.createFromHexString(req.body.id) },

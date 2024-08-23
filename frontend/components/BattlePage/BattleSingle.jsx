@@ -33,7 +33,6 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
               >
                 <h2>{nameOnly}</h2>
               </a>
-              {/* <WikiButton battleName={nameOnly} showPopup={showPopup} /> */}
               <div>
                 {hasLatLon ? (
                   <h3>
@@ -49,9 +48,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
                     <h3 className="mr-2">Location: </h3>
                     <button
                       title="Add Location Data"
-                      onClick={() =>
-                        showPopup(data.name, "add", index, data.year)
-                      }
+                      onClick={() => showPopup(data, "add", index)}
                       disabled={!user.loggedIn}
                     >
                       <svg
@@ -78,7 +75,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
           <div className="flex *:w-full *:mt-4">
             {user.perms.editData && (
               <button
-                onClick={() => showPopup(data.name, "edit", index, data.year)}
+                onClick={() => showPopup(data, "edit", index)}
                 title="Edit Battle"
               >
                 <svg
@@ -100,7 +97,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
 
             {user.perms.reportData && (
               <button
-                onClick={() => showPopup(data.name, "report", index)}
+                onClick={() => showPopup(data, "report", index)}
                 title="Report Battle"
               >
                 <svg
@@ -122,7 +119,7 @@ const BattleSingle = ({ user, data, index, country, showPopup }) => {
 
             {user.perms.deleteBattle && (
               <button
-                onClick={() => showPopup(data.name, "delete", index)}
+                onClick={() => showPopup(data, "delete", index)}
                 title="Delete Battle"
               >
                 <svg

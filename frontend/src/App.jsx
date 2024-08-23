@@ -114,18 +114,17 @@ function App() {
   }, [user]);
 
   async function stayedLogged() {
-    // console.log("stay logged in");
     try {
       const token = localStorage.getItem("JWT");
       const response = await axios.put(`${ENDPOINT}/userInfo`, { token });
       if (response.data.length == 0) {
-        setErrorMsg("Token expired.");
+        console.log("Token expired.");
       } else {
         console.log("JWT SUCCESS");
         setUser(response.data.user[0]);
       }
     } catch (error) {
-      // console.error(error);
+      console.error(error);
     }
   }
 

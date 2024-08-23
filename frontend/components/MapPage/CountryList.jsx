@@ -47,18 +47,18 @@ const Countries = ({ data, getCountryCenter, goToLatLon }) => {
       </div>
 
       <div className=" flex">
+        <button
+          onClick={() => goToLatLon(inputLatLon)}
+          className="rounded-none min-w-"
+        >
+          Go To
+        </button>
         <input
           type="text"
           placeholder="Enter LatLon: Ex: 1,1"
           onChange={(e) => setInputLatLon(e.target.value)}
           className="w-min flex-1 rounded-none"
         />
-        <button
-          onClick={() => goToLatLon(inputLatLon)}
-          className="rounded-none"
-        >
-          Go To
-        </button>
       </div>
     </>
   );

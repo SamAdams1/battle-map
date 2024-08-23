@@ -119,25 +119,25 @@ const Settings = ({ user, setUser }) => {
           Update password
         </button>
       </div>
-      <div className="flex flex-col *:my-1">
+      <div className="flex flex-col *:my-1 mb-5">
         <h1 className="text-red-600 font-semibold">Delete Account</h1>
         <p>
           Delete your account and all of its data. This action is irreversible.
         </p>
-        <span>
+        <span className="flex">
           <button
             className="text-red-600 p-1"
             onClick={() => setConfirmDelete(!confirmDelete)}
           >
             Delete account
           </button>
+          {confirmDelete && (
+            <div className="*:p- *:ml-6">
+              <button onClick={deleteAccount}>Confirm</button>
+              <button onClick={() => setConfirmDelete(false)}>Cancel</button>
+            </div>
+          )}
         </span>
-        {confirmDelete && (
-          <div className="*:p-2 *:mx-1">
-            <button onClick={deleteAccount}>Confirm</button>
-            <button onClick={() => setConfirmDelete(false)}>Cancel</button>
-          </div>
-        )}
       </div>
     </div>
   );

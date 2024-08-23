@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  objectId,
   postToHistory,
   updateCountryBattleLocs,
   updateUserContributions,
@@ -9,15 +10,15 @@ const AddPopup = ({
   user,
   battle,
   index,
-  bYear,
   country,
   battleLocs,
   setPopupVis,
 }) => {
   const [latLon, setLatLon] = useState("");
-  const [year, setYear] = useState(bYear);
+  const [year, setYear] = useState(battle.year);
   const [src, setSrc] = useState("");
 
+  console.log(battle);
   function addToDB(loc) {
     loc = loc.replace("[", "").replace("]", "").replace(" ", "").split(",");
     // console.log(loc, loc);
@@ -27,7 +28,14 @@ const AddPopup = ({
       !isNaN(Number.parseFloat(loc[1]))
     ) {
       loc = loc.map((num) => parseFloat(num));
-      const data = { name: battle, latLon: loc, year: year };
+      const data = {
+        name: battle.name,
+        id: battle.id,
+        latLon: loc,
+        year: year,
+      };
+      battle["latLon"] = loc;
+      battle["year"] = year;
       if (user.perms.addLoc) addBattleLoc(data);
       suggestBattle(loc, year);
       setPopupVis(false);
@@ -39,14 +47,14 @@ const AddPopup = ({
     battleLocs[index] = data;
     console.log(index);
 
-    addToUserContributions(battle, country);
+    addToUserContributions(country);
     updateCountryBattleLocs(country, battleLocs);
   };
 
   // contributed battles added to user card
-  const addToUserContributions = (battleName, countryName) => {
+  const addToUserContributions = (countryName) => {
     const newInfo = {
-      battle: battleName,
+      battle: battle.name,
       country: countryName,
       dateAdded: getCurrentDate(),
     };
@@ -58,11 +66,11 @@ const AddPopup = ({
   // adds battle to contribution history collection
   // if user has correct perms will be approved and added to location db
   // if not battle will need to be approved by admin
-  const suggestBattle = (latLon, year) => {
+  const suggestBattle = (latLon) => {
     const data = {
       latLon,
       year,
-      battle,
+      battle: battle.name,
       country,
       dateAdded: getCurrentDate(),
       addedBy: user._id,
@@ -86,7 +94,6 @@ const AddPopup = ({
   useEffect(() => {
     if (!user.loggedIn) setPopupVis(false);
   }, [user]);
-  console.log(bYear);
 
   return (
     <div className="*:m-1 flex flex-col items-center">
@@ -101,7 +108,7 @@ const AddPopup = ({
         </>
       )}
       <h1>{country}</h1>
-      <h2>{battle.split(" – ")[0]}</h2>
+      <h2>{battle.name.split(" – ")[0]}</h2>
       <h3>Latitude, Longitude:</h3>
       <p>(No brackets or spaces)</p>
       <input

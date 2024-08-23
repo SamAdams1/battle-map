@@ -4,7 +4,6 @@ import { searchNamesForYear, updateCountryBattleLocs } from "./dbFuncs";
 const EditPopup = ({
   user,
   battle,
-  year,
   country,
   index,
   battleLocs,
@@ -13,8 +12,8 @@ const EditPopup = ({
   // battle format: ["battle name", " year", "campaign/war", ...]
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
-  const [newName, setNewName] = useState(battle);
-  const [newYear, setNewYear] = useState(year);
+  const [newName, setNewName] = useState(battle.name);
+  const [newYear, setNewYear] = useState(battle.year);
 
   const hasLatLon = "latLon" in battleLocs[index];
 
@@ -37,10 +36,10 @@ const EditPopup = ({
     if (hasLatLon) {
       battleLocs[index].latLon = [parseFloat(lat), parseFloat(lon)];
     }
-    battle = newName;
+    battle.name = newName;
     battleLocs[index].year = parseInt(newYear);
-    battleLocs[index].name = battle;
-    battleLocs[index].pop;
+    battleLocs[index].name = battle.name;
+    // battleLocs[index].pop;
 
     const data = battleLocs[index];
     battleLocs.splice(index, 1);
@@ -58,7 +57,7 @@ const EditPopup = ({
     <div className="flex flex-col items-center *:m-2">
       <h1>Edit</h1>
       <h2>{country}</h2>
-      <h3>{battle}</h3>
+      <h3>{battle.name}</h3>
       <div className="flex flex-col items-center *:mb-1">
         <h2>Battle Name:</h2>
         <p>Format is: Battle – Year – Campaign/War</p>

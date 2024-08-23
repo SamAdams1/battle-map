@@ -6,7 +6,12 @@ const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
   const [input, setInput] = useState("");
 
   const reportBattle = () => {
-    const report = { country, battle, reason: input, author: user._id };
+    const report = {
+      country,
+      battle: battle.name,
+      reason: input,
+      author: user._id,
+    };
     Axios.post(`${ENDPOINT}/reportBattle`, report)
       .then((response) => {
         console.log(response);
@@ -23,7 +28,7 @@ const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
     <div className="*:my-2">
       <h1>Report</h1>
       <h2>{country}</h2>
-      <h2>{battle}</h2>
+      <h2>{battle.name}</h2>
       <h3>Including sources will result in your report be looked at sooner.</h3>
       <textarea
         type="text"

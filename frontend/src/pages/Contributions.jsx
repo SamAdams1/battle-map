@@ -21,7 +21,7 @@ const Contributions = ({ user }) => {
           return (
             <Card
               key={battleDict.dateAdded}
-              bgColor={"bg-red-700"}
+              bgColor={"bg-green-600"}
               children={
                 <div key={battleDict.id} className="flex">
                   <div className="w-full p-2">

@@ -144,7 +144,9 @@ const ContribHistory = ({ user, battleLocs }) => {
                           Loc: [{doc.latLon[0]}, {doc.latLon[1]}]
                         </h4>
                         <h4>Added: {doc.dateAdded}</h4>
-                        <h4>Source: {doc.source}</h4>
+                        <h4 className="overflow-x-auto overflow-y-hidden">
+                          Source: {doc.source}
+                        </h4>
                       </div>
                       {!doc.approved && (
                         <button onClick={() => approve(doc)} className="">

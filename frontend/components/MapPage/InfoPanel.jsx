@@ -120,7 +120,7 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
               onClick={() => onLeftArrow()}
               disabled={!country}
               className="w-10"
-              title={!country && "Country List"}
+              title={country ? "Country List" : ""}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +144,7 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
                 (!country && !lastCountry) ||
                 (country != "" && lastCountry == "")
               }
-              title={lastCountry && "Last Country: " + lastCountry}
+              title={lastCountry ? `Last Country: ${lastCountry}` : ""}
               className="w-10"
             >
               <svg
@@ -199,6 +199,26 @@ const InfoPanel = ({ data, panFunc, showMarkerPopup }) => {
               )}
             </div>
           </div>
+          {/* <div className="flex flex-row flex-1 items-center">
+            <p>Battles Between</p>
+            <input
+              type="number"
+              name=""
+              id=""
+              maxLength={4}
+              max="2024"
+              className="w-14 no-spinners"
+            />
+            <p>-</p>
+            <input
+              type="number"
+              name=""
+              id=""
+              maxLength={4}
+              className="w-12 no-spinners"
+            />
+          </div> */}
+          {/* <button>Confirm</button> */}
         </>
       )}
     </div>
