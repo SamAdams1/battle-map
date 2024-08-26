@@ -1,6 +1,6 @@
 # What is Battle Map?
 
-https://battle-map-silk.vercel.app/
+https://battlemap.vercel.app/
 
 A website where history nerds can see historic battles mapped out.
 
