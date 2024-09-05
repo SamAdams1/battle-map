@@ -230,7 +230,7 @@ const About = () => {
             <div className="howToSectSingle">
               <h3>Add Location Data</h3>
               <p>
-                Contribute to data to battles and help us complete the wiki. Our
+                Contribute data to battles and help us complete the wiki. Our
                 goal is to get every major battle in history mapped out!
               </p>
             </div>
