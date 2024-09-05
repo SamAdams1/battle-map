@@ -25,7 +25,7 @@ const Report = ({ battle, country, battleLocs, setPopupVis, user }) => {
   }, [user]);
 
   return (
-    <div className="*:my-2">
+    <div className="*:my-2 flex flex-col items-center *:m-2">
       <h1>Report</h1>
       <h2>{country}</h2>
       <h2>{battle.name}</h2>

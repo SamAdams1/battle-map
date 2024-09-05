@@ -14,7 +14,7 @@ const DeleteForm = ({ user, country, index, battles, setPopupVis }) => {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-[40rem] text-center *:my-4">
+    <div className="flex flex-col items-center text-center *:my-4 ">
       <h1 className="text-red-600 font-bold underline">Delete</h1>
       <h1>{battles[index].name}</h1>
       <h2>This will permantly delete this battle and all its data.</h2>
