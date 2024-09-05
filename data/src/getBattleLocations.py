@@ -127,7 +127,7 @@ def getcountryLatlon(country):
 import pymongo 
 import bson
 
-DB_AUTH = "9TZTNT69uD4nkYD7"
+DB_AUTH = ""
 myclient = pymongo.MongoClient(f"mongodb+srv://sammyadams04:{DB_AUTH}@cluster0.ux5mv4e.mongodb.net/battle-map?retryWrites=true&w=majority&appName=Cluster0")
 
 myDB = myclient["battle-map"]

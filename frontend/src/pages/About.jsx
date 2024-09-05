@@ -230,9 +230,8 @@ const About = () => {
             <div className="howToSectSingle">
               <h3>Add Location Data</h3>
               <p>
-                Open the nav bar to navigate different countries data. The
-                current selected country will be displayed in red. Click on the
-                country button to see all of its battles.
+                Contribute to data to battles and help us complete the wiki. Our
+                goal is to get every major battle in history mapped out!
               </p>
             </div>
             <div className="howToSectSingle">
